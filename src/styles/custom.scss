@@ -309,6 +309,15 @@
   display: block;
 }
 
-@media (max-width: 30rem) {
-  .ip-terim__balon { max-width: 88vw; }
+/* Dar ekranda balon, ekrana sabitlenmiş alt şerit olur: asla taşmaz. */
+@media (max-width: 40rem) {
+  .ip-terim__balon {
+    position: fixed;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    top: auto;
+    width: auto;
+    max-width: none;
+  }
 }

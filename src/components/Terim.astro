@@ -30,6 +30,22 @@ const metin = en ? `${en} — ${aciklama}` : aciklama;
     });
   }
 
+  /** Masaüstünde balonu görünüm alanının içinde tutar. */
+  function kenetle(dugme: HTMLElement) {
+    const balon = dugme.nextElementSibling as HTMLElement | null;
+    if (!balon) return;
+    balon.style.left = '';
+    if (window.matchMedia('(max-width: 40rem)').matches) return;
+    const kenar = 12;
+    const r = balon.getBoundingClientRect();
+    const genislik = document.documentElement.clientWidth;
+    if (r.right > genislik - kenar) {
+      balon.style.left = `${-(r.right - genislik + kenar)}px`;
+    } else if (r.left < kenar) {
+      balon.style.left = `${kenar - r.left}px`;
+    }
+  }
+
   document.addEventListener('click', (e) => {
     const hedef = e.target as HTMLElement | null;
     const dugme = hedef?.closest?.('.ip-terim__kelime') as HTMLElement | null;
@@ -40,7 +56,17 @@ const metin = en ? `${en} — ${aciklama}` : aciklama;
     const acik = dugme.getAttribute('aria-expanded') === 'true';
     kapatHepsi(dugme);
     dugme.setAttribute('aria-expanded', acik ? 'false' : 'true');
+    if (!acik) kenetle(dugme);
   });
+
+  document.addEventListener(
+    'mouseenter',
+    (e) => {
+      const hedef = e.target as HTMLElement | null;
+      if (hedef?.classList?.contains('ip-terim__kelime')) kenetle(hedef);
+    },
+    true
+  );
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') kapatHepsi();
