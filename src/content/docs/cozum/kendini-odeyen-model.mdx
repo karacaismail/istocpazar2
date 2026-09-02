@@ -1,6 +1,6 @@
 ---
-title: 'Kendini ödeyen model'
-description: 'Üç personelin maliyetini karşılayacak gelir modelinin birim ekonomisi, başabaş noktası ve komisyonun tek başına neden yetmediği.'
+title: Kendini ödeyen model
+description: Plastik ve züccaciye kategorilerinde 100+ aktif satıcı hedefiyle birim ekonomi, başabaş noktası, nakit çukuru ve üç gelir kalemi.
 kanit: cikarim
 guven: orta
 tur: oneri
@@ -14,22 +14,16 @@ import Chart from '@components/Chart.astro';
 import Tag from '@components/Tag.astro';
 
 <Aside type="caution" title="Bu sayfadaki sayılar hakkında">
-Aşağıdaki rakamlar **örnek girdilerdir**, İstoc'un gerçek verisi değildir. Amaç, doğru
-rakamları koyduğunuzda hangi sonucun çıkacağını gösteren bir hesap iskeleti vermektir.
-Kendi maaş, ortalama sepet ve komisyon rakamlarınızı yazdığınızda tablo yeniden hesaplanır.
+Rakamlar **örnek girdilerdir**, İstoc'un gerçek verisi değildir. Kategori kümesi
+(plastik, züccaciye, oyuncak, cam) ve 100+ aktif satıcı hedefi gerçektir; maaş, ortalama
+sepet ve komisyon oranı ise sizin rakamlarınızla değiştirilmelidir.
 </Aside>
 
 ## Temel denklem
 
-Sistemin kendini ödemesi tek bir eşitliğe bakar:
-
 `Aylık gelir ≥ Aylık personel maliyeti`
 
-Komisyon modelinde aylık gelir şudur:
-
-`Aylık gelir = İşlem sayısı × Ortalama işlem tutarı × Komisyon oranı`
-
-Buradan başabaş işlem sayısı çıkar:
+Komisyon modelinde:
 
 `Başabaş işlem = Aylık personel maliyeti ÷ (Ortalama işlem tutarı × Komisyon oranı)`
 
@@ -37,39 +31,36 @@ Buradan başabaş işlem sayısı çıkar:
 
 | Girdi | Örnek değer | Sizin değeriniz |
 | ----- | ----------- | --------------- |
-| Personel maliyeti (kişi başı, brüt + yan haklar, aylık) | 60.000 TL | ... |
-| Ortalama işlem tutarı | 40.000 TL | ... |
+| Personel maliyeti (kişi başı, brüt + yan haklar) | 60.000 TL / ay | ... |
+| Ortalama işlem tutarı (plastik/züccaciye toptan) | 25.000 TL | ... |
 | Komisyon oranı | %3 | ... |
-| İşlem başına platform geliri | 1.200 TL | ... |
+| İşlem başına platform geliri | 750 TL | ... |
 
-## Sarsıcı sonuç: komisyon tek başına yetmez
+<Aside type="danger" title="Komisyon tek başına yetmez — kategori değişince daha da yetmiyor">
+Üç kişi tam kadroda aylık **180.000 TL**. Yukarıdaki girdilerle:
 
-Üç kişi tam kadro çalıştığında aylık maliyet **180.000 TL**'dir. Yukarıdaki girdilerle:
+`180.000 ÷ 750 = ayda 240 tamamlanmış işlem`
 
-`180.000 ÷ 1.200 = ayda 150 tamamlanmış işlem`
+Rehberin ilk sürümünde bu sayı 150 idi; kategori kümesi netleşince ortalama sepet düştüğü
+için başabaş **daha da zorlaştı**. Model bu gerçeği kabul ederek kurulmalıdır.
 
-<Aside type="danger" title="Bunun anlamı">
-Sıfırdan başlayan bir pazar yerinin ilk yılında **ayda 150 tamamlanmış işleme** ulaşması
-gerçekçi değildir. Yani "üç kişi komisyon geliriyle kendini öder" varsayımı, bu girdilerle
-**yanlıştır**. Model değişmeli, hedef değil.
+İyi haber: bu kategorilerde **tekrar sıklığı yüksektir**. Perakendeci ve e-ticaret satıcısı
+ayda bir sipariş verir. Yani 240 işlem, 240 farklı müşteri değil; ~100 tekrar eden alıcı
+demektir. Bu ulaşılabilir bir sayıdır — ama 12. aydan önce değil.
 </Aside>
 
-## Çözüm: üç gelir kalemi
-
-Kendini ödeyen sistem, tek gelir kalemiyle değil **üç kalemin toplamıyla** kurulur. Üçü de
-beyaz tahtadaki rollerin doğal çıktısıdır.
+## Üç gelir kalemi
 
 | Kalem | Kaynağı | Kim üretir | Likiditeye bağımlı mı |
 | ----- | ------- | ---------- | --------------------- |
-| 1. İşlem komisyonu | Tamamlanan alım-satım | Saha + Masa başı | <Tag tone="risk">Evet, tamamen</Tag> |
-| 2. Hizmet geliri | Katalog yükleme, ürün fotoğrafı, içerik, mağaza kurulumu | Masa başı | <Tag tone="ok">Hayır</Tag> |
-| 3. Kurumsal iş birliği | Sponsorluk, eğitim, sektörel etkinlik, oda/dernek anlaşmaları | Organizatör | <Tag tone="ok">Hayır</Tag> |
+| 1. İşlem komisyonu | Tamamlanan alım-satım | Saha + Masa Başı | <Tag tone="risk">Evet, tamamen</Tag> |
+| 2. Hizmet geliri | Katalog kurulumu, ürün görseli, içerik, mağaza düzeni | Masa Başı | <Tag tone="ok">Hayır</Tag> |
+| 3. Kurumsal iş birliği | Sponsorluk, eğitim, sektörel etkinlik, oda/dernek | Organizatör | <Tag tone="ok">Hayır</Tag> |
 
-<Aside type="tip" title="Beyaz tahtadaki organizatör rolü burada haklı çıkıyor">
-Tahtada organizatör için yazılan **"kurumsal işbirliği bulmak"** ve **"eğitim verecek"**
-maddeleri, aslında likiditeden bağımsız bir gelir kalemidir. Bu, üç kişilik ekibi ilk aylarda
-ayakta tutan tek gerçekçi nakit kaynağıdır. Sezgi doğru; eksik olan bunun bir **gelir hedefi**
-olarak yazılmamış olmasıydı.
+<Aside type="tip" title="100 satıcı hedefi hizmet gelirini büyütüyor">
+Satıcı hedefi 20'den 100'e çıkınca, katalog ve görsel hizmetinin **pazarı da beş katına
+çıkıyor**. Bu kalem artık ilk 6 ayın en istikrarlı geliri. Yani daha iddialı satıcı hedefi,
+nakit tablosunu bozmuyor — **iyileştiriyor**.
 </Aside>
 
 ## 12 aylık model
@@ -77,44 +68,40 @@ olarak yazılmamış olmasıydı.
 <Chart
   id="aylik-gelir-maliyet"
   title="Aylık gelir kalemleri ve personel maliyeti (bin TL)"
-  source="Örnek girdilerle kurulmuş model. Personel: 1. ay 1 kişi, 2. ay 2 kişi, 3. aydan itibaren 3 kişi (aşamalı istihdam)."
+  source="Örnek girdiler. Aşamalı istihdam: 1. ay Organizatör, 2. ay +Saha, 3. ay +Masa Başı. İşlem sayısı 100+ aktif satıcı ve büyüyen talep akışına göre modellenmiştir."
   height="22rem"
-  columns={['Ay', 'Komisyon', 'Hizmet', 'İş birliği', 'Toplam gelir', 'Personel maliyeti']}
+  columns={['Ay', 'İşlem', 'Komisyon', 'Hizmet', 'İş birliği', 'Toplam gelir', 'Maliyet']}
   rows={[
-    ['1. ay', 0, 0, 0, 0, 60],
-    ['2. ay', 6, 10, 0, 16, 120],
-    ['3. ay', 18, 20, 40, 78, 180],
-    ['4. ay', 36, 30, 40, 106, 180],
-    ['5. ay', 54, 35, 50, 139, 180],
-    ['6. ay', 78, 40, 50, 168, 180],
-    ['7. ay', 102, 40, 60, 202, 180],
-    ['8. ay', 132, 45, 60, 237, 180],
-    ['9. ay', 162, 45, 70, 277, 180],
-    ['10. ay', 198, 50, 70, 318, 180],
-    ['11. ay', 234, 50, 80, 364, 180],
-    ['12. ay', 276, 55, 80, 411, 180],
+    ['1. ay', 2, 2, 0, 0, 2, 60],
+    ['2. ay', 12, 9, 20, 0, 29, 120],
+    ['3. ay', 25, 19, 40, 40, 99, 180],
+    ['4. ay', 45, 34, 50, 40, 124, 180],
+    ['5. ay', 70, 53, 55, 50, 158, 180],
+    ['6. ay', 100, 75, 60, 50, 185, 180],
+    ['7. ay', 135, 101, 60, 60, 221, 180],
+    ['8. ay', 175, 131, 65, 60, 256, 180],
+    ['9. ay', 215, 161, 65, 70, 296, 180],
+    ['10. ay', 260, 195, 70, 70, 335, 180],
+    ['11. ay', 310, 233, 70, 80, 383, 180],
+    ['12. ay', 365, 274, 75, 80, 429, 180],
   ]}
   option={{
     grid: { left: 52, right: 20, top: 56, bottom: 40 },
     legend: { top: 8, data: ['Komisyon', 'Hizmet', 'İş birliği', 'Personel maliyeti'] },
     tooltip: { trigger: 'axis' },
-    xAxis: {
-      type: 'category',
-      data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-      name: 'Ay',
-    },
+    xAxis: { type: 'category', data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'], name: 'Ay' },
     yAxis: { type: 'value', name: 'bin TL' },
     series: [
-      { name: 'Komisyon', type: 'bar', stack: 'gelir', itemStyle: { color: '#3f7fbf' }, data: [0, 6, 18, 36, 54, 78, 102, 132, 162, 198, 234, 276] },
-      { name: 'Hizmet', type: 'bar', stack: 'gelir', itemStyle: { color: '#4f9e77' }, data: [0, 10, 20, 30, 35, 40, 40, 45, 45, 50, 50, 55] },
+      { name: 'Komisyon', type: 'bar', stack: 'gelir', itemStyle: { color: '#3f7fbf' }, data: [2, 9, 19, 34, 53, 75, 101, 131, 161, 195, 233, 274] },
+      { name: 'Hizmet', type: 'bar', stack: 'gelir', itemStyle: { color: '#4f9e77' }, data: [0, 20, 40, 50, 55, 60, 60, 65, 65, 70, 70, 75] },
       { name: 'İş birliği', type: 'bar', stack: 'gelir', itemStyle: { color: '#c2913f' }, data: [0, 0, 40, 40, 50, 50, 60, 60, 70, 70, 80, 80] },
       { name: 'Personel maliyeti', type: 'line', symbolSize: 7, lineStyle: { width: 3 }, itemStyle: { color: '#c0504d' }, data: [60, 120, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180] },
     ],
   }}
 />
 
-**Okunuşu:** Aylık gelir, personel maliyetini **7. ayda** geçiyor. Bundan önceki 6 ay
-finanse edilmesi gereken dönemdir.
+**Okunuşu:** Aylık gelir, personel maliyetini **6. ayda** geçiyor. İlk sürümdeki tahmin
+7. aydı; daha yüksek satıcı hedefi hizmet gelirini büyüttüğü için bir ay öne geldi.
 
 ## Kümülatif geri ödeme
 
@@ -125,18 +112,18 @@ finanse edilmesi gereken dönemdir.
   height="20rem"
   columns={['Ay', 'Kümülatif gelir', 'Kümülatif maliyet', 'Fark']}
   rows={[
-    ['1. ay', 0, 60, -60],
-    ['2. ay', 16, 180, -164],
-    ['3. ay', 94, 360, -266],
-    ['4. ay', 200, 540, -340],
-    ['5. ay', 339, 720, -381],
-    ['6. ay', 507, 900, -393],
-    ['7. ay', 709, 1080, -371],
-    ['8. ay', 946, 1260, -314],
-    ['9. ay', 1223, 1440, -217],
-    ['10. ay', 1541, 1620, -79],
-    ['11. ay', 1905, 1800, 105],
-    ['12. ay', 2316, 1980, 336],
+    ['1. ay', 2, 60, -58],
+    ['2. ay', 31, 180, -149],
+    ['3. ay', 130, 360, -230],
+    ['4. ay', 254, 540, -286],
+    ['5. ay', 411, 720, -309],
+    ['6. ay', 596, 900, -304],
+    ['7. ay', 817, 1080, -263],
+    ['8. ay', 1073, 1260, -187],
+    ['9. ay', 1369, 1440, -71],
+    ['10. ay', 1704, 1620, 84],
+    ['11. ay', 2086, 1800, 286],
+    ['12. ay', 2515, 1980, 535],
   ]}
   option={{
     grid: { left: 62, right: 20, top: 56, bottom: 40 },
@@ -145,60 +132,50 @@ finanse edilmesi gereken dönemdir.
     xAxis: { type: 'category', data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'], name: 'Ay' },
     yAxis: { type: 'value', name: 'bin TL' },
     series: [
-      { name: 'Kümülatif gelir', type: 'line', smooth: true, symbolSize: 7, lineStyle: { width: 3 }, itemStyle: { color: '#4f9e77' }, data: [0, 16, 94, 200, 339, 507, 709, 946, 1223, 1541, 1905, 2316] },
+      { name: 'Kümülatif gelir', type: 'line', smooth: true, symbolSize: 7, lineStyle: { width: 3 }, itemStyle: { color: '#4f9e77' }, data: [2, 31, 130, 254, 411, 596, 817, 1073, 1369, 1704, 2086, 2515] },
       { name: 'Kümülatif maliyet', type: 'line', smooth: true, symbolSize: 7, lineStyle: { width: 3 }, itemStyle: { color: '#c0504d' }, data: [60, 180, 360, 540, 720, 900, 1080, 1260, 1440, 1620, 1800, 1980] },
     ],
   }}
 />
 
-**Okunuşu:** En derin nakit çukuru **6. ayda, yaklaşık 393 bin TL**. Kümülatif geri ödeme
-**11. ayda** gerçekleşiyor.
-
 <Aside type="danger" title="Finansman gerçeği">
-Bu model doğruysa, İstoc'un kasasında **yaklaşık 400 bin TL'lik bir dayanma gücü** olması
-gerekir. Bu para yoksa, üç kişiyi aynı anda işe almak sistemin kendini ödemesini beklemeden
-kapanmasına yol açar. Aşamalı istihdam tam olarak bu riski düşürmek içindir:
-[Aşamalı istihdam ve kapılar](/istocpazar2/cozum/asamali-istihdam/).
+En derin nakit çukuru **5. ayda, yaklaşık 309 bin TL**. Kümülatif geri ödeme **10. ayda**.
+
+Yani kasada **en az 350-400 bin TL dayanma gücü** olmalı. Bu para yoksa üç kişilik ekip,
+sistem kendini ödemeye başlamadan kapanır. Aşamalı istihdam bu çukuru sığlaştırmak içindir.
+</Aside>
+
+## İlk sürüme göre ne değişti
+
+| Gösterge | 0.1.0 (varsayım kategorisi) | 0.2.0 (gerçek kategoriler + 100 satıcı) |
+| -------- | --------------------------- | --------------------------------------- |
+| Ortalama sepet | 40.000 TL | 25.000 TL |
+| Başabaş işlem sayısı | 150 / ay | 240 / ay |
+| Aylık başabaş | 7. ay | <Tag tone="ok">6. ay</Tag> |
+| Kümülatif geri ödeme | 11. ay | <Tag tone="ok">10. ay</Tag> |
+| En derin nakit çukuru | 393 bin TL | <Tag tone="ok">309 bin TL</Tag> |
+
+<Aside type="tip" title="Neden daha iddialı hedef daha iyi nakit tablosu veriyor">
+Çünkü satıcı sayısı yalnızca komisyonu değil, **hizmet gelirini** de büyütüyor ve hizmet
+geliri likiditeden bağımsız. 100 satıcının katalog ve görsel ihtiyacı, 20 satıcınınkinin
+beş katıdır ve bu gelir 2. aydan itibaren akar.
 </Aside>
 
 ## Beyaz tahtadaki 30k / 90k / 500k merdiveni
 
-Tahtadaki üç basamaklı tablo bu modele şöyle oturur:
+| Basamak | Modeldeki karşılığı | Ne zaman |
+| ------- | ------------------- | -------- |
+| 30k | Aylık gelirin ilk eşiği | 2-3. ay |
+| 90k | Aylık gelirin orta eşiği | 3. ay |
+| 500k | Aylık gelir hedefi | 13-14. ay |
 
-| Basamak | Anlamı (öneri) | Modeldeki karşılığı | Ne zaman |
-| ------- | -------------- | ------------------- | -------- |
-| 30k | Aylık gelirin ilk anlamlı eşiği | 3. ay civarı | Bir kişinin maliyetinin yarısı |
-| 90k | Aylık gelirin orta eşiği | 5. ay civarı | Bir buçuk kişinin maliyeti |
-| 500k | Aylık gelirin hedef eşiği | 13-15. ay | Üç kişi + kâr + büyüme bütçesi |
-
-<Aside type="tip">
-Bu yorum bir öneridir. Tahtadaki rakamların gerçek anlamı farklıysa, bu tabloyu değiştirin;
-model aynı kalır.
-</Aside>
-
-## Kendini ödemeyi hızlandıran beş kaldıraç
+## Kendini ödemeyi hızlandıran kaldıraçlar
 
 | Kaldıraç | Etki | Nasıl |
 | -------- | ---- | ----- |
-| 1. Yüksek sepetli kategori seç | Çok yüksek | 40.000 TL yerine 150.000 TL ortalama işlem, başabaşı dörtte bire düşürür |
-| 2. Komisyonu değil hizmeti sat | Yüksek | Katalog kurulumu ve içerik, likiditeden bağımsız gelir |
-| 3. Kurumsal iş birliğini erken başlat | Yüksek | Organizatörün 1. ayından itibaren gelir hedefi olmalı |
-| 4. Maaşın bir kısmını primlendir | Orta | Sabit maliyeti düşürür, riski paylaştırır |
-| 5. Aşamalı istihdam | Yüksek | Nakit çukurunu sığlaştırır |
-
-<Aside type="caution" title="1. kaldıraç neden en güçlüsü">
-Ortalama işlem tutarı, başabaş noktasını **doğrusal olarak** düşürür. Düşük sepetli bir
-kategoriyle (ör. ambalaj malzemesi) başlamak yerine yüksek sepetli bir kategoriyle
-(ör. proje bazlı aydınlatma, mobilya, makine ekipmanı) başlamak, aynı emeği üç-dört katına
-katlar. Bu, wedge seçiminin sadece pazarlama değil, <strong>finansal</strong> bir karar
-olduğunu gösterir. Ayrıntı:
-<a href="/istocpazar2/cozum/onerilen-wedge/">Önerilen wedge</a>.
-</Aside>
-
-## Bu sayfayı kendi rakamlarınızla güncellemek
-
-1. Gerçek personel maliyetinizi yazın (brüt maaş + SGK + yan haklar + ekipman).
-2. Gerçek ortalama işlem tutarınızı ölçün (ilk 20 işlemden).
-3. Komisyon oranınızı yazın.
-4. Başabaş işlem sayısını hesaplayın.
-5. Sonuç ayda 60 işlemden fazlaysa, komisyon dışı gelir kalemleri zorunludur.
+| 1. Tekrar oranını yükselt | <Tag tone="ok">Çok yüksek</Tag> | Bu kategorilerin doğal avantajı; aylık yenileme hatırlatması |
+| 2. Hizmet gelirini erken başlat | <Tag tone="ok">Yüksek</Tag> | 100 satıcı = 100 katalog kurulumu, 2. aydan itibaren |
+| 3. Kurumsal iş birliğini 1. aydan başlat | <Tag tone="ok">Yüksek</Tag> | Organizatörün yazılı gelir hedefi olmalı |
+| 4. Ortalama sepeti büyüt | Orta | Koli/palet bazlı sipariş teşviki |
+| 5. Maaşın bir kısmını primlendir | Orta | Sabit maliyeti düşürür |
+| 6. E-ticaret satıcısına odaklan | <Tag tone="ok">Yüksek</Tag> | Saha maliyeti olmadan yüksek tekrarlı talep |

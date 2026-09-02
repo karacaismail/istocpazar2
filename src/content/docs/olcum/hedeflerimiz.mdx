@@ -32,7 +32,7 @@ Bir ekipte hedef karmaşası, hedeflerin farklı katmanlara ait olduğunun bilin
 
     <rect class="d-box" x="80" y="148" width="540" height="52" rx="10"/>
     <text x="350" y="170" text-anchor="middle" font-size="13" font-weight="700">90 GÜN HEDEFİ</text>
-    <text x="350" y="190" text-anchor="middle" font-size="12">20 aktif satıcı, 15 işlem, 3 tekrar eden alıcı, 1 kişilik maliyeti karşılayan gelir</text>
+    <text x="350" y="190" text-anchor="middle" font-size="12">100 aktif satıcı, 39 işlem, 55 talep/ay, 1 kişilik maliyeti karşılayan gelir</text>
 
     <rect class="d-box" x="50" y="214" width="600" height="52" rx="10"/>
     <text x="350" y="236" text-anchor="middle" font-size="13" font-weight="700">AYLIK HEDEF (rol bazında)</text>
@@ -40,18 +40,18 @@ Bir ekipte hedef karmaşası, hedeflerin farklı katmanlara ait olduğunun bilin
 
     <rect class="d-box" x="30" y="280" width="640" height="52" rx="10"/>
     <text x="350" y="302" text-anchor="middle" font-size="13" font-weight="700">HAFTALIK HEDEF</text>
-    <text x="350" y="322" text-anchor="middle" font-size="12">100 temas, 8 randevu, 30 ziyaret, 2 kurumsal görüşme</text>
+    <text x="350" y="322" text-anchor="middle" font-size="12">100 temas, 8 randevu, 35 ziyaret, 2 kurumsal görüşme</text>
 
     <rect class="d-box" x="30" y="346" width="640" height="46" rx="10"/>
     <text x="350" y="368" text-anchor="middle" font-size="13" font-weight="700">GÜNLÜK ÇIKTI</text>
-    <text x="350" y="386" text-anchor="middle" font-size="12">20 temas, 6 ziyaret, CRM %100 kapalı</text>
+    <text x="350" y="386" text-anchor="middle" font-size="12">20 temas, 7 ziyaret, CRM %100 kapalı</text>
   </svg>
 
   <div slot="alt">
     Yukarıdan aşağıya genişleyen altı katman. En üstte vurgulu AMAÇ (değişmez): İSTOÇ ticaretini
     dijital ve güvenli hale getirmek. Altında YILLIK HEDEF: kendini finanse eden, tekrar eden
-    işlem üreten bir pazar yeri. Altında 90 GÜN HEDEFİ: 20 aktif satıcı, 15 işlem, 3 tekrar eden
-    alıcı, bir kişilik maliyeti karşılayan gelir. Altında AYLIK HEDEF (rol bazında): nitelikli
+    işlem üreten bir pazar yeri. Altında 90 GÜN HEDEFİ: 100 aktif satıcı, 39 işlem, ayda 55 nitelikli talep,
+    bir kişilik maliyeti karşılayan gelir. Altında AYLIK HEDEF (rol bazında): nitelikli
     randevu, kurumsal görüşme, tamamlanmış işlem, iş birliği geliri. Altında HAFTALIK HEDEF:
     100 temas, 8 randevu, 30 ziyaret, 2 kurumsal görüşme. En altta GÜNLÜK ÇIKTI: 20 temas,
     6 ziyaret, CRM yüzde yüz kapalı.
@@ -70,6 +70,10 @@ Bu cümle yıllarca değişmez. Strateji değişir, amaç değişmez.
 
 > Kendini finanse eden, tekrar eden işlem üreten çalışan bir pazar yeri kurmak.
 
+Öncelik sırası sahibin kararıyla nettir: **önce satıcı.** Alıcı tarafı, satıcıyı çekmenin
+aracı olarak kurulur; amaç değildir. Bu karar, ekip sıralamasını ve sübvansiyon tasarımını
+belirler.
+
 <Aside type="tip" title="Anahtar kelime: tekrar eden">
 "Çok işlem" değil, **tekrar eden işlem**. Tek seferlik işlemler bir pazar yeri kurmaz;
 bir aracılık şirketi kurar. Ayrıntı: [Likidite](/istocpazar2/pazaryeri/likidite/).
@@ -79,9 +83,11 @@ bir aracılık şirketi kurar. Ayrıntı: [Likidite](/istocpazar2/pazaryeri/liki
 
 | Gösterge | Hedef | Neden bu sayı |
 | -------- | ----- | ------------- |
-| Aktif satıcı | 20 | Atomik ağ eşiği tahmini |
-| Tamamlanmış işlem | 15 | Kanıt üretmeye yeter |
-| Tekrar eden alıcı | 3 | Ağın çalıştığının ilk işareti |
+| Aktif satıcı | 100+ | Sahibin belirlediği hedef; pasif satıcılar bunun dışında |
+| Kayıtlı satıcı (aktif + pasif) | ~177 | 100 aktifi taşıyacak havuz |
+| Aylık nitelikli talep | 55 | 100 satıcıyı aktif tutmanın alt sınırı |
+| Tamamlanmış işlem (kümülatif) | 39 | Kanıt üretmeye yeter |
+| Tekrar eden alıcı | 5 | Ağın çalıştığının ilk işareti |
 | Aylık gelir | 1 kişilik maliyeti karşılıyor | Kendini ödeme yolunda ilk basamak |
 | Medyan ilk teklif süresi | 2 saat altı | Telefonla rekabet edebilme eşiği |
 

@@ -30,10 +30,37 @@ taraftır.
 | Hangisi diğerini çeker | Satıcı yoğunluğu alıcıyı çeker | Alıcı talebi satıcıyı çeker |
 | Hangisi olmadan platform anlamsız | Arz | Talep |
 
-<Aside type="caution" title="İstoc için henüz bilinmiyor">
-Bu sorunun cevabı ilk 20 görüşmeden çıkar. Cevap bilinmeden yapılan sübvansiyon, yanlış
-tarafa harcanan bütçedir. Bu yüzden [varsayım kütüğünde](/istocpazar2/teshis/varsayim-kutugu/)
-V1 ve V2 en yüksek öncelikli varsayımlardır.
+<Aside type="tip" title="İstoc için karar verildi: satıcı tarafı sübvanse edilir">
+Sahibin önceliği açıkça **satıcıların gelmesidir**. Bu, satıcıyı "kazanılacak taraf",
+dolayısıyla sübvanse edilecek tarafı yapar. Karar budur ve aşağıdaki tasarım bu karara göre
+kurulmuştur.
+
+Kritik incelik: **sübvansiyon parayla değil, emek ve talep ile verilir.** Bu kategorilerde
+(plastik, züccaciye, oyuncak, cam) İSTOÇ'ta arz zaten yoğundur; satıcının eksiği para değil,
+**zahmetsizlik ve gelen talep**tir. Nakit teşvik hem pahalıdır hem
+[bağımlılık üretir](/istocpazar2/kanit/basarisizlik-haritasi/).
+</Aside>
+
+## Karar: satıcı sübvansiyonunun tam içeriği
+
+| Satıcıya verilen | Bedeli kim öder | Neden bu |
+| ---------------- | --------------- | -------- |
+| Ücretsiz listeleme (kotalı, güncellik şartlı) | Platform | Giriş engelini kaldırır, kalite kotayla korunur |
+| **Kataloğun ekip tarafından yüklenmesi** | Platform emeği | En somut engel budur; en güçlü teşvik |
+| Ürün görselinin düzenlenmesi | Platform emeği | Züccaciye ve oyuncakta belirleyici |
+| **Garantili talep akışı** | Platform emeği | Satıcının gördüğü tek gerçek değer |
+| Kurucu satıcı statüsü (kalıcı) | Sıfır | Beklemeyi maliyetli yapar |
+| İlk 3 işlemde komisyon muafiyeti | Gelirden feragat | Risksiz deneme |
+| Yerinde eğitim ve kurulum | Platform emeği | Dijital direnci kırar |
+
+**Alıcı tarafı sübvanse edilmez.** Alıcı ücretsiz kullanır ama para veya indirim almaz.
+Alıcının "ödediği" şey, talebini yazmasıdır — ve platformun asıl kıt kaynağı odur.
+
+<Aside type="danger" title="Sübvansiyonun gerçek maliyeti nakit değil, kapasitedir">
+Katalog yükleme ve talep üretimi, ekibin **zamanıyla** ödenir. 177 satıcının kataloğu elle
+yüklenirse bu 2,8 kişi-ay eder; yani üç kişilik ekibin neredeyse bir aylık tüm mesaisi.
+Bu yüzden sübvansiyon kararı, doğrudan bir yazılım gereksinimi doğurur:
+[Arz kurulum operasyonu](/istocpazar2/cozum/arz-kurulum-operasyonu/).
 </Aside>
 
 ## Teşvik seçenekleri

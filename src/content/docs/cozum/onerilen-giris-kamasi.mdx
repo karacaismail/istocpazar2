@@ -1,0 +1,146 @@
+---
+title: Önerilen giriş kaması
+description: Plastik, züccaciye, oyuncak ve cam kategorileri arasından ilk kategori seçimi, alıcı personası ve mevsimsellik tuzağı.
+kanit: cikarim
+guven: orta
+tur: karar
+faz: faz-2
+sidebar:
+  order: 2
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+<Aside type="tip" title="Bu sayfa güncellendi">
+Kategori kümesi artık varsayım değil: **plastik, züccaciye, oyuncak, cam.** Sayfa bu
+gerçek kümeye göre yeniden yazıldı ve önceki "yüksek sepetli kategori" önerisi geçersizdir.
+Gerekçe aşağıda.
+</Aside>
+
+## Önceki önerinin neden geçersiz olduğu
+
+Rehberin ilk sürümü, başabaş noktasını düşürmek için **yüksek sepetli** bir kategori
+öneriyordu (proje aydınlatması, makine ekipmanı gibi). İstoc'un gerçek kategori kümesi
+öğrenildiğinde bu öneri düştü: plastik, züccaciye, oyuncak ve cam **orta sepetli, yüksek
+tekrarlı** kategorilerdir. Bu, stratejinin dayandığı kaldıracı değiştirir.
+
+| Kaldıraç | Yüksek sepetli kategoride | İstoc'un gerçek kategorilerinde |
+| -------- | ------------------------- | ------------------------------- |
+| Başabaşa ulaşma yolu | Az sayıda büyük işlem | Çok sayıda tekrar eden işlem |
+| Satış döngüsü | Uzun (haftalar) | Kısa (gün) |
+| Güven ihtiyacı | Çok yüksek | Orta |
+| Ağ etkisi hızı | Yavaş | <Tag tone="ok">Hızlı</Tag> |
+| Elle yönetilebilirlik | Kolay | <Tag tone="warn">Zor — otomasyon gerekir</Tag> |
+
+<Aside type="tip" title="İyi haber">
+Yüksek tekrar, soğuk başlangıç için **yüksek sepetten daha iyidir**. Tekrar eden alım,
+ağın kendi kendine dönmesini sağlayan tek mekanizmadır. Kötü haber: elle yönetilemez,
+bu yüzden toplu içe aktarma bir tercih değil ön koşuldur. Ayrıntı:
+[Arz kurulum operasyonu](/istocpazar2/cozum/arz-kurulum-operasyonu/).
+</Aside>
+
+## Kategori puanlaması
+
+Yedi ölçüt, ağırlıklı. Maksimum 80.
+
+| Kategori | Sepet (x3) | Tekrar (x3) | Arz yoğ. (x3) | Standart (x2) | Şeffaflık (x2) | Erişim (x2) | Aciliyet (x1) | Toplam |
+| -------- | ---------- | ----------- | ------------- | ------------- | -------------- | ----------- | ------------- | ------ |
+| **Plastik (ev, mutfak, saklama)** | 3 | 5 | 5 | 5 | 4 | 5 | 3 | **65** |
+| **Züccaciye** | 3 | 4 | 5 | 4 | 3 | 5 | 3 | **60** |
+| Cam züccaciye | 3 | 4 | 4 | 4 | 3 | 4 | 3 | 56 |
+| Oyuncak | 3 | 3 | 4 | 3 | 3 | 4 | 4 | 51 |
+| Düz cam / inşaat camı | 5 | 2 | 2 | 4 | 3 | 3 | 5 | 49 |
+
+<Aside type="caution" title="Cam iki farklı iştir">
+"Cam" başlığı altında iki bambaşka iş var ve karıştırılmamalı:
+**cam züccaciye** (ev eşyası, aynı alıcı züccaciye ile örtüşür) ve
+**düz cam / inşaat camı** (proje bazlı, yüksek sepet, düşük tekrar, farklı alıcı).
+Rehber ikisini ayrı puanladı. Sizin kastettiğiniz hangisiyse o satır geçerlidir.
+</Aside>
+
+## Öneri: Plastik çekirdek, züccaciye ikinci halka
+
+<Tag tone="ok" icon="target">Karar önerisi</Tag> **Plastik (ev ve mutfak plastiği, saklama,
+sofra) ile başlayın; züccaciyeyi 2. ayda aynı alıcı havuzuna ekleyin. Oyuncağı ayrı bir
+kategori olarak değil, sezonluk talep artırıcı olarak kullanın.**
+
+Üç gerekçe:
+
+1. **En yüksek tekrar.** Perakendeci plastik ürünü ayda bir yeniler. Tekrar, ağı kendi
+   kendine döndüren tek mekanizmadır ve [likiditenin](/istocpazar2/pazaryeri/likidite/)
+   asıl ölçütüdür.
+2. **En yüksek standartlaşma.** Ürün tarif edilebilir; uzaktan sipariş verilebilir.
+   Züccaciye ve oyuncakta görsel ağırlığı daha yüksektir, katalog maliyeti artar.
+3. **Alıcı örtüşmesi.** Plastik alan perakendeci züccaciye de alır. Bu, ikinci kategoriyi
+   **sıfırdan değil, mevcut alıcıya** açmayı mümkün kılar — en ucuz genişleme yolu.
+
+## Oyuncak ve mevsimsellik tuzağı
+
+<Aside type="danger" title="Ölçüm tuzağı">
+Oyuncak ve züccaciye, yıl sonuna doğru sezon tepesi yaşar. Pilot Ekim-Aralık aralığında
+koşarsa **talep artışı platformdan mı sezondan mı geldiği ayırt edilemez.** Ocak-Şubat'ta
+sayılar çöktüğünde "strateji başarısız" sanılır; oysa yalnızca sezon bitmiştir.
+
+Bu, [karşı-olgusal değerlendirmenin](/istocpazar2/olcum/kill-scale/) tam olarak engellemek
+için var olduğu hatadır.
+</Aside>
+
+**Çözüm:** Başarı ölçümü **yalnızca plastik çekirdek** üzerinden yapılır. Oyuncak sezonluk
+bir hızlandırıcı olarak kullanılır ve ayrı raporlanır. Böylece hem sezonun nakit avantajı
+alınır hem de karar verilecek sayı temiz kalır.
+
+| Kategori | Rolü | Ölçümde |
+| -------- | ---- | ------- |
+| Plastik | Çekirdek | <Tag tone="ok">Karar sayısı buradan okunur</Tag> |
+| Züccaciye | 2. halka (aynı alıcı) | Ayrı raporlanır |
+| Oyuncak | Sezonluk hızlandırıcı | <Tag tone="warn">Karar sayısına katılmaz</Tag> |
+| Cam | Tanım netleştikten sonra | Beklemede |
+
+## Alıcı personası
+
+Kategori kümesi değişince en uygun alıcı personası da değişti.
+
+| Persona | Alım davranışı | Erişim | Uygunluk |
+| ------- | -------------- | ------ | -------- |
+| **E-ticaret satıcısı** (pazaryeri satıcısı) | Sık, orta tutarlı, sürekli yeni ürün arar | <Tag tone="ok">Dijital, çok kolay</Tag> | <Tag tone="ok">Çok yüksek</Tag> |
+| Ev eşyası / market perakendecisi | Aylık düzenli yenileme | Kolay | <Tag tone="ok">Çok yüksek</Tag> |
+| Kırtasiye / hediyelik esnafı | Sezonluk + düzenli | Kolay | <Tag tone="ok">Yüksek</Tag> |
+| Zincir mağaza satın almacısı | Seyrek, büyük, süreçli | Zor | <Tag tone="warn">Çapa alıcı adayı</Tag> |
+| İhracatçı | Büyük, düzensiz | Orta | <Tag tone="warn">Orta</Tag> |
+| Proje müteahhidi | — | — | <Tag tone="risk">Bu kategorilerde ilgisiz</Tag> |
+
+<Aside type="tip" title="E-ticaret satıcısı: bu kategorilerin en güçlü alıcısı">
+Plastik, züccaciye ve oyuncak, pazaryeri satıcılarının en çok tedarik ettiği ürün
+gruplarıdır. Bu persona İstoc için özel olarak değerlidir:
+
+- **Zaten dijital.** Platform kullanmaya ikna etmek gerekmez; günde saatlerce panel kullanıyor.
+- **Sürekli yeni ürün arar.** Ürün keşfi onun işinin merkezinde; talep sürekli.
+- **Ölçülebilir.** Ne sattığını, ne kadar sattığını bilir; veriyle konuşur.
+- **Geçiş maliyeti düşük.** Mevcut tedarikçisiyle duygusal bağı zayıftır, fiyat ve stok bakar.
+- **Dijital olarak ulaşılabilir.** Saha ziyareti gerekmez; e-ticaret satıcı toplulukları,
+  grupları ve eğitim kanalları üzerinden toplu erişim mümkündür.
+
+Bu, saha maliyeti olmadan talep üretmenin en ucuz yoludur ve
+[kendini ödeyen modeli](/istocpazar2/cozum/kendini-odeyen-model/) doğrudan iyileştirir.
+</Aside>
+
+## Coğrafya kararı
+
+| Seçenek | Değerlendirme |
+| ------- | ------------- |
+| İSTOÇ blokları (satıcı tarafı) | <Tag tone="ok">Seçildi</Tag> — arz burada yoğun, saha çok verimli |
+| Alıcı tarafı coğrafyasız | <Tag tone="ok">Seçildi</Tag> — e-ticaret satıcısı her yerde, dijital erişilir |
+
+<Aside type="caution" title="Asimetrik coğrafya">
+Bu, ilk sürümdeki tek coğrafya varsayımından farklıdır ve bilinçlidir: **arz coğrafi olarak
+yoğun (İSTOÇ), talep coğrafi olarak dağınık (Türkiye geneli e-ticaret satıcısı).**
+Fiziksel kümenin avantajı satıcı tarafında kullanılır; alıcı tarafında zaten gerekmez.
+</Aside>
+
+## Giriş kaması cümlesi
+
+> **"İstoc, İSTOÇ'taki plastik ev ve mutfak eşyası toptancıları ile Türkiye genelindeki
+> e-ticaret satıcıları ve ev eşyası perakendecilerini buluşturur; alıcının 'hangi tedarikçide
+> ne var, kaça' sorusunu tek talep göndererek 2 saatte cevaplar. İlk 90 günde plastik dışında
+> hiçbir kategoriyi çekirdek yapmayacağız."**

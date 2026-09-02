@@ -1,5 +1,5 @@
 ---
-title: ECA+ ve SIDAML
+title: Karar döngüsü
 description: Olay-Koşul-Aksiyon modelinin genişletilmiş hali ve İstoc'un bugünkü ölçeğinde nasıl uygulanacağı.
 kanit: cikarim
 guven: orta
@@ -12,21 +12,22 @@ sidebar:
 import { Aside } from '@astrojs/starlight/components';
 import Figure from '@components/Figure.astro';
 import Tag from '@components/Tag.astro';
+import Terim from '@components/Terim.astro';
 
-## ECA'dan SIDAML'e
+## Üç adımdan altı adıma
 
-Klasik otomasyon modeli üç alandan oluşur: **Olay → Koşul → Aksiyon**. Bu, teknik bir
+Klasik otomasyon modeli üç alandan oluşur: **Olay → Koşul → Aksiyon**
+(teknik adıyla <Terim en="Event-Condition-Action, ECA" aciklama="Bir olay gerçekleştiğinde, koşul sağlanıyorsa belirlenmiş aksiyonu çalıştıran kural yapısı.">olay-koşul-aksiyon kuralı</Terim>). Bu, teknik bir
 tetikleyici için yeterlidir; bir işletme kararı için değildir. Eksik olan üç şey vardır:
 yorumlama, ölçüm ve öğrenme.
 
 Genişletilmiş döngü:
 
-> **Sense (Algıla) → Interpret (Yorumla) → Decide (Karar ver) → Act (Uygula) →
-> Measure (Ölç) → Learn (Öğren)**
+> **Algıla → Yorumla → Karar ver → Uygula → Ölç → Öğren**
 
-<Figure title="SIDAML döngüsü" caption="Klasik ECA modeli yalnızca ilk üç adımı kapsar. Ölçüm ve öğrenme olmadan sistem, aynı hatayı sonsuza kadar tekrar eder.">
+<Figure title="Karar döngüsü" caption="Klasik ECA modeli yalnızca ilk üç adımı kapsar. Ölçüm ve öğrenme olmadan sistem, aynı hatayı sonsuza kadar tekrar eder.">
   <svg slot="svg" class="ip-svg" viewBox="0 0 700 260" width="700" height="260" role="img" aria-labelledby="sidaml">
-    <title id="sidaml">SIDAML karar döngüsü</title>
+    <title id="sidaml">Karar döngüsü</title>
 
     <rect class="d-box-accent" x="20" y="60" width="100" height="64" rx="8"/>
     <text x="70" y="88" text-anchor="middle" font-size="12.5" font-weight="700">Algıla</text>

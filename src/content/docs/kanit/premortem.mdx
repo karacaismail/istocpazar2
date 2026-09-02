@@ -1,5 +1,5 @@
 ---
-title: "Premortem: 30 ölüm nedeni"
+title: "Batış provası: 30 ölüm nedeni"
 description: İstoc'un 2028'de başarısız olduğunu varsayarak geriye doğru üretilmiş 30 olası başarısızlık nedeni ve her birinin erken uyarı sinyali.
 kanit: cikarim
 guven: orta
@@ -11,12 +11,13 @@ sidebar:
 
 import { Aside } from '@astrojs/starlight/components';
 import Tag from '@components/Tag.astro';
+import Terim from '@components/Terim.astro';
 
 ## Yöntem
 
-Premortem, proje daha başlamadan "battığını varsayalım, neden battı?" sorusuyla yapılır.
+<Terim en="premortem" aciklama="Proje başlamadan önce ”battığını varsayalım, neden battı?” sorusuyla yapılan başarısızlık analizi.">Batış provası</Terim>, proje daha başlamadan "battığını varsayalım, neden battı?" sorusuyla yapılır.
 İnsan zihni, olmuş bir olayın sebebini bulmakta, olmamış bir riski öngörmekten çok daha
-başarılıdır. Bu yüzden premortem, klasik risk listesinden daha çok şey bulur.
+başarılıdır. Bu yüzden batış provası, klasik risk listesinden daha çok şey bulur.
 
 <Aside type="caution" title="Senaryo">
 Yıl 2028. İstoc.com kapandı. Ekip dağıldı. Şimdi geriye dönüp bakıyoruz: ne oldu?
@@ -30,7 +31,7 @@ Yıl 2028. İstoc.com kapandı. Ekip dağıldı. Şimdi geriye dönüp bakıyoru
 | 2 | İlk kategoride eşiğe varmadan ikinciye geçildi | Kategori sayısı artıyor, işlem artmıyor | Yazılı genişleme kuralı |
 | 3 | Coğrafya çok geniş tutuldu, saha verimsizleşti | Ziyaret başına yol süresi artıyor | Blok bazlı rota |
 | 4 | "Alibaba'nın Türkiye'si" konumlandırması tutmadı | Alıcı vaadi anlamıyor | Telefona göre konumlandırma |
-| 5 | Wedge genişleyemeyen bir çıkmaz sokaktı | İkinci kategoriye geçiş imkânsız | Genişleyebilirlik testi |
+| 5 | Giriş kaması genişleyemeyen bir çıkmaz sokaktı | İkinci kategoriye geçiş imkânsız | Genişleyebilirlik testi |
 | 6 | Hedefler değişti, ekip yön kaybetti | Aylık hedef sık değişiyor | 90 gün sabitleme kuralı |
 | 7 | Kurucu her hafta yeni fikir getirdi | Ekip önceki işi bitirmeden yenisi geliyor | Tek çeyrek, tek hedef |
 
@@ -66,7 +67,7 @@ Yıl 2028. İstoc.com kapandı. Ekip dağıldı. Şimdi geriye dönüp bakıyoru
 | 23 | Nakit çukuru derinleşti, para bitti | Kümülatif fark büyüyor | Aşamalı istihdam |
 | 24 | Düşük sepetli kategori seçildi, başabaş uzadı | Ortalama işlem tutarı düşük | Yüksek sepet kaldıracı |
 | 25 | Üç kişi aynı anda alındı, çıkış noktası kalmadı | Kapı sistemi uygulanmadı | Kapılı istihdam |
-| 26 | Sübvansiyon kalkınca satıcılar gitti | Teşvik bitiminde churn | Kalıcı statü, geçici indirim değil |
+| 26 | Sübvansiyon kalkınca satıcılar gitti | Teşvik bitiminde terk | Kalıcı statü, geçici indirim değil |
 
 ## Organizasyon ve hukuk kaynaklı (27-30)
 
@@ -83,7 +84,7 @@ Bu 30 nedenden İstoc'un mevcut planına göre en olası üçü:
 **30** (yanlış metrik hedeflendi). Rehberin en çok ısrar ettiği üç konu da bunlardır.
 </Aside>
 
-## Premortem'in kullanımı
+## Batış provası'in kullanımı
 
 | Ne zaman | Ne yapılır |
 | -------- | ---------- |

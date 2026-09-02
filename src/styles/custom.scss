@@ -250,3 +250,65 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ---- Terim ipucu balonu ---- */
+.ip-terim {
+  position: relative;
+  display: inline;
+  white-space: normal;
+}
+
+.ip-terim__kelime {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: help;
+  text-decoration: underline dotted currentColor;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1px;
+}
+
+.ip-terim__kelime::after {
+  content: '?';
+  display: inline-block;
+  margin-left: 0.15em;
+  font-size: 0.68em;
+  vertical-align: super;
+  font-weight: 700;
+  color: var(--sl-color-accent);
+}
+
+.ip-terim__balon {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 0.4rem);
+  z-index: 40;
+  display: none;
+  width: max-content;
+  max-width: min(22rem, 80vw);
+  padding: 0.5rem 0.7rem;
+  border: var(--ip-border);
+  border-radius: var(--ip-radius-sm);
+  background: var(--sl-color-bg-nav);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 28%);
+  font-size: 0.86rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--sl-color-white);
+  white-space: normal;
+  text-align: left;
+}
+
+.ip-terim__kelime[aria-expanded='true'] + .ip-terim__balon,
+.ip-terim__kelime:hover + .ip-terim__balon,
+.ip-terim__kelime:focus-visible + .ip-terim__balon {
+  display: block;
+}
+
+@media (max-width: 30rem) {
+  .ip-terim__balon { max-width: 88vw; }
+}

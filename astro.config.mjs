@@ -68,7 +68,7 @@ export default defineConfig({
             { label: 'Likidite: asıl ölçüt', slug: 'pazaryeri/likidite' },
             { label: 'Soğuk başlangıç çözüm aileleri', slug: 'pazaryeri/soguk-baslangic-aileleri' },
             { label: 'Atomik ağ', slug: 'pazaryeri/atomik-ag' },
-            { label: 'Wedge seçenekleri', slug: 'pazaryeri/wedge-secenekleri' },
+            { label: 'Giriş kaması seçenekleri', slug: 'pazaryeri/giris-kamasi-secenekleri' },
             { label: 'Sihirli an', slug: 'pazaryeri/sihirli-an' },
             { label: 'Taraf taraf değer önerisi', slug: 'pazaryeri/deger-onerisi' },
             { label: 'Güven mimarisi', slug: 'pazaryeri/guven-mimarisi' },
@@ -91,7 +91,7 @@ export default defineConfig({
             { label: 'Kanıt haritası', slug: 'kanit/kanit-haritasi' },
             { label: 'Çelişki haritası', slug: 'kanit/celiski-haritasi' },
             { label: 'Başarısızlık ve anti-pattern', slug: 'kanit/basarisizlik-haritasi' },
-            { label: 'Premortem: 30 ölüm nedeni', slug: 'kanit/premortem' },
+            { label: 'Batış provası: 30 ölüm nedeni', slug: 'kanit/premortem' },
             { label: 'Kırmızı takım', slug: 'kanit/red-team' },
           ],
         },
@@ -99,9 +99,10 @@ export default defineConfig({
           label: 'Çözüm önerileri',
           items: [
             { label: 'Çözüm özeti', slug: 'cozum/cozum-ozeti' },
-            { label: 'Önerilen wedge', slug: 'cozum/onerilen-wedge' },
+            { label: 'Önerilen giriş kaması', slug: 'cozum/onerilen-giris-kamasi' },
             { label: 'Kendini ödeyen model', slug: 'cozum/kendini-odeyen-model' },
             { label: 'Aşamalı istihdam ve kapılar', slug: 'cozum/asamali-istihdam' },
+            { label: 'Arz kurulum operasyonu', slug: 'cozum/arz-kurulum-operasyonu' },
             { label: 'SMART eylem planı: 90 gün', slug: 'cozum/eylem-plani' },
             { label: 'Seçilmeyen seçenekler', slug: 'cozum/secilmeyen-secenekler' },
           ],
@@ -109,7 +110,7 @@ export default defineConfig({
         {
           label: 'Karar sistemi',
           items: [
-            { label: 'ECA+ ve SIDAML', slug: 'karar-sistemi/eca-plus' },
+            { label: 'Karar döngüsü', slug: 'karar-sistemi/eca-plus' },
             { label: 'Karşılık merdiveni', slug: 'karar-sistemi/karsilik-merdiveni' },
             { label: 'Puanlama modeli', slug: 'karar-sistemi/puanlama' },
             { label: 'Kural kütüphanesi', slug: 'karar-sistemi/kural-kutuphanesi' },

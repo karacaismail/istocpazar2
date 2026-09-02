@@ -1,0 +1,48 @@
+---
+/**
+ * Teknik terim ipucu balonu.
+ * Türkçe karşılık görünür; İngilizce aslı ve açıklaması balonda verilir.
+ * Erişilebilirlik: odaklanılabilir düğme, aria-describedby, dokunmatikte tıklamayla açılır.
+ */
+interface Props {
+  /** İngilizce veya teknik aslı. */
+  en?: string;
+  /** Türkçe açıklama. */
+  aciklama: string;
+}
+
+const { en, aciklama } = Astro.props;
+const id = `terim-${Math.abs(aciklama.length * 2654435761 + (en ?? '').length * 40503) % 100000}-${(en ?? aciklama).replace(/[^a-zA-Z0-9]/g, '').slice(0, 12).toLowerCase()}`;
+const metin = en ? `${en} — ${aciklama}` : aciklama;
+---
+
+<span class="ip-terim">
+  <button type="button" class="ip-terim__kelime" aria-describedby={id} aria-expanded="false">
+    <slot />
+  </button>
+  <span role="tooltip" id={id} class="ip-terim__balon">{metin}</span>
+</span>
+
+<script>
+  function kapatHepsi(haric?: Element) {
+    document.querySelectorAll('.ip-terim__kelime[aria-expanded="true"]').forEach((b) => {
+      if (b !== haric) b.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  document.addEventListener('click', (e) => {
+    const hedef = e.target as HTMLElement | null;
+    const dugme = hedef?.closest?.('.ip-terim__kelime') as HTMLElement | null;
+    if (!dugme) {
+      kapatHepsi();
+      return;
+    }
+    const acik = dugme.getAttribute('aria-expanded') === 'true';
+    kapatHepsi(dugme);
+    dugme.setAttribute('aria-expanded', acik ? 'false' : 'true');
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') kapatHepsi();
+  });
+</script>

@@ -12,6 +12,7 @@ sidebar:
 import { Aside, Steps } from '@astrojs/starlight/components';
 import Figure from '@components/Figure.astro';
 import Tag from '@components/Tag.astro';
+import Terim from '@components/Terim.astro';
 
 <Aside type="caution" title="Bu sayfanın statüsü">
 Aşağıdaki öneri **koşulludur**. Dayandığı varsayımlar
@@ -21,11 +22,16 @@ veya V3 (kategori derinliği) çökerse, bu strateji de çöker ve yeniden yazı
 
 ## Önerilen strateji, tek cümlede
 
-> **Tek kategoride, İSTOÇ merkezli, talebi elle toplayıp satıcıya götüren, ilk işlemleri insan
-> eliyle tamamlayan ve gelirini bu işlemlerden üreten bir "elle kurulmuş pazar yeri" ile
-> başlamak.**
+> **Plastik kategorisinde, İSTOÇ merkezli, talebi elle toplayıp satıcıya götüren ve
+> 90 günde 100+ aktif satıcı kuran bir "elle kurulmuş pazar yeri" ile başlamak.**
 
-Kısaca: **Talep önce + Concierge + Tek kategori yoğunlaşması.**
+Kısaca: **Satıcı önceliği + talep yemi + elle yürütme + tek kategori yoğunlaşması.**
+
+<Aside type="tip" title="Öncelik satıcı, araç talep">
+Sahibin önceliği açıkça satıcıların gelmesidir. Talep toplamak bu stratejide bir **amaç
+değil, satıcıyı kazanmanın en ucuz argümanıdır**: "kaydolun" demek yerine "elimde şu kadar
+alıcı talebi var, cevap verir misiniz" demek, satış görüşmesinin tamamını değiştirir.
+</Aside>
 
 ## Neden bu strateji
 
@@ -36,7 +42,7 @@ Kısaca: **Talep önce + Concierge + Tek kategori yoğunlaşması.**
    elindeki en güçlü ve en ucuz argümandır.
 
 2. **3 kişiyle uygulanabilir.** Yazılım geliştirme beklemez. Talep toplama, eşleştirme ve
-   takip insan eliyle yapılabilir. Concierge model tam olarak bunun için vardır.
+   takip insan eliyle yapılabilir. <Terim en="concierge model" aciklama="Yazılımın ileride yapacağı işi, başlangıçta ekibin elle yapması. Amaç neyin otomatikleşmesi gerektiğini öğrenmektir.">Elle yürütülen model</Terim> tam olarak bunun için vardır.
 
 3. **İlk gelir hızlı gelir.** İşlem tamamlandığı anda gelir doğar. Bu, "kendini ödeyen sistem"
    şartının tek gerçekçi yoludur. Ayrıntı:
@@ -131,7 +137,7 @@ Kısaca: **Talep önce + Concierge + Tek kategori yoğunlaşması.**
 
 ## Devamı
 
-- [Önerilen wedge](/istocpazar2/cozum/onerilen-wedge/) — hangi kategori, hangi alıcı
+- [Önerilen giriş kaması](/istocpazar2/cozum/onerilen-giris-kamasi/) — hangi kategori, hangi alıcı
 - [Kendini ödeyen model](/istocpazar2/cozum/kendini-odeyen-model/) — birim ekonomi ve başabaş
 - [Aşamalı istihdam ve kapılar](/istocpazar2/cozum/asamali-istihdam/) — 3 kişi hangi sırayla
 - [SMART eylem planı: 90 gün](/istocpazar2/cozum/eylem-plani/) — hafta hafta ne yapılacak

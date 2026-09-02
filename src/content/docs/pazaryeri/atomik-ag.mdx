@@ -38,14 +38,14 @@ Bu topluluğa **atomik ağ** denir. Strateji, bu ağı bir kez kurup sonra çoğ
     <text x="310" y="158" text-anchor="middle" font-size="13.5">İSTOÇ — coğrafi sınır netleşti</text>
 
     <rect class="d-box" x="160" y="188" width="300" height="42" rx="8"/>
-    <text x="310" y="214" text-anchor="middle" font-size="13.5">Tek kategori — arz tanımlandı</text>
+    <text x="310" y="214" text-anchor="middle" font-size="13.5">Plastik — arz tanımlandı</text>
 
     <rect class="d-box" x="190" y="244" width="240" height="42" rx="8"/>
     <text x="310" y="270" text-anchor="middle" font-size="13.5">Tek alıcı personası</text>
 
     <rect class="d-box-accent" x="210" y="300" width="200" height="60" rx="8"/>
     <text x="310" y="324" text-anchor="middle" font-size="13.5" font-weight="700">ATOMİK AĞ</text>
-    <text x="310" y="345" text-anchor="middle" font-size="12">20 satıcı, 60 alıcı</text>
+    <text x="310" y="345" text-anchor="middle" font-size="12">100 aktif satıcı, 60 alıcı</text>
 
     <path class="d-line" d="M310 62 V76"/>
     <path class="d-line" d="M310 118 V132"/>
@@ -59,8 +59,8 @@ Bu topluluğa **atomik ağ** denir. Strateji, bu ağı bir kez kurup sonra çoğ
 
   <div slot="alt">
     Yukarıdan aşağıya daralan altı basamak: Türkiye (ölçülemez), İstanbul (hâlâ çok geniş),
-    İSTOÇ (coğrafi sınır netleşti), tek kategori (arz tanımlandı), tek alıcı personası ve en
-    altta vurgulu ATOMİK AĞ kutusu: 20 satıcı, 60 alıcı. En altta not: 3 kişilik ekibin
+    İSTOÇ (coğrafi sınır netleşti), plastik kategorisi (arz tanımlandı), tek alıcı personası ve en
+    altta vurgulu ATOMİK AĞ kutusu: 100 aktif satıcı, 60 alıcı. En altta not: 3 kişilik ekibin
     90 günde etkileyebileceği büyüklük.
   </div>
 </Figure>
@@ -74,12 +74,41 @@ Boşlukları doldurun; bu cümle şirketin 90 günlük tek hedefidir.
 
 ## Aday tanımlar
 
-| # | Aday atomik ağ | Satıcı | Alıcı | Lehte | Aleyhte |
-| - | -------------- | ------ | ----- | ----- | ------- |
-| A1 | İSTOÇ tek blok, tek kategori | 20 | 60 | En dar, en hızlı, saha çok verimli | Havuz yetersiz kalabilir |
-| A2 | İSTOÇ geneli, tek kategori | 40 | 150 | Yeterli havuz, saha hâlâ verimli | Yoğunluk kurulması daha uzun |
-| A3 | İstanbul, tek kategori | 80 | 400 | Büyük havuz | Saha verimliliği düşer, maliyet artar |
-| A4 | Tek çapa alıcı çevresi | 15 | 1 büyük + 20 küçük | Talep garanti | Tek müşteriye bağımlılık riski |
+| # | Aday atomik ağ | Aktif satıcı | Aktif alıcı | Değerlendirme |
+| - | -------------- | ------------ | ----------- | ------------- |
+| A1 | İSTOÇ tek blok, plastik | 25 | 20 | Çok dar; 100 satıcı hedefiyle uyumsuz |
+| A2 | **İSTOÇ geneli, plastik + züccaciye** | **100** | **60** | <Tag tone="ok">Seçildi</Tag> — hedefle uyumlu, saha verimli |
+| A3 | İstanbul geneli, plastik | 150 | 120 | Saha verimliliği düşer, maliyet artar |
+| A4 | Tek çapa alıcı çevresi | 40 | 1 büyük + 25 küçük | Talep garanti ama bağımlılık riski |
+
+<Aside type="danger" title="100 satıcıya kaç alıcı düşmeli">
+100 aktif satıcı hedefi tek başına anlamlı değildir; buna **denk bir talep hacmi** gerekir:
+
+- Bir alım talebi, hedefli olarak 5 uygun satıcıya gider.
+- 100 satıcının her birinin ayda en az bir talep görmesi için **ayda ~55 nitelikli talep** şarttır.
+- 55 talep, ~60 aktif alıcıdan gelir (kişi başı ayda ~1 talep).
+
+Yani atomik ağ = **100 aktif satıcı + 60 aktif alıcı + ayda 55 talep.**
+Üçü birlikte hedeflenmezse ağ kurulmaz.
+</Aside>
+
+## En kritik uyarı: satıcı başına düşen iş
+
+<Aside type="danger" title="100 satıcı, 55 talebi paylaşırsa ne olur">
+| Aylık talep | Satıcı başına talep | Satıcı başına sipariş | Sonuç |
+| ----------- | ------------------- | --------------------- | ----- |
+| 55 | 2,5 | 0,50 | <Tag tone="risk">İki ayda bir sipariş — satıcı kaybı başlar</Tag> |
+| 100 | 4,5 | 0,91 | <Tag tone="warn">Ayda bir sipariş — sınırda</Tag> |
+| 150 | 6,8 | 1,36 | <Tag tone="ok">Sürdürülebilir</Tag> |
+| 200 | 9,1 | 1,82 | <Tag tone="ok">Sağlıklı</Tag> |
+
+**90. günde 100 aktif satıcıya ulaşmak mümkündür. Onları 6. ayda hâlâ aktif tutmak,
+talebin ayda 150'ye çıkmasına bağlıdır.** Talep büyümezse 4-6. ayda satıcı kaybı başlar
+ve 100 rakamı hızla 40'a iner.
+
+Bu yüzden 100 satıcı hedefinin yanına **zorunlu bir talep hedefi** yazılmalıdır:
+6. ayda ayda 150 nitelikli talep.
+</Aside>
 
 <Aside type="tip" title="A4 seçeneğinin cazibesi ve tehlikesi">
 Tek büyük alıcı (zincir mağaza, büyük müteahhit) etrafında ağ kurmak, talebi garantiler ve

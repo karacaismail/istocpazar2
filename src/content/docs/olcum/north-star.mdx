@@ -1,5 +1,5 @@
 ---
-title: North Star adayları
+title: Kuzey Yıldızı adayları
 description: Şirketin tek ana başarı göstergesi için aday metrikler, her birinin güçlü ve zayıf yanları ve seçimin neden ertelendiği.
 kanit: cikarim
 guven: orta
@@ -11,11 +11,12 @@ sidebar:
 
 import { Aside } from '@astrojs/starlight/components';
 import Tag from '@components/Tag.astro';
+import Terim from '@components/Terim.astro';
 
 ## Neden şimdi seçmiyoruz
 
 <Aside type="caution" title="Bilinçli erteleme">
-North Star metriği, ekibin bütün davranışını yönlendirir. Yanlış seçilirse herkes yanlış
+<Terim en="North Star metric" aciklama="Şirketin tek ana başarı göstergesi. Bütün ekibin hizalandığı sayı.">Kuzey Yıldızı metriği</Terim>, ekibin bütün davranışını yönlendirir. Yanlış seçilirse herkes yanlış
 yöne koşar. İstoc'ta henüz hangi davranışın değerli olduğunu bilecek veri yok. Bu yüzden
 seçim **ilk 90 gün sonunda** yapılacak; şimdilik adaylar izlenecek.
 </Aside>
@@ -55,7 +56,7 @@ seçim **ilk 90 gün sonunda** yapılacak; şimdilik adaylar izlenecek.
   <dt>Uygunluk</dt><dd><Tag tone="ok">Yüksek</Tag> — destek metriği olarak</dd>
 </dl>
 
-### 5. GMV (işlem hacmi)
+### 5. işlem hacmi (işlem hacmi)
 
 <dl class="ip-kv">
   <dt>Güçlü yanı</dt><dd>Anlaşılır, dışarıya anlatılabilir</dd>
@@ -72,22 +73,22 @@ seçim **ilk 90 gün sonunda** yapılacak; şimdilik adaylar izlenecek.
   <dt>Uygunluk</dt><dd><Tag tone="ok">Yüksek</Tag> — en iyi öncü gösterge</dd>
 </dl>
 
-## Öneri: aşamalı North Star
+## Öneri: aşamalı Kuzey Yıldızı
 
-| Dönem | North Star | Gerekçe |
+| Dönem | Kuzey Yıldızı | Gerekçe |
 | ----- | ---------- | ------- |
 | 0-90 gün | **Karşılanmış nitelikli teklif talebi** | Erken sinyal verir, hem arzı hem talebi ölçer |
 | 3-12 ay | **Tamamlanmış işlem sayısı** | Gerçek değer, yeterli hacim oluşur |
 | 12+ ay | **Tekrar eden alıcı-satıcı çifti** | Ağın kalıcılığını ölçer |
 
-<Aside type="tip" title="Neden değişebilir bir North Star">
-Klasik öğreti "North Star değişmez" der. Sıfır likiditeli bir şirkette bu öğreti işe
+<Aside type="tip" title="Neden değişebilir bir Kuzey Yıldızı">
+Klasik öğreti "Kuzey Yıldızı değişmez" der. Sıfır likiditeli bir şirkette bu öğreti işe
 yaramaz: 15 işlemin olduğu bir dönemde "tekrar eden çift" metriği neredeyse hep sıfırdır ve
 ekibe hiçbir yön vermez. Önemli olan metriğin sabitliği değil, **ne zaman değişeceğinin
 önceden yazılmış olmasıdır.**
 </Aside>
 
-## North Star'a eşlik edecek koruyucu metrikler
+## Kuzey Yıldızı'a eşlik edecek koruyucu metrikler
 
 Tek metrik her zaman istismara açıktır. Yanına iki koruyucu konur:
 

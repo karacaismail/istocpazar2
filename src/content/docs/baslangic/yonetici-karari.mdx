@@ -1,6 +1,6 @@
 ---
-title: 'Sizden istenen kararlar'
-description: 'Rehberin çözemeyeceği, yalnızca sahibin verebileceği kararlar; her karar için seçenekler, geri dönülebilirlik ve karar tarihi.'
+title: Sizden istenen kararlar
+description: Verilmiş kararlar, gerekçeleri ve hâlâ sahibinin vermesi gereken kararlar.
 kanit: cikarim
 guven: orta
 tur: karar
@@ -12,100 +12,123 @@ sidebar:
 import { Aside } from '@astrojs/starlight/components';
 import Tag from '@components/Tag.astro';
 
-Teknik ve yöntemsel tercihler bu rehberin işidir. Aşağıdaki kararlar değildir: bunlar
-**kapsam, para, geri dönülemez etki ve risk iştahı** kararlarıdır ve size aittir.
+## Karar durumu
 
-## Karar 1 — Atomik ağ tanımı
+| # | Karar | Durum | Kim verdi |
+| - | ----- | ----- | --------- |
+| 1 | Kategori ve coğrafya | <Tag tone="ok">Verildi</Tag> | Sahibi |
+| 2 | Hangi taraf sübvanse edilecek | <Tag tone="ok">Verildi</Tag> | Rehber (teknik tercih) |
+| 3 | 90 gün hedefi | <Tag tone="ok">Verildi</Tag> | Sahibi |
+| 4 | Ekip sıralaması | <Tag tone="ok">Verildi</Tag> | Rehber (hesaba dayalı) |
+| 5 | Toplu mesaj politikası | <Tag tone="warn">Onay bekliyor</Tag> | Sahibi |
+| 6 | Nakit dayanma gücü | <Tag tone="risk">Cevap bekliyor</Tag> | Sahibi |
+| 7 | Komisyon oranı ve maaş bandı | <Tag tone="risk">Cevap bekliyor</Tag> | Sahibi |
 
-<dl class="ip-kv">
-  <dt>Soru</dt>
-  <dd>Hangi tek kategori, hangi tek coğrafya, hangi tek alıcı personası ile başlıyoruz?</dd>
-  <dt>Neden gerekli</dt>
-  <dd>Tanımlanmadan hiçbir hedef ölçülemez, hiçbir personelin başarısı değerlendirilemez.</dd>
-  <dt>Geri dönülebilirlik</dt>
-  <dd><Tag tone="ok">Geri dönülebilir</Tag> — 90 gün sonra kategori değiştirilebilir.</dd>
-  <dt>Karar tarihi</dt>
-  <dd>İşe alım ilanı yayınlanmadan önce.</dd>
-</dl>
-
-**Seçenekler ve ilk değerlendirme** — ayrıntı: [Wedge seçenekleri](/istocpazar2/pazaryeri/wedge-secenekleri/)
-
-| Seçenek | Lehte | Aleyhte |
-| ------- | ----- | ------- |
-| Tek kategori + İSTOÇ fiziksel kümesi | Satıcılar yürüme mesafesinde, saha ekibi verimli, güven zaten var | Kümenin dijitalleşme isteği bilinmiyor |
-| Tek kategori + Türkiye geneli | Daha büyük havuz | Saha ekibi işlevsiz kalır, seyahat maliyeti artar |
-| Tek alıcı personası (ör. zincir mağaza satın almacısı) | Talep tarafı garanti edilebilir | Arz o talebe uygun mu bilinmiyor |
-| Karar ertelenir, çok kategori | Kimseyi dışlamaz | Soğuk başlangıcı ağırlaştırır, bilinen anti-pattern |
-
-## Karar 2 — Hangi taraf sübvanse edilir
-
-<dl class="ip-kv">
-  <dt>Soru</dt>
-  <dd>İlk 6 ayda para, emek ve garanti hangi tarafa verilecek: satıcıya mı, alıcıya mı?</dd>
-  <dt>Neden gerekli</dt>
-  <dd>Ekip yapısı, bütçe ve ürün önceliği doğrudan bu karara bağlıdır.</dd>
-  <dt>Geri dönülebilirlik</dt>
-  <dd><Tag tone="warn">Kısmen geri dönülebilir</Tag> — verilen taahhütler geri alınamaz, beklenti kalıcıdır.</dd>
-  <dt>Karar tarihi</dt>
-  <dd>İlk satıcı görüşmesinden önce.</dd>
-</dl>
-
-Ayrıntı: [Teşvik ve mekanizma tasarımı](/istocpazar2/pazaryeri/tesvik-tasarimi/).
-Pazar yeri literatüründe kural şudur: **zor taraf sübvanse edilir**. İstoc'ta zor tarafın
-hangisi olduğu henüz bilinmiyor ve bu, ilk ayın en önemli araştırma sorusudur.
-
-## Karar 3 — Başarı ve durdurma eşiği
-
-<dl class="ip-kv">
-  <dt>Soru</dt>
-  <dd>90 gün sonunda hangi sayı görülürse devam, hangi sayı görülürse durulur?</dd>
-  <dt>Neden gerekli</dt>
-  <dd>Eşiksiz deney sonsuz harcamaya dönüşür; kötü haber hiçbir zaman "yeterince kötü" olmaz.</dd>
-  <dt>Geri dönülebilirlik</dt>
-  <dd><Tag tone="ok">Geri dönülebilir</Tag> — eşik yazılı olarak revize edilebilir.</dd>
-  <dt>Karar tarihi</dt>
-  <dd>Personel işe başlamadan önce.</dd>
-</dl>
-
-Ayrıntı: [Durdurma ve ölçekleme ölçütleri](/istocpazar2/olcum/kill-scale/).
-
-## Karar 4 — Ekip sıralaması
-
-<dl class="ip-kv">
-  <dt>Soru</dt>
-  <dd>Üç kişi aynı anda mı, yoksa önce bir kişi ve 6 hafta sonra karar mı?</dd>
-  <dt>Neden gerekli</dt>
-  <dd>Üç maaş, likidite hangi taraftan kurulacağı bilinmeden bağlanmış olur.</dd>
-  <dt>Geri dönülebilirlik</dt>
-  <dd><Tag tone="risk">Zor geri dönülür</Tag> — işe alım geri almak insani ve hukuki maliyet üretir.</dd>
-  <dt>Karar tarihi</dt>
-  <dd>İlan yayınlanmadan önce.</dd>
-</dl>
-
-Ayrıntı: [Organizasyon hipotezi](/istocpazar2/organizasyon/hipotez/).
-
-## Karar 5 — Toplu mesaj politikası
-
-<dl class="ip-kv">
-  <dt>Soru</dt>
-  <dd>Beyaz tahtadaki toplu WhatsApp ve grup mesajı planı uygulanacak mı?</dd>
-  <dt>Neden gerekli</dt>
-  <dd>6563 sayılı kanun ve İYS yükümlülüğü nedeniyle idari para cezası ve marka itibarı riski taşır.</dd>
-  <dt>Geri dönülebilirlik</dt>
-  <dd><Tag tone="risk">Geri dönülemez</Tag> — gönderilen mesaj geri alınamaz, şikâyet kaydı kalıcıdır.</dd>
-  <dt>Karar tarihi</dt>
-  <dd>Personel işe başladığı gün, yazılı politika olarak.</dd>
-</dl>
-
-<Aside type="danger">
-Bu rehberin önerisi nettir: **toplu ticari mesaj gönderilmemeli**, yerine izinli ve
-bire bir iletişim modeli kurulmalıdır. Gerekçe ve yasal karşılıkları:
-[Yasal sınırlar ve spam riski](/istocpazar2/organizasyon/yasal-sinirlar/).
+<Aside type="tip" title="Kural">
+**Teknik ve yöntemsel tercihler rehberin işidir; sahibine sorulmaz.** Sahibine yalnızca
+kapsam, para, geri dönülemez etki ve risk iştahı kararları sorulur. Sübvansiyon ve ekip
+sıralaması ilk sürümde yanlışlıkla sahibine sorulmuştu; düzeltildi.
 </Aside>
 
-## Karar kaydı şablonu
+## Karar 1 — Kategori ve coğrafya <Tag tone="ok">Verildi</Tag>
 
-Her kararı şu formda yazın; sözlü karar 3 hafta sonra hatırlanmaz.
+<dl class="ip-kv">
+  <dt>Karar</dt>
+  <dd>Kategori kümesi: <strong>plastik, züccaciye, oyuncak, cam.</strong>
+  Çekirdek kategori plastik; züccaciye ikinci halka; oyuncak sezonluk hızlandırıcı.</dd>
+  <dt>Coğrafya</dt>
+  <dd>Arz tarafı İSTOÇ; talep tarafı Türkiye geneli (e-ticaret satıcısı dijital erişilir).</dd>
+  <dt>Gerekçe</dt>
+  <dd>Plastik en yüksek tekrar, en yüksek standartlaşma ve en yoğun arz.
+  Ayrıntı: <a href="/istocpazar2/cozum/onerilen-giris-kamasi/">Önerilen giriş kaması</a></dd>
+  <dt>Açık uç</dt>
+  <dd>"Cam" düz cam mı yoksa cam züccaciye mi? İkisi farklı iştir ve farklı alıcıya satılır.</dd>
+</dl>
+
+## Karar 2 — Hangi taraf sübvanse edilecek <Tag tone="ok">Verildi</Tag>
+
+<dl class="ip-kv">
+  <dt>Karar</dt>
+  <dd><strong>Satıcı tarafı sübvanse edilir. Parayla değil, emek ve talep ile.</strong></dd>
+  <dt>Gerekçe</dt>
+  <dd>Sahibin önceliği satıcıların gelmesidir; kazanılacak taraf satıcıdır. Bu kategorilerde
+  İSTOÇ'ta arz zaten yoğundur, satıcının eksiği para değil <strong>zahmetsizlik ve gelen
+  taleptir</strong>. Nakit teşvik pahalıdır ve bağımlılık üretir.</dd>
+  <dt>Somut içerik</dt>
+  <dd>Ücretsiz kotalı listeleme, kataloğun ekip tarafından yüklenmesi, garantili talep akışı,
+  kurucu satıcı statüsü, ilk 3 işlemde komisyon muafiyeti, yerinde eğitim.</dd>
+  <dt>Alıcı tarafı</dt>
+  <dd>Sübvanse edilmez. Ücretsiz kullanır ama para veya indirim almaz.</dd>
+  <dt>Bedeli</dt>
+  <dd>Nakit değil <strong>kapasite</strong>. Ayrıntı:
+  <a href="/istocpazar2/cozum/arz-kurulum-operasyonu/">Arz kurulum operasyonu</a></dd>
+</dl>
+
+## Karar 3 — 90 gün hedefi <Tag tone="ok">Verildi</Tag>
+
+<dl class="ip-kv">
+  <dt>Karar</dt>
+  <dd><strong>100+ aktif satıcı</strong> (pasif satıcılar bu sayının dışında, ek olarak).</dd>
+  <dt>Türetilen zorunlu hedefler</dt>
+  <dd>~177 kayıtlı satıcı, ayda 55 nitelikli alım talebi, 60 aktif alıcı,
+  39 tamamlanmış işlem, 5 tekrar eden alıcı.</dd>
+  <dt>Uyarı</dt>
+  <dd>100 aktif satıcı 55 talebi paylaşırsa satıcı başına ayda 0,5 sipariş düşer.
+  6. ayda talep 150'ye çıkmazsa satıcı kaybı başlar. <strong>Satıcı hedefinin yanına
+  talep hedefi yazılması zorunludur.</strong></dd>
+</dl>
+
+## Karar 4 — Ekip sıralaması <Tag tone="ok">Verildi</Tag>
+
+<dl class="ip-kv">
+  <dt>Karar</dt>
+  <dd><strong>1. ay Organizatör, 2. ay Saha, 3. ay Masa Başı.</strong></dd>
+  <dt>Gerekçe</dt>
+  <dd>100 aktif satıcı hedefinde darboğaz talep değil, saha ziyaret kapasitesidir.
+  Masa Başı önce alınırsa 90 günde 77 aktif satıcıda kalınır; Saha önce alınırsa 112'ye
+  ulaşılır. Maliyet her iki sıralamada aynıdır. Ayrıntı:
+  <a href="/istocpazar2/cozum/asamali-istihdam/">Aşamalı istihdam ve kapılar</a></dd>
+</dl>
+
+## Karar 5 — Toplu mesaj politikası <Tag tone="warn">Onay bekliyor</Tag>
+
+<dl class="ip-kv">
+  <dt>Öneri</dt>
+  <dd>Toplu ticari mesaj gönderilmez; izinli ve kişiye özel iletişim modeli kurulur.</dd>
+  <dt>Gerekçe</dt>
+  <dd>Üç katmanlı: platform kuralları (WhatsApp hesap kapatır), İYS ve ret yükümlülükleri,
+  KVKK. Ayrıca kişiye özel mesajın dönüşümü kat kat yüksektir.</dd>
+  <dt>Geri dönülebilirlik</dt>
+  <dd><Tag tone="risk">Geri dönülemez</Tag> — gönderilen mesaj geri alınamaz.</dd>
+  <dt>Sizden istenen</dt>
+  <dd>Bu politikanın yazılı olarak onaylanması ve personel sözleşmesine ek yapılması.</dd>
+</dl>
+
+## Karar 6 — Nakit dayanma gücü <Tag tone="risk">Cevap bekliyor</Tag>
+
+<dl class="ip-kv">
+  <dt>Soru</dt>
+  <dd>Kasada kaç aylık personel maliyetini karşılayacak nakit var?</dd>
+  <dt>Neden kritik</dt>
+  <dd>Model, 5. ayda yaklaşık <strong>309 bin TL</strong> nakit çukuru ve 10. ayda geri ödeme
+  gösteriyor. En az 350-400 bin TL dayanma gücü yoksa ekip, sistem kendini ödemeye başlamadan
+  dağılır.</dd>
+  <dt>Yetersizse ne yapılır</dt>
+  <dd>Ekip 2 kişiye indirilir, satıcı hedefi 60'a çekilir, süre 120 güne uzatılır.</dd>
+</dl>
+
+## Karar 7 — Komisyon oranı ve maaş bandı <Tag tone="risk">Cevap bekliyor</Tag>
+
+<dl class="ip-kv">
+  <dt>Soru</dt>
+  <dd>Gerçek komisyon oranı, ortalama işlem tutarı ve kişi başı personel maliyeti nedir?</dd>
+  <dt>Neden kritik</dt>
+  <dd><a href="/istocpazar2/cozum/kendini-odeyen-model/">Kendini ödeyen modeldeki</a>
+  bütün rakamlar örnek girdidir. Gerçek değerler konduğunda başabaş noktası ve nakit çukuru
+  değişir.</dd>
+</dl>
+
+## Karar kaydı şablonu
 
 | Alan | İçerik |
 | ---- | ------ |

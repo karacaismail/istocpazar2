@@ -1,5 +1,5 @@
 ---
-title: Başarısızlık ve anti-pattern
+title: Başarısızlık ve hata kalıbı
 description: Pazar yerlerinin neden öldüğü, hangi kalıpların tekrarlandığı ve İstoc'un hangilerine yatkın olduğu.
 kanit: vaka-calismasi
 guven: orta
@@ -11,11 +11,12 @@ sidebar:
 
 import { Aside } from '@astrojs/starlight/components';
 import Tag from '@components/Tag.astro';
+import Terim from '@components/Terim.astro';
 
-Başarı hikâyeleri seçim yanlılığı taşır: ayakta kalanlar anlatır, ölenler susar. Bu yüzden
+Bu sayfa pazar yerlerinin tekrar eden <Terim en="anti-pattern" aciklama="Sık tekrarlanan, sonucu kötü olduğu bilinen çözüm kalıbı.">hata kalıplarını</Terim> toplar. Başarı hikâyeleri seçim yanlılığı taşır: ayakta kalanlar anlatır, ölenler susar. Bu yüzden
 başarısızlık kalıpları daha öğreticidir.
 
-## Anti-pattern 1 — Boş rafa trafik
+## Hata kalıbı 1 — Boş rafa trafik
 
 | Alan | İçerik |
 | ---- | ------ |
@@ -25,7 +26,7 @@ başarısızlık kalıpları daha öğreticidir.
 | İstoc yatkınlığı | <Tag tone="risk">Yüksek</Tag> — plan L2'den başlıyor |
 | Panzehir | Kapasite kapısı kuralı |
 
-## Anti-pattern 2 — Kayıt avcılığı
+## Hata kalıbı 2 — Kayıt avcılığı
 
 | Alan | İçerik |
 | ---- | ------ |
@@ -35,7 +36,7 @@ başarısızlık kalıpları daha öğreticidir.
 | İstoc yatkınlığı | <Tag tone="risk">Yüksek</Tag> — personel hedefi kolayca buraya kayar |
 | Panzehir | İşlem odaklı hedefler ve primler |
 
-## Anti-pattern 3 — Genişleme kaçışı
+## Hata kalıbı 3 — Genişleme kaçışı
 
 | Alan | İçerik |
 | ---- | ------ |
@@ -45,7 +46,7 @@ başarısızlık kalıpları daha öğreticidir.
 | İstoc yatkınlığı | <Tag tone="warn">Orta</Tag> |
 | Panzehir | Yazılı genişleme kuralı: önce eşik, sonra genişleme |
 
-## Anti-pattern 4 — Sübvansiyon bağımlılığı
+## Hata kalıbı 4 — Sübvansiyon bağımlılığı
 
 | Alan | İçerik |
 | ---- | ------ |
@@ -55,7 +56,7 @@ başarısızlık kalıpları daha öğreticidir.
 | İstoc yatkınlığı | <Tag tone="warn">Orta</Tag> |
 | Panzehir | Emek teşviki ve kalıcı statü |
 
-## Anti-pattern 5 — Aracısızlaşma
+## Hata kalıbı 5 — Aracısızlaşma
 
 | Alan | İçerik |
 | ---- | ------ |
@@ -65,7 +66,7 @@ başarısızlık kalıpları daha öğreticidir.
 | İstoc yatkınlığı | <Tag tone="risk">Yüksek</Tag> — B2B'de ilişki kalıcıdır |
 | Panzehir | İşleme değer ekleme: ödeme, evrak, güvence, takip |
 
-## Anti-pattern 6 — Yanlış tarafı sübvanse etme
+## Hata kalıbı 6 — Yanlış tarafı sübvanse etme
 
 | Alan | İçerik |
 | ---- | ------ |
@@ -75,7 +76,7 @@ başarısızlık kalıpları daha öğreticidir.
 | İstoc yatkınlığı | <Tag tone="warn">Orta</Tag> — hangi tarafın zor olduğu bilinmiyor |
 | Panzehir | V1 ve V2 varsayımlarını önce test etmek |
 
-## Anti-pattern 7 — Erken otomasyon
+## Hata kalıbı 7 — Erken otomasyon
 
 | Alan | İçerik |
 | ---- | ------ |
@@ -85,23 +86,23 @@ başarısızlık kalıpları daha öğreticidir.
 | İstoc yatkınlığı | <Tag tone="warn">Orta</Tag> |
 | Panzehir | Önce elle, sonra otomasyon |
 
-## Anti-pattern 8 — Hizmet şirketine dönüşme
+## Hata kalıbı 8 — Hizmet şirketine dönüşme
 
 | Alan | İçerik |
 | ---- | ------ |
 | Kalıp | Elle yapılan iş kalıcı hale gelir |
 | Ne olur | Platform hiç kurulmaz, aracılık şirketi olunur |
 | Neden ölümcül | Ölçek ve değerleme kaybolur |
-| İstoc yatkınlığı | <Tag tone="warn">Orta</Tag> — concierge modelin doğal riski |
+| İstoc yatkınlığı | <Tag tone="warn">Orta</Tag> — elle yürütülen modelin doğal riski |
 | Panzehir | "6. ayda hangi 3 iş otomatikleşecek" sorusunun yazılı cevabı |
 
 <Aside type="danger" title="8 numaralı kalıbın özel önemi">
-Rehberin önerdiği concierge model, tam olarak bu kalıba yatkındır. Bu bilinçli bir risktir
+Rehberin önerdiği elle yürütülen model, tam olarak bu kalıba yatkındır. Bu bilinçli bir risktir
 ve tek panzehiri **çıkış planının baştan yazılmasıdır**: hangi işler, hangi eşikte,
 neye devredilecek.
 </Aside>
 
-## Anti-pattern 9 — Metrik şişirme
+## Hata kalıbı 9 — Metrik şişirme
 
 | Alan | İçerik |
 | ---- | ------ |
@@ -109,9 +110,9 @@ neye devredilecek.
 | Ne olur | Yönetim iyi gittiğini sanır, gerçek geç görülür |
 | Neden ölümcül | Düzeltme fırsatı kaçar |
 | İstoc yatkınlığı | <Tag tone="warn">Orta</Tag> |
-| Panzehir | [Goodhart tuzağı](/istocpazar2/olcum/goodhart/) ve tek North Star |
+| Panzehir | [Goodhart tuzağı](/istocpazar2/olcum/goodhart/) ve tek Kuzey Yıldızı |
 
-## Anti-pattern 10 — Kurucu dikkat dağınıklığı
+## Hata kalıbı 10 — Kurucu dikkat dağınıklığı
 
 | Alan | İçerik |
 | ---- | ------ |
@@ -123,7 +124,7 @@ neye devredilecek.
 
 ## Yatkınlık özeti
 
-| Anti-pattern | İstoc yatkınlığı |
+| Hata kalıbı | İstoc yatkınlığı |
 | ------------ | ---------------- |
 | Boş rafa trafik | <Tag tone="risk">Yüksek</Tag> |
 | Kayıt avcılığı | <Tag tone="risk">Yüksek</Tag> |

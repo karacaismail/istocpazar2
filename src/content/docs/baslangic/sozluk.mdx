@@ -34,8 +34,27 @@ azalınca değer hızla düşer.
 **Atomik ağ.** Kendi kendine çalışabilen, dışarıdan destek olmadan ayakta kalan en küçük
 alıcı-satıcı topluluğu. Örneğin "İSTOÇ'ta 40 aydınlatma toptancısı ve 300 elektrikçi".
 
-**Wedge.** Pazara giriş kaması. Büyük pazarın tamamı yerine, hızlı kazanılabilir ve
-sonradan genişletilebilir dar bir giriş noktası.
+**Giriş kaması** *(İng. wedge)*. Büyük pazarın tamamı yerine, hızlı kazanılabilecek kadar dar
+ve sonradan genişletilebilecek kadar bağlantılı bir başlangıç noktası.
+
+**Elle yürütülen model** *(İng. concierge)*. Yazılımın ileride yapacağı işi başlangıçta ekibin
+elle yapması. Amaç, neyin otomatikleşmesi gerektiğini önce öğrenmektir.
+
+**Batış provası** *(İng. premortem)*. Proje başlamadan önce "battığını varsayalım, neden battı?"
+sorusuyla yapılan başarısızlık analizi.
+
+**Batış incelemesi** *(İng. postmortem)*. Kapanmış bir işin neden kapandığının sonradan incelenmesi.
+
+**Hata kalıbı** *(İng. anti-pattern)*. Sık tekrarlanan, sonucu kötü olduğu bilinen çözüm kalıbı.
+
+**Aktif satıcı.** Son 30 günde en az bir alım talebine cevap vermiş satıcı. Kayıtlı olmak
+aktif olmak değildir.
+
+**Pasif satıcı.** 60 günden uzun süredir hiçbir talebe cevap vermemiş satıcı. Silinmez ama
+arama sonuçlarında öne çıkarılmaz.
+
+**Toplu içe aktarma.** Satıcının mevcut Excel fiyat listesinin sisteme tek seferde
+yüklenmesi. 100+ satıcı hedefinin ön koşuludur.
 
 **Tek oyunculu mod.** Platformun, karşı taraf hiç yokken bile kullanıcıya fayda sağlaması.
 Örneğin satıcı için ücretsiz bir stok veya fiyat listesi aracı.
@@ -47,10 +66,10 @@ oyuncu. Bir pazar yerinde ilk 10 satıcının kim olduğu, sonraki 1000'i belirl
 
 ## Ölçüm
 
-**GMV.** Platform üzerinden geçen toplam işlem hacmi. Tek başına yanıltıcıdır; tekrar oranıyla
+**işlem hacmi.** Platform üzerinden geçen toplam işlem hacmi. Tek başına yanıltıcıdır; tekrar oranıyla
 birlikte okunmalıdır.
 
-**North Star metriği.** Şirketin tek ana başarı göstergesi. Yanlış seçilirse bütün ekip
+**Kuzey Yıldızı metriği.** Şirketin tek ana başarı göstergesi. Yanlış seçilirse bütün ekip
 yanlış yöne koşar.
 
 **Vanity metrik (gösteriş metriği).** İyi göründüğü hâlde iş sonucuyla ilişkisi olmayan sayı.
@@ -62,9 +81,9 @@ sayısını hedeflerseniz, sahte ve ölü satıcı kaydı üretilir.
 **Karşı-olgusal değerlendirme.** "Hiçbir şey yapmasaydık ne olurdu?" sorusunun ölçülmesi.
 Bu yapılmazsa doğal büyüme, kampanya başarısı sanılır.
 
-**CAC.** Bir müşteriyi kazanmanın maliyeti. Pazar yerinde satıcı ve alıcı için ayrı ayrı hesaplanır.
+**müşteri kazanım maliyeti.** Bir müşteriyi kazanmanın maliyeti. Pazar yerinde satıcı ve alıcı için ayrı ayrı hesaplanır.
 
-**Churn.** Kullanıcının platformu terk etmesi. Pazar yerinde satıcı churn'ü alıcı churn'ünden
+**Terk.** Kullanıcının platformu terk etmesi. Pazar yerinde satıcı terk'ü alıcı terk'ünden
 daha tehlikelidir, çünkü arz kaybı görünürdür.
 
 ## Strateji ve pazarlama
@@ -82,8 +101,8 @@ kampanyalar). İstoc bağlamında doğrudan uygulanabilir değildir.
 
 **ECA.** Event-Condition-Action; olay, koşul ve aksiyon. Otomasyon kurallarının temel yapısı.
 
-**SIDAML.** Bu rehberde önerilen genişletilmiş döngü: Sense (algıla), Interpret (yorumla),
-Decide (karar ver), Act (uygula), Measure (ölç), Learn (öğren).
+**Karar döngüsü.** Bu rehberde önerilen genişletilmiş döngü: algıla, yorumla, karar ver,
+uygula, ölç, öğren. Klasik olay-koşul-aksiyon modeline ölçüm ve öğrenme adımlarını ekler.
 
 **Ortogonal cevap.** Rakibin kullandığı araçla değil, farklı bir eksenden karşılık verme.
 İndirime indirimle değil, toplam maliyet şeffaflığıyla cevap vermek gibi.
@@ -94,7 +113,7 @@ Decide (karar ver), Act (uygula), Measure (ölç), Learn (öğren).
 
 **KYB.** Know Your Business; satıcının gerçek ve faal bir işletme olduğunun doğrulanması.
 
-**Escrow (emanet).** Ödemenin, mal teslim edilene kadar tarafsız bir hesapta tutulması.
+**Emanet hesabı (escrow).** Ödemenin, mal teslim edilene kadar tarafsız bir hesapta tutulması.
 
 **RFQ.** Request for Quotation; teklif talebi. Alıcının ihtiyacını yazıp birden çok
 satıcıdan fiyat toplaması.
@@ -118,8 +137,8 @@ sayı. Örneğin "yapılan nitelikli görüşme sayısı".
 
 **Ardıl gösterge (lagging indicator).** Sonucu geriden bildiren sayı. Örneğin "tamamlanan işlem".
 
-**Kill criteria (durdurma ölçütü).** Bir deneyin hangi şartta durdurulacağının, deney
+**Durdurma ölçütü (durdurma ölçütü).** Bir deneyin hangi şartta durdurulacağının, deney
 başlamadan yazılması.
 
-**Premortem.** Proje henüz başlamadan, "battığını varsayalım, neden battı?" sorusuyla yapılan
+**Batış provası.** Proje henüz başlamadan, "battığını varsayalım, neden battı?" sorusuyla yapılan
 başarısızlık analizi.

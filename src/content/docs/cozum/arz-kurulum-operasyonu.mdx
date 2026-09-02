@@ -1,0 +1,163 @@
+---
+title: Arz kurulum operasyonu
+description: 100+ aktif satıcı hedefinin doğurduğu katalog yükleme yükü, toplu içe aktarma zorunluluğu ve satıcı aktivasyon hattı.
+kanit: cikarim
+guven: orta
+tur: operasyon
+faz: faz-2
+sidebar:
+  order: 5
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import Chart from '@components/Chart.astro';
+import Tag from '@components/Tag.astro';
+
+## Bu sayfa neden var
+
+90 gün hedefi **100+ aktif satıcı** olarak belirlendiğinde, daha önce görünmeyen bir darboğaz
+ortaya çıktı: satıcıyı ikna etmek değil, **kataloğunu sisteme sokmak**.
+
+<Aside type="danger" title="Sayı">
+Hedefe ulaşmak için ~177 satıcı kaydedilecek. Kataloğu satıcı başına ortalama 2,5 saatte
+elle yüklerseniz bu **295 saat, yani 2,8 kişi-ay** eder. Üç kişilik bir ekibin neredeyse
+bir aylık toplam mesaisi, yalnızca veri girişine gider.
+
+Bu, 100 satıcı hedefinin en büyük gerçek riskidir — ve tamamen çözülebilir bir risktir.
+</Aside>
+
+## Üç yükleme yöntemi
+
+<Chart
+  id="katalog-yukleme-yuku"
+  title="177 satıcının kataloğunu yükleme yükü (saat)"
+  source="Satıcı başına ortalama süre x 177 satıcı. Bir kişi-ay 160 saat kabul edilmiştir."
+  height="18rem"
+  columns={['Yöntem', 'Satıcı başına (dk)', 'Toplam (saat)', 'Kişi-ay']}
+  rows={[
+    ['Elle tek tek giriş', 150, 443, '2,8'],
+    ['Yarı otomatik (fiyat listesinden)', 60, 177, '1,1'],
+    ['Excel toplu içe aktarma', 25, 74, '0,5'],
+  ]}
+  option={{
+    grid: { left: 60, right: 24, top: 40, bottom: 70 },
+    tooltip: { trigger: 'axis' },
+    xAxis: {
+      type: 'category',
+      data: ['Elle tek tek', 'Yarı otomatik', 'Toplu içe aktarma'],
+      axisLabel: { interval: 0, rotate: 15 },
+    },
+    yAxis: { type: 'value', name: 'saat' },
+    series: [
+      {
+        name: 'Toplam saat',
+        type: 'bar',
+        data: [
+          { value: 443, itemStyle: { color: '#c0504d' } },
+          { value: 177, itemStyle: { color: '#c2913f' } },
+          { value: 74, itemStyle: { color: '#4f9e77' } },
+        ],
+      },
+    ],
+  }}
+/>
+
+<Aside type="tip" title="Ön koşul">
+**Excel toplu içe aktarma özelliği, 100 satıcı hedefinin ön koşuludur.** Bu özellik yoksa
+hedef matematiksel olarak tutmaz; ekip üç ay boyunca veri girişi yapar ve satış yapamaz.
+
+İyi haber: bu kategorilerdeki toptancıların **neredeyse hepsinde zaten bir Excel fiyat
+listesi vardır.** Yeni veri üretilmiyor, var olan veri taşınıyor.
+</Aside>
+
+## Toplu içe aktarma tasarımı
+
+Karmaşık bir sistem gerekmiyor. Asgari gereksinim:
+
+| Alan | Zorunlu mu | Not |
+| ---- | ---------- | --- |
+| Ürün adı | Zorunlu | — |
+| Satıcı ürün kodu | Zorunlu | Eşleştirme ve güncelleme anahtarı |
+| Kategori | Zorunlu | Eşleştirmenin temeli |
+| Birim ve koli adedi | Zorunlu | Toptan alımın esası |
+| Fiyat | İsteğe bağlı | Gizli tutulabilir; teklif anında verilir |
+| Stok durumu | İsteğe bağlı | Var / yok yeterli |
+| Görsel | İsteğe bağlı | Sonradan eklenir |
+| Teknik özellik | İsteğe bağlı | Serbest metin |
+
+<Aside type="caution" title="Fiyat alanının isteğe bağlı olması bilinçlidir">
+Satıcının en büyük direnci fiyatının görünmesidir. Fiyatı zorunlu yapmak, kayıt oranını
+düşürür. Fiyatsız katalog + teklif talebi modeli hem direnci kaldırır hem
+[enflasyon ortamında güncellik sorununu](/istocpazar2/rekabet/neden-simdi/) çözer.
+</Aside>
+
+## Satıcı aktivasyon hattı
+
+Kayıt, aktiflik demek değildir. Bir satıcının "aktif" sayılması için tanımlı bir hattan
+geçmesi gerekir.
+
+<Steps>
+
+1. **Temas (0. gün).** Saha ziyareti veya telefon. Sunum tek cümle:
+   "Elimde sizin ürünlerinizi arayan şu kadar alıcı var."
+
+2. **Kayıt ve fiyat listesi alımı (0. gün).** Satıcıdan Excel veya PDF fiyat listesi alınır.
+   Yerinde. "Sonra gönderirim" kabul edilmez; gönderilmez.
+
+3. **Toplu yükleme (1-2. gün).** Liste sisteme aktarılır. Satıcı hiçbir şey yapmaz.
+
+4. **Doğrulama (2. gün).** Vergi levhası ve ticaret sicili kontrol edilir; saha ziyareti
+   rozeti işlenir.
+
+5. **İlk talep (2-3. gün).** Satıcıya en az bir gerçek alım talebi yönlendirilir.
+   Organik talep yoksa ekip elle bulur.
+
+6. **İlk cevap (3. gün).** Satıcı ilk teklifini verir; gerekiyorsa telefonda birlikte verilir.
+   <Tag tone="ok">Bu noktada satıcı AKTİF sayılır.</Tag>
+
+7. **14. gün kontrolü.** Hâlâ cevap veriyor mu? Vermiyorsa sebep sorulur ve kaydedilir.
+
+</Steps>
+
+<Aside type="danger" title="Aktiflik tanımı katı tutulmalı">
+**Aktif satıcı = son 30 günde en az bir talebe cevap vermiş satıcı.** Kaydolan, katalogu
+yüklenen ama hiç cevap vermemiş satıcı aktif değildir; pasiftir.
+
+Bu tanım gevşetilirse hedef anlamını yitirir ve
+[kayıt avcılığı hata kalıbı'ine](/istocpazar2/kanit/basarisizlik-haritasi/) düşülür.
+</Aside>
+
+## Aktif ve pasif satıcı ayrımı
+
+Pasif satıcılar da olacaktır ve bu normaldir; sorun onların **görünürlüğüdür**.
+
+| Grup | Tanım | Platformda görünürlüğü |
+| ---- | ----- | ---------------------- |
+| Aktif | Son 30 günde talebe cevap verdi | Tam görünür, teklif alır |
+| Yeni | Son 14 günde kaydoldu, henüz talep almadı | Tam görünür, öncelikli talep yönlendirilir |
+| Uykuda | 30-60 gündür cevap yok | Görünür, ama teklif sıralamasında geride |
+| Pasif | 60+ gündür cevap yok | <Tag tone="warn">Arama sonuçlarında gizlenir</Tag> |
+| Ölü | 90+ gün, listesi güncel değil | <Tag tone="risk">Arşivlenir</Tag> |
+
+<Aside type="tip" title="Pasif satıcı neden gizlenmeli">
+Alıcı arama yaptığında cevap vermeyecek bir satıcıyı görürse, talep gönderir ve cevap
+alamaz. Cevapsız kalan tek bir talep, o alıcıyı kalıcı olarak kaybettirir. Pasif satıcı
+silinmez ama **öne çıkarılmaz**. Kayıt sayısı korunur, alıcı deneyimi korunur.
+</Aside>
+
+## Kapasite planı
+
+| Ay | Kaydedilecek satıcı | Yükleme yükü (toplu, saat) | Kim |
+| -- | ------------------- | -------------------------- | --- |
+| 1 | 23 | 10 | Organizatör |
+| 2 | 74 | 31 | Saha toplar, Organizatör yükler |
+| 3 | 80 | 33 | Saha toplar, Masa Başı yükler |
+| **Toplam** | **177** | **74** | — |
+
+Toplu içe aktarma ile aylık yükleme yükü **bir günden az** kalır. Elle giriş modelinde
+aynı iş ayda 8-10 gün eder ve ekip başka hiçbir şey yapamaz.
+
+## Bu sayfanın tek cümlelik özeti
+
+> **100 aktif satıcı hedefi bir pazarlama hedefi değil, bir operasyon hedefidir.
+> Toplu içe aktarma olmadan tutmaz.**
