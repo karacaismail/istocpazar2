@@ -23,9 +23,9 @@ ve bunlar birleştirilebilir.
 
 | Eksen | Soru | Örnek |
 | ----- | ---- | ----- |
-| Kategori | Hangi ürün grubu | Yalnızca aydınlatma |
+| Kategori | Hangi ürün grubu | Yalnızca plastik ev eşyası |
 | Coğrafya | Nerede | Yalnızca İSTOÇ |
-| Persona | Kim | Yalnızca proje müteahhidi |
+| Persona | Kim | Yalnızca e-ticaret satıcısı |
 | Sorun | Hangi acı | Yalnızca "acil tedarikçi bulma" |
 | İşlev | Platform ne yapıyor | Yalnızca teklif toplama |
 
@@ -54,7 +54,7 @@ ve bunlar birleştirilebilir.
 | ------- | --------- | --------------- | ------------- |
 | Esnaf / küçük perakendeci | Sık, küçük | Kolay | <Tag tone="warn">Orta</Tag> |
 | Zincir satın almacı | Seyrek, büyük | Zor | <Tag tone="ok">Yüksek</Tag> |
-| Proje müteahhidi | Proje bazlı, acil | Orta | <Tag tone="ok">Çok yüksek</Tag> |
+| E-ticaret satıcısı | Sık, orta tutarlı, sürekli yeni ürün arar | Çok kolay (dijital) | <Tag tone="ok">Çok yüksek</Tag> |
 | Kurumsal satın alma | Süreçli, belgeli | Zor | <Tag tone="ok">Yüksek</Tag> |
 | İhracatçı | Büyük, düzensiz | Orta | <Tag tone="warn">Orta</Tag> |
 | Kamu alımı | Mevzuatlı | Çok zor | <Tag tone="risk">Düşük</Tag> |
@@ -65,7 +65,7 @@ Bu eksen en az kullanılan ama belki en güçlü olanıdır.
 
 | Sorun | Kime acı veriyor | Platform vaadi |
 | ----- | ---------------- | -------------- |
-| Acil tedarikçi bulamama | Proje müteahhidi | "2 saatte 3 teklif" |
+| Yeni ürün ve tedarikçi bulamama | E-ticaret satıcısı | "Haftada 20 yeni ürün, tek ekranda" |
 | Fiyat karşılaştıramama | Satın almacı | "Aynı ürün, 5 fiyat, tek ekranda" |
 | Ödeme riski | Her iki taraf | "Mal teslim edilene kadar para güvende" |
 | Tedarikçi güvenilirliği | Alıcı | "Doğrulanmış tedarikçi" |
@@ -76,7 +76,7 @@ Bu eksen en az kullanılan ama belki en güçlü olanıdır.
 <Aside type="tip" title="Sorun ekseninin gücü">
 Kategori ile daraltma "ne sattığımızı" söyler; sorun ile daraltma "neden var olduğumuzu"
 söyler. İkincisi, satış görüşmesinde kat kat etkilidir. İdeal giriş kaması, **bir kategori ve bir
-sorunun kesişimidir**: "proje aydınlatmasında acil tedarikçi bulma".
+sorunun kesişimidir**: "plastik ev eşyasında hızlı fiyat ve tedarikçi bulma".
 </Aside>
 
 ## Eksen 5 — Platform işlevi
@@ -103,10 +103,10 @@ verilirken bu kısıt unutulmamalıdır.
 
 | Bileşim | Nasıl okunur | Değerlendirme |
 | ------- | ------------ | ------------- |
-| Aydınlatma + İSTOÇ + müteahhit + acil tedarik + RFQ | Çok dar, çok net | <Tag tone="ok">Güçlü</Tag> |
+| Plastik + İSTOÇ + e-ticaret satıcısı + hızlı fiyat + teklif talebi | Çok dar, çok net | <Tag tone="ok">Güçlü</Tag> |
 | Tüm kategoriler + Türkiye + herkes + her sorun | Odaksız | <Tag tone="risk">Zayıf</Tag> |
-| Ambalaj + İSTOÇ + esnaf + fiyat karşılaştırma | Dar ama düşük sepetli | <Tag tone="warn">Orta</Tag> |
-| Makine yedek parça + Türkiye + fabrika + acil tedarik | Yüksek değer, dağınık coğrafya | <Tag tone="warn">Orta</Tag> |
+| Züccaciye + İSTOÇ + hediyelik esnafı + fiyat karşılaştırma | Dar ama mevsimsel | <Tag tone="warn">Orta</Tag> |
+| Oyuncak + Türkiye + e-ticaret satıcısı + sezon tedariki | Yüksek talep ama mevsimsel | <Tag tone="warn">Orta</Tag> |
 
 ## Giriş kaması'in genişleyebilir olması şartı
 
