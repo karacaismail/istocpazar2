@@ -1,0 +1,153 @@
+---
+title: Güçlü ve ucuz hamleler
+description: İstoc'un pazara çıkışını hem güçlendiren hem ucuzlatan on iki hamle, etki-maliyet sıralaması ve ekip senaryolarının karşılaştırması.
+kanit: cikarim
+guven: orta
+tur: oneri
+faz: faz-2
+sidebar:
+  order: 1
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Chart from '@components/Chart.astro';
+import Tag from '@components/Tag.astro';
+
+## Temel ilke
+
+<Aside type="tip" title="En ucuz hamle, kanal eklemek değil maliyet kaldırmaktır">
+Pazara çıkış stratejisi denince akla yeni kanal açmak gelir: bir reklam daha, bir etkinlik
+daha. Oysa en güçlü ve en ucuz hamleler, **planın içindeki pahalı varsayımı kaldıranlardır.**
+
+Aşağıdaki on iki hamlenin ilk beşi yeni kanal açmıyor; mevcut planın en pahalı üç kalemini
+(katalog yükleme, kapı kapı satıcı kazanımı, elle talep toplama) ortadan kaldırıyor.
+</Aside>
+
+## Hamlelerin etki-maliyet sıralaması
+
+| # | Hamle | Ne kazandırır | Nakit maliyeti | Etki |
+| - | ----- | ------------- | -------------- | ---- |
+| 1 | [Talep duvarı: katalog sonra](/istocpazar2/hamleler/talep-duvari/) | Katalog yükünü 442 saatten 12 saate indirir | Sıfır | <Tag tone="ok">Çok yüksek</Tag> |
+| 2 | [WhatsApp talep hattı](/istocpazar2/hamleler/whatsapp-hatti/) | Cevap oranını %65'ten %85'e çıkarır | Çok düşük | <Tag tone="ok">Çok yüksek</Tag> |
+| 3 | [Blok kurulum günü](/istocpazar2/hamleler/fiziksel-kume/) | Satıcı kazanımını 5,3 kat ucuzlatır | Sıfır | <Tag tone="ok">Çok yüksek</Tag> |
+| 4 | [Toplu alım havuzu](/istocpazar2/hamleler/toplu-alim/) | Var olamayan talebi yaratır | Düşük | <Tag tone="ok">Çok yüksek</Tag> |
+| 5 | [Ne satsam verisi](/istocpazar2/hamleler/ucuz-talep-kanallari/) | Alıcıyı elle aramadan çeker | Sıfır | <Tag tone="ok">Yüksek</Tag> |
+| 6 | [Entegratör ortaklığı](/istocpazar2/hamleler/ucuz-talep-kanallari/) | Hazır binlerce alıcıya erişim | Sıfır | <Tag tone="ok">Yüksek</Tag> |
+| 7 | [Fiyat listesini WhatsApp'tan topla](/istocpazar2/hamleler/fiziksel-kume/) | Ziyaret gerekmeden katalog | Sıfır | <Tag tone="ok">Yüksek</Tag> |
+| 8 | [Kapı çıkartması ve koridor sayacı](/istocpazar2/hamleler/fiziksel-kume/) | Komşu etkisiyle bedava yayılım | Çok düşük | <Tag tone="warn">Orta-yüksek</Tag> |
+| 9 | [İçerik üreticisi ortaklığı](/istocpazar2/hamleler/ucuz-talep-kanallari/) | Hazır kitleye erişim | Düşük (komisyon) | <Tag tone="warn">Orta-yüksek</Tag> |
+| 10 | [Fiyat endeksi yayını](/istocpazar2/hamleler/ucuz-talep-kanallari/) | Otorite ve basın görünürlüğü | Sıfır | <Tag tone="warn">Orta</Tag> |
+| 11 | Alıcıdan abonelik geliri | Likiditeden bağımsız gelir | Sıfır | <Tag tone="warn">Orta</Tag> |
+| 12 | Dernek ve oda toplu duyurusu | Meşruiyet ve toplu erişim | Sıfır | <Tag tone="warn">Orta</Tag> |
+
+<Aside type="danger" title="Dikkat: hepsi aynı anda yapılmaz">
+Üç kişilik ekipte aynı anda en fazla **iki yeni hamle** denenmelidir. Fazlası ölçümü bozar
+ve hiçbirinin işe yarayıp yaramadığı anlaşılmaz. Sıra: 1, 2, 3 önce; sonra 4; sonra 5-7.
+</Aside>
+
+## Üç kalemin maliyeti nasıl düşüyor
+
+<Chart
+  id="hamle-maliyet-karsilastirma"
+  title="Aynı hedefe ulaşmanın maliyeti: mevcut plan ve ucuz hamlelerle"
+  source="Katalog yükü saat cinsinden; satıcı kazanımı satıcı başına TL; gereken talep aylık adet. Hesaplar bu rehberdeki kapasite modelinden türetilmiştir."
+  height="20rem"
+  columns={['Kalem', 'Mevcut plan', 'Ucuz hamlelerle', 'Kazanç']}
+  rows={[
+    ['Katalog yükü (saat)', 442, 12, '37 kat'],
+    ['Satıcı kazanımı (TL/satıcı)', 1025, 195, '5,3 kat'],
+    ['100 aktif için gereken talep (ay)', 49, 38, '%22'],
+  ]}
+  option={{
+    grid: { left: 60, right: 24, top: 56, bottom: 70 },
+    legend: { top: 8, data: ['Mevcut plan', 'Ucuz hamlelerle'] },
+    tooltip: { trigger: 'axis' },
+    xAxis: {
+      type: 'category',
+      data: ['Katalog yükü\n(saat)', 'Satıcı kazanımı\n(TL/satıcı)', 'Gereken talep\n(adet/ay)'],
+      axisLabel: { interval: 0, fontSize: 11 },
+    },
+    yAxis: { type: 'log', name: 'logaritmik ölçek' },
+    series: [
+      { name: 'Mevcut plan', type: 'bar', itemStyle: { color: '#c0504d' }, data: [442, 1025, 49] },
+      { name: 'Ucuz hamlelerle', type: 'bar', itemStyle: { color: '#4f9e77' }, data: [12, 195, 38] },
+    ],
+  }}
+/>
+
+<Aside type="caution" title="Grafik logaritmik ölçekte">
+Kalemler çok farklı büyüklükte olduğu için ölçek logaritmiktir; çubuk boyları oransal
+değildir. Gerçek kazanç oranları tablodaki son sütundadır.
+</Aside>
+
+## Ekip senaryoları
+
+Hamleler uygulandığında aynı hedefe daha az kişiyle ulaşmak mümkün hale geliyor.
+Aşağıdaki üç senaryo aynı 100+ aktif satıcı hedefine göre hesaplandı.
+
+<Chart
+  id="ekip-senaryolari"
+  title="Üç senaryonun 12 aylık kümülatif nakit farkı (bin TL)"
+  source="Aynı gelir modeli, farklı ekip ve hamle bileşimi. Negatif değer, kasadan çıkan net parayı gösterir."
+  height="21rem"
+  columns={['Senaryo', '12 ay maliyet', 'Aylık başabaş', 'Kümülatif geri ödeme', 'En derin çukur']}
+  rows={[
+    ['A) 3 kişi, mevcut plan', '1.980 bin TL', '6. ay', '10. ay', '-309 bin TL'],
+    ['B) 3 kişi + ucuz hamleler', '1.980 bin TL', '6. ay', '9. ay', '-292 bin TL'],
+    ['C) 2 kişi + ucuz hamleler', '1.380 bin TL', '4. ay', '7. ay', '-158 bin TL'],
+  ]}
+  option={{
+    grid: { left: 62, right: 24, top: 56, bottom: 40 },
+    legend: { top: 8, data: ['A) 3 kişi mevcut', 'B) 3 kişi + hamleler', 'C) 2 kişi + hamleler'] },
+    tooltip: { trigger: 'axis' },
+    xAxis: { type: 'category', data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'], name: 'Ay' },
+    yAxis: { type: 'value', name: 'kümülatif fark (bin TL)' },
+    series: [
+      { name: 'A) 3 kişi mevcut', type: 'line', smooth: true, lineStyle: { width: 3 }, itemStyle: { color: '#c0504d' }, data: [-58, -149, -230, -286, -309, -304, -263, -187, -71, 84, 286, 535] },
+      { name: 'B) 3 kişi + hamleler', type: 'line', smooth: true, lineStyle: { width: 3 }, itemStyle: { color: '#c2913f' }, data: [-58, -135, -213, -269, -292, -278, -223, -131, 3, 179, 402, 675] },
+      { name: 'C) 2 kişi + hamleler', type: 'line', smooth: true, lineStyle: { width: 3 }, itemStyle: { color: '#4f9e77' }, data: [-58, -135, -153, -149, -112, -38, 77, 229, 423, 659, 942, 1275] },
+    ],
+  }}
+/>
+
+## Öneri: C değil B, ama kazanılan kapasite talebe gitsin
+
+<Tag tone="ok" icon="target">Öneri</Tag> **Üçüncü kişiyi kesmeyin. Hamlelerin serbest
+bıraktığı kapasiteyi talep üretimine kaydırın.**
+
+Gerekçe: 2 kişilik senaryo 600 bin TL daha ucuz görünüyor, ama
+[atomik ağ sayfasındaki uyarı](/istocpazar2/pazaryeri/atomik-ag/) hâlâ geçerli — 100 aktif
+satıcıyı 6. ayda hayatta tutmak, aylık talebin 150'ye çıkmasına bağlı. Üçüncü kişi
+kesilirse satıcı hedefi tutar ama **satıcılar iş bulamadığı için gider**; 100 rakamı
+4-6. ayda 40'a iner ve tasarruf edilen 600 bin TL, kaybedilen ağla birlikte boşa gider.
+
+| Senaryo | 90 günde 100 satıcı | 6. ayda 100 satıcı hâlâ aktif mi |
+| ------- | ------------------- | -------------------------------- |
+| A) 3 kişi, mevcut plan | <Tag tone="warn">Sınırda</Tag> | <Tag tone="risk">Hayır — talep yetersiz</Tag> |
+| B) 3 kişi + hamleler | <Tag tone="ok">Evet, rahat</Tag> | <Tag tone="ok">Evet — kapasite talebe kaydı</Tag> |
+| C) 2 kişi + hamleler | <Tag tone="ok">Evet</Tag> | <Tag tone="risk">Hayır — talep üretecek kişi yok</Tag> |
+
+<Aside type="tip" title="Asıl kazanç maliyet değil, dayanıklılık">
+Hamlelerin gerçek değeri 17 bin TL'lik çukur farkı değil; Masa Başı'nın katalog girişinden
+kurtulup **ayda 150 talep üretmeye** ayrılabilmesidir. Bu, 100 satıcının 6. ayda hâlâ
+ayakta olmasının tek yoludur.
+</Aside>
+
+## C senaryosu ne zaman doğru olur
+
+| Durum | Karar |
+| ----- | ----- |
+| Nakit 350 bin TL'nin altındaysa | <Tag tone="ok">C senaryosu</Tag> — hedefi 60 satıcıya çek, süreyi 120 güne uzat |
+| Nakit yeterliyse | <Tag tone="ok">B senaryosu</Tag> — 3 kişi, kapasite talebe |
+| Kapı 1 veya 2 geçilemezse | Her hâlükârda durdur, kategoriyi sorgula |
+
+## Sıradaki adım
+
+Bu bölümdeki her hamlenin kendi sayfası var; her birinde ne olduğu, neden ucuz olduğu,
+nasıl uygulanacağı ve **neyi feda ettiği** yazılı.
+
+- [Talep duvarı: katalog sonra](/istocpazar2/hamleler/talep-duvari/)
+- [WhatsApp talep hattı](/istocpazar2/hamleler/whatsapp-hatti/)
+- [Toplu alım havuzu](/istocpazar2/hamleler/toplu-alim/)
+- [Ucuz talep kanalları](/istocpazar2/hamleler/ucuz-talep-kanallari/)
+- [Fiziksel küme hamleleri](/istocpazar2/hamleler/fiziksel-kume/)

@@ -1,0 +1,114 @@
+---
+title: "Talep duvarı: katalog sonra"
+description: Satıcıdan katalog istemeden pazar yerini çalıştırmak; katalog yükünü 442 saatten 12 saate indiren model değişikliği.
+kanit: cikarim
+guven: orta
+tur: oneri
+faz: faz-2
+sidebar:
+  order: 2
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Kaldırdığı pahalı varsayım
+
+Rehberin şimdiye kadarki planı şu varsayımı taşıyordu: **satıcı platforma girer, kataloğunu
+yükler, sonra alıcı arar ve bulur.** Bu varsayım, 177 satıcı için 442 saatlik veri girişi
+üretiyor ve toplu içe aktarma özelliğini kritik yola koyuyordu.
+
+<Aside type="danger" title="Varsayımı sorgulayalım">
+B2B toptan ticarette alıcı **katalog gezmez**. "Şu üründen 500 koli lazım, kimde var, kaça?"
+diye sorar. Katalog, alıcının değil **arama motorunun** ihtiyacıdır — ve arama motoru
+trafiği zaten 3-6 ay sonra gelir.
+
+O hâlde katalog neden ilk günden gerekli?
+</Aside>
+
+## Hamle
+
+**Satıcıdan katalog istemeyin. Sadece profil ve kategori etiketi isteyin.**
+Alıcı talebini yazsın; talep, uygun kategorideki satıcılara düşsün; satıcı fiyatını
+o an versin.
+
+| Model | Satıcıdan istenen | Kurulum süresi | 177 satıcı için |
+| ----- | ----------------- | -------------- | --------------- |
+| Katalog önce, elle | Tüm ürün listesi, fiyat, görsel | 150 dk | 442 saat |
+| Katalog önce, toplu içe aktarma | Excel fiyat listesi | 25 dk | 74 saat |
+| **Talep duvarı** | Firma bilgisi + kategori etiketleri + telefon | **4 dk** | **12 saat** |
+
+<Aside type="tip" title="Kazanç yalnızca saat değil">
+Asıl kazanç, **toplu içe aktarma özelliğinin kritik yoldan çıkmasıdır.** Artık yazılım
+geliştirme beklemeden 100 satıcı kaydedilebilir. Kapı 0'ın en riskli ön koşulu ortadan
+kalkar.
+</Aside>
+
+## Nasıl çalışır
+
+<Steps>
+
+1. **Satıcı kaydı 4 dakika.** Firma adı, yetkili, telefon, vergi bilgisi ve
+   *"hangi ürün gruplarında iş yapıyorsunuz"* soru işaretli kategori listesi.
+   Ürün girilmez.
+
+2. **Alıcı talebini yazar.** "PP saklama kabı, 1 litre, 500 koli, İstanbul teslim,
+   2 hafta içinde." Serbest metin yeterlidir; ekip normalleştirir.
+
+3. **Talep hedefli düşer.** O kategoriyi işaretlemiş en uygun 5 satıcıya gider.
+   Ayrıntı: [WhatsApp talep hattı](/istocpazar2/hamleler/whatsapp-hatti/).
+
+4. **Satıcı fiyatı o an verir.** Katalog fiyatı değil, güncel fiyat. Enflasyon
+   ortamında bu bir kusur değil <Tag tone="ok">avantajdır</Tag>.
+
+5. **Katalog ödül olarak gelir.** İlk işlemini tamamlayan satıcıya
+   *"kataloğunuzu ücretsiz kuralım, sürekli görünür olun"* denir. Artık istekli ve
+   kanıtı görmüş bir satıcıya emek harcanır.
+
+</Steps>
+
+## Kural: katalog giriş bileti değil, kazanılan ödüldür
+
+<Aside type="tip" title="Sıralamanın anlamı">
+Eski sıra: emek harca → belki iş gelir. Yeni sıra: iş gel → sonra emek harca.
+Bu, hem platformun hem satıcının riskini düşürür ve
+[sihirli anı](/istocpazar2/pazaryeri/sihirli-an/) 14 günden 48 saate çeker.
+</Aside>
+
+## Neyi feda ediyoruz
+
+Dürüst olmak gerekirse bu hamlenin bir bedeli var.
+
+| Kayıp | Ne kadar önemli | Nasıl telafi edilir |
+| ----- | --------------- | ------------------- |
+| Arama motoru için ürün sayfası yok | <Tag tone="warn">Orta</Tag> — ama trafik zaten 3-6 ay sonra gelir | İşlem yapan satıcıların kataloğu 2. çeyrekte yüklenir |
+| Alıcı "gezinemez", aramayla bulamaz | <Tag tone="warn">Orta</Tag> | Kategori sayfaları + talep duvarının kendisi gezilebilir olur |
+| Fiyat karşılaştırma vitrini yok | <Tag tone="ok">Düşük</Tag> | Karşılaştırma teklif ekranında yapılır, daha güncel |
+| Platform "boş" görünebilir | <Tag tone="risk">Yüksek</Tag> | Talep duvarı doluluk sağlar: "bu hafta 38 alım talebi" |
+
+<Aside type="danger" title="En ciddi risk ve panzehiri">
+Ürünsüz bir pazar yeri ilk bakışta boş görünür. Panzehir, ana sayfayı **ürünle değil
+taleple doldurmaktır**: "Bu hafta gelen 38 alım talebi" listesi, boş bir ürün ızgarasından
+kat kat canlı görünür ve satıcı için de alıcı için de daha ikna edicidir.
+
+Bu aynı zamanda satıcıya verilebilecek en güçlü kanıttır: kaydolmadan önce bekleyen
+talebi görür.
+</Aside>
+
+## Ne zaman kataloğa geçilir
+
+| Eşik | Aksiyon |
+| ---- | ------- |
+| Satıcı ilk işlemini tamamladı | O satıcının kataloğu ücretsiz kurulur |
+| Aylık 100 talep | Toplu içe aktarma geliştirilir |
+| Aylık 150 talep | Katalog tüm aktif satıcılara yayılır |
+| Arama trafiği anlamlı hale geldi | Ürün sayfaları arama için optimize edilir |
+
+## Ölçüm
+
+| Metrik | Hedef |
+| ------ | ----- |
+| Satıcı kayıt süresi (medyan) | 5 dakika altı |
+| Kayıttan ilk talebe süre | 48 saat altı |
+| Talep duvarında haftalık talep | Artan |
+| İşlem sonrası katalog kurulum kabul oranı | %70+ |

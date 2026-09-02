@@ -1,0 +1,140 @@
+---
+title: Fiziksel küme hamleleri
+description: İSTOÇ'un fiziksel yoğunluğunu satıcı kazanım maliyetini beş kat düşürmek için kullanan hamleler.
+kanit: cikarim
+guven: orta
+tur: oneri
+faz: faz-2
+sidebar:
+  order: 6
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## İSTOÇ'un asıl değeri
+
+Fiziksel küme, rakiplerin sahip olmadığı bir varlıktır ama plan onu yalnızca
+"saha ziyareti kolay" diye kullanıyor. Asıl değeri daha derindir: **komşular birbirini
+görür, birbirini tanır ve birlikte hareket etme kültürü zaten vardır.**
+
+## 1. Blok kurulum günü <Tag tone="ok">En yüksek getirili</Tag>
+
+Kapı kapı gezmek yerine, bir blokla veya koridorla tek anlaşma yapıp **tek günde
+toplu kayıt** almak.
+
+| Yöntem | Günlük kayıt | Satıcı başına maliyet |
+| ------ | ------------ | --------------------- |
+| Kapı kapı ziyaret | 2,7 | 1.025 TL |
+| **Blok kurulum günü** | **14** | **195 TL** |
+
+<Aside type="tip" title="5,3 kat ucuz">
+Aynı saha personeli, aynı maaş. Fark yalnızca **organizasyon biçiminde**.
+Bu, hamleler arasında en yüksek getirili tek değişikliktir ve hiçbir nakit gerektirmez.
+</Aside>
+
+### Nasıl yapılır
+
+<Steps>
+
+1. **Blok veya kat yönetimiyle görüş.** Tek muhatap, tek izin. Karşılığında onlara
+   "blokumuzun dijital vitrini" anlatısı verilir.
+
+2. **Bir hafta önce duyuru.** Kapılara asılan tek sayfalık ilan:
+   *"Perşembe 10:00-16:00, giriş katta İstoc masası. Elinizde fiyat listeniz varsa getirin,
+   kaydınızı 5 dakikada yapalım."*
+
+3. **Masayı kur.** Bir masa, iki sandalye, iki bilgisayar, bir yazıcı, kahve.
+   Kayıt [talep duvarı modelinde](/istocpazar2/hamleler/talep-duvari/) 4 dakika sürer.
+
+4. **Bekleyen talebi göster.** Masada bir ekran: "şu an bu kategoride bekleyen 12 alım
+   talebi". Kaydolmadan önce değeri görsün.
+
+5. **Aynı gün ilk talebi ilet.** Kaydolan satıcıya masadan kalkmadan bir talep düşsün.
+   [Sihirli an](/istocpazar2/pazaryeri/sihirli-an/) 48 saatten 5 dakikaya iner.
+
+</Steps>
+
+<Aside type="caution" title="Ön koşul">
+Blok kurulum günü, ancak elde **gösterilecek gerçek talep varken** yapılır. Talep yokken
+kurulan masa, boş bir vaatten ibaret kalır ve o bloğu bir daha ikna edemezsiniz.
+Bu yüzden ilk blok günü en erken **5. haftada** yapılmalıdır.
+</Aside>
+
+## 2. Kapı çıkartması ve koridor sayacı
+
+Katılan her satıcının kapısına küçük bir çıkartma: **"Bu tedarikçi İstoc'ta"** ve bir kare kod.
+
+| Kime ne yapar | Etki |
+| ------------- | ---- |
+| Komşu satıcı | Her gün görür; "ben neden yokum" hissi |
+| Gelen alıcı | Kare kodu okutur, talep bırakır |
+| Katılan satıcı | Görünürlük hissi, statü |
+| Ekip | Bedava, kalıcı, her gün çalışan tanıtım |
+
+<Aside type="tip" title="Koridor sayacı">
+Blok girişine asılan tek satırlık bir levha: **"Bu koridorda 14 tedarikçi İstoc'ta"**
+ve sayı elle güncellenir. Sosyal kanıtın en ucuz ve en dürüst hâli — rakam gerçek
+olduğu sürece. Ayrıntı:
+[İknanın psikolojisi](/istocpazar2/teori/iknanin-psikolojisi/).
+</Aside>
+
+Maliyet: çıkartma başına birkaç lira. Etkisi kalıcı.
+
+## 3. Fiyat listesini WhatsApp'tan topla
+
+İSTOÇ'taki toptancıların çoğu **zaten her gün müşterilerine WhatsApp'tan fiyat listesi
+gönderiyor.** Katalog için ziyarete gerek yok; o listeye dâhil olmak yeterli.
+
+> *"Fiyat listenizi müşterilerinize gönderirken bize de gönderin, sisteme biz işleyelim.
+> Size gelen talepleri de aynı numaradan iletelim."*
+
+| Kazanç | Değer |
+| ------ | ----- |
+| Ziyaret gerekmez | Saha zamanı serbest kalır |
+| Liste kendiliğinden güncellenir | Güncellik sorunu çözülür |
+| Satıcı yeni davranış öğrenmez | Direnç sıfır |
+| Karşılıklı kanal kurulur | Talep aynı hattan gider |
+
+## 4. Dernek, oda ve site yönetimi duyurusu
+
+Tek muhatapla yüzlerce satıcıya ulaşmak. Ayrıntı:
+[Görev tanımı: Organizatör](/istocpazar2/organizasyon/gorev-tanimi-organizator/).
+
+| Kurum | Ne isteriz | Karşılığında ne veririz |
+| ----- | ---------- | ----------------------- |
+| Site/blok yönetimi | Duyuru ve masa izni | "Blokun dijital vitrini" anlatısı, katılım raporu |
+| Esnaf derneği | Üye duyurusu | Üyelere özel kurucu satıcı kontenjanı |
+| Ticaret odası | Bülten ve etkinlik | Sektörel fiyat endeksi, ücretsiz eğitim |
+
+## 5. Komşu yönlendirmesi
+
+Fiziksel kümede en güçlü ve en ucuz kanal: **memnun satıcının yan dükkâna anlatması.**
+Ama istenmeyen yönlendirme gelmez.
+
+<Aside type="tip" title="Somut uygulama">
+İlk işlemini tamamlayan her satıcıya, işlemden sonraki 7 gün içinde tek bir cümle sorulur:
+*"Bu işi yapabilecek bir komşunuz var mı, birlikte daha çok talep gelir."*
+
+Sorunun içindeki gerekçe önemli: komşusunu getirmek onun da işine yarar, çünkü
+kategori derinleştikçe alıcı artar. Bu, rekabet değil ortak çıkar çerçevesidir.
+</Aside>
+
+## Ölçüm
+
+| Metrik | Hedef |
+| ------ | ----- |
+| Blok kurulum günü başına kayıt | 25+ |
+| Satıcı başına kazanım maliyeti | 300 TL altı |
+| Çıkartma takılan satıcı oranı | %80+ |
+| Kare koddan gelen talep (aylık) | 5+ |
+| Yönlendirmeyle gelen satıcı oranı | %20+ |
+| WhatsApp'tan gelen fiyat listesi (aylık) | 30+ |
+
+<Aside type="danger" title="Tek gerçek risk">
+Blok kurulum günü kalabalık ve görünür bir hamledir. **Kötü giderse de görünür olur.**
+Masaya oturan satıcıya vaat edilen talep 48 saat içinde gelmezse, o blok bir daha
+açılmaz ve olumsuz haber koridorda hızla yayılır.
+
+Bu yüzden kural: bir blok günü, ancak o kategoride **elde gerçek talep varken** açılır.
+</Aside>

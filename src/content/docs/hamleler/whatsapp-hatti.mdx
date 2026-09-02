@@ -1,0 +1,102 @@
+---
+title: WhatsApp talep hattı
+description: Satıcıyı panele sokmadan, zaten kullandığı kanaldan talebe cevap verdirmek; cevap oranını %65'ten %85'e çıkaran hamle.
+kanit: cikarim
+guven: orta
+tur: oneri
+faz: faz-2
+sidebar:
+  order: 3
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Kaldırdığı pahalı varsayım
+
+Plan, satıcının **panele giriş yapmasını** varsayıyordu. Oysa İSTOÇ'taki bir toptancı
+günde 200 WhatsApp mesajı yazar ve hiçbir panele girmez. Ondan yeni bir alışkanlık
+istemek, aktivasyonun en pahalı kısmıdır.
+
+<Aside type="tip" title="Hamle tek cümlede">
+**Satıcıyı platforma çağırmayın; platformu satıcının telefonuna götürün.**
+Alım talebi WhatsApp'a düşsün, satıcı mesajı yanıtlayarak teklif versin.
+</Aside>
+
+## Sayısal etki
+
+| Gösterge | Panele giriş | WhatsApp bildirimi |
+| -------- | ------------ | ------------------ |
+| Talebe cevap oranı | %65 | %85 |
+| 100 aktif satıcı için gereken aylık talep | 49 | **38** |
+| Satıcının öğrenmesi gereken yeni davranış | Panel kullanımı | <Tag tone="ok">Yok</Tag> |
+| Cevap süresi (beklenen medyan) | Saatler | <Tag tone="ok">Dakikalar</Tag> |
+
+Aylık 11 talep daha az üretmek, ekibin en kıt kaynağı olan zamandan doğrudan tasarruftur.
+Aynı zamanda [ilk teklif süresi](/istocpazar2/pazaryeri/likidite/) hedefinin
+(2 saat) tutmasının en gerçekçi yoludur.
+
+## Hukuki sınır: bu toplu mesaj değildir
+
+<Aside type="danger" title="Ayrım net tutulmalı">
+Bu hamle, [yasal sınırlar sayfasında](/istocpazar2/organizasyon/yasal-sinirlar/) reddedilen
+toplu ticari mesajla **aynı şey değildir** ve karıştırılmamalıdır.
+
+| Reddedilen | Bu hamle |
+| ---------- | -------- |
+| Aynı metin, çok kişiye, talep edilmeden | Farklı metin, tek kişiye, kendi kaydettiği kategoriye |
+| Tanıtım amaçlı | İşlemsel: kendisine gelen bir iş fırsatı |
+| İzin yok | Kayıt sırasında açık izin alınmış |
+| Ret mekanizması yok | Her mesajda "bu kategoriden çık" seçeneği |
+
+Yine de: kayıt formunda **açık ve ayrı bir onay kutusu** bulunmalı, ret talebi anında
+işlenmeli ve kayıt tutulmalıdır. Uygulamaya geçmeden avukat görüşü alınmalıdır.
+</Aside>
+
+## Uygulama
+
+| Aşama | Nasıl | Maliyet |
+| ----- | ----- | ------- |
+| İlk 30 gün | Elle: ekip talebi ilgili satıcılara tek tek yazar | Sıfır |
+| 30-90 gün | Yarı otomatik: hazır şablon + kopyalama listesi | Sıfır |
+| 90 gün sonrası | WhatsApp iş çözümü ile otomatik bildirim | Düşük, mesaj başına |
+
+<Aside type="tip" title="Elle başlamak burada da doğru">
+İlk 30 gün elle yapmak, hangi mesaj biçiminin cevap aldığını öğretir. Otomasyonu önce
+kurmak, yanlış mesajı otomatikleştirmektir.
+</Aside>
+
+## Mesaj şablonu
+
+> **Merhaba [Ad Bey/Hanım],**
+> İstoc'a [kategori] için bir alım talebi geldi:
+> **[ürün tarifi], [miktar], [teslim yeri], [termin].**
+> Fiyat verebilir misiniz? Bu mesaja yazmanız yeterli, biz alıcıya iletiriz.
+> İlgilenmiyorsanız "geç" yazın, bu talebi kapatalım.
+> *Bu kategoriden bildirim almak istemiyorsanız "çıkar" yazın.*
+
+Üç özelliği önemli: **tek talep**, **tek soru**, **kolay ret**.
+
+## Neyi feda ediyoruz
+
+| Kayıp | Telafi |
+| ----- | ------ |
+| Platform içi veri (kim neye baktı) | Cevap/ret verisi zaten toplanıyor |
+| Satıcının panele alışması gecikir | Katalog ödülü aşamasında alışır |
+| Mesaj hacmi arttığında elle yönetilemez | 90. günde otomasyona geçilir |
+| WhatsApp'a bağımlılık | Telefon ve e-posta yedek kanal olarak açık tutulur |
+
+## Ölçüm
+
+| Metrik | Hedef |
+| ------ | ----- |
+| Bildirime cevap oranı | %85+ |
+| Medyan ilk cevap süresi | 2 saat altı |
+| "Çıkar" talebi oranı | %5 altı |
+| Cevapsız kalan talep | 0 |
+
+<Aside type="caution" title="Uyarı sinyali">
+"Çıkar" oranı %10'u aşarsa hedefleme bozuk demektir: satıcılara ilgilenmedikleri
+kategorilerden talep gidiyordur. Bu, mesaj sıklığından değil **eşleştirme kalitesinden**
+kaynaklanır ve kategori etiketleri düzeltilmelidir.
+</Aside>

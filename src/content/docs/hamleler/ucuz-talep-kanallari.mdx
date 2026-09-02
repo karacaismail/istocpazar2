@@ -1,0 +1,134 @@
+---
+title: Ucuz talep kanalları
+description: Alıcıyı tek tek aramadan çeken kanallar; veri ürünü, ortaklıklar, içerik üreticileri ve fiyat endeksi.
+kanit: cikarim
+guven: orta
+tur: oneri
+faz: faz-2
+sidebar:
+  order: 5
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Sorun
+
+Aylık 55 talebi elle toplamak mümkün; **150 talebi elle toplamak değil.** Ekip
+büyütmeden talep hacmini üçe katlamanın tek yolu, alıcının kendiliğinden gelmesidir.
+Aşağıdaki dört kanalın ortak özelliği: **nakit maliyeti neredeyse sıfır, kaldıracı
+başkasının kitlesi.**
+
+## 1. "Ne satsam?" veri ürünü <Tag tone="ok">En güçlü</Tag>
+
+E-ticaret satıcısının en pahalı sorusu şudur: *hangi ürünü satayım, marjı ne olur?*
+Bu soruyu cevaplamak için iki veri gerekir ve **ikisi de İstoc'ta var veya ücretsiz alınabilir**:
+
+| Veri | Kaynak | Maliyet |
+| ---- | ------ | ------- |
+| Toptan fiyat | İstoc'un kendi talep ve teklif kayıtları | Sıfır |
+| Perakende satış fiyatı | Pazaryerlerinin herkese açık ilan sayfaları | Sıfır |
+| Tahmini talep | Pazaryeri sıralama ve yorum sayıları | Sıfır |
+
+Bu üçü birleştiğinde ortaya şu çıkar:
+
+> **"Bu ürünün İSTOÇ toptan fiyatı X. Pazaryerinde ortalama Y'ye satılıyor.
+> Kargo ve komisyon sonrası brüt marj %Z. Ayda tahmini N adet satıyor."**
+
+<Aside type="tip" title="Neden bu kadar güçlü">
+Bu içerik, e-ticaret satıcısı için **doğrudan para demektir** ve kendiliğinden paylaşılır.
+Üstelik yan ürünü tam olarak İstoc'un ihtiyacı olan şeydir: içeriği okuyan kişi
+"peki bu ürünü kimden alırım" diye sorar ve talep duvarına düşer.
+
+Maliyeti sıfır, çünkü veri zaten üretiliyor. Bu, [büyüme
+döngülerindeki](/istocpazar2/pazaryeri/buyume-dongulari/) kanıt döngüsünün en verimli hâli.
+</Aside>
+
+**Uyarı:** Rakamlar gerçek olmalı ve kaynağı belirtilmelidir. Şişirilmiş marj vaadi
+kısa sürede ortaya çıkar ve güveni kalıcı olarak yıkar.
+
+## 2. Entegratör ve yazılım ortaklıkları
+
+E-ticaret satıcısı zaten üç dört yazılım kullanıyor: pazaryeri entegratörü, kargo
+entegratörü, ön muhasebe. Bu şirketlerin **binlerce doğru müşterisi** var ve hepsi
+müşterisine sunacak yeni değer arıyor.
+
+| Ortak tipi | Onların kazancı | Bizim kazancımız | Maliyet |
+| ---------- | --------------- | ---------------- | ------- |
+| Pazaryeri entegratörü | Müşterisine tedarik çözümü | Binlerce nitelikli alıcı | Sıfır |
+| Kargo entegratörü | Ek gönderi hacmi | Alıcı erişimi | Sıfır |
+| Ön muhasebe yazılımı | Müşteri bağlılığı | Alıcı erişimi | Sıfır |
+| E-ticaret eğitim platformu | Öğrencisine somut kaynak | Yeni başlayan alıcılar | Sıfır |
+
+<Aside type="caution" title="Ortaklık nasıl kurulur">
+"İş birliği yapalım" demek işe yaramaz. Somut ve tek taraflı bir teklifle gidin:
+*"Müşterilerinize özel bir tedarikçi listesi hazırladık, sizin markanızla yayınlayabilirsiniz;
+bizden hiçbir şey istemiyoruz."* Karşılık beklemeyen ilk hamle, ortaklığın en ucuz açılışıdır.
+Bu, [iknanın psikolojisindeki](/istocpazar2/teori/iknanin-psikolojisi/) karşılıklılık
+ilkesinin doğrudan uygulamasıdır.
+</Aside>
+
+## 3. İçerik üreticisi ve eğitmen ortaklığı
+
+Türkiye'de "e-ticarete nasıl başlanır" içeriği üreten çok sayıda kanal ve eğitmen var.
+Hepsinin ortak açığı aynı: **öğrenciye somut tedarikçi kaynağı gösterememek.**
+
+| Model | Nasıl | Maliyet |
+| ----- | ----- | ------- |
+| Ortak içerik | Eğitmenle birlikte "İSTOÇ'tan tedarik" videosu | Sıfır |
+| Yönlendirme payı | Getirdiği alıcının ilk işleminden pay | Değişken, sonuca bağlı |
+| Kapalı grup erişimi | Eğitmenin grubuna özel talep duvarı | Sıfır |
+
+<Aside type="tip">
+Yönlendirme payı, reklamdan üstündür: **yalnızca sonuç çıkarsa ödenir.** Nakit riski yoktur
+ve ortak, gerçekten dönüşen kitleyi getirmeye teşvik edilir.
+</Aside>
+
+## 4. Fiyat endeksi yayını
+
+Aylık **"İSTOÇ plastik ve züccaciye fiyat endeksi"** — kendi işlem verinizden üretilen,
+ücretsiz, kısa bir rapor.
+
+| Kazandırdığı | Nasıl |
+| ------------ | ----- |
+| Otorite | Sektörde rakam söyleyen taraf olursunuz |
+| Basın görünürlüğü | Sektörel yayınlar rakam arar, kaynak gösterir |
+| Kurumsal kapı | Oda ve dernek görüşmelerinin açılış argümanı |
+| Yapay zekâ görünürlüğü | Cevap motorlarının alıntıladığı kaynak olursunuz |
+| Satıcı ilgisi | Satıcı kendi kategorisinin endeksini merak eder |
+
+Maliyeti sıfırdır çünkü veri zaten birikiyor. Ayrıntı:
+[Ajan tabanlı ticaret](/istocpazar2/rekabet/agentic-ticaret/).
+
+<Aside type="caution" title="Şart">
+Endeks, ancak yeterli işlem verisi biriktiğinde yayınlanabilir. Az sayıda işlemden endeks
+üretmek yanıltıcıdır ve güveni zedeler. Gerçekçi başlangıç: **3. ay sonu**, ve örneklem
+büyüklüğü açıkça yazılarak.
+</Aside>
+
+## Kanal karşılaştırması
+
+| Kanal | Nakit maliyeti | İlk sonuç süresi | Ölçeklenir mi |
+| ----- | -------------- | ---------------- | ------------- |
+| Elle talep toplama (mevcut) | Yüksek (maaş) | Anında | <Tag tone="risk">Hayır</Tag> |
+| "Ne satsam" verisi | Sıfır | 3-6 hafta | <Tag tone="ok">Evet</Tag> |
+| Entegratör ortaklığı | Sıfır | 4-8 hafta | <Tag tone="ok">Evet</Tag> |
+| İçerik üreticisi | Sonuca bağlı | 2-4 hafta | <Tag tone="ok">Evet</Tag> |
+| Fiyat endeksi | Sıfır | 3 ay | <Tag tone="warn">Kısmen</Tag> |
+| Ücretli reklam | Yüksek | Anında | <Tag tone="risk">Likidite yokken reddedildi</Tag> |
+
+<Aside type="danger" title="Sabır uyarısı">
+Bu kanalların hiçbiri ilk haftada sonuç vermez. Elle talep toplama, ilk 60 günün
+motoru olmaya devam eder. Ucuz kanallar **onun yerine değil, üstüne** kurulur ve
+asıl işlevleri 4-6. ayda talebi 150'ye taşımaktır.
+</Aside>
+
+## Sıralama
+
+| Ne zaman | Hangi kanal | Kim |
+| -------- | ----------- | --- |
+| 3. hafta | Entegratör ve eğitmen görüşmeleri başlar | Organizatör |
+| 5. hafta | İlk "ne satsam" içeriği yayınlanır | Masa Başı |
+| 8. hafta | İlk ortak içerik veya kapalı grup erişimi | Organizatör |
+| 12. hafta | İlk fiyat endeksi taslağı | Masa Başı |
+| 4. ay | Kanallar talebin %30'unu üretiyor olmalı | Ekip |

@@ -108,6 +108,17 @@ export default defineConfig({
           ],
         },
         {
+          label: 'Güçlü ve ucuz hamleler',
+          items: [
+            { label: 'Genel bakış ve sıralama', slug: 'hamleler/genel-bakis' },
+            { label: 'Talep duvarı: katalog sonra', slug: 'hamleler/talep-duvari' },
+            { label: 'WhatsApp talep hattı', slug: 'hamleler/whatsapp-hatti' },
+            { label: 'Toplu alım havuzu', slug: 'hamleler/toplu-alim' },
+            { label: 'Ucuz talep kanalları', slug: 'hamleler/ucuz-talep-kanallari' },
+            { label: 'Fiziksel küme hamleleri', slug: 'hamleler/fiziksel-kume' },
+          ],
+        },
+        {
           label: 'Karar sistemi',
           items: [
             { label: 'Karar döngüsü', slug: 'karar-sistemi/eca-plus' },
