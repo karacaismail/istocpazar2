@@ -1,0 +1,67 @@
+---
+title: 'İstoc Pazar Yeri Rehberi'
+description: 'İstoc.com iki taraflı B2B pazar yerinin soğuk başlangıç ve likidite problemi için problem haritası, strateji seçenek uzayı, çözüm önerileri ve ekip kurulum rehberi.'
+template: splash
+kanit: karma
+guven: orta
+tur: harita
+faz: her-ikisi
+hero:
+  tagline: Satıcı yok çünkü alıcı yok, alıcı yok çünkü satıcı yok. Bu rehber o kısır döngüyü bir pazarlama problemi olarak değil, bir pazar yeri likidite problemi olarak ele alır.
+  actions:
+    - text: İki dakikalık özet
+      link: /istocpazar2/baslangic/iki-dakikalik-ozet/
+      icon: right-arrow
+      variant: primary
+    - text: Çözüm önerileri
+      link: /istocpazar2/cozum/cozum-ozeti/
+      variant: secondary
+    - text: 3 kişilik ekip ve SMART hedefler
+      link: /istocpazar2/organizasyon/smart-hedefler/
+      variant: minimal
+---
+
+import { Card, CardGrid, Aside } from '@astrojs/starlight/components';
+
+<Aside type="caution" title="Bu rehberin sınırı">
+Bu bir **yol haritası değildir**. Faz 1 bölümleri problem uzayını açar; Faz 2 bölümleri
+koşullu çözüm önerileri sunar. Hiçbir öneri deneyle doğrulanmadan taahhüt sayılmamalıdır.
+Her sayfa hangi güçte kanıta dayandığını üst kısmında beyan eder.
+</Aside>
+
+## Nereden başlamalı
+
+<CardGrid stagger>
+  <Card title="Hiç vaktim yok">
+    [İki dakikalık özet](/istocpazar2/baslangic/iki-dakikalik-ozet/) — problemin ne olduğu,
+    ne olmadığı ve sizden istenen üç karar.
+  </Card>
+  <Card title="Ne yapacağımızı söyle">
+    [Çözüm özeti](/istocpazar2/cozum/cozum-ozeti/) ve
+    [SMART eylem planı](/istocpazar2/cozum/eylem-plani/) — sıralanmış, koşullu öneriler.
+  </Card>
+  <Card title="3 kişiyi işe alacağım">
+    [Roller ve kalifikasyonlar](/istocpazar2/organizasyon/roller-ve-kalifikasyonlar/),
+    [görev tanımları](/istocpazar2/organizasyon/gorev-tanimi-masabasi/) ve
+    [SMART hedefler](/istocpazar2/organizasyon/smart-hedefler/).
+  </Card>
+  <Card title="Önce doğru soruyu sormak istiyorum">
+    [Problem haritası](/istocpazar2/teshis/problem-haritasi/),
+    [alternatif hipotezler](/istocpazar2/teshis/alternatif-hipotezler/) ve
+    [varsayım kütüğü](/istocpazar2/teshis/varsayim-kutugu/).
+  </Card>
+  <Card title="Pazarlama kaçıncı sürüm?">
+    [Pazarlama 2.0 mı, 5.0 mı, 9.0 mu?](/istocpazar2/teori/kacinci-pazarlama/) — sorunun
+    kendisinin neden yanlış kurulduğu ve doğru çerçeve.
+  </Card>
+  <Card title="Bu plan neden batabilir?">
+    [Premortem: 30 ölüm nedeni](/istocpazar2/kanit/premortem/) ve
+    [kırmızı takım](/istocpazar2/kanit/red-team/).
+  </Card>
+</CardGrid>
+
+## Rehberin iddiası tek cümlede
+
+İstoc'un asıl kısıtı tanınırlık değil, **eşleşme sıklığıdır**. Bu yüzden ilk hedef "çok satıcı"
+veya "çok alıcı" değil; dar bir kategoride, dar bir coğrafyada, tekrar eden ve ölçülebilir
+alıcı-satıcı eşleşmesidir. Ekip, reklam ve etkinlikler bu hedefin aracıdır; hedefin kendisi değil.

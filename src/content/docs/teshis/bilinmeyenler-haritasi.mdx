@@ -1,0 +1,144 @@
+---
+title: 'Bilinmeyenler haritası'
+description: 'Bildiğimiz, bilmediğimizi bildiğimiz ve henüz soru olarak bile formüle etmediğimiz konuların ayrıştırılması.'
+kanit: cikarim
+guven: orta
+tur: harita
+faz: faz-1
+sidebar:
+  order: 3
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Figure from '@components/Figure.astro';
+
+Bu sayfa Karar Kitabı'ndaki **Rumsfeld Matrisi** modelinin İstoc'a uygulanmasıdır.
+Amacı, kararların hangi bilgi zemininde alındığını görünür kılmaktır.
+
+<Figure title="Rumsfeld matrisi: bilgi durumu haritası" caption="Karar kalitesini belirleyen, sol üst kutunun büyüklüğü değil; sağ alt kutuyu daraltmak için harcanan çabadır.">
+  <svg slot="svg" class="ip-svg" viewBox="0 0 640 420" width="640" height="420" role="img" aria-labelledby="rumsfeld-baslik">
+    <title id="rumsfeld-baslik">Rumsfeld matrisi diyagramı</title>
+
+    <text x="180" y="24" text-anchor="middle" font-size="13" font-weight="700" class="d-muted">BİLİYORUZ</text>
+    <text x="460" y="24" text-anchor="middle" font-size="13" font-weight="700" class="d-muted">BİLMİYORUZ</text>
+    <text x="24" y="130" text-anchor="middle" font-size="13" font-weight="700" class="d-muted" transform="rotate(-90 24 130)">FARKINDAYIZ</text>
+    <text x="24" y="310" text-anchor="middle" font-size="13" font-weight="700" class="d-muted" transform="rotate(-90 24 310)">FARKINDA DEĞİLİZ</text>
+
+    <rect class="d-box" x="50" y="40" width="260" height="170" rx="10"/>
+    <text x="66" y="66" font-size="14" font-weight="700">Bilinen bilinenler</text>
+    <text x="66" y="90" font-size="12">İki taraflı pazar yeriyiz</text>
+    <text x="66" y="110" font-size="12">Türkiye ve B2B odaklıyız</text>
+    <text x="66" y="130" font-size="12">Arz ve talep yetersiz</text>
+    <text x="66" y="150" font-size="12">3 kişilik ekip düşünülüyor</text>
+    <text x="66" y="170" font-size="12">İSTOÇ fiziksel kümesi var</text>
+    <text x="66" y="192" font-size="11.5" class="d-muted">Eylem: temel al, tartışma</text>
+
+    <rect class="d-box" x="330" y="40" width="260" height="170" rx="10"/>
+    <text x="346" y="66" font-size="14" font-weight="700">Bilinen bilinmeyenler</text>
+    <text x="346" y="90" font-size="12">Hangi kategori en likit</text>
+    <text x="346" y="110" font-size="12">Satıcı ve alıcı CAC</text>
+    <text x="346" y="130" font-size="12">İlk işlem süresi</text>
+    <text x="346" y="150" font-size="12">Hangi taraf sübvanse edilmeli</text>
+    <text x="346" y="170" font-size="12">RFQ mı katalog mu</text>
+    <text x="346" y="192" font-size="11.5" class="d-muted">Eylem: ölç, deney tasarla</text>
+
+    <rect class="d-box" x="50" y="230" width="260" height="160" rx="10"/>
+    <text x="66" y="256" font-size="14" font-weight="700">Bilinmeyen bilinenler</text>
+    <text x="66" y="280" font-size="12">Sahada bilinen ama yazıya</text>
+    <text x="66" y="298" font-size="12">dökülmemiş sezgiler</text>
+    <text x="66" y="320" font-size="12">Satış ekibinin itiraz cevapları</text>
+    <text x="66" y="340" font-size="12">Kimin kime güvendiği</text>
+    <text x="66" y="365" font-size="11.5" class="d-muted">Eylem: yazıya dök, kurumsallaştır</text>
+
+    <rect class="d-box-accent" x="330" y="230" width="260" height="160" rx="10"/>
+    <text x="346" y="256" font-size="14" font-weight="700">Bilinmeyen bilinmeyenler</text>
+    <text x="346" y="280" font-size="12">Sormayı bilmediğimiz sorular</text>
+    <text x="346" y="300" font-size="12">Aktif keşif gerektirir:</text>
+    <text x="346" y="320" font-size="12">postmortem, pivot, red team</text>
+    <text x="346" y="340" font-size="12">premortem, komşu sektörler</text>
+    <text x="346" y="365" font-size="11.5" class="d-muted">Eylem: kasıtlı arama yap</text>
+  </svg>
+
+  <div slot="alt">
+    Dört kutulu bir matris. Yatay eksen "Biliyoruz" ve "Bilmiyoruz"; dikey eksen "Farkındayız"
+    ve "Farkında değiliz". Sol üst: Bilinen bilinenler — iki taraflı pazar yeriyiz, Türkiye ve
+    B2B odaklıyız, arz ve talep yetersiz, 3 kişilik ekip düşünülüyor, İSTOÇ fiziksel kümesi var;
+    eylem: temel al, tartışma. Sağ üst: Bilinen bilinmeyenler — hangi kategori en likit, satıcı
+    ve alıcı kazanım maliyeti, ilk işlem süresi, hangi taraf sübvanse edilmeli, RFQ mı katalog mu;
+    eylem: ölç, deney tasarla. Sol alt: Bilinmeyen bilinenler — sahada bilinen ama yazıya
+    dökülmemiş sezgiler, satış ekibinin itiraz cevapları, kimin kime güvendiği; eylem: yazıya dök.
+    Sağ alt (vurgulu): Bilinmeyen bilinmeyenler — sormayı bilmediğimiz sorular; postmortem, pivot,
+    red team, premortem ve komşu sektörlerden aktif keşif; eylem: kasıtlı arama yap.
+  </div>
+</Figure>
+
+## Bilinen bilinenler
+
+Bunlar tartışılmaz kabuller değil, **kanıtı elimizde olan** gözlemlerdir.
+
+- İstoc.com iki taraflı bir B2B pazar yeri olarak konumlanıyor.
+- Şu anda arz ve talep, kendi kendine dönen bir döngü oluşturacak yoğunlukta değil.
+- Fiziksel bir İSTOÇ kümelenmesi mevcut ve bu, çoğu pazar yerinin sahip olmadığı bir varlık.
+- Üç kişilik pazarlama ekibi kurma niyeti var ve bütçesi ayrılmış durumda.
+- Platformda RFQ, mağaza, sipariş, kategori gibi temel yapılar planlanmış (beyaz tahtadaki
+  ürün panosu).
+
+## Bilinen bilinmeyenler
+
+Sorusunu bildiğimiz, cevabını bilmediğimiz konular. Her biri
+[varsayım kütüğüne](/istocpazar2/teshis/varsayim-kutugu/) girmelidir.
+
+| Alan | Soru | Neden önemli |
+| ---- | ---- | ------------ |
+| Kategori | Hangi kategoride arz ve talep en yoğun | Atomik ağ kararı buna bağlı |
+| Coğrafya | İSTOÇ mu, İstanbul mu, Türkiye mi | Saha ekibinin varlık sebebi |
+| Ekonomi | Satıcı ve alıcı kazanım maliyeti nedir | Bütçe ve model sürdürülebilirliği |
+| Motivasyon | Satıcı gerçekte neyi istiyor | Değer önerisinin temeli |
+| Zaman | Kayıttan ilk işleme kadar geçen süre | Sabır bütçesi |
+| Model | RFQ mı katalog alışverişi mi güçlü | Ürün mimarisi |
+| Teşvik | Önce satıcı mı alıcı mı sübvanse edilir | Karar 2 |
+| Ücret | Ücretsiz satıcı işe yarıyor mu | Arz kalitesi riski |
+| Güven | Ödeme riski gerçekte ne kadar engel | Escrow yatırımı gerekli mi |
+| Kanal | Mevcut WhatsApp grupları müttefik mi rakip mi | Dağıtım stratejisi |
+
+## Bilinmeyen bilinenler
+
+Kurum içinde **birinin bildiği ama hiçbir yerde yazılı olmayan** bilgiler. Bunlar üç kişi işe
+alındığında kaybolur, çünkü yeni gelen kimseye soramaz.
+
+- Saha ekibinin daha önce hangi itirazları duyduğu ve nasıl cevapladığı.
+- Hangi toptancının hangi toptancıyla çalışmadığı.
+- Hangi kategoride fiyat şeffaflığının tabu olduğu.
+- Geçmişte hangi satıcıya ne sözü verildiği.
+
+<Aside type="tip" title="Somut eylem">
+Yeni personel işe başlamadan önce, mevcut ekiple 90 dakikalık tek bir oturum yapıp bu
+bilgileri yazıya dökün. Maliyeti sıfır, değeri en yüksek işlerden biridir.
+</Aside>
+
+## Bilinmeyen bilinmeyenler
+
+Tanımı gereği listelenemezler; ancak **aranabilirler**. Rehberin şu bölümleri bu amaçla vardır:
+
+- [Premortem: 30 ölüm nedeni](/istocpazar2/kanit/premortem/) — geriye doğru başarısızlık üretimi
+- [Başarısızlık ve anti-pattern](/istocpazar2/kanit/basarisizlik-haritasi/) — başkalarının battığı yerler
+- [Kırmızı takım](/istocpazar2/kanit/red-team/) — planı bozmakla görevli bakış
+- [Pazarlama dışı disiplinler](/istocpazar2/teori/disiplin-transferi/) — komşu alanlardan yöntem transferi
+- [Ajan tabanlı ticaret](/istocpazar2/rekabet/agentic-ticaret/) — henüz sormadığımız 2027 soruları
+
+## Henüz sormadığımız sorular
+
+Bunlar bilinmeyen bilinmeyenleri bilinen bilinmeyene çevirme denemesidir.
+
+1. Satıcı için asıl değer "yeni müşteri" değil de **"tahsilat garantisi"** olabilir mi?
+2. Alıcının asıl acısı fiyat değil, **teslim süresi belirsizliği** olabilir mi?
+3. İSTOÇ'un fiziksel yakınlığı bir avantaj değil, **dijitalleşme ihtiyacını yok eden bir engel** olabilir mi?
+4. Platformun ilk müşterisi satıcı veya alıcı değil, **aracı/komisyoncu** olabilir mi?
+5. Ücretsiz listeleme, kaliteli satıcıyı çekmek yerine **kalitesiz arzla platformu zehirleyebilir mi**?
+6. Bir yapay zekâ satın alma ajanı 2027'de İstoc'u okuyabilecek mi, yoksa görünmez mi olacağız?
+7. Rakip Trendyol veya Hepsiburada değil, **kendi satıcılarımızın kendi aralarındaki WhatsApp grubu** olabilir mi?
+8. Komisyon almamak, gelir kaybı değil de **güven kazanımı** olarak mı fiyatlanmalı?
+9. İlk 100 işlemi platform üzerinden değil **elle** yapsak, bu başarısızlık mı yoksa doğru strateji mi?
+10. Ekip üç kişi değil de **bir kişi + bir yazılım özelliği** olsaydı sonuç ne olurdu?
+
+Devamı: [Cevaplanmamış sorular](/istocpazar2/acik/acik-sorular/).

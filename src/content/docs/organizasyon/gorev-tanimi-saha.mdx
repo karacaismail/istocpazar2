@@ -1,0 +1,131 @@
+---
+title: "Görev tanımı: Saha"
+description: Saha / Satış rolünün amacı, sorumlulukları, ziyaret standardı, huni aşamaları, yetki sınırları ve 30-60-90 gün başarı tanımı.
+kanit: cikarim
+guven: orta
+tur: operasyon
+faz: faz-2
+sidebar:
+  order: 4
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+<dl class="ip-kv">
+  <dt>Rol adı</dt><dd>Saha Satış Uzmanı</dd>
+  <dt>Bağlı olduğu</dt><dd>Pazarlama sorumlusu / kurucu</dd>
+  <dt>İşe alım sırası</dt><dd>3. sırada (3. ay başı) — <a href="/istocpazar2/cozum/asamali-istihdam/">Kapı 2</a> geçildikten sonra</dd>
+  <dt>Çalışma biçimi</dt><dd>Saha ağırlıklı; haftada 1 gün ofis</dd>
+  <dt>Tek cümlelik amacı</dt><dd>Hazır talebi satıcıya götürüp <strong>tamamlanmış işleme</strong> dönüştürmek.</dd>
+</dl>
+
+## Bu rol neyi başarırsa başarılıdır
+
+Bu rolün ölçütü ziyaret sayısı değil, **tamamlanan işlem ve tekrar eden alıcıdır**.
+Beyaz tahtadaki "randevulu git, satış hedefli" notu tam olarak bunu söylüyor.
+
+<Aside type="tip" title="Neden 3. sırada işe alınıyor">
+Bu rol, elinde kanıt olduğunda kat kat verimlidir. Kapı 2 geçildiğinde artık gerçek işlem,
+gerçek referans ve gerçek rakam vardır. Sıfırdan satış yapmak yerine kanıtla satış yapar;
+ilk günden üretkendir.
+</Aside>
+
+## Sorumluluklar
+
+### A. Ziyaret ve kapanış
+
+- Masa Başı'ndan devraldığı **teyitli randevulara** gitmek.
+- Beyaz tahtadaki **"çat kapı rutini"** kapsamında planlı bölge taraması yapmak.
+- Her ziyarette tek bir net sonuç almak: ilerleme veya net ret.
+- İşlemi kapatmak: teklif toplandı, alıcı onayladı, sipariş oluştu.
+
+### B. Satıcı aktivasyonu
+
+- Yeni satıcının ilk teklifini vermesine bizzat yardım etmek.
+- "Sizin yerinize yükleyelim" hizmetini sahada teklif etmek ve kurulumu başlatmak.
+- Kurucu satıcı statüsünü anlatmak ve eşzamanlı taahhüt listesine kaydetmek.
+
+### C. Alıcı tarafı
+
+- Alıcıdan yazılı alım talebi almak.
+- Alıcının aldığı teklifleri takip etmek, cevapsız kalan olup olmadığını kontrol etmek.
+- Tamamlanan işlemden sonra 7 gün içinde geri dönüş yapmak.
+
+### D. Kayıt ve geri bildirim
+
+- Her ziyareti aynı gün CRM'e yazmak: kim, ne konuşuldu, sonuç, sonraki adım, tarih.
+- Sahada duyduğu itirazları ve fiyat bilgisini haftalık olarak ekibe aktarmak.
+- Hangi listenin ve hangi mesajın işe yaradığını Masa Başı'na geri bildirmek.
+
+## Huni aşamaları
+
+Beyaz tahtadaki 501-401-301-201-101 sayıları burada tanımlı aşamalara dönüşür.
+Her fırsat CRM'de bir aşamadadır ve aşama atlanamaz.
+
+| Aşama | Adı | Tanımı | Çıkış ölçütü |
+| ----- | --- | ------ | ------------ |
+| 501 | Temas | İletişim kuruldu | Muhatap doğru kişi |
+| 401 | İlgi | İhtiyaç veya sorun teyit edildi | Yazılı ihtiyaç notu |
+| 301 | Nitelikli fırsat | Karar verici, bütçe ve zaman belli | Üçü de kayıtlı |
+| 201 | Teklif | Teklif verildi veya alındı | Teklif belgesi var |
+| 101 | Kapanış | İşlem tamamlandı | Sipariş ve ödeme kaydı |
+
+<Aside type="caution" title="Aşama atlamama kuralı">
+Bir fırsat 301'e girmeden 201'e geçemez. Karar vericiyi bilmeden verilen teklif,
+istatistiği bozar ve zamanı yer. Bu kural, huninin gerçeği yansıtması için zorunludur.
+</Aside>
+
+## Günlük ziyaret standardı
+
+| Çıktı | Günlük hedef |
+| ----- | ------------ |
+| Planlı ziyaret | 6 |
+| Randevulu ziyaret | 3 |
+| Bölge taraması (randevusuz) | 3 |
+| CRM'e yazılan ziyaret | Ziyaretlerin %100'ü |
+| Aşama ilerleyen fırsat | 2 |
+
+Ayrıntılı saatlik akış: [Günlük iş akışları](/istocpazar2/organizasyon/gunluk-akislar/).
+
+## İtiraz kütüphanesi
+
+Sahada duyulacak itirazlar bellidir. Cevaplar ezberlenmeli ve güncellenmelidir.
+
+| İtiraz | Kısa cevap çerçevesi |
+| ------ | -------------------- |
+| "Komisyon vermek istemiyorum" | Komisyonun ne satın aldığını göster: hazır talep, tahsilat güvencesi, evrak |
+| "Müşterilerimi rakiplerim görür" | Gizli fiyat ve kapalı katalog seçeneğini anlat |
+| "Ürün yüklemek çok zahmetli" | "Sizin yerinize yükleyelim" hizmetini yerinde başlat |
+| "Zaten müşterim var" | Kapasite fazlası ve ölü sezon argümanı; yeni müşteri değil boş kapasite sat |
+| "Param gelmez" | Ödeme akışını ve güvence mekanizmasını adım adım göster |
+| "Daha önce denedik olmadı" | Neyin farklı olduğunu somut anlat: hazır talep var, kayıt değil |
+
+## Yetki sınırları
+
+| Yapabilir | Yapamaz |
+| --------- | ------- |
+| Ziyaret planı yapmak | Komisyon oranını değiştirmek |
+| Kurucu satıcı listesine kaydetmek | Yazılı olmayan istisna sözü vermek |
+| Hizmet teklifini sunmak | Ücretsiz hizmet taahhüdü vermek |
+| Teklif toplamak | Alıcı adına fiyat pazarlığı yapmak |
+| Numune ve tanıtım materyali dağıtmak | Rakip hakkında olumsuz iddia üretmek |
+
+## 30-60-90 gün başarı tanımı
+
+| Dönem | Başarı |
+| ----- | ------ |
+| 30 gün | 100 ziyaret, 20 aktif satıcı, itiraz kütüphanesi kullanımda |
+| 60 gün | Ayda 10 tamamlanmış işlem, huni aşamaları CRM'de tutarlı |
+| 90 gün | Tekrar eden alıcı üretmiş, kendi maliyetinin en az yarısını gelirle karşılamış |
+
+## Başarısızlık işaretleri
+
+<Tag tone="risk" icon="warning-circle">Uyarı</Tag> Çok ziyaret, az aşama ilerlemesi →
+ziyaretler nitelikli değil veya kapanış yapılmıyor.
+
+<Tag tone="risk" icon="warning-circle">Uyarı</Tag> Fırsatlar 201'de birikiyor →
+teklif sonrası takip yapılmıyor.
+
+<Tag tone="risk" icon="warning-circle">Uyarı</Tag> Aynı satıcı defalarca ziyaret ediliyor,
+sonuç yok → net ret alınmıyor, zaman yeniyor.

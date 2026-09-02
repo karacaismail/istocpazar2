@@ -1,0 +1,102 @@
+---
+title: 'Varsayım kütüğü'
+description: 'İstoc planının dayandığı bütün varsayımların; inanma gerekçesi, kanıtı, güveni, yanlış çıkarsa etkisi, testi ve test maliyetiyle birlikte kaydı.'
+kanit: cikarim
+guven: orta
+tur: harita
+faz: faz-1
+sidebar:
+  order: 4
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+Bu, rehberin **tek başına en yüksek getirili sayfasıdır**. Bir planın kalitesi, içerdiği
+fikirlerin parlaklığıyla değil, dayandığı varsayımların ne kadarının yazılı ve test edilebilir
+olduğuyla ölçülür.
+
+<Aside type="tip" title="Nasıl kullanılır">
+Bu tablo canlı bir belgedir. Her hafta gözden geçirin. Bir varsayım test edildiğinde satırı
+silmeyin; **sonucu yazın**. Böylece 6 ay sonra "neden bu kararı almıştık" sorusunun cevabı kalır.
+</Aside>
+
+## Öncelik formülü
+
+Bir varsayımın test önceliği şu üç şeyin bileşimidir:
+
+`Öncelik = (Yanlış çıkarsa etki) x (Belirsizlik) / (Test maliyeti)`
+
+Yani: **çok önemli, çok belirsiz ve ucuz test edilebilir** varsayımlar önce test edilir.
+Bu, Karar Kitabı'ndaki **MVP ve Gate Döngüsü** ile **Durma Kuralı** modellerinin birleşimidir.
+
+## Pazar ve müşteri varsayımları
+
+| # | Varsayım | Neden inanıyoruz | Kanıt | Güven | Yanlışsa etki | Test | Maliyet | Öncelik |
+| - | -------- | ---------------- | ----- | ----- | ------------- | ---- | ------- | ------- |
+| V1 | Alıcılar mevcut tedarik yönteminden memnun değil | Sektörde fiyat karşılaştırma zor | Yok | <Tag tone="risk">Düşük</Tag> | İş modeli çöker | 20 alıcı davranış görüşmesi | Çok düşük | 1 |
+| V2 | Satıcılar yeni müşteriye açık | Herkes satış ister varsayımı | Yok | <Tag tone="warn">Düşük-orta</Tag> | Arz kurulamaz | 20 satıcı görüşmesi | Çok düşük | 2 |
+| V3 | En az bir kategoride yeterli arz derinliği kurulabilir | İSTOÇ'ta yoğunlaşma var | Zayıf | <Tag tone="warn">Orta</Tag> | Atomik ağ kurulamaz | Kategori sayımı | Düşük | 3 |
+| V4 | Alıcı, tanımadığı satıcıdan alır | Escrow varsa alır varsayımı | Yok | <Tag tone="risk">Düşük</Tag> | Eşleşme olmaz | Escrow'lu pilot | Orta | 4 |
+| V5 | Fiyat şeffaflığı satıcı için kabul edilebilir | Bilinmiyor | Yok | <Tag tone="risk">Düşük</Tag> | Katalog modeli çöker | Gizli fiyat A/B | Düşük | 5 |
+| V6 | İSTOÇ fiziksel yakınlığı avantajdır | Saha erişimi kolay | Zayıf | <Tag tone="warn">Orta</Tag> | Saha rolü gereksizleşir | Saha pilotu 4 hafta | Orta | 6 |
+
+## Ürün ve platform varsayımları
+
+| # | Varsayım | Güven | Yanlışsa etki | Test | Maliyet |
+| - | -------- | ----- | ------------- | ---- | ------- |
+| V7 | Satıcı ürünlerini kendisi yükler | <Tag tone="risk">Düşük</Tag> | Arz hiç oluşmaz | Elle yükleme teklifi kabul oranı | Düşük |
+| V8 | RFQ akışı katalogdan daha güçlü | <Tag tone="warn">Orta</Tag> | Ürün mimarisi yanlış | RFQ vs katalog dönüşümü | Orta |
+| V9 | Platform güveni marka güveninden gelir | <Tag tone="warn">Düşük-orta</Tag> | Yanlış yatırım | Escrow vs marka mesajı testi | Orta |
+| V10 | Arama ve filtreleme yeterince iyi | <Tag tone="info">Bilinmiyor</Tag> | Alıcı bulamaz, çıkar | Görev tabanlı kullanılabilirlik testi | Düşük |
+| V11 | Mobil kullanım masaüstü kadar önemli | <Tag tone="ok">Yüksek</Tag> | Yanlış öncelik | Analitik | Çok düşük |
+
+## Organizasyon varsayımları
+
+| # | Varsayım | Güven | Yanlışsa etki | Test | Maliyet |
+| - | -------- | ----- | ------------- | ---- | ------- |
+| V12 | Üç rol (masa başı, saha, organizatör) doğru yapıdır | <Tag tone="warn">Orta</Tag> | 3 maaş boşa gider | 6 haftalık tek rol pilotu | Düşük |
+| V13 | Saha ziyareti dijital kanaldan verimlidir | <Tag tone="warn">Orta</Tag> | Saha rolü kapanır | Kanal başına maliyet ölçümü | Düşük |
+| V14 | Etkinlik satıcı kazandırır | <Tag tone="risk">Düşük</Tag> | Organizatör rolü kapanır | Tek etkinlik + 30 gün takip | Orta |
+| V15 | Toplu mesaj gönderimi çalışır ve sürdürülebilir | <Tag tone="risk">Çok düşük</Tag> | İdari para cezası + itibar | Hukuki görüş (test edilmemeli) | — |
+| V16 | Üç kişi 3 ayda anlamlı likidite üretir | <Tag tone="risk">Düşük</Tag> | Bütçe boşa | 90 gün eşik ölçümü | Düşük |
+
+<Aside type="danger" title="V15 hakkında">
+V15 mevcut hâliyle test edilmez. Sebebi tek değil, üç katmanlı: WhatsApp'ın kendi kullanım
+şartları toplu gönderimi yasaklar (hesap kapanması), İYS ve ret yükümlülükleri yerine
+getirilmeden gönderim idari yaptırım riski taşır, toplanan veri KVKK kapsamındadır.
+Varsayım reddedilmez ama **uygulama biçimi değiştirilerek** test edilir: kişiye özel,
+izinli ve kayıtlı temas. Ayrıntı ve tacir/esnaf istisnası:
+[Yasal sınırlar ve spam riski](/istocpazar2/organizasyon/yasal-sinirlar/).
+</Aside>
+
+## Ekonomi varsayımları
+
+| # | Varsayım | Güven | Yanlışsa etki | Test |
+| - | -------- | ----- | ------------- | ---- |
+| V17 | Komisyon modeli pazarın kabul edeceği modeldir | <Tag tone="warn">Orta</Tag> | Gelir modeli değişir | Komisyonsuz pilot karşılaştırması |
+| V18 | Satıcı kazanım maliyeti yaşam boyu değerin altında kalır | <Tag tone="info">Bilinmiyor</Tag> | Model sürdürülemez | İlk 50 satıcının gerçek maliyeti |
+| V19 | Bir kez işlem yapan satıcı tekrar eder | <Tag tone="warn">Orta</Tag> | Sonsuz kazanım koşusu | 90 gün tekrar oranı |
+| V20 | Alıcı platformda kalır, satıcıyla dışarı çıkmaz | <Tag tone="risk">Düşük</Tag> | Gelir sızıntısı (disintermediation) | İlk 100 işlem takibi |
+
+<Aside type="caution" title="V20 pazar yerlerinin klasik ölüm sebebi">
+Alıcı ve satıcı bir kez tanıştıktan sonra platformu atlayıp doğrudan çalışmaya başlarsa,
+platform bir tanıştırma servisine dönüşür ve gelir üretemez. Buna karşı savunma, işlemin
+kendisine değer eklemektir: ödeme güvencesi, fatura, iade, vade, takip, uyuşmazlık çözümü.
+Ayrıntı: [Güven mimarisi](/istocpazar2/pazaryeri/guven-mimarisi/).
+</Aside>
+
+## Haftalık gözden geçirme ritüeli
+
+30 dakika, tek gündem maddesi:
+
+1. Bu hafta hangi varsayım test edildi?
+2. Sonuç varsayımı **doğruladı mı, çürüttü mü, belirsiz mi bıraktı**?
+3. Çürütüldüyse hangi karar değişiyor?
+4. Yeni ortaya çıkan varsayım var mı? Kütüğe ekle.
+5. Öncelik sırası değişti mi?
+
+<Aside type="tip">
+Bu ritüel Karar Kitabı'ndaki **Çift Döngülü Öğrenme** modelinin uygulamasıdır: yalnızca
+"daha iyi nasıl yaparız" değil, "doğru şeyi mi yapıyoruz" sorusunu da sorar.
+</Aside>

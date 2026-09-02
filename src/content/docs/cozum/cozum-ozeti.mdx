@@ -1,0 +1,137 @@
+---
+title: 'Çözüm özeti'
+description: 'İstoc''un yumurta-tavuk problemini mevcut kaynaklarla çözmek için önerilen strateji, gerekçesi ve dayandığı varsayımlar.'
+kanit: cikarim
+guven: orta
+tur: oneri
+faz: faz-2
+sidebar:
+  order: 1
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import Figure from '@components/Figure.astro';
+import Tag from '@components/Tag.astro';
+
+<Aside type="caution" title="Bu sayfanın statüsü">
+Aşağıdaki öneri **koşulludur**. Dayandığı varsayımlar
+[varsayım kütüğünde](/istocpazar2/teshis/varsayim-kutugu/) listelidir. V1 (alıcı memnuniyetsizliği)
+veya V3 (kategori derinliği) çökerse, bu strateji de çöker ve yeniden yazılması gerekir.
+</Aside>
+
+## Önerilen strateji, tek cümlede
+
+> **Tek kategoride, İSTOÇ merkezli, talebi elle toplayıp satıcıya götüren, ilk işlemleri insan
+> eliyle tamamlayan ve gelirini bu işlemlerden üreten bir "elle kurulmuş pazar yeri" ile
+> başlamak.**
+
+Kısaca: **Talep önce + Concierge + Tek kategori yoğunlaşması.**
+
+## Neden bu strateji
+
+<Steps>
+
+1. **Satıcıya boş platform değil, hazır talep götürür.** "Kaydolun" yerine "12 alım talebi
+   var, cevap verir misiniz" demek, satış görüşmesinin tamamını değiştirir. Bu, ekibin
+   elindeki en güçlü ve en ucuz argümandır.
+
+2. **3 kişiyle uygulanabilir.** Yazılım geliştirme beklemez. Talep toplama, eşleştirme ve
+   takip insan eliyle yapılabilir. Concierge model tam olarak bunun için vardır.
+
+3. **İlk gelir hızlı gelir.** İşlem tamamlandığı anda gelir doğar. Bu, "kendini ödeyen sistem"
+   şartının tek gerçekçi yoludur. Ayrıntı:
+   [Kendini ödeyen model](/istocpazar2/cozum/kendini-odeyen-model/).
+
+4. **Var olan işlemi kayda geçirir, yeni talep yaratmaz.** İSTOÇ'ta ticaret zaten oluyor;
+   telefonla ve elle. Sıfırdan talep yaratmak yerine mevcut akışı platforma taşımak kat kat
+   ucuzdur.
+
+5. **Yanlış çıkarsa ucuz durur.** Yazılım yatırımı, reklam bütçesi ve uzun taahhüt
+   gerektirmez. 90 günde ölçülür, gerekirse kapatılır.
+
+</Steps>
+
+## Stratejinin üç ayağı
+
+<Figure title="Elle kurulmuş pazar yeri: üç ayak" caption="Üç ayak birbirini besler. Biri eksik olursa döngü kapanmaz: talep olmadan satıcı gelmez, satıcı olmadan işlem olmaz, işlem olmadan gelir olmaz.">
+  <svg slot="svg" class="ip-svg" viewBox="0 0 720 340" width="720" height="340" role="img" aria-labelledby="uc-ayak">
+    <title id="uc-ayak">Üç ayaklı strateji diyagramı</title>
+
+    <rect class="d-box-accent" x="40" y="40" width="190" height="96" rx="10"/>
+    <text x="135" y="66" text-anchor="middle" font-size="14" font-weight="700">1. TALEP TOPLA</text>
+    <text x="135" y="88" text-anchor="middle" font-size="12">Alıcıdan alım</text>
+    <text x="135" y="105" text-anchor="middle" font-size="12">ihtiyacını elle al</text>
+    <text x="135" y="126" text-anchor="middle" font-size="11.5" class="d-muted">Masa başı + Saha</text>
+
+    <rect class="d-box-accent" x="265" y="40" width="190" height="96" rx="10"/>
+    <text x="360" y="66" text-anchor="middle" font-size="14" font-weight="700">2. SATICIYA GÖTÜR</text>
+    <text x="360" y="88" text-anchor="middle" font-size="12">Hazır talebi göster,</text>
+    <text x="360" y="105" text-anchor="middle" font-size="12">teklif topla</text>
+    <text x="360" y="126" text-anchor="middle" font-size="11.5" class="d-muted">Saha + Organizatör</text>
+
+    <rect class="d-box-accent" x="490" y="40" width="190" height="96" rx="10"/>
+    <text x="585" y="66" text-anchor="middle" font-size="14" font-weight="700">3. İŞLEMİ KAPAT</text>
+    <text x="585" y="88" text-anchor="middle" font-size="12">Eşleştir, takip et,</text>
+    <text x="585" y="105" text-anchor="middle" font-size="12">geliri üret</text>
+    <text x="585" y="126" text-anchor="middle" font-size="11.5" class="d-muted">Tüm ekip</text>
+
+    <path class="d-line-accent" d="M230 88 H262" marker-end="url(#o3)"/>
+    <path class="d-line-accent" d="M455 88 H487" marker-end="url(#o3)"/>
+    <path class="d-line-accent" d="M585 136 V180 H135 V136" marker-end="url(#o3)"/>
+    <text x="360" y="200" text-anchor="middle" font-size="12" class="d-muted">Tamamlanan her işlem, bir sonraki talebi kolaylaştırır</text>
+
+    <rect class="d-box" x="40" y="222" width="640" height="46" rx="8"/>
+    <text x="60" y="250" font-size="13">Kanıt birikir: gerçek işlem, gerçek referans, gerçek rakam</text>
+
+    <rect class="d-box" x="40" y="280" width="640" height="46" rx="8"/>
+    <text x="60" y="308" font-size="13">Kanıt biriktikçe satış kolaylaşır, maliyet düşer, sistem kendini öder</text>
+
+    <defs>
+      <marker id="o3" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+        <path d="M0 0 L9 4.5 L0 9 z" fill="var(--d-accent)"/>
+      </marker>
+    </defs>
+  </svg>
+
+  <div slot="alt">
+    Üç vurgulu kutu soldan sağa oklarla bağlanır. 1. TALEP TOPLA: alıcıdan alım ihtiyacını elle
+    al; sorumlu Masa başı ve Saha. 2. SATICIYA GÖTÜR: hazır talebi göster, teklif topla; sorumlu
+    Saha ve Organizatör. 3. İŞLEMİ KAPAT: eşleştir, takip et, geliri üret; sorumlu tüm ekip.
+    Üçüncü kutudan birinciye geri dönen bir ok vardır ve üzerinde "Tamamlanan her işlem, bir
+    sonraki talebi kolaylaştırır" yazar. Altta iki kutu: "Kanıt birikir: gerçek işlem, gerçek
+    referans, gerçek rakam" ve "Kanıt biriktikçe satış kolaylaşır, maliyet düşer, sistem kendini öder".
+  </div>
+</Figure>
+
+## Sıralanmış öneriler
+
+| # | Öneri | Etki | Maliyet | Ne zaman | Dayandığı varsayım |
+| - | ----- | ---- | ------- | -------- | ------------------ |
+| 1 | Tek kategori ve tek coğrafya kararını yaz | Çok yüksek | Sıfır | 1. hafta | V3 |
+| 2 | 20 alıcı davranış görüşmesi yap | Çok yüksek | Çok düşük | 1-2. hafta | V1 |
+| 3 | Talebi elle topla, satıcıya götür | Çok yüksek | Düşük | 2. haftadan itibaren | V2 |
+| 4 | "Sizin yerinize yükleyelim" hizmetini başlat | Yüksek | Düşük | 3. hafta | V7 |
+| 5 | Kurucu satıcı statüsü ve eşzamanlı taahhüt | Yüksek | Sıfır | 4. hafta | V2 |
+| 6 | 2 saatlik teklif cevap vaadi | Yüksek | Düşük | 5. hafta | V8 |
+| 7 | İlk 100 işlemi elle tamamla | Çok yüksek | Orta | 5-12. hafta | V19 |
+| 8 | Oda / dernek / site yönetimi iş birliği | Orta | Düşük | 6. hafta | — |
+| 9 | Kanıt sayfaları ve itiraz aşılaması | Orta | Düşük | 7. hafta | — |
+| 10 | Toplu mesaj planını izinli modele çevir | Risk azaltıcı | Sıfır | Hemen | V15 |
+
+## Bu strateji neyi reddediyor
+
+<Aside type="danger" title="Açıkça reddedilenler">
+- **Toplu ticari mesaj gönderimi.** Hukuki risk, düşük dönüşüm, marka hasarı.
+  Ayrıntı: [Yasal sınırlar](/istocpazar2/organizasyon/yasal-sinirlar/).
+- **Çok kategoriyle aynı anda başlamak.** Soğuk başlangıcı ağırlaştırır.
+- **Likidite kurulmadan reklam bütçesi.** Boş dükkâna trafik.
+- **"Önce 1000 satıcı toplayalım" hedefi.** Ölü kayıt üretir, alıcıyı kaçırır.
+- **Ölçeklenebilirliği erken aramak.** Elle çalışan süreç kurulmadan otomasyon yazmak.
+</Aside>
+
+## Devamı
+
+- [Önerilen wedge](/istocpazar2/cozum/onerilen-wedge/) — hangi kategori, hangi alıcı
+- [Kendini ödeyen model](/istocpazar2/cozum/kendini-odeyen-model/) — birim ekonomi ve başabaş
+- [Aşamalı istihdam ve kapılar](/istocpazar2/cozum/asamali-istihdam/) — 3 kişi hangi sırayla
+- [SMART eylem planı: 90 gün](/istocpazar2/cozum/eylem-plani/) — hafta hafta ne yapılacak

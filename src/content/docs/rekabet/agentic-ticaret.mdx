@@ -1,0 +1,110 @@
+---
+title: Ajan tabanlı ticaret
+description: 2026-2028'de yapay zekâ satın alma ajanlarının B2B tedarik sürecine girmesi ve İstoc'un buna nasıl hazırlanması gerektiği.
+kanit: cikarim
+guven: dusuk
+tur: harita
+faz: faz-1
+sidebar:
+  order: 4
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+<Aside type="caution" title="Kanıt seviyesi">
+Bu sayfa <Tag tone="warn">çıkarım</Tag> ve kısmen <Tag tone="warn">spekülasyon</Tag>
+seviyesindedir. Yönü doğru olsa bile hızı ve biçimi belirsizdir. Bu yüzden aşağıdaki
+öneriler, **bugün de değer üreten** hazırlıklarla sınırlı tutulmuştur.
+</Aside>
+
+## Değişen şey: muhatap
+
+Bugüne kadar pazarlamanın muhatabı insandı. Önümüzdeki dönemde araya bir katman giriyor:
+kullanıcının adına arayan, karşılaştıran ve bazen karar veren **yazılım ajanı**.
+
+| Dönem | Alıcı ne yapıyor | Platform ne yapmalı |
+| ----- | ---------------- | ------------------- |
+| Dün | Arama motorunda arıyor | Arama motoru optimizasyonu |
+| Bugün | Yapay zekâya soruyor | Cevapta kaynak gösterilmek |
+| Yarın | Ajanına görev veriyor | Ajanın okuyabileceği veri sunmak |
+
+## İstoc için üç somut sonuç
+
+### 1. Ürün verisi makine okunabilir olmalı
+
+Bir ajan, ürün sayfasındaki güzel görselden bir şey anlamaz. Anladığı şey **yapılandırılmış
+veridir**: ürün adı, marka, model, teknik özellik, birim, stok durumu, teslim süresi, fiyat
+aralığı, tedarikçi kimliği.
+
+<Aside type="tip" title="Bugün de değerli">
+Yapılandırılmış veri sadece ajanlar için değil, **arama, filtreleme ve karşılaştırma** için
+de gereklidir. Yani bu yatırım ajan geleceği gerçekleşmese bile boşa gitmez. Bu, önerinin
+neden bugün yapılabilir olduğunun sebebidir.
+</Aside>
+
+### 2. Teklif talebi yapısı standart olmalı
+
+Bir satın alma ajanının yapabileceği en doğal şey, teklif talebi göndermektir. İstoc'un
+RFQ yapısı standart alanlarla tanımlanırsa, gelecekte bir ajan tarafından doldurulabilir
+hale gelir.
+
+| Alan | Neden standart olmalı |
+| ---- | --------------------- |
+| Ürün tanımı ve miktar | Ajan bunu yapılandırılmış üretir |
+| Teslim yeri ve tarihi | Karşılaştırma kriteri |
+| Ödeme şartı | Karşılaştırma kriteri |
+| Teknik şartname | Eşleştirme için gerekli |
+| Geçerlilik süresi | Otomatik kapanış için gerekli |
+
+### 3. Cevap motorlarında kaynak olmak
+
+Sıralamada birinci olmak yerine, **cevabın kaynağı olarak gösterilmek** önem kazanıyor.
+Bunun için gereken şey reklam değil, alıntılanabilir içeriktir.
+
+| Yapılacak | Neden |
+| --------- | ----- |
+| Kategori bazlı gerçek fiyat aralığı raporu | Alıntılanabilir veri |
+| "İSTOÇ'ta [kategori] tedarikçileri" rehber sayfaları | Varlık eşleştirmesi |
+| Sık sorulan sorulara net, kaynaklı cevaplar | Cevap motorlarının tercih ettiği biçim |
+| Firma bilgilerinin tutarlı ve yapılandırılmış olması | Varlık tanınırlığı |
+
+<Aside type="caution" title="Uyarı">
+Bu alan hızla değişiyor ve "cevap motoru optimizasyonu" adı altında satılan çoğu hizmet
+kanıtsızdır. Yalnızca **her hâlükârda faydalı** olan işleri yapın: doğru veri, tutarlı
+kimlik, gerçek içerik. Kanıtı olmayan tekniklere bütçe ayırmayın.
+</Aside>
+
+## Ajan çağında pazar yerinin riski
+
+<Aside type="danger" title="Aracısızlaşma riski">
+Eğer bir yapay zekâ ajanı, alıcı adına doğrudan 20 tedarikçinin sitesine gidip teklif
+toplayabiliyorsa, pazar yerinin "toplama" işlevi değersizleşir. Pazar yeri o zaman
+ne satar?
+
+Cevap: **toplama değil, güvence.** Ajan fiyat toplayabilir ama tedarikçinin gerçek olduğunu,
+ödemenin güvende olduğunu, malın geleceğini ve sorun çıkarsa muhatabın kim olacağını
+garanti edemez. Pazar yerinin savunulabilir değeri buraya kayar.
+</Aside>
+
+Bu, [güven mimarisi](/istocpazar2/pazaryeri/guven-mimarisi/) yatırımının neden yalnızca
+bugünün değil geleceğin de yatırımı olduğunu gösterir.
+
+## Bugün yapılacaklar listesi
+
+| # | İş | Maliyet | Bugün de değerli mi |
+| - | -- | ------- | ------------------- |
+| 1 | Ürün verisini zorunlu alanlarla yapılandır | Düşük | <Tag tone="ok">Evet</Tag> — arama ve filtre |
+| 2 | RFQ formunu standart alanlarla kur | Düşük | <Tag tone="ok">Evet</Tag> — eşleştirme kalitesi |
+| 3 | Firma ve kategori sayfalarını tutarlı yapılandır | Düşük | <Tag tone="ok">Evet</Tag> — arama görünürlüğü |
+| 4 | Gerçek veriye dayalı sektör raporu yayınla | Düşük | <Tag tone="ok">Evet</Tag> — otorite ve satış aracı |
+| 5 | Güven katmanına yatırım yap | Orta | <Tag tone="ok">Evet</Tag> — bugünkü en büyük engel |
+
+## Yapılmayacaklar
+
+| Yapılmayacak | Neden |
+| ------------ | ----- |
+| Ajan entegrasyonu için özel geliştirme | Standartlar oturmadı, erken |
+| "Yapay zekâ destekli" pazarlama iddiası | Kanıtsız iddia güven kaybettirir |
+| Cevap motoru optimizasyonu danışmanlığı | Kanıt seviyesi düşük, bütçe erken |
+| Sohbet botu yatırımı | Likidite yokken cevaplayacak sorusu yok |

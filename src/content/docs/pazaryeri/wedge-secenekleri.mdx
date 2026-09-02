@@ -1,0 +1,119 @@
+---
+title: Wedge seçenekleri
+description: Pazara giriş kaması için bütün seçenek uzayı; kategori, sorun, coğrafya, persona ve işlev eksenlerinde alternatifler.
+kanit: uzman-gorusu
+guven: orta
+tur: harita
+faz: faz-1
+sidebar:
+  order: 4
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+Bu sayfa **seçenek uzayıdır**; öneri değildir. Seçim ve gerekçesi:
+[Önerilen wedge](/istocpazar2/cozum/onerilen-wedge/).
+
+## Wedge beş eksende seçilebilir
+
+Çoğu kişi wedge'i yalnızca "kategori" sanır. Aslında beş farklı eksende daraltma yapılabilir
+ve bunlar birleştirilebilir.
+
+| Eksen | Soru | Örnek |
+| ----- | ---- | ----- |
+| Kategori | Hangi ürün grubu | Yalnızca aydınlatma |
+| Coğrafya | Nerede | Yalnızca İSTOÇ |
+| Persona | Kim | Yalnızca proje müteahhidi |
+| Sorun | Hangi acı | Yalnızca "acil tedarikçi bulma" |
+| İşlev | Platform ne yapıyor | Yalnızca teklif toplama |
+
+## Eksen 1 — Kategori
+
+| Seçenek | Lehte | Aleyhte |
+| ------- | ----- | ------- |
+| Tek dar kategori | Hızlı yoğunluk, net mesaj | Havuz küçük |
+| Kategori ailesi (ör. tüm elektrik) | Daha büyük havuz | Yoğunluk dağılır |
+| Yüksek sepetli kategori | Başabaş hızlı | Tekrar düşük |
+| Yüksek tekrarlı kategori | Ağ hızlı kurulur | Başabaş için çok işlem gerek |
+
+## Eksen 2 — Coğrafya
+
+| Seçenek | Lehte | Aleyhte |
+| ------- | ----- | ------- |
+| Tek blok / koridor | Saha çok verimli, eşzamanlı taahhüt kolay | Havuz küçük |
+| İSTOÇ geneli | Denge | — |
+| İstanbul | Büyük havuz | Saha maliyeti |
+| Türkiye | En büyük havuz | Saha rolü anlamsız |
+| Coğrafyasız (dijital) | Sınırsız | Güven kurmak çok zor |
+
+## Eksen 3 — Alıcı personası
+
+| Persona | Alım tipi | Ulaşılabilirlik | Bize uygunluk |
+| ------- | --------- | --------------- | ------------- |
+| Esnaf / küçük perakendeci | Sık, küçük | Kolay | <Tag tone="warn">Orta</Tag> |
+| Zincir satın almacı | Seyrek, büyük | Zor | <Tag tone="ok">Yüksek</Tag> |
+| Proje müteahhidi | Proje bazlı, acil | Orta | <Tag tone="ok">Çok yüksek</Tag> |
+| Kurumsal satın alma | Süreçli, belgeli | Zor | <Tag tone="ok">Yüksek</Tag> |
+| İhracatçı | Büyük, düzensiz | Orta | <Tag tone="warn">Orta</Tag> |
+| Kamu alımı | Mevzuatlı | Çok zor | <Tag tone="risk">Düşük</Tag> |
+
+## Eksen 4 — Çözülen sorun
+
+Bu eksen en az kullanılan ama belki en güçlü olanıdır.
+
+| Sorun | Kime acı veriyor | Platform vaadi |
+| ----- | ---------------- | -------------- |
+| Acil tedarikçi bulamama | Proje müteahhidi | "2 saatte 3 teklif" |
+| Fiyat karşılaştıramama | Satın almacı | "Aynı ürün, 5 fiyat, tek ekranda" |
+| Ödeme riski | Her iki taraf | "Mal teslim edilene kadar para güvende" |
+| Tedarikçi güvenilirliği | Alıcı | "Doğrulanmış tedarikçi" |
+| Ölü kapasite | Satıcı | "Boş kapasitenize talep" |
+| Tahsilat gecikmesi | Satıcı | "Ödemeniz garantili" |
+| Evrak ve fatura yükü | Her iki taraf | "Tek yerden evrak" |
+
+<Aside type="tip" title="Sorun ekseninin gücü">
+Kategori ile daraltma "ne sattığımızı" söyler; sorun ile daraltma "neden var olduğumuzu"
+söyler. İkincisi, satış görüşmesinde kat kat etkilidir. İdeal wedge, **bir kategori ve bir
+sorunun kesişimidir**: "proje aydınlatmasında acil tedarikçi bulma".
+</Aside>
+
+## Eksen 5 — Platform işlevi
+
+Platform her şeyi aynı anda yapmak zorunda değil. Tek işlevle başlamak da bir wedge'dir.
+
+| İşlev | Ne yapar | Kurulum zorluğu |
+| ----- | -------- | --------------- |
+| Tedarikçi dizini | Sadece listeler | Çok düşük |
+| Teklif talebi (RFQ) | Talebi satıcıya taşır | Düşük |
+| Fiyat karşılaştırma | Teklifleri yan yana koyar | Orta |
+| Katalog alışverişi | Sepet ve sipariş | Yüksek |
+| Ödeme ve emanet | Parayı tutar | Yüksek |
+| Lojistik | Sevkiyat yönetir | Çok yüksek |
+| Finansman / vade | Vade sağlar | Çok yüksek |
+
+<Aside type="caution" title="İşlev seçimi bir kaynak kararıdır">
+3 kişilik ekiple ve yeni yazılım geliştirmeden uygulanabilir olan işlevler yalnızca
+**dizin** ve **teklif talebidir**. Diğerleri yazılım ve sermaye gerektirir. Wedge kararı
+verilirken bu kısıt unutulmamalıdır.
+</Aside>
+
+## Wedge birleştirme örnekleri
+
+| Bileşim | Nasıl okunur | Değerlendirme |
+| ------- | ------------ | ------------- |
+| Aydınlatma + İSTOÇ + müteahhit + acil tedarik + RFQ | Çok dar, çok net | <Tag tone="ok">Güçlü</Tag> |
+| Tüm kategoriler + Türkiye + herkes + her sorun | Odaksız | <Tag tone="risk">Zayıf</Tag> |
+| Ambalaj + İSTOÇ + esnaf + fiyat karşılaştırma | Dar ama düşük sepetli | <Tag tone="warn">Orta</Tag> |
+| Makine yedek parça + Türkiye + fabrika + acil tedarik | Yüksek değer, dağınık coğrafya | <Tag tone="warn">Orta</Tag> |
+
+## Wedge'in genişleyebilir olması şartı
+
+İyi bir wedge yalnızca dar değil, aynı zamanda **genişlemeye açıktır**. Kontrol soruları:
+
+1. Bu wedge'de kazanırsak, komşu kategoriye geçmek kolay mı?
+2. Aynı alıcılara başka ne satabiliriz?
+3. Bu wedge'de kurulan güven, diğer kategorilere taşınır mı?
+4. Öğrendiğimiz operasyon bilgisi başka yerde işe yarar mı?
+
+Dördüne de "hayır" gelen wedge dar değil, **çıkmaz sokaktır**.

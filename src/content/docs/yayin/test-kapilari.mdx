@@ -1,0 +1,87 @@
+---
+title: Test kapıları
+description: Bu dokümantasyon sitesinin sürüm alabilmesi için geçmesi gereken otomatik ve elle kontroller.
+kanit: resmi-kaynak
+guven: yuksek
+tur: operasyon
+faz: her-ikisi
+sidebar:
+  order: 1
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+## Otomatik kapılar
+
+Her sürüm öncesi çalıştırılır. Tümü yeşil olmadan yayın yapılmaz.
+
+```bash
+npm run verify
+```
+
+Bu komut sırayla üç kapıyı çalıştırır:
+
+| # | Kapı | Komut | Ne kontrol eder |
+| - | ---- | ----- | --------------- |
+| 1 | Tip kontrolü | `astro check` | Strict TypeScript, bileşen prop tipleri, içerik şeması |
+| 2 | Derleme | `astro build` | Bütün sayfaların hatasız üretilmesi, Pagefind indeksi |
+| 3 | İçerik kapıları | `node scripts/content-gates.mjs` | Aşağıdaki yedi içerik kuralı |
+
+## İçerik kapıları
+
+`scripts/content-gates.mjs` şu kuralları makine ile doğrular:
+
+| Kural | Ne yapar | Neden |
+| ----- | -------- | ----- |
+| Emoji yasağı | Sayfalarda piktografik emoji arar | Kurum kuralı: ikonlar Phosphor SVG olmalı |
+| Mermaid yasağı | Mermaid bloğu arar | Görseller erişilebilir statik SVG olmalı |
+| Frontmatter zorunluluğu | `title`, `description`, `kanit`, `guven`, `tur`, `faz` alanlarını arar | Her sayfa kanıt seviyesini beyan etmeli |
+| Diyagram erişilebilirliği | Her `Figure` için `slot="alt"` arar | Her diyagramın metinsel karşılığı olmalı |
+| Grafik erişilebilirliği | Her `Chart` için `columns` ve `rows` arar | Her grafiğin tablo karşılığı olmalı |
+| Kenar çubuğu bütünlüğü | Her slug için dosya, her dosya için slug arar | Kırık bağlantı ve yetim sayfa olmamalı |
+| Uzak varlık yasağı | Harici script, stil, font, görsel arar | Yerel varlık kuralı, gizlilik ve dayanıklılık |
+
+<Aside type="tip" title="Kapılar neden bu kadar katı">
+Bu rehber bir karar dayanağıdır. Bir sayfanın kanıt seviyesi beyan edilmemişse, okuyan kişi
+spekülasyonu kanıt sanabilir. Bu yüzden frontmatter kontrolü, bir biçim kuralı değil bir
+**içerik dürüstlüğü kuralıdır**.
+</Aside>
+
+## Elle kontrol listesi
+
+Otomatik kapılar geçtikten sonra yapılır:
+
+| # | Kontrol | Nasıl |
+| - | ------- | ----- |
+| 1 | Mobil görünüm | 375 piksel genişlikte yatay kaydırma olmamalı |
+| 2 | Tablo taşması | Geniş tablolar kendi içinde kaymalı |
+| 3 | Koyu tema | Bütün diyagramlar okunabilir olmalı |
+| 4 | Arama | Pagefind ile üç farklı terim aranmalı |
+| 5 | Grafik | JavaScript kapalıyken tablo görünmeli |
+| 6 | Bağlantılar | Yeni eklenen iç bağlantılar tıklanmalı |
+| 7 | Kanıt seviyesi | Yeni sayfanın beyanı içerikle tutarlı mı |
+
+## Erişilebilirlik ilkeleri
+
+| İlke | Uygulama |
+| ---- | -------- |
+| Renk tek başına bilgi taşımaz | Etiketlerde renk + metin birlikte |
+| Her görselin metin karşılığı var | `Figure` bileşeni zorunlu kılar |
+| Her grafiğin veri tablosu var | `Chart` bileşeni zorunlu kılar |
+| Klavye ile gezinilebilir | Odak halkaları görünür |
+| Hareket azaltma tercihi | `prefers-reduced-motion` desteklenir |
+| Yeterli metin boyutu | Gövde metni 1.0625rem, satır aralığı 1.75 |
+
+## Kapı ihlali durumunda
+
+| Durum | Yapılacak |
+| ----- | --------- |
+| Tip hatası | Düzeltilir; atlanmaz |
+| Derleme hatası | Düzeltilir; atlanmaz |
+| İçerik kapısı hatası | Düzeltilir; kural gevşetilmez |
+| Kuralın kendisi yanlışsa | Kural değiştirilir ve değişiklik sürüm günlüğüne yazılır |
+
+<Aside type="caution">
+Bir kapı "bu sefer atlayalım" diye geçilirse, bir daha hiç uygulanmaz. Kural değişecekse
+açıkça değiştirilir ve gerekçesi yazılır.
+</Aside>

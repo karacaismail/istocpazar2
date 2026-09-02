@@ -1,0 +1,111 @@
+---
+title: Geniş rekabet haritası
+description: İstoc'un gerçek rakiplerinin yalnızca diğer pazar yerleri olmadığı; telefon, WhatsApp, Excel ve mevcut tedarikçi ilişkisi dâhil tam rekabet haritası.
+kanit: cikarim
+guven: orta
+tur: harita
+faz: faz-1
+sidebar:
+  order: 1
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## En tehlikeli rakip bir yazılım değil
+
+Rekabet analizi Alibaba ile başlarsa yanlış yerden başlamış olur. İstoc'un alıcısı bugün
+ihtiyacı olduğunda Alibaba'ya girmiyor; **telefonu açıp tanıdığını arıyor**.
+
+<Aside type="danger" title="Gerçek rakip">
+İstoc'un birinci rakibi: **"Zaten Ahmet Bey'i arıyoruz."**
+Bu rakip bedava, hızlı, güvenilir ve alışkanlık hâline gelmiş durumda. Bir platformun bu
+alışkanlığı yenmesi için sadece "daha iyi" olması yetmez; **açıkça ve fark edilir biçimde**
+daha iyi olması gerekir.
+</Aside>
+
+## Tam rekabet haritası
+
+### Katman 1 — Mevcut davranış (en güçlü)
+
+| Rakip | Gücü | Zayıflığı | İstoc nasıl yener |
+| ----- | ---- | --------- | ----------------- |
+| Telefon / tanıdık tedarikçi | Hızlı, güvenilir, ilişkisel | Fiyat karşılaştırması yok, tek kaynağa bağımlı | Karşılaştırma ve yedek tedarikçi |
+| WhatsApp yazışması | Ücretsiz, herkeste var | Dağınık, aranamaz, kayıt yok | Kayıt, takip, evrak |
+| Sektörel WhatsApp grupları | Canlı, hızlı, güven var | Gürültülü, arşivlenemez | Yapılandırılmış talep |
+| Excel / defter | Tam kontrol | Paylaşılamaz, güncellenemez | Ortak görünürlük |
+| E-posta | Resmî, kayıtlı | Yavaş, takip zor | Otomatik takip |
+| Satış temsilcisi ziyareti | Kişisel, güven yüksek | Az sayıda tedarikçi görürsünüz | Geniş arz erişimi |
+
+<Aside type="caution" title="WhatsApp grupları hem rakip hem müttefik">
+Sektörel gruplar İstoc'un en büyük rakibi ama aynı zamanda en ucuz dağıtım kanalı.
+Strateji, o grupları yok saymak veya reklamla doldurmak değil; **grubun içinde değerli
+katkı üreten taraf olmaktır**. Ayrıntı:
+[Yasal sınırlar](/istocpazar2/organizasyon/yasal-sinirlar/).
+</Aside>
+
+### Katman 2 — Fiziksel ve kurumsal
+
+| Rakip | Gücü | Zayıflığı |
+| ----- | ---- | --------- |
+| Fiziksel İSTOÇ (dükkân gezmek) | Görerek alma, pazarlık, anında teslim | Zaman alır, sınırlı kapsam |
+| Fuar | Yılda birkaç kez yoğun temas | Seyrek, pahalı |
+| Ticaret odası / dernek yönlendirmesi | Güvenilir | Yavaş, sınırlı |
+| Distribütör ağı | Yerleşik, kredili | Marka bağımlı, fiyat yüksek |
+
+<Aside type="tip" title="Fiziksel İSTOÇ hem rakip hem avantaj">
+Fiziksel yakınlık dijitalleşme ihtiyacını azaltır (rakip), ama aynı zamanda güveni ve
+erişimi hazır sunar (avantaj). Doğru strateji fiziksel olanla yarışmak değil,
+**onun uzantısı olmaktır**: "İSTOÇ'un dijital vitrini".
+</Aside>
+
+### Katman 3 — Dijital platformlar
+
+| Rakip | Tehdit seviyesi | Not |
+| ----- | --------------- | --- |
+| Alibaba / global B2B | <Tag tone="warn">Orta</Tag> | Yurt içi tedarikte zayıf, dil ve lojistik engeli |
+| Trendyol / Hepsiburada (B2B tarafları) | <Tag tone="warn">Orta</Tag> | Marka gücü var, B2B derinliği sınırlı |
+| Amazon Business | <Tag tone="warn">Orta</Tag> | Türkiye B2B'de sınırlı |
+| Sektörel B2B siteleri | <Tag tone="ok">Yüksek</Tag> | En yakın rakip; kategori derinliği olabilir |
+| Sahibinden / ilan siteleri | <Tag tone="warn">Orta</Tag> | Güven ve işlem altyapısı yok |
+| Google araması | <Tag tone="ok">Yüksek</Tag> | Alıcının varsayılan başlangıç noktası |
+
+### Katman 4 — Ortaya çıkan
+
+| Rakip | Ne zaman tehdit olur |
+| ----- | -------------------- |
+| Yapay zekâ satın alma asistanları | 2026-2028 |
+| Cevap motorları (arama yerine) | Şimdiden başladı |
+| Tedarikçilerin kendi dijital kanalları | Sürekli |
+
+Ayrıntı: [Ajan tabanlı ticaret](/istocpazar2/rekabet/agentic-ticaret/).
+
+## Rakip önceliklendirme
+
+| Rakip | Alıcının bugün kullanma sıklığı | Tehdit |
+| ----- | ------------------------------- | ------ |
+| Telefon / tanıdık | Her alımda | <Tag tone="risk">Birinci</Tag> |
+| WhatsApp | Her alımda | <Tag tone="risk">Birinci</Tag> |
+| Google araması | Yeni tedarikçi ararken | <Tag tone="warn">İkinci</Tag> |
+| Fiziksel gezme | Ara sıra | <Tag tone="warn">İkinci</Tag> |
+| Sektörel B2B siteleri | Nadiren | <Tag tone="warn">Üçüncü</Tag> |
+| Global platformlar | Çok nadiren | <Tag tone="ok">Dördüncü</Tag> |
+
+<Aside type="danger" title="Stratejik sonuç">
+Rekabet stratejisi Alibaba'ya göre değil, **telefona göre** kurulmalıdır. Bu, İstoc'un
+vaadinin ne olması gerektiğini belirler: telefondan **daha hızlı**, telefondan **daha çok
+seçenek**, telefondan **daha güvenli kayıt**. "Alibaba'nın Türkiye versiyonu" konumlandırması
+bu yüzden yanıltıcıdır; alıcı Alibaba'yla karşılaştırma yapmıyor.
+</Aside>
+
+## Rakip izleme listesi
+
+Kontrgerilla çerçevesinin bugünden uygulanabilir kısmı: neyi izleyeceğinizi bilmek.
+
+| İzlenecek | Sıklık | Kim |
+| --------- | ------ | --- |
+| Sektörel B2B sitelerinde kategori derinliği | Aylık | Masa Başı |
+| Sektörel WhatsApp gruplarında konuşulan sıkıntılar | Haftalık | Masa Başı |
+| Google'da kategori aramalarının ilk sayfası | Aylık | Masa Başı |
+| Büyük tedarikçilerin kendi dijital hamleleri | Aylık | Organizatör |
+| Yapay zekâ cevap motorlarında marka görünürlüğü | Aylık | Masa Başı |

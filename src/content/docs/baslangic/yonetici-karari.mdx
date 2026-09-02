@@ -1,0 +1,118 @@
+---
+title: 'Sizden istenen kararlar'
+description: 'Rehberin çözemeyeceği, yalnızca sahibin verebileceği kararlar; her karar için seçenekler, geri dönülebilirlik ve karar tarihi.'
+kanit: cikarim
+guven: orta
+tur: karar
+faz: faz-2
+sidebar:
+  order: 3
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+Teknik ve yöntemsel tercihler bu rehberin işidir. Aşağıdaki kararlar değildir: bunlar
+**kapsam, para, geri dönülemez etki ve risk iştahı** kararlarıdır ve size aittir.
+
+## Karar 1 — Atomik ağ tanımı
+
+<dl class="ip-kv">
+  <dt>Soru</dt>
+  <dd>Hangi tek kategori, hangi tek coğrafya, hangi tek alıcı personası ile başlıyoruz?</dd>
+  <dt>Neden gerekli</dt>
+  <dd>Tanımlanmadan hiçbir hedef ölçülemez, hiçbir personelin başarısı değerlendirilemez.</dd>
+  <dt>Geri dönülebilirlik</dt>
+  <dd><Tag tone="ok">Geri dönülebilir</Tag> — 90 gün sonra kategori değiştirilebilir.</dd>
+  <dt>Karar tarihi</dt>
+  <dd>İşe alım ilanı yayınlanmadan önce.</dd>
+</dl>
+
+**Seçenekler ve ilk değerlendirme** — ayrıntı: [Wedge seçenekleri](/istocpazar2/pazaryeri/wedge-secenekleri/)
+
+| Seçenek | Lehte | Aleyhte |
+| ------- | ----- | ------- |
+| Tek kategori + İSTOÇ fiziksel kümesi | Satıcılar yürüme mesafesinde, saha ekibi verimli, güven zaten var | Kümenin dijitalleşme isteği bilinmiyor |
+| Tek kategori + Türkiye geneli | Daha büyük havuz | Saha ekibi işlevsiz kalır, seyahat maliyeti artar |
+| Tek alıcı personası (ör. zincir mağaza satın almacısı) | Talep tarafı garanti edilebilir | Arz o talebe uygun mu bilinmiyor |
+| Karar ertelenir, çok kategori | Kimseyi dışlamaz | Soğuk başlangıcı ağırlaştırır, bilinen anti-pattern |
+
+## Karar 2 — Hangi taraf sübvanse edilir
+
+<dl class="ip-kv">
+  <dt>Soru</dt>
+  <dd>İlk 6 ayda para, emek ve garanti hangi tarafa verilecek: satıcıya mı, alıcıya mı?</dd>
+  <dt>Neden gerekli</dt>
+  <dd>Ekip yapısı, bütçe ve ürün önceliği doğrudan bu karara bağlıdır.</dd>
+  <dt>Geri dönülebilirlik</dt>
+  <dd><Tag tone="warn">Kısmen geri dönülebilir</Tag> — verilen taahhütler geri alınamaz, beklenti kalıcıdır.</dd>
+  <dt>Karar tarihi</dt>
+  <dd>İlk satıcı görüşmesinden önce.</dd>
+</dl>
+
+Ayrıntı: [Teşvik ve mekanizma tasarımı](/istocpazar2/pazaryeri/tesvik-tasarimi/).
+Pazar yeri literatüründe kural şudur: **zor taraf sübvanse edilir**. İstoc'ta zor tarafın
+hangisi olduğu henüz bilinmiyor ve bu, ilk ayın en önemli araştırma sorusudur.
+
+## Karar 3 — Başarı ve durdurma eşiği
+
+<dl class="ip-kv">
+  <dt>Soru</dt>
+  <dd>90 gün sonunda hangi sayı görülürse devam, hangi sayı görülürse durulur?</dd>
+  <dt>Neden gerekli</dt>
+  <dd>Eşiksiz deney sonsuz harcamaya dönüşür; kötü haber hiçbir zaman "yeterince kötü" olmaz.</dd>
+  <dt>Geri dönülebilirlik</dt>
+  <dd><Tag tone="ok">Geri dönülebilir</Tag> — eşik yazılı olarak revize edilebilir.</dd>
+  <dt>Karar tarihi</dt>
+  <dd>Personel işe başlamadan önce.</dd>
+</dl>
+
+Ayrıntı: [Durdurma ve ölçekleme ölçütleri](/istocpazar2/olcum/kill-scale/).
+
+## Karar 4 — Ekip sıralaması
+
+<dl class="ip-kv">
+  <dt>Soru</dt>
+  <dd>Üç kişi aynı anda mı, yoksa önce bir kişi ve 6 hafta sonra karar mı?</dd>
+  <dt>Neden gerekli</dt>
+  <dd>Üç maaş, likidite hangi taraftan kurulacağı bilinmeden bağlanmış olur.</dd>
+  <dt>Geri dönülebilirlik</dt>
+  <dd><Tag tone="risk">Zor geri dönülür</Tag> — işe alım geri almak insani ve hukuki maliyet üretir.</dd>
+  <dt>Karar tarihi</dt>
+  <dd>İlan yayınlanmadan önce.</dd>
+</dl>
+
+Ayrıntı: [Organizasyon hipotezi](/istocpazar2/organizasyon/hipotez/).
+
+## Karar 5 — Toplu mesaj politikası
+
+<dl class="ip-kv">
+  <dt>Soru</dt>
+  <dd>Beyaz tahtadaki toplu WhatsApp ve grup mesajı planı uygulanacak mı?</dd>
+  <dt>Neden gerekli</dt>
+  <dd>6563 sayılı kanun ve İYS yükümlülüğü nedeniyle idari para cezası ve marka itibarı riski taşır.</dd>
+  <dt>Geri dönülebilirlik</dt>
+  <dd><Tag tone="risk">Geri dönülemez</Tag> — gönderilen mesaj geri alınamaz, şikâyet kaydı kalıcıdır.</dd>
+  <dt>Karar tarihi</dt>
+  <dd>Personel işe başladığı gün, yazılı politika olarak.</dd>
+</dl>
+
+<Aside type="danger">
+Bu rehberin önerisi nettir: **toplu ticari mesaj gönderilmemeli**, yerine izinli ve
+bire bir iletişim modeli kurulmalıdır. Gerekçe ve yasal karşılıkları:
+[Yasal sınırlar ve spam riski](/istocpazar2/organizasyon/yasal-sinirlar/).
+</Aside>
+
+## Karar kaydı şablonu
+
+Her kararı şu formda yazın; sözlü karar 3 hafta sonra hatırlanmaz.
+
+| Alan | İçerik |
+| ---- | ------ |
+| Karar | Ne karar verildi |
+| Tarih | Karar tarihi |
+| Veren | Kim verdi |
+| Gerekçe | Hangi bilgiye dayanarak |
+| Alternatif | Hangi seçenek reddedildi ve neden |
+| Geri dönülebilirlik | Geri dönülebilir / kısmen / geri dönülemez |
+| Gözden geçirme | Hangi tarihte tekrar bakılacak |

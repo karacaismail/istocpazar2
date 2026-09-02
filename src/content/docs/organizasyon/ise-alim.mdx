@@ -1,0 +1,161 @@
+---
+title: İşe alım ve onboarding
+description: İlan metni, eleme süreci, mülakat soruları, deneme görevleri ve ilk 90 günlük oryantasyon planı.
+kanit: cikarim
+guven: orta
+tur: operasyon
+faz: faz-2
+sidebar:
+  order: 8
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Süreç akışı
+
+<Steps>
+
+1. **İlan yayını** — Kapı 0 tamamlandıktan sonra. Kategori ve hedef belli değilken ilan verilmez.
+2. **Ön eleme** — Başvurular kalifikasyon tablosuna göre puanlanır.
+3. **Telefon görüşmesi (15 dk)** — Temel uyum ve beklenti kontrolü.
+4. **Deneme görevi** — Role özel, en fazla 60 dakikalık gerçek iş örneği.
+5. **Yüz yüze mülakat (60 dk)** — Davranışsal sorular ve rol oyunu.
+6. **Referans kontrolü** — En az 2 referans, biri doğrudan yönetici olmalı.
+7. **Teklif ve sözleşme** — İletişim politikası eki imzalatılır.
+
+</Steps>
+
+## İlan metni şablonu
+
+> **[Rol adı] arıyoruz — İSTOÇ merkezli B2B pazar yeri**
+>
+> İstoc.com, toptancı ve alıcıyı buluşturan bir B2B pazar yeridir. Kurulum aşamasındayız;
+> hazır bir sistemi işletecek değil, sistemi birlikte kuracak bir ekip arkadaşı arıyoruz.
+>
+> **Ne yapacaksınız:** [3-5 madde, görev tanımından]
+>
+> **Aradığımız nitelikler:** [olmazsa olmazlar listesinden]
+>
+> **Nasıl ölçüleceksiniz:** [rolün ana KPI'ı, açıkça]
+>
+> **Sunduklarımız:** Sabit ücret + sonuca bağlı prim, [ekipman], [çalışma düzeni],
+> doğrudan kurucuyla çalışma imkânı.
+>
+> **Başvuru:** Özgeçmiş ve şu soruya kısa cevap: "Sektörde tanıdığınız kaç işletme var ve
+> ilk hafta kimlerle görüşürdünüz?"
+
+<Aside type="tip" title="Son sorunun değeri">
+Başvuru aşamasındaki bu tek soru, en güçlü elemeyi yapar. Somut isim ve plan yazan aday,
+"gerekli araştırmayı yaparım" yazan adaydan kat kat değerlidir.
+</Aside>
+
+## Deneme görevleri
+
+Her görev en fazla 60 dakika sürmeli ve gerçek işi temsil etmelidir.
+
+| Rol | Deneme görevi | Neye bakılır |
+| --- | ------------- | ------------ |
+| Masa Başı | "Şu kategoride İSTOÇ'ta 15 tedarikçi bulun; firma, yetkili, telefon ve kaynak yazın. Sonra bunlardan birine göndereceğiniz ilk mesajı yazın." | Araştırma yeteneği, veri düzeni, yazılı dil |
+| Organizatör | "Bir ticaret odasına sunacağınız iş birliği teklifini tek sayfa yazın. Karşı tarafın kazancı ne olacak?" | Karşı tarafın çıkarını görme, ticari kurgu |
+| Saha | "Bir toptancıya İstoc'u anlatıyorsunuz. 'Komisyon vermek istemiyorum' diyor. Cevabınızı yazın veya sesli kaydedin." | İtiraz karşılama, sektör dili |
+
+## Mülakat soruları
+
+### Üç rol için ortak
+
+1. Son işinizde sizden ne bekleniyordu ve hangi sayıyla ölçülüyordunuz?
+2. En son ne zaman bir hedefi tutturamadınız? Ne yaptınız?
+3. Kimseden yönlendirme almadan bir işi baştan kurmanız gerekti mi? Anlatın.
+4. Bir müşteriye verdiğiniz sözü tutamadığınız oldu mu? Nasıl yönettiniz?
+5. Bu işi 3 ay sonra bıraksanız, sizi ne bıraktırırdı?
+
+### Masa Başı için ek
+
+6. Elinizde hiç liste yokken 50 doğru firmayı nasıl bulursunuz?
+7. Günde kaç arama yapabilirsiniz ve bunun kaçı size göre gerçekçi?
+8. Bir CRM kaydında hangi alanlar zorunlu olmalı, neden?
+
+### Organizatör için ek
+
+9. Bir kuruma gittiğinizde ilk 5 dakikada ne yaparsınız?
+10. Daha önce imzaladığınız en zor iş birliği hangisiydi, nasıl kapattınız?
+11. Etkinlik yaptınız; sonrasında ne oldu? Takibi kim yaptı?
+
+### Saha için ek
+
+12. Bir günde kaç ziyaret yaparsınız ve rotanızı nasıl kurarsınız?
+13. Kapıdan çevrildiğinizde ne yaparsınız?
+14. Bir fırsatın "ölü" olduğuna nasıl karar verirsiniz?
+
+<Aside type="caution" title="Sorulmaması gereken sorular">
+Medeni durum, çocuk planı, sağlık durumu, dini veya siyasi görüş, etnik köken gibi konular
+sorulmaz. Bunlar hem ayrımcılık riski hem KVKK açısından özel nitelikli veri sorunudur.
+</Aside>
+
+## Uyarı işaretleri
+
+<Tag tone="risk" icon="warning-circle">Uyarı</Tag> Geçmiş sayılarını hatırlamayan aday —
+ölçülerek çalışmamış demektir.
+
+<Tag tone="risk" icon="warning-circle">Uyarı</Tag> Bütün başarıları "biz" ile, bütün
+başarısızlıkları "onlar" ile anlatan aday.
+
+<Tag tone="risk" icon="warning-circle">Uyarı</Tag> "Toplu mesaj atarım, listem var" diyen aday —
+hem hukuki hem platform riskini bilmiyor.
+
+<Tag tone="risk" icon="warning-circle">Uyarı</Tag> Deneme görevini yapmayı reddeden aday.
+
+## İlk 90 gün oryantasyon planı
+
+### İlk gün
+
+| Saat | Konu |
+| ---- | ---- |
+| 09:00 | Karşılama, ekip tanışması, çalışma düzeni |
+| 10:00 | İstoc nedir, kime ne vaat ediyor, wedge cümlesi |
+| 11:00 | Hedefler ve nasıl ölçüleceği (görev tanımı okunur, imzalanır) |
+| 13:30 | İletişim politikası ve yasal sınırlar (imzalanır) |
+| 15:00 | Araç kurulumu: CRM, e-posta, telefon, panel |
+| 16:30 | İlk görev: 20 kayıt araştırması |
+
+### İlk hafta
+
+| Gün | Odak |
+| --- | ---- |
+| 1 | Kurulum ve temel bilgi |
+| 2 | Ürün eğitimi: platform nasıl çalışır, satıcı ne görür, alıcı ne görür |
+| 3 | Sektör eğitimi: kategori, oyuncular, fiyat aralıkları |
+| 4 | İtiraz kütüphanesi ve rol oyunu |
+| 5 | İlk gerçek temaslar, gözetim altında |
+
+### İlk 30 gün
+
+- Tüm görev tanımını uygulamaya başlamış olmalı.
+- CRM'i günlük kapatıyor olmalı.
+- Kendi sayılarını haftalık değerlendirmede savunabiliyor olmalı.
+- 30. gün: yazılı geri bildirim görüşmesi.
+
+### 60 ve 90. gün
+
+| Dönem | Kontrol |
+| ----- | ------- |
+| 60. gün | Hedeflerin en az %70'i tutuyor mu; tutmuyorsa sebep kişi mi hedef mi |
+| 90. gün | Deneme süresi kararı; hedeflerin seviyesi gerçek veriyle yeniden belirlenir |
+
+## İşe alım paketi kontrol listesi
+
+Beyaz tahtadaki hazırlık maddelerinin karşılığı:
+
+| # | Madde | Ne zaman |
+| - | ----- | -------- |
+| 1 | Mekân ve masa hazır | İşe başlamadan önce |
+| 2 | Bilgisayar, telefon, hat | İlk gün |
+| 3 | Kurumsal e-posta ve panel hesabı | İlk gün |
+| 4 | CRM kullanıcısı ve yetkileri | İlk gün |
+| 5 | Görev tanımı yazılı ve imzalı | İlk gün |
+| 6 | KPI ve hedefler yazılı | İlk gün |
+| 7 | İletişim ve yasal politika imzalı | İlk gün |
+| 8 | Oryantasyon takvimi paylaşılmış | İlk gün |
+| 9 | Dokümantasyon erişimi (bu rehber dâhil) | İlk gün |
+| 10 | İlk hafta görev listesi hazır | İlk gün |

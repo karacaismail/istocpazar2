@@ -1,0 +1,104 @@
+---
+title: Metrik sözlüğü
+description: Ölçülecek her metriğin tanımı, hesaplama biçimi, kaynağı, sahibi ve hedef aralığı.
+kanit: cikarim
+guven: orta
+tur: referans
+faz: faz-2
+sidebar:
+  order: 3
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="tip" title="Tek tanım kuralı">
+Bir metriğin iki farklı tanımı varsa, iki farklı sayı çıkar ve toplantı tartışmaya döner.
+Bu sayfa **tek doğru tanımı** belirler. Bir metriğin tanımı değişirse bu sayfa güncellenir
+ve değişiklik tarihi yazılır.
+</Aside>
+
+## Likidite metrikleri
+
+| Metrik | Tanım | Hesap | Kaynak | Sahip | Hedef |
+| ------ | ----- | ----- | ------ | ----- | ----- |
+| Arama doluluk oranı | Sonuç dönen aramanın payı | Sonuçlu arama / toplam arama | Platform | Masa Başı | %70+ |
+| Teklif cevap oranı | Cevap alan talebin payı | Cevaplı talep / toplam talep | Platform | Saha | %80+ |
+| İlk teklif süresi | Talepten ilk teklife medyan süre | Medyan | Platform | Saha | 2 saat altı |
+| Talep başına teklif | Ortalama teklif sayısı | Toplam teklif / talep | Platform | Saha | 3+ |
+| Tekrar eden eşleşme | İki kez işlem yapan çift oranı | Tekrar eden çift / toplam çift | Platform | Yönetim | %20+ |
+
+## Arz metrikleri
+
+| Metrik | Tanım | Hesap | Sahip | Hedef |
+| ------ | ----- | ----- | ----- | ----- |
+| Kayıtlı satıcı | Kayıt oluşturmuş satıcı | Sayım | Masa Başı | İzlenir, hedeflenmez |
+| Aktif satıcı | Son 30 günde en az 1 talebe cevap veren | Sayım | Saha | 20 (90 gün) |
+| İşlem yapan satıcı | Son 90 günde en az 1 işlem tamamlayan | Sayım | Saha | 12 |
+| Satıcı 14 gün aktiflik | 14. günde hâlâ aktif olan yeni satıcı oranı | Sayım | Masa Başı | %60+ |
+| Güncel ilan oranı | 30 gün içinde güncellenmiş ilan payı | Oran | Masa Başı | %80+ |
+| Doğrulanmış satıcı oranı | Belgeleri tam satıcı payı | Oran | Masa Başı | %90+ |
+
+## Talep metrikleri
+
+| Metrik | Tanım | Sahip | Hedef |
+| ------ | ----- | ----- | ----- |
+| Yazılı alım talebi | Kayda geçmiş, nitelikli talep | Ekip | Haftalık artan |
+| Nitelikli alıcı | Son 90 günde en az 1 talep göndermiş | Ekip | 60 (90 gün) |
+| Alıcı ikinci talep oranı | 30 gün içinde ikinci talep gönderen | Yönetim | %40+ |
+| Talep karşılanma oranı | İşleme dönüşen talep payı | Saha | %30+ |
+
+## Satış hunisi metrikleri
+
+| Metrik | Tanım | Sahip |
+| ------ | ----- | ----- |
+| Temas | Kurulan iletişim sayısı | Masa Başı |
+| Nitelikli randevu | Devir ölçütünü sağlayan randevu | Masa Başı |
+| Randevu ilerleme oranı | Sahada bir sonraki aşamaya geçen randevu payı | Saha |
+| Aşama geçiş oranı | 501→401→301→201→101 geçişleri | Saha |
+| Kapanış oranı | 301'den 101'e ulaşan fırsat payı | Saha |
+| Ortalama satış döngüsü | 501'den 101'e medyan gün | Saha |
+
+## Gelir metrikleri
+
+| Metrik | Tanım | Sahip |
+| ------ | ----- | ----- |
+| Komisyon geliri | İşlemlerden alınan pay | Yönetim |
+| Hizmet geliri | Katalog, görsel, içerik satışı | Masa Başı |
+| İş birliği geliri | Sponsorluk, eğitim, kurumsal anlaşma | Organizatör |
+| Ortalama işlem tutarı | Tamamlanan işlemlerin ortalaması | Yönetim |
+| Gelir / personel maliyeti | Kendini ödeme oranı | Yönetim |
+
+## Operasyon metrikleri
+
+| Metrik | Tanım | Sahip | Hedef |
+| ------ | ----- | ----- | ----- |
+| CRM kayıt bütünlüğü | Eksik alanı olmayan kayıt payı | Masa Başı | %95+ |
+| Cevapsız talep sayısı | 24 saati aşan cevapsız talep | Masa Başı | 0 |
+| Ziyaret başına ilerleme | Aşama ilerleten ziyaret payı | Saha | %30+ |
+| Etkinlik takip oranı | 72 saat içinde takip edilen katılımcı payı | Organizatör | %100 |
+
+## Öncü ve ardıl ayrımı
+
+<Aside type="caution" title="Neden bu ayrım önemli">
+**Öncü gösterge** bugünkü çabayı ölçer ve günlük değiştirilebilir. **Ardıl gösterge** dünkü
+çabanın sonucunu gösterir ve bugün değiştirilemez. Ekip günlük olarak öncü göstergeleri
+konuşmalı, aylık olarak ardıl göstergeleri değerlendirmelidir.
+</Aside>
+
+| Öncü göstergeler | Ardıl göstergeler |
+| ---------------- | ----------------- |
+| Temas sayısı | Tamamlanmış işlem |
+| Nitelikli randevu | Gelir |
+| Ziyaret sayısı | Tekrar eden alıcı |
+| İlk teklif süresi | Ortalama satış döngüsü |
+| Cevapsız talep | Aktif satıcı sayısı |
+| Kurumsal görüşme | İş birliği geliri |
+
+## Raporlama ritmi
+
+| Sıklık | Neler raporlanır | Kime |
+| ------ | ---------------- | ---- |
+| Günlük | Cevapsız talep, temas, ziyaret | Ekip içi |
+| Haftalık | Bütün öncü göstergeler | Ekip + yönetim |
+| Aylık | Ardıl göstergeler + gelir | Yönetim |
+| Çeyreklik | Kapı ölçütleri + hedef revizyonu | Yönetim |

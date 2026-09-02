@@ -1,0 +1,83 @@
+---
+title: 'Bu rehber nasıl okunur'
+description: 'Rehberin faz ayrımı, kanıt hiyerarşisi, etiket sistemi ve hangi rolün hangi bölümü okuması gerektiği.'
+kanit: resmi-kaynak
+guven: yuksek
+tur: referans
+faz: her-ikisi
+sidebar:
+  order: 2
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## İki faz, karıştırılmamalı
+
+Uzman yönergesi açıkça şunu söylüyordu: ilk turda yol haritası üretme, önce problem uzayını aç.
+Aynı zamanda çözüm önerisi de isteniyor. Rehber bu ikisini **ayrı ayrı etiketleyerek** çözer.
+
+| Faz | Ne içerir | Nasıl kullanılır |
+| --- | --------- | ---------------- |
+| <Tag tone="info" icon="map-trifold">Faz 1</Tag> | Problem haritası, bilinmeyenler, teori, kanıt, çelişki, başarısızlık | Karar **dayanağı** değil, karar **girdisi**. Doğrulanacak. |
+| <Tag tone="ok" icon="target">Faz 2</Tag> | Çözüm önerileri, ilk 90 gün, organizasyon, SMART hedefler, deney kartları | Koşullu öneri. Her biri bir varsayıma bağlıdır; varsayım çökerse öneri de çöker. |
+
+<Aside type="caution">
+Faz 2 sayfalarını Faz 1'i okumadan uygulamak, rehberin en büyük kötüye kullanımıdır.
+Her Faz 2 önerisi, hangi Faz 1 varsayımına dayandığını sayfa içinde belirtir.
+</Aside>
+
+## Kanıt hiyerarşisi
+
+Her sayfanın üstünde `kanit` alanı bulunur. Anlamı:
+
+| Seviye | Ne demek | Karar ağırlığı |
+| ------ | -------- | -------------- |
+| `sistematik-derleme` | Çok sayıda çalışmanın taranmış özeti | En yüksek |
+| `hakemli-arastirma` | Akademik, hakem denetimli çalışma | Yüksek |
+| `sektor-verisi` | Büyük ölçekli sektör veya pazar araştırması | Yüksek |
+| `resmi-kaynak` | Mevzuat, kurum yayını, resmi belge | Yüksek (hukuki konularda bağlayıcı) |
+| `vaka-calismasi` | Belgelenmiş gerçek şirket örneği | Orta |
+| `operator-beyani` | Kurucu veya yönetici anlatımı | Orta-düşük (seçim yanlılığı taşır) |
+| `uzman-gorusu` | Alan uzmanının değerlendirmesi | Düşük-orta |
+| `cikarim` | Mevcut bilgilerden mantıksal türetme | Düşük |
+| `spekulasyon` | Gerekçeli tahmin, kanıtı yok | Yalnızca senaryo kurmak için |
+| `karma` | Sayfa içinde farklı seviyeler bir arada | Paragraf bazında bakılmalı |
+
+<Aside type="danger" title="Dürüstlük notu">
+Bu rehberin büyük bölümü `cikarim` ve `uzman-gorusu` seviyesindedir. Sebebi basit:
+İstoc'a özgü hiçbir alan verisi (satıcı görüşmesi, dönüşüm oranı, işlem kaydı) elimizde yok.
+Bu bir eksiklik değil, mevcut durumun dürüst tarifidir. Rehberin ilk işi bu boşluğu
+ölçülebilir hale getirmektir: [Varsayım kütüğü](/istocpazar2/teshis/varsayim-kutugu/).
+</Aside>
+
+## Etiketler
+
+<p>
+<Tag tone="ok" icon="check-circle">Doğrulandı</Tag>
+<Tag tone="info" icon="lightbulb">Çıkarım</Tag>
+<Tag tone="warn" icon="warning-circle">Doğrulanmamış</Tag>
+<Tag tone="risk" icon="shield-warning">Risk</Tag>
+</p>
+
+- <Tag tone="ok">Doğrulandı</Tag> — dış kaynak veya mevzuatla desteklenir.
+- <Tag tone="info">Çıkarım</Tag> — mevcut bilgilerden türetilmiştir, İstoc verisiyle sınanmamıştır.
+- <Tag tone="warn">Doğrulanmamış</Tag> — makul görünen ama test edilmemiş iddia.
+- <Tag tone="risk">Risk</Tag> — hukuki, mali veya itibar riski taşıyan konu.
+
+## Kim neyi okumalı
+
+| Rol | Zorunlu | Sonra |
+| --- | ------- | ----- |
+| Sahip / yönetici | İki dakikalık özet, Sizden istenen kararlar, Çözüm özeti, Hedeflerimiz | Premortem, Kill/scale ölçütleri |
+| Pazarlama sorumlusu | Likidite, Wedge seçenekleri, Büyüme döngüleri, Karşılık merdiveni | Gerilla/kontrgerilla, İknanın psikolojisi |
+| İşe alım yapan | Roller ve kalifikasyonlar, üç görev tanımı, SMART hedefler, İşe alım | Yasal sınırlar |
+| Yeni işe alınan personel | İlgili görev tanımı, Günlük iş akışları, Yasal sınırlar, Sözlük | Sihirli an, Güven mimarisi |
+| Ürün / yazılım | Sihirli an, Güven mimarisi, Ajan tabanlı ticaret, ECA+ | Metrik sözlüğü |
+
+## Sürümleme
+
+Rehber sürümlenebilir. Her anlamlı değişiklik
+[Sürüm günlüğü](/istocpazar2/yayin/surum-gunlugu/) sayfasına işlenir. Bir varsayım çöktüğünde
+ilgili sayfa **silinmez**, üzerine karşı kanıt eklenir; böylece neden fikir değiştirdiğimiz
+kayıt altında kalır.

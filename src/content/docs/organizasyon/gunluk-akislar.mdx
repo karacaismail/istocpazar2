@@ -1,0 +1,107 @@
+---
+title: Günlük iş akışları
+description: Üç rolün saat saat günlük çalışma düzeni, haftalık ritim ve aylık takvim.
+kanit: cikarim
+guven: orta
+tur: operasyon
+faz: faz-2
+sidebar:
+  order: 6
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Ortak günlük çerçeve
+
+| Saat | Ne | Kim |
+| ---- | -- | --- |
+| 09:00-09:10 | Ayakta toplantı: dün, bugün, engel | Tüm ekip |
+| 09:10-09:15 | Günün eğitimi (tek konu, 5 dakika) | Organizatör anlatır |
+| 17:30-17:45 | CRM kapanışı: gün içindeki her temas yazılır | Tüm ekip |
+
+<Aside type="tip" title="Beş dakikalık eğitim neden önemli">
+Beyaz tahtadaki "her gün eğitim" maddesi burada uygulanır. Konu her gün tek olmalı:
+bir itiraz cevabı, bir ürün bilgisi, bir CRM özelliği, bir mevzuat kuralı. Uzun eğitim
+yapılmaz; günlük tekrar, aylık seminerden etkilidir.
+</Aside>
+
+## Masa Başı — günlük akış
+
+| Saat | Görev | Çıktı |
+| ---- | ----- | ----- |
+| 09:15-10:00 | Liste hazırlığı: günün 20 hedefi seçilir, bilgi doğrulanır | Doğrulanmış 20 kayıt |
+| 10:00-12:00 | Telefon bloğu: soğuk arama ve takip aramaları | 8 tamamlanan görüşme |
+| 12:00-13:00 | Öğle | |
+| 13:00-14:30 | İzinli bire bir yazılı temas: kişiye özel mesaj ve e-posta | 20 temas |
+| 14:30-15:30 | Randevu teyidi ve devir dosyası hazırlığı | Teyitli randevular |
+| 15:30-16:30 | İçerik ve materyal: Canva, kanıt dosyası, itiraz metni | 1 materyal |
+| 16:30-17:30 | Veri temizliği ve yeni kayıt araştırması | 10 yeni kayıt |
+| 17:30-17:45 | CRM kapanışı | %100 kayıt |
+
+<Aside type="caution" title="Telefon bloğu neden sabah">
+Karar vericilere sabah saatlerinde ulaşmak daha kolaydır. Telefon bloğunun bölünmemesi
+esastır: blok içinde e-posta, mesaj veya toplantı yapılmaz.
+</Aside>
+
+## Saha — günlük akış
+
+| Saat | Görev | Çıktı |
+| ---- | ----- | ----- |
+| 09:15-09:45 | Gün planı: rota, randevular, hedefler, dosyalar | Yazılı rota |
+| 09:45-12:30 | Saha bloğu 1: randevulu ziyaretler | 3 ziyaret |
+| 12:30-13:30 | Öğle + hızlı CRM notu | Ziyaret notları |
+| 13:30-16:30 | Saha bloğu 2: bölge taraması ve takip ziyaretleri | 3 ziyaret |
+| 16:30-17:30 | Kapanış işleri: teklif takibi, cevapsız talep kontrolü | Açık işler kapalı |
+| 17:30-17:45 | CRM kapanışı, ertesi gün rotası | %100 kayıt |
+
+<Aside type="tip" title="Rota kuralı">
+Aynı gün içinde coğrafi olarak dağınık ziyaret planlanmaz. İSTOÇ içinde blok bazlı,
+dışında ilçe bazlı planlama yapılır. Yolda geçen her saat, ziyaret edilemeyen bir satıcıdır.
+</Aside>
+
+## Organizatör — günlük akış
+
+Bu rolün günü diğer ikisinden farklıdır: sabit blok yerine **haftalık tema** kullanılır.
+
+| Gün | Tema | Ana çıktı |
+| --- | ---- | --------- |
+| Pazartesi | Planlama ve kurumsal görüşme hazırlığı | Haftanın hedef kurumları |
+| Salı | Kurumsal ziyaret günü | 2 kurum görüşmesi |
+| Çarşamba | Saha günü (ilk 2 ay) / etkinlik hazırlığı | 8 ziyaret veya davet listesi |
+| Perşembe | Kurumsal ziyaret ve takip | 2 görüşme + teklif takibi |
+| Cuma | Etkinlik işleri, eğitim hazırlığı, haftalık değerlendirme | Etkinlik ilerlemesi |
+
+## Haftalık ritim
+
+| Zaman | Toplantı | Süre | Gündem |
+| ----- | -------- | ---- | ------ |
+| Pazartesi 09:00 | Haftalık planlama | 45 dk | Geçen hafta sayıları, bu hafta hedefi, kim ne yapacak |
+| Her gün 09:00 | Ayakta toplantı | 10 dk | Dün, bugün, engel |
+| Her gün 09:10 | Günün eğitimi | 5 dk | Tek konu |
+| Çarşamba 16:00 | Huni gözden geçirme | 30 dk | Takılan fırsatlar, cevapsız talepler |
+| Cuma 16:00 | Haftalık değerlendirme | 45 dk | Hedef tuttu mu, hangi varsayım değişti |
+
+## Aylık takvim
+
+| Hafta | Ana odak |
+| ----- | -------- |
+| 1. hafta | Ay hedefinin yayılımı, yeni liste kurulumu |
+| 2. hafta | Yoğun temas ve ziyaret |
+| 3. hafta | Etkinlik haftası (organizatör), kapanış baskısı (saha) |
+| 4. hafta | Ay kapanışı, kapı ölçütleri kontrolü, sonraki ay planı |
+
+## Kaçınılacak günlük tuzaklar
+
+<Tag tone="risk" icon="warning-circle">Tuzak</Tag> **Toplantının işi yemesi.** Günlük toplam
+toplantı süresi 15 dakikayı, haftalık toplam 2,5 saati aşmamalıdır.
+
+<Tag tone="risk" icon="warning-circle">Tuzak</Tag> **CRM'in gün sonuna bırakılması.** Gün
+sonunda hatırlanmayan detaylar kaybolur. Saha kişisi her ziyaretten sonra 2 dakikalık not
+girer; akşam sadece tamamlar.
+
+<Tag tone="risk" icon="warning-circle">Tuzak</Tag> **Cevapsız alım talebi.** Günlük kontrol
+listesinde ilk madde budur. Cevapsız talep, kaybedilmiş alıcı demektir.
+
+<Tag tone="risk" icon="warning-circle">Tuzak</Tag> **Materyal üretiminin temas yerine geçmesi.**
+Canva'da geçen saat, aranmayan 10 kişidir. Materyal günde en fazla 1 saattir.

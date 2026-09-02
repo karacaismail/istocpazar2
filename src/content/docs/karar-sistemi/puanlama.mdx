@@ -1,0 +1,92 @@
+---
+title: Puanlama modeli
+description: Bir olayın hangi karşılık seviyesine taşınacağını belirleyen fırsat, risk ve net puan hesabı.
+kanit: cikarim
+guven: dusuk
+tur: harita
+faz: faz-1
+sidebar:
+  order: 3
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+<Aside type="caution" title="Kanıt uyarısı">
+Aşağıdaki ağırlıklar <Tag tone="warn">bilimsel sabit değildir</Tag>. Pilot uygulamada
+kalibre edilmesi gereken başlangıç değerleridir. Modelin değeri kesin sayı üretmesi değil,
+**tartışmayı yapılandırmasıdır**: hangi boyutta anlaşamadığımızı görünür kılar.
+</Aside>
+
+## Fırsat puanı
+
+Her boyut 0-100 arası puanlanır.
+
+| Boyut | Ağırlık | Soru |
+| ----- | ------- | ---- |
+| Erişim | 0,20 | Kaç kişiye ulaşıyor |
+| Yayılma hızı | 0,15 | Ne kadar hızlı büyüyor |
+| Hedef kitle örtüşmesi | 0,20 | Bizim müşterimize mi ulaşıyor |
+| Stratejik etki | 0,15 | Kararlarımızı değiştirir mi |
+| Kanıt gücü | 0,15 | Elimizde gösterecek veri var mı |
+| Cevap uyumu | 0,15 | Marka ve konumumuzla uyumlu mu |
+
+`Fırsat = 0,20xErişim + 0,15xHız + 0,20xÖrtüşme + 0,15xEtki + 0,15xKanıt + 0,15xUyum`
+
+## Risk puanı
+
+| Boyut | Ağırlık | Soru |
+| ----- | ------- | ---- |
+| Amplifikasyon riski | 0,35 | Cevap verirsek olayı büyütür müyüz |
+| Hukuki ve etik risk | 0,30 | Yasal veya itibar riski var mı |
+| Kapasite riski | 0,20 | Sonucunu karşılayabilir miyiz |
+| Geri döndürülemezlik | 0,15 | Geri alabilir miyiz |
+
+`Risk = 0,35xAmplifikasyon + 0,30xHukuk + 0,20xKapasite + 0,15xGeriDönülemezlik`
+
+## Net karşılık puanı
+
+`Net = Fırsat - 0,75 x Risk`
+
+| Net puan | Karar |
+| -------- | ----- |
+| 0 ve altı | L0 — Kaydet, cevap verme |
+| 1-20 | L1 — İzle |
+| 21-40 | L2/L3 — Aşıla veya sınırla |
+| 41-60 | L4/L5 — Kanıtla veya çerçeveyi değiştir |
+| 61-80 | L6 — İnsan onayıyla araya gir |
+| 81-100 | L7 — Üst yönetim ve gerekirse hukuk onayıyla |
+
+## Sert kapılar
+
+Puan yüksek olsa bile aşağıdaki durumlarda aksiyon durur:
+
+| Kapı | Koşul | Sonuç |
+| ---- | ----- | ----- |
+| Kanıt kapısı | Kanıt gücü 80'in altında | Halka açık olgusal iddia yok |
+| Hukuk kapısı | Hukuki risk 70'in üzerinde | Hukuk onayı zorunlu |
+| **Kapasite kapısı** | Arz kapasitesi %70'in altında | Talep artıran hamle yok |
+| Zarar kapısı | Müşteri fiilen zarar görüyor | Önce operasyon, sonra iletişim |
+| İnsani kapı | Ölüm, afet, saldırı, savunmasız grup | Ticari fırsatlandırma yok |
+
+<Aside type="danger" title="Kapasite kapısı İstoc için en kritik">
+İstoc'un bugünkü ölçeğinde diğer dört kapı nadiren tetiklenir. Kapasite kapısı ise
+**neredeyse her hafta** tetiklenir ve tek başına en çok para kurtaran kuraldır.
+</Aside>
+
+## Bugünkü basitleştirilmiş kullanım
+
+Üç kişilik ekipte altı boyutlu puanlama yapmak pratik değildir. Basitleştirilmiş hâli:
+
+| Soru | Evet | Hayır |
+| ---- | ---- | ----- |
+| Bu olay bizim müşterimizi ilgilendiriyor mu | Devam | L0 |
+| İkinci kez mi karşılaşıyoruz | Devam | L1 |
+| Cevabımız için kanıtımız var mı | L4 | L2 |
+| Cevap verirsek olayı büyütür müyüz | L1 | Devam |
+| Sonucu karşılayacak kapasitemiz var mı | Uygula | L1 |
+
+<Aside type="tip">
+Bu beş soru, tam puanlama modelinin pratik özetidir ve haftalık toplantıda 2 dakikada
+uygulanabilir. Tam model, ekip büyüdüğünde ve olay hacmi arttığında devreye alınır.
+</Aside>

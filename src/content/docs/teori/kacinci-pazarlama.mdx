@@ -1,0 +1,151 @@
+---
+title: 'Pazarlama 2.0 mı, 5.0 mı, 9.0 mu?'
+description: 'Pazarlama sürüm numaralarının ne anlattığı, neyi anlatmadığı ve İstoc için doğru çerçevenin neden sürüm değil katman olduğu.'
+kanit: karma
+guven: orta
+tur: harita
+faz: faz-1
+sidebar:
+  order: 1
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Figure from '@components/Figure.astro';
+import Tag from '@components/Tag.astro';
+
+## Kısa cevap
+
+**Sorunun kendisi yanlış kurulmuş.** "Kaçıncı pazarlama" sorusu bir zaman çizgisi sorusudur;
+İstoc'un problemi ise bir zaman çizgisi problemi değil, bir **pazar tasarımı** problemidir.
+
+Sürüm numaraları gerçek ve kullanışlıdır; ancak bir merdiven değil, **birikimli katmanlardır**.
+Pazarlama 5.0'a geçtiğinizde 1.0 ortadan kalkmaz. İstoc bugün 5.0 araçlarını kullanabilir ama
+çözmesi gereken problem 1.0'dan bile önce gelir: **ortada henüz bir pazar yok.**
+
+<Aside type="tip" title="Tek cümlelik çerçeve">
+İstoc'un ihtiyacı "Pazarlama 5.0" değil, **Pazarlama 0.0**'dır: pazarlanacak bir pazarın
+önce mekanizmayla kurulması. Talep yaratma ve dikkat yönetimi bunun üstüne gelir.
+</Aside>
+
+## Sürümler gerçekte ne diyor
+
+<Tag tone="warn" icon="lightbulb">Kanıt: uzman görüşü ve yayın tarihçesi</Tag>
+
+| Sürüm | Odak | Ne ekledi | İstoc için değeri |
+| ----- | ---- | --------- | ----------------- |
+| 1.0 | Ürün merkezli | Kitlesel üretim, kitlesel dağıtım, tek mesaj | Düşük — kitle yok |
+| 2.0 | Tüketici merkezli | Segmentasyon, konumlandırma, farklılaşma | **Yüksek** — hangi segment sorusu kritik |
+| 3.0 | İnsan merkezli | Değerler, anlam, marka amacı | Orta — güven anlatısı için |
+| 4.0 | Dijitale geçiş | Geleneksel ve dijital birleşimi, çok kanallı yolculuk | Orta — kanal karması |
+| 5.0 | İnsanlık için teknoloji | Veri, otomasyon, yapay zekâ destekli pazarlama | Orta — henüz veri yok |
+| 6.0 | Sürükleyici / metamarketing | Fiziksel ve dijitalin iç içe geçmesi | **Yüksek** — İSTOÇ fiziksel kümesi tam olarak budur |
+
+<Aside type="caution" title="Dürüstlük notu">
+Bu sürümlendirme akademik bir sınıflandırma değil, büyük ölçüde **kitap serisi
+adlandırmasıdır**. Karar dayanağı olarak zayıftır. Faydası, hangi araç ailesinin ne zaman
+olgunlaştığını hatırlatmasıdır; hangi stratejinin doğru olduğunu söylemez.
+</Aside>
+
+## "9.0" diye bir şey var mı
+
+Hayır. 6.0'ın ötesinde yerleşik bir numaralandırma yoktur. Piyasada "7.0", "8.0", "9.0"
+başlıklarına rastlarsanız bunlar genellikle **danışmanlık markalaşmasıdır**, kabul görmüş bir
+çerçeve değil. Bir sürüm numarasına yatırım yapmadan önce sorun: bu numara hangi yeni
+mekanizmayı tarif ediyor? Cevap yoksa, isimden ibarettir.
+
+Kendi çerçevenizi kurmak isterseniz doğru yol numara vermek değil, **mekanizma
+tanımlamaktır** — nitekim kontrgerilla çalışmanız tam olarak bunu yapıyor:
+[Gerilla ve kontrgerilla](/istocpazar2/teori/gerilla-kontrgerilla/).
+
+## Doğru çerçeve: sürüm değil katman
+
+<Figure title="Pazarlama katman modeli: İstoc hangi katmanda çalışmalı" caption="Katmanlar sırayla kurulur. Üst katmana yapılan yatırım, alt katman kurulmadan geri dönmez. İstoc bugün L0'dadır.">
+  <svg slot="svg" class="ip-svg" viewBox="0 0 700 400" width="700" height="400" role="img" aria-labelledby="katman-baslik">
+    <title id="katman-baslik">Pazarlama katman modeli diyagramı</title>
+
+    <rect class="d-box" x="70" y="24" width="560" height="62" rx="10"/>
+    <text x="86" y="48" font-size="14" font-weight="700">L3 — Dikkat yönetimi</text>
+    <text x="86" y="70" font-size="12.5" class="d-muted">Gerilla, kontrgerilla, gündem, kriz, rakip hamlesine karşılık</text>
+    <text x="614" y="60" text-anchor="end" font-size="12" class="d-muted">Sonra</text>
+
+    <rect class="d-box" x="70" y="98" width="560" height="62" rx="10"/>
+    <text x="86" y="122" font-size="14" font-weight="700">L2 — Talep yaratma ve yakalama</text>
+    <text x="86" y="144" font-size="12.5" class="d-muted">İçerik, SEO, reklam, etkinlik, topluluk, satış hunisi</text>
+    <text x="614" y="134" text-anchor="end" font-size="12" class="d-muted">Sonra</text>
+
+    <rect class="d-box" x="70" y="172" width="560" height="62" rx="10"/>
+    <text x="86" y="196" font-size="14" font-weight="700">L1 — Değer önerisi ve konumlandırma</text>
+    <text x="86" y="218" font-size="12.5" class="d-muted">Kime, hangi acı için, neyin yerine, hangi kanıtla</text>
+    <text x="614" y="208" text-anchor="end" font-size="12" class="d-muted">Önce</text>
+
+    <rect class="d-box-accent" x="70" y="246" width="560" height="76" rx="10"/>
+    <text x="86" y="272" font-size="14" font-weight="700">L0 — Pazar tasarımı (mekanizma)</text>
+    <text x="86" y="294" font-size="12.5">Atomik ağ, eşleştirme kuralı, teşvik, güven, likidite</text>
+    <text x="86" y="313" font-size="12" class="d-muted">İstoc bugün buradadır</text>
+    <text x="614" y="290" text-anchor="end" font-size="12" font-weight="700">EN ÖNCE</text>
+
+    <path class="d-line-accent" d="M40 300 V60" marker-end="url(#kok)"/>
+    <text x="26" y="185" text-anchor="middle" font-size="11.5" class="d-muted" transform="rotate(-90 26 185)">kurulma sırası</text>
+
+    <rect class="d-box" x="70" y="340" width="560" height="44" rx="10"/>
+    <text x="350" y="367" text-anchor="middle" font-size="12.5" class="d-muted">Beyaz tahtadaki plan L2 ve L3'ten başlıyor; L0 ve L1 tanımlı değil</text>
+
+    <defs>
+      <marker id="kok" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+        <path d="M0 0 L9 4.5 L0 9 z" fill="var(--d-accent)"/>
+      </marker>
+    </defs>
+  </svg>
+
+  <div slot="alt">
+    Dört yatay katman, alttan üste doğru kurulma sırasıyla dizilmiştir. En altta vurgulu olarak
+    L0 Pazar tasarımı (mekanizma): atomik ağ, eşleştirme kuralı, teşvik, güven, likidite;
+    "İstoc bugün buradadır" ve "EN ÖNCE" notlarıyla. Üstünde L1 Değer önerisi ve konumlandırma:
+    kime, hangi acı için, neyin yerine, hangi kanıtla; "Önce" notuyla. Üstünde L2 Talep yaratma
+    ve yakalama: içerik, SEO, reklam, etkinlik, topluluk, satış hunisi; "Sonra" notuyla. En üstte
+    L3 Dikkat yönetimi: gerilla, kontrgerilla, gündem, kriz, rakip hamlesine karşılık; "Sonra"
+    notuyla. Solda aşağıdan yukarı bir ok "kurulma sırası" der. En altta bir not: "Beyaz tahtadaki
+    plan L2 ve L3'ten başlıyor; L0 ve L1 tanımlı değil."
+  </div>
+</Figure>
+
+## Katmanların İstoc karşılığı
+
+| Katman | İstoc'ta somut karşılığı | Şu anki durum |
+| ------ | ------------------------ | ------------- |
+| L0 | Hangi kategori, hangi coğrafya, kim kiminle eşleşecek, kim sübvanse edilecek, güven nasıl kurulacak | <Tag tone="risk">Tanımsız</Tag> |
+| L1 | "İstoc kime, neyin yerine, hangi kanıtla ne vaat ediyor" | <Tag tone="risk">Tanımsız</Tag> |
+| L2 | Toplu mesaj, soğuk arama, sosyal medya, etkinlik, saha ziyareti | <Tag tone="warn">Planlanmış</Tag> |
+| L3 | Kontrgerilla kural sistemi, rakip hamlesine karşılık | <Tag tone="ok">Tasarlanmış</Tag> |
+
+<Aside type="danger" title="Rehberin ana teşhisi">
+Plan **tersten kurulmuş**. En gelişmiş katman (L3 kontrgerilla) tasarlanmış, en temel katman
+(L0 pazar tasarımı) tanımsız. Bu, çatısı bitmiş temeli atılmamış bir binadır. L3 kaliteli bir
+çalışmadır ve **çöpe atılmamalıdır** — sadece sırası henüz gelmemiştir.
+</Aside>
+
+## Peki 2026-2027 için ne değişiyor
+
+Sürüm tartışmasının anlamlı olduğu tek yer burasıdır. Gerçekten yeni olan şey numaralar değil,
+**muhatabın değişmesidir**: pazarlamanın hedefi artık yalnızca insan değil, insanın adına
+arama yapan yapay zekâ ajanıdır.
+
+| Değişim | Ne demek | İstoc'a etkisi |
+| ------- | -------- | -------------- |
+| Ajan tabanlı keşif | Alıcı arama motoru yerine yapay zekâya soruyor | Ürün verisi makine okunabilir olmalı |
+| Yapay zekâ satın alma asistanları | Teklif toplama otomatikleşiyor | RFQ yapısı API ve şema uyumlu olmalı |
+| Cevap motoru optimizasyonu | "Sıralama" yerine "kaynak gösterilme" | Yapılandırılmış veri ve kanıt sayfaları |
+| Dikkat maliyetinin artması | Reklam getirisi düşüyor | Sahip olunan kanal ve topluluk değer kazanıyor |
+
+Ayrıntı: [Ajan tabanlı ticaret](/istocpazar2/rekabet/agentic-ticaret/) ve
+[Neden şimdi?](/istocpazar2/rekabet/neden-simdi/).
+
+## Sonuç: nasıl çerçevelemeli
+
+Şirket içinde kullanabileceğiniz cümle:
+
+> "Biz Pazarlama 5.0 yapmıyoruz. Biz önce bir pazar kuruyoruz. Pazar kurulduktan sonra
+> 5.0'ın bütün araçları elimizde olacak. Sıra önemli: önce eşleşme, sonra dikkat."
+
+Bu çerçeve size üç şey kazandırır: ekibe net öncelik, bütçeye net gerekçe, ve
+"neden hemen reklam vermiyoruz" sorusuna savunulabilir bir cevap.

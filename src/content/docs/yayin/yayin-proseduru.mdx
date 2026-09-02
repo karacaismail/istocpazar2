@@ -1,0 +1,144 @@
+---
+title: Yayın prosedürü
+description: Rehberin yerelde çalıştırılması, güncellenmesi ve GitHub Pages'te yayınlanması için adım adım prosedür.
+kanit: resmi-kaynak
+guven: yuksek
+tur: operasyon
+faz: her-ikisi
+sidebar:
+  order: 2
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+
+## Yerelde çalıştırma
+
+```bash
+npm install
+```
+
+```bash
+npm run dev
+```
+
+Tarayıcıda `http://localhost:4321/istocpazar2/` adresi açılır.
+
+## Yeni sayfa ekleme
+
+<Steps>
+
+1. **Dosyayı oluşturun.** `src/content/docs/<bolum>/<sayfa>.mdx`
+
+2. **Frontmatter yazın.** Altı alan zorunludur:
+
+   ```yaml
+   ---
+   title: 'Sayfa başlığı'
+   description: 'Bir cümlelik açıklama'
+   kanit: cikarim
+   guven: orta
+   tur: harita
+   faz: faz-1
+   ---
+   ```
+
+3. **Kenar çubuğuna ekleyin.** `astro.config.mjs` içindeki ilgili gruba slug ekleyin.
+   Bu yapılmazsa içerik kapısı "kenar çubuğunda yok" hatası verir.
+
+4. **Kapıları çalıştırın.**
+
+   ```bash
+   npm run verify
+   ```
+
+5. **Sürüm günlüğüne yazın.** Anlamlı bir değişikliyse
+   `src/content/docs/yayin/surum-gunlugu.mdx` güncellenir.
+
+</Steps>
+
+## Frontmatter alanları
+
+| Alan | İzin verilen değerler |
+| ---- | --------------------- |
+| `kanit` | `sistematik-derleme`, `hakemli-arastirma`, `sektor-verisi`, `resmi-kaynak`, `vaka-calismasi`, `operator-beyani`, `uzman-gorusu`, `cikarim`, `spekulasyon`, `karma` |
+| `guven` | `yuksek`, `orta`, `dusuk` |
+| `tur` | `harita`, `oneri`, `karar`, `operasyon`, `referans` |
+| `faz` | `faz-1`, `faz-2`, `her-ikisi` |
+
+## Diyagram ekleme
+
+Mermaid kullanılmaz. Erişilebilir statik SVG kullanılır:
+
+```
+<Figure title="..." caption="...">
+  <svg slot="svg" class="ip-svg" viewBox="0 0 700 300" role="img" aria-labelledby="x">
+    ...
+  </svg>
+  <div slot="alt">Diyagramın tam metinsel karşılığı.</div>
+</Figure>
+```
+
+`slot="alt"` zorunludur; içerik kapısı bunu kontrol eder.
+
+## Grafik ekleme
+
+Yalnızca **gerçek sayısal veri** olduğunda kullanılır. `columns` ve `rows` zorunludur;
+JavaScript çalışmasa da veri okunabilir kalır.
+
+## İkon ekleme
+
+Yeni bir Phosphor ikonu gerekiyorsa:
+
+<Steps>
+
+1. `scripts/vendor-icons.mjs` içindeki `ICONS` listesine ikon adını ekleyin.
+
+2. Kopyalama betiğini çalıştırın:
+
+   ```bash
+   node scripts/vendor-icons.mjs
+   ```
+
+3. Bileşende kullanın: `<PhIcon name="ikon-adi" />`
+
+</Steps>
+
+<Aside type="caution">
+Emoji kullanılmaz. İkonlar yereldir; CDN'den ikon yüklenmez.
+</Aside>
+
+## GitHub Pages'e yayın
+
+Yayın otomatiktir. `main` dalına gönderilen her değişiklik GitHub Actions iş akışını
+tetikler ve site yeniden yayınlanır.
+
+```bash
+git add -A && git commit -m "docs: değişiklik açıklaması" && git push
+```
+
+<Steps>
+
+1. **Kapılar yerelde geçmeli.** `npm run verify` yeşil olmadan gönderilmez.
+
+2. **Anlamlı commit mesajı.** `docs:`, `fix:`, `feat:` öneki kullanılır.
+
+3. **İş akışı çalışır.** GitHub Actions derler ve yayınlar.
+
+4. **Doğrulama.** Yayın adresinde değişiklik görülür ve arama çalışır.
+
+</Steps>
+
+## Yayın adresi
+
+`https://karacaismail.github.io/istocpazar2/`
+
+## Sorun giderme
+
+| Belirti | Sebep | Çözüm |
+| ------- | ----- | ----- |
+| Stil bozuk görünüyor | `base` yolu yanlış | `astro.config.mjs` içinde `base: '/istocpazar2'` doğru mu |
+| Bağlantı 404 veriyor | İç bağlantıda base eksik | Bağlantı `/istocpazar2/...` ile başlamalı |
+| Arama sonuç vermiyor | Pagefind indeksi üretilmemiş | Tam `astro build` çalıştırın |
+| Grafik görünmüyor | JavaScript hatası | Tablo yine de görünmeli; konsolu kontrol edin |
+| İkon hatası | İkon vendor edilmemiş | `node scripts/vendor-icons.mjs` |
+| Derleme YAML hatası | Frontmatter'da tırnak sorunu | Başlıkta iki nokta varsa tırnak içine alın |

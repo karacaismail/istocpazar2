@@ -1,0 +1,153 @@
+---
+title: ECA+ ve SIDAML
+description: Olay-Koşul-Aksiyon modelinin genişletilmiş hali ve İstoc'un bugünkü ölçeğinde nasıl uygulanacağı.
+kanit: cikarim
+guven: orta
+tur: harita
+faz: her-ikisi
+sidebar:
+  order: 1
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Figure from '@components/Figure.astro';
+import Tag from '@components/Tag.astro';
+
+## ECA'dan SIDAML'e
+
+Klasik otomasyon modeli üç alandan oluşur: **Olay → Koşul → Aksiyon**. Bu, teknik bir
+tetikleyici için yeterlidir; bir işletme kararı için değildir. Eksik olan üç şey vardır:
+yorumlama, ölçüm ve öğrenme.
+
+Genişletilmiş döngü:
+
+> **Sense (Algıla) → Interpret (Yorumla) → Decide (Karar ver) → Act (Uygula) →
+> Measure (Ölç) → Learn (Öğren)**
+
+<Figure title="SIDAML döngüsü" caption="Klasik ECA modeli yalnızca ilk üç adımı kapsar. Ölçüm ve öğrenme olmadan sistem, aynı hatayı sonsuza kadar tekrar eder.">
+  <svg slot="svg" class="ip-svg" viewBox="0 0 700 260" width="700" height="260" role="img" aria-labelledby="sidaml">
+    <title id="sidaml">SIDAML karar döngüsü</title>
+
+    <rect class="d-box-accent" x="20" y="60" width="100" height="64" rx="8"/>
+    <text x="70" y="88" text-anchor="middle" font-size="12.5" font-weight="700">Algıla</text>
+    <text x="70" y="107" text-anchor="middle" font-size="10.5" class="d-muted">Sense</text>
+
+    <rect class="d-box-accent" x="140" y="60" width="100" height="64" rx="8"/>
+    <text x="190" y="88" text-anchor="middle" font-size="12.5" font-weight="700">Yorumla</text>
+    <text x="190" y="107" text-anchor="middle" font-size="10.5" class="d-muted">Interpret</text>
+
+    <rect class="d-box-accent" x="260" y="60" width="100" height="64" rx="8"/>
+    <text x="310" y="88" text-anchor="middle" font-size="12.5" font-weight="700">Karar ver</text>
+    <text x="310" y="107" text-anchor="middle" font-size="10.5" class="d-muted">Decide</text>
+
+    <rect class="d-box-accent" x="380" y="60" width="100" height="64" rx="8"/>
+    <text x="430" y="88" text-anchor="middle" font-size="12.5" font-weight="700">Uygula</text>
+    <text x="430" y="107" text-anchor="middle" font-size="10.5" class="d-muted">Act</text>
+
+    <rect class="d-box" x="500" y="60" width="90" height="64" rx="8"/>
+    <text x="545" y="88" text-anchor="middle" font-size="12.5" font-weight="700">Ölç</text>
+    <text x="545" y="107" text-anchor="middle" font-size="10.5" class="d-muted">Measure</text>
+
+    <rect class="d-box" x="610" y="60" width="70" height="64" rx="8"/>
+    <text x="645" y="88" text-anchor="middle" font-size="12.5" font-weight="700">Öğren</text>
+    <text x="645" y="107" text-anchor="middle" font-size="10.5" class="d-muted">Learn</text>
+
+    <path class="d-line-accent" d="M120 92 H136" marker-end="url(#sd)"/>
+    <path class="d-line-accent" d="M240 92 H256" marker-end="url(#sd)"/>
+    <path class="d-line-accent" d="M360 92 H376" marker-end="url(#sd)"/>
+    <path class="d-line" d="M480 92 H496" marker-end="url(#sd2)"/>
+    <path class="d-line" d="M590 92 H606" marker-end="url(#sd2)"/>
+    <path class="d-line d-dash" d="M645 124 V170 H70 V124" marker-end="url(#sd2)"/>
+
+    <text x="350" y="192" text-anchor="middle" font-size="12" class="d-muted">Öğrenilen, bir sonraki kuralın girdisi olur</text>
+
+    <rect class="d-box" x="20" y="206" width="360" height="34" rx="6"/>
+    <text x="200" y="228" text-anchor="middle" font-size="11.5">Klasik ECA burada biter</text>
+
+    <rect class="d-box-accent" x="400" y="206" width="280" height="34" rx="6"/>
+    <text x="540" y="228" text-anchor="middle" font-size="11.5" font-weight="700">Eklenen: ölçüm ve öğrenme</text>
+
+    <defs>
+      <marker id="sd" markerWidth="8" markerHeight="8" refX="6.5" refY="4" orient="auto">
+        <path d="M0 0 L8 4 L0 8 z" fill="var(--d-accent)"/>
+      </marker>
+      <marker id="sd2" markerWidth="8" markerHeight="8" refX="6.5" refY="4" orient="auto">
+        <path d="M0 0 L8 4 L0 8 z" fill="currentColor" class="d-muted"/>
+      </marker>
+    </defs>
+  </svg>
+
+  <div slot="alt">
+    Soldan sağa altı kutu: Algıla (Sense), Yorumla (Interpret), Karar ver (Decide), Uygula
+    (Act), Ölç (Measure), Öğren (Learn). İlk dördü vurgulu, son ikisi normal. Öğren kutusundan
+    Algıla kutusuna geri dönen kesikli bir ok vardır; üzerinde "Öğrenilen, bir sonraki kuralın
+    girdisi olur" yazar. Altta iki kutu: "Klasik ECA burada biter" ve vurgulu
+    "Eklenen: ölçüm ve öğrenme".
+  </div>
+</Figure>
+
+## İstoc bugün hangi ölçekte uygulamalı
+
+<Aside type="caution" title="Ölçek uyarısı">
+Tam otomatik bir kural motoru bugün gereksizdir: izlenecek olay akışı yok, kural yazacak
+veri yok, kuralı çalıştıracak kapasite yok. Ancak **döngünün kendisi** insan eliyle
+uygulanabilir ve uygulanmalıdır.
+</Aside>
+
+| Adım | Bugünkü karşılığı | Kim | Sıklık |
+| ---- | ----------------- | --- | ------ |
+| Algıla | Günlük kontrol listesi: cevapsız talep, takılan fırsat, satıcı sessizliği | Masa Başı | Günlük |
+| Yorumla | Bu sinyal ne anlama geliyor: tekil mi, kalıp mı | Ekip | Haftalık |
+| Karar ver | Karşılık merdiveninde hangi seviye | Sorumlu rol | Haftalık |
+| Uygula | Aksiyon ve sahibi belirlenir | İlgili rol | Hemen |
+| Ölç | Aksiyon işe yaradı mı | Ekip | 7 ve 30 gün |
+| Öğren | Kural güncellenir veya emekliye ayrılır | Yönetim | Aylık |
+
+## Bugün izlenecek olaylar
+
+Kontrgerilla çerçevesindeki geniş olay ontolojisi yerine, **bugün gerçekten olan** olaylar:
+
+| Olay | Kaynak | Kim izler |
+| ---- | ------ | --------- |
+| Alım talebi 24 saattir cevapsız | Platform | Masa Başı |
+| Satıcı 14 gündür giriş yapmadı | Platform | Masa Başı |
+| Fırsat 14 gündür aynı aşamada | CRM | Saha |
+| Alıcı ilk işlemden sonra geri dönmedi | Platform | Saha |
+| Aynı itiraz üçüncü kez duyuldu | Saha notu | Ekip |
+| Bir kategoride arama boş dönüyor | Platform | Masa Başı |
+| Sektörel grupta İstoc hakkında konuşma | WhatsApp | Masa Başı |
+| Rakip yeni bir hamle yaptı | Genel | Organizatör |
+
+## Kural kaydı şablonu
+
+Bir kural yazıldığında şu alanlar doldurulur:
+
+| Alan | Açıklama |
+| ---- | -------- |
+| Kural kimliği | Kısa kod |
+| Olay | Neyi izliyoruz |
+| Koşul | Hangi eşikte tetiklenir |
+| Karar | Hangi karşılık seviyesi |
+| Aksiyon | Somut ne yapılacak |
+| Sahip | Kim yapacak |
+| Onay | Gerekiyor mu, kimden |
+| Geri alma | Nasıl durdurulur |
+| Ölçüm | Hangi sayı bakılacak |
+| Süre | Kural ne zaman gözden geçirilecek |
+| Öğrenilen | Sonuç ve karar |
+
+Örnekler: [Kural kütüphanesi](/istocpazar2/karar-sistemi/kural-kutuphanesi/).
+
+## Ne zaman otomatikleşir
+
+| Eşik | Otomatikleşecek |
+| ---- | --------------- |
+| Aylık 50 talep | Cevapsız talep uyarısı |
+| Aylık 100 talep | Satıcı eşleştirme önerisi |
+| 50 aktif satıcı | Satıcı sessizlik uyarısı |
+| 200 işlem | Rakip ve gündem izleme |
+
+<Aside type="tip">
+Bu tablo, kontrgerilla çerçevesinin ne zaman devreye gireceğinin de takvimidir.
+Erken değil; **eşiğe bağlı**.
+</Aside>

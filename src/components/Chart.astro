@@ -1,0 +1,119 @@
+---
+/**
+ * ECharts görselleştirme. Yalnızca gerçek sayısal veri olduğunda kullanılır.
+ * Erişilebilirlik: her grafiğin DOM içinde daima gerçek bir <table> karşılığı bulunur,
+ * böylece JavaScript çalışmasa veya ekran okuyucu kullanılsa da veri okunabilir.
+ */
+interface Props {
+  id: string;
+  title: string;
+  source: string;
+  /** ECharts option nesnesi (JSON-serileştirilebilir olmalı). */
+  option: Record<string, unknown>;
+  /** Erişilebilir tablo başlıkları. */
+  columns: string[];
+  /** Erişilebilir tablo satırları. */
+  rows: (string | number)[][];
+  height?: string;
+}
+
+const { id, title, source, option, columns, rows, height = '20rem' } = Astro.props;
+const payload = JSON.stringify(option);
+---
+
+<figure class="ip-chart" data-ip-chart data-option={payload}>
+  <div class="ip-chart__head">
+    <div class="ip-chart__title">{title}</div>
+    <p class="ip-chart__source">{source}</p>
+  </div>
+  <div
+    class="ip-chart__canvas"
+    id={id}
+    style={`height:${height}`}
+    role="img"
+    aria-label={`${title}. Sayısal karşılığı aşağıdaki tabloda verilmiştir.`}
+  >
+  </div>
+  <details class="ip-chart__table" open>
+    <summary>Grafiğin sayısal karşılığı (tablo)</summary>
+    <table>
+      <caption class="sr-only">{title}</caption>
+      <thead>
+        <tr>{columns.map((c) => <th scope="col">{c}</th>)}</tr>
+      </thead>
+      <tbody>
+        {
+          rows.map((r) => (
+            <tr>
+              {r.map((cell, i) =>
+                i === 0 ? <th scope="row">{cell}</th> : <td>{cell}</td>
+              )}
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </details>
+</figure>
+
+<script>
+  import * as echarts from 'echarts/core';
+  import { BarChart, LineChart } from 'echarts/charts';
+  import { GridComponent, TooltipComponent, LegendComponent, TitleComponent } from 'echarts/components';
+  import { SVGRenderer } from 'echarts/renderers';
+
+  echarts.use([BarChart, LineChart, GridComponent, TooltipComponent, LegendComponent, TitleComponent, SVGRenderer]);
+
+  type ThemeName = 'light' | 'dark';
+
+  function currentTheme(): ThemeName {
+    return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+  }
+
+  function palette(theme: ThemeName) {
+    return theme === 'dark'
+      ? { text: '#e8e8ec', axis: '#5c5f66', split: '#3a3d45' }
+      : { text: '#22232a', axis: '#9aa0aa', split: '#e3e5ea' };
+  }
+
+  function render(el: HTMLElement, figure: HTMLElement) {
+    const raw = figure.dataset.option;
+    if (!raw) return;
+    const theme = currentTheme();
+    const p = palette(theme);
+    const option = JSON.parse(raw) as Record<string, unknown>;
+
+    const themed = {
+      backgroundColor: 'transparent',
+      textStyle: { color: p.text, fontFamily: 'system-ui, sans-serif' },
+      ...option,
+    } as Record<string, unknown>;
+
+    const existing = echarts.getInstanceByDom(el);
+    const chart = existing ?? echarts.init(el, undefined, { renderer: 'svg' });
+    chart.setOption(themed, true);
+    chart.resize();
+  }
+
+  function boot() {
+    const figures = document.querySelectorAll<HTMLElement>('[data-ip-chart]');
+    figures.forEach((figure) => {
+      const el = figure.querySelector<HTMLElement>('.ip-chart__canvas');
+      if (!el) return;
+      render(el, figure);
+    });
+  }
+
+  let raf = 0;
+  function onResize() {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(boot);
+  }
+
+  document.addEventListener('DOMContentLoaded', boot);
+  boot();
+  window.addEventListener('resize', onResize);
+
+  const observer = new MutationObserver(boot);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+</script>

@@ -1,0 +1,131 @@
+---
+title: Deney kartları
+description: İlk beş deneyin tam kartı; hipotez, yöntem, ölçüt, eşikler ve sorulacak sorular.
+kanit: cikarim
+guven: orta
+tur: operasyon
+faz: faz-2
+sidebar:
+  order: 2
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+## D1 — Alıcı davranış görüşmeleri
+
+<dl class="ip-kv">
+  <dt>Hipotez</dt><dd>Alıcılar mevcut tedarik yönteminden ölçülebilir biçimde rahatsız</dd>
+  <dt>Yöntem</dt><dd>20 alıcıyla 25 dakikalık yapılandırılmış görüşme</dd>
+  <dt>Kim</dt><dd>Organizatör</dd>
+  <dt>Süre</dt><dd>2 hafta</dd>
+  <dt>Başarı eşiği</dt><dd>20 görüşmenin en az 12'sinde aynı somut sıkıntı tekrar ediyor</dd>
+  <dt>Başarısızlık eşiği</dt><dd>Tekrar eden somut sıkıntı yok veya 5'ten az</dd>
+  <dt>Durdurma</dt><dd>İlk 10 görüşmede hiç kalıp çıkmıyorsa soru seti değiştirilir</dd>
+</dl>
+
+**Sorulacak sorular** — davranış sorulur, niyet değil:
+
+1. Son üç alımınızı anlatır mısınız? Ne aldınız, kimden, nasıl buldunuz?
+2. Kaç yere sordunuz? Neden o kadar?
+3. Fiyatı nasıl karşılaştırdınız?
+4. Karar vermeniz ne kadar sürdü? Kim onayladı?
+5. Bu süreçte sizi en çok ne yordu?
+6. Hiç yanlış tedarikçiye denk geldiniz mi? Ne oldu?
+7. Ödeme nasıl yapıldı? Risk hissettiniz mi?
+8. Acil bir ihtiyacınız olsa şu an ne yaparsınız?
+9. İSTOÇ'a en son ne zaman fiziksel olarak gittiniz?
+10. Aradığınızı bulamadığınız oldu mu? O zaman ne yaptınız?
+
+<Aside type="danger" title="Sorulmayacak soru">
+"Böyle bir platform olsa kullanır mıydınız?" Bu soruya herkes evet der ve cevap hiçbir
+bilgi taşımaz. Yalnızca **geçmiş davranış** sorulur.
+</Aside>
+
+## D2 — Satıcı motivasyon görüşmeleri
+
+<dl class="ip-kv">
+  <dt>Hipotez</dt><dd>Satıcılar yeni müşteriye açık ve dijital kanala girmeye istekli</dd>
+  <dt>Yöntem</dt><dd>20 satıcıyla yerinde 25 dakikalık görüşme</dd>
+  <dt>Kim</dt><dd>Organizatör</dd>
+  <dt>Başarı eşiği</dt><dd>En az 12 satıcı "hazır talep görsem cevap veririm" diyor ve somut kapasite fazlası beyan ediyor</dd>
+  <dt>Başarısızlık eşiği</dt><dd>8'den az ilgi; "zaten müşterim var" baskın cevap</dd>
+</dl>
+
+**Sorulacak sorular:**
+
+1. Şu an kapasitenizin ne kadarı dolu?
+2. Yeni müşteriyi nasıl buluyorsunuz?
+3. Ölü sezonda ne yapıyorsunuz?
+4. Fiyatınızı internette görünür yapmak sizin için sorun olur mu? Neden?
+5. Daha önce bir platforma kaydoldunuz mu? Ne oldu?
+6. Ürün listenizi güncel tutmak sizin için ne kadar iş?
+7. Tahsilat probleminiz oluyor mu?
+8. Bir alım talebi gelse ne kadar sürede cevap verebilirsiniz?
+9. Komisyon ödemek konusunda ne düşünüyorsunuz?
+10. Sizce komşunuz bu işe girer mi? Neden?
+
+## D3 — Kategori derinlik sayımı
+
+<dl class="ip-kv">
+  <dt>Hipotez</dt><dd>En az bir kategoride 40+ tedarikçi ve yeterli çeşitlilik var</dd>
+  <dt>Yöntem</dt><dd>İSTOÇ'ta kategori bazlı fiziksel ve dijital sayım</dd>
+  <dt>Kim</dt><dd>Masa Başı (yoksa Organizatör)</dd>
+  <dt>Süre</dt><dd>1 hafta</dd>
+  <dt>Başarı eşiği</dt><dd>En az 2 kategoride 40+ tedarikçi</dd>
+  <dt>Çıktı</dt><dd>Kategori puanlama tablosu doldurulmuş hâli</dd>
+</dl>
+
+## D4 — "Sizin yerinize yükleyelim" teklifi
+
+<dl class="ip-kv">
+  <dt>Hipotez</dt><dd>Katalog yükleme zahmeti, satıcının önündeki en somut engel</dd>
+  <dt>Yöntem</dt><dd>20 satıcıya ücretsiz katalog yükleme teklif edilir</dd>
+  <dt>Kim</dt><dd>Organizatör, sonra Masa Başı</dd>
+  <dt>Başarı eşiği</dt><dd>%50+ kabul oranı</dd>
+  <dt>Başarısızlık eşiği</dt><dd>%20'den az kabul</dd>
+  <dt>Öğretecek şey</dt><dd>Reddedenlerin gerekçesi, asıl engelin ne olduğunu söyler</dd>
+</dl>
+
+<Aside type="tip" title="Bu deneyin gizli değeri">
+Kabul oranı düşükse engel zahmet değil, **güven veya isteksizliktir**. Bu, tek başına
+çok değerli bir bilgidir ve stratejiyi değiştirir.
+</Aside>
+
+## D5 — Hazır talep ile satıcı ikna testi
+
+<dl class="ip-kv">
+  <dt>Hipotez</dt><dd>"Hazır talep var" mesajı, "kaydolun" mesajından belirgin biçimde etkili</dd>
+  <dt>Yöntem</dt><dd>30 satıcı iki gruba ayrılır; 15'ine hazır talep gösterilir, 15'ine standart tanıtım yapılır</dd>
+  <dt>Kim</dt><dd>Organizatör</dd>
+  <dt>Süre</dt><dd>3 hafta</dd>
+  <dt>Ölçüt</dt><dd>Aktif olma oranı (ilk teklifini veren satıcı)</dd>
+  <dt>Başarı eşiği</dt><dd>Talep grubunda aktif olma oranı, kontrol grubunun en az 2 katı</dd>
+  <dt>Karşı-olgusal</dt><dd>Kontrol grubu bu deneyin kendisidir</dd>
+</dl>
+
+<Aside type="caution" title="Bu deney neden önemli">
+Rehberin ana stratejisi (talep önce) tam olarak bu deneyle test edilir. Sonuç olumsuzsa
+[çözüm özeti](/istocpazar2/cozum/cozum-ozeti/) yeniden yazılmalıdır.
+</Aside>
+
+## Deney kartı boş şablonu
+
+| Alan | İçerik |
+| ---- | ------ |
+| Deney kodu | |
+| Test ettiği varsayım | |
+| Hipotez | |
+| Yöntem | |
+| Sorumlu | |
+| Başlangıç ve bitiş tarihi | |
+| Örneklem büyüklüğü | |
+| Ölçüt | |
+| Başarı eşiği | |
+| Başarısızlık eşiği | |
+| Azami harcama | |
+| Durdurma koşulu | |
+| Ölçekleme koşulu | |
+| Karşı-olgusal kontrol | |
+| Sonuç | |
+| Öğrenilen | |
+| Sonraki adım | |

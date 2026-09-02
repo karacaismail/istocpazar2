@@ -1,0 +1,122 @@
+---
+title: Atomik ağ
+description: Kendi kendine yeten en küçük alıcı-satıcı ağının tanımı, İstoc için aday tanımlar ve kritik eşiğin nasıl ölçüleceği.
+kanit: uzman-gorusu
+guven: orta
+tur: harita
+faz: faz-1
+sidebar:
+  order: 3
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Figure from '@components/Figure.astro';
+import Tag from '@components/Tag.astro';
+
+## Soru
+
+"Türkiye'de B2B pazar yeri kuracağız" cümlesi ölçülemez. Ölçülebilir soru şudur:
+
+> **Kendi kendine dönebilen, dışarıdan destek olmadan ayakta kalabilen en küçük alıcı-satıcı
+> topluluğu nedir?**
+
+Bu topluluğa **atomik ağ** denir. Strateji, bu ağı bir kez kurup sonra çoğaltmaktır.
+
+## Daraltma merdiveni
+
+<Figure title="Türkiye'den atomik ağa daraltma" caption="Her basamak, hedefi ölçülebilir hale getirir. En alt basamak, üç kişilik ekibin 90 günde gerçekten etkileyebileceği büyüklüktür.">
+  <svg slot="svg" class="ip-svg" viewBox="0 0 620 420" width="620" height="420" role="img" aria-labelledby="atomik-baslik">
+    <title id="atomik-baslik">Atomik ağ daraltma merdiveni</title>
+
+    <rect class="d-box" x="40" y="20" width="540" height="42" rx="8"/>
+    <text x="310" y="46" text-anchor="middle" font-size="13.5">Türkiye — ölçülemez</text>
+
+    <rect class="d-box" x="80" y="76" width="460" height="42" rx="8"/>
+    <text x="310" y="102" text-anchor="middle" font-size="13.5">İstanbul — hâlâ çok geniş</text>
+
+    <rect class="d-box" x="120" y="132" width="380" height="42" rx="8"/>
+    <text x="310" y="158" text-anchor="middle" font-size="13.5">İSTOÇ — coğrafi sınır netleşti</text>
+
+    <rect class="d-box" x="160" y="188" width="300" height="42" rx="8"/>
+    <text x="310" y="214" text-anchor="middle" font-size="13.5">Tek kategori — arz tanımlandı</text>
+
+    <rect class="d-box" x="190" y="244" width="240" height="42" rx="8"/>
+    <text x="310" y="270" text-anchor="middle" font-size="13.5">Tek alıcı personası</text>
+
+    <rect class="d-box-accent" x="210" y="300" width="200" height="60" rx="8"/>
+    <text x="310" y="324" text-anchor="middle" font-size="13.5" font-weight="700">ATOMİK AĞ</text>
+    <text x="310" y="345" text-anchor="middle" font-size="12">20 satıcı, 60 alıcı</text>
+
+    <path class="d-line" d="M310 62 V76"/>
+    <path class="d-line" d="M310 118 V132"/>
+    <path class="d-line" d="M310 174 V188"/>
+    <path class="d-line" d="M310 230 V244"/>
+    <path class="d-line" d="M310 286 V300"/>
+
+    <rect class="d-box" x="120" y="376" width="380" height="34" rx="8"/>
+    <text x="310" y="398" text-anchor="middle" font-size="12" class="d-muted">3 kişilik ekibin 90 günde etkileyebileceği büyüklük</text>
+  </svg>
+
+  <div slot="alt">
+    Yukarıdan aşağıya daralan altı basamak: Türkiye (ölçülemez), İstanbul (hâlâ çok geniş),
+    İSTOÇ (coğrafi sınır netleşti), tek kategori (arz tanımlandı), tek alıcı personası ve en
+    altta vurgulu ATOMİK AĞ kutusu: 20 satıcı, 60 alıcı. En altta not: 3 kişilik ekibin
+    90 günde etkileyebileceği büyüklük.
+  </div>
+</Figure>
+
+## Atomik ağ tanım şablonu
+
+Boşlukları doldurun; bu cümle şirketin 90 günlük tek hedefidir.
+
+> "[İSTOÇ / blok adı] içinde, [kategori] alanında faaliyet gösteren **[N] satıcı** ile
+> [alıcı personası] tipindeki **[M] alıcının**, ayda en az **[K] kez** birbirini bulduğu ağ."
+
+## Aday tanımlar
+
+| # | Aday atomik ağ | Satıcı | Alıcı | Lehte | Aleyhte |
+| - | -------------- | ------ | ----- | ----- | ------- |
+| A1 | İSTOÇ tek blok, tek kategori | 20 | 60 | En dar, en hızlı, saha çok verimli | Havuz yetersiz kalabilir |
+| A2 | İSTOÇ geneli, tek kategori | 40 | 150 | Yeterli havuz, saha hâlâ verimli | Yoğunluk kurulması daha uzun |
+| A3 | İstanbul, tek kategori | 80 | 400 | Büyük havuz | Saha verimliliği düşer, maliyet artar |
+| A4 | Tek çapa alıcı çevresi | 15 | 1 büyük + 20 küçük | Talep garanti | Tek müşteriye bağımlılık riski |
+
+<Aside type="tip" title="A4 seçeneğinin cazibesi ve tehlikesi">
+Tek büyük alıcı (zincir mağaza, büyük müteahhit) etrafında ağ kurmak, talebi garantiler ve
+soğuk başlangıcı tek hamlede çözer. Tehlikesi, o alıcı çekilirse ağın tamamen çökmesidir.
+Bu seçenek ancak **ikinci bir çapa alıcı eklenmesi planıyla** birlikte seçilmelidir.
+</Aside>
+
+## Kritik eşik: ne zaman "kuruldu" diyebiliriz
+
+Bir atomik ağın kurulduğu, üye sayısıyla değil **kendini besleyip beslemediğiyle** anlaşılır.
+
+| Test | Kurulmuş sayılır mı |
+| ---- | ------------------- |
+| Ekip bir hafta hiç müdahale etmese işlem olur mu | Evet ise <Tag tone="ok">Kuruldu</Tag> |
+| Yeni satıcı, ekip aramadan kendi başvuruyor mu | Evet ise <Tag tone="ok">Güçlü sinyal</Tag> |
+| Alıcı ikinci kez kendiliğinden geliyor mu | Evet ise <Tag tone="ok">Kuruldu</Tag> |
+| Satıcılar birbirini davet ediyor mu | Evet ise <Tag tone="ok">Çok güçlü sinyal</Tag> |
+| Her işlem için ekip çaba harcıyor mu | Evet ise <Tag tone="risk">Henüz kurulmadı</Tag> |
+
+<Aside type="caution" title="En sık yapılan öz aldatma">
+Ekip elle çalıştırdığı sürece işlem olur. Bu, ağın kurulduğu anlamına gelmez.
+Gerçek test, **ekibin bir hafta çekilmesidir**. 90. günde bu testi yapın; sonucu ne olursa
+olsun en değerli bilgi budur.
+</Aside>
+
+## Ağ kurulduktan sonra çoğaltma
+
+Atomik ağ kurulduğunda, ikinci ağ **aynı formülle** kurulur; sıfırdan değil.
+
+| Çoğaltma yönü | Nasıl | Zorluk |
+| ------------- | ----- | ------ |
+| Aynı kategori, yeni coğrafya | Formül aynı, ilişkiler yeni | Orta |
+| Aynı coğrafya, komşu kategori | İlişkiler var, ürün yeni | Düşük |
+| Aynı alıcılar, yeni kategori | Alıcı güveni hazır | En düşük |
+| Yeni kategori + yeni coğrafya | Her şey yeniden | Yüksek — yapılmaz |
+
+<Aside type="tip">
+En ucuz ikinci ağ, **mevcut alıcılara komşu kategori satmaktır**. Güven zaten kurulmuştur;
+yalnızca yeni arz gerekir. İkinci kategori kararı bu ilkeye göre verilmelidir.
+</Aside>

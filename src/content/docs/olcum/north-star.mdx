@@ -1,0 +1,99 @@
+---
+title: North Star adayları
+description: Şirketin tek ana başarı göstergesi için aday metrikler, her birinin güçlü ve zayıf yanları ve seçimin neden ertelendiği.
+kanit: cikarim
+guven: orta
+tur: karar
+faz: faz-1
+sidebar:
+  order: 2
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Neden şimdi seçmiyoruz
+
+<Aside type="caution" title="Bilinçli erteleme">
+North Star metriği, ekibin bütün davranışını yönlendirir. Yanlış seçilirse herkes yanlış
+yöne koşar. İstoc'ta henüz hangi davranışın değerli olduğunu bilecek veri yok. Bu yüzden
+seçim **ilk 90 gün sonunda** yapılacak; şimdilik adaylar izlenecek.
+</Aside>
+
+## Aday metrikler
+
+### 1. Tamamlanmış işlem sayısı
+
+<dl class="ip-kv">
+  <dt>Güçlü yanı</dt><dd>Gerçek değeri temsil eder; manipüle edilmesi zor</dd>
+  <dt>Zayıf yanı</dt><dd>Erken dönemde çok küçük sayılar; haftalık dalgalanma büyük</dd>
+  <dt>Uygunluk</dt><dd><Tag tone="ok">Yüksek</Tag></dd>
+</dl>
+
+### 2. Tekrar eden alıcı-satıcı çifti
+
+<dl class="ip-kv">
+  <dt>Güçlü yanı</dt><dd>Ağın gerçekten kurulduğunu gösteren tek sayı</dd>
+  <dt>Zayıf yanı</dt><dd>Geç sinyal verir; ilk 60 günde sıfır kalabilir</dd>
+  <dt>Uygunluk</dt><dd><Tag tone="ok">Çok yüksek</Tag> — ama erken için ardıl</dd>
+</dl>
+
+### 3. Karşılanmış nitelikli teklif talebi
+
+<dl class="ip-kv">
+  <dt>Güçlü yanı</dt><dd>Hem arz hem talebi aynı anda ölçer; erken sinyal verir</dd>
+  <dt>Zayıf yanı</dt><dd>"Nitelikli" tanımı öznel olabilir</dd>
+  <dt>Uygunluk</dt><dd><Tag tone="ok">Çok yüksek</Tag> — erken dönem için en uygun</dd>
+</dl>
+
+### 4. Likidite oranı
+
+<dl class="ip-kv">
+  <dt>Tanım</dt><dd>Cevap alan talep / toplam talep</dd>
+  <dt>Güçlü yanı</dt><dd>Ölçek bağımsız; küçük sayılarda da anlamlı</dd>
+  <dt>Zayıf yanı</dt><dd>Az talepte yanıltıcı olabilir; büyümeyi ödüllendirmez</dd>
+  <dt>Uygunluk</dt><dd><Tag tone="ok">Yüksek</Tag> — destek metriği olarak</dd>
+</dl>
+
+### 5. GMV (işlem hacmi)
+
+<dl class="ip-kv">
+  <dt>Güçlü yanı</dt><dd>Anlaşılır, dışarıya anlatılabilir</dd>
+  <dt>Zayıf yanı</dt><dd>Tek büyük işlem tabloyu bozar; tekrar bilgisi vermez</dd>
+  <dt>Uygunluk</dt><dd><Tag tone="warn">Orta</Tag> — tek başına yanıltıcı</dd>
+</dl>
+
+### 6. Eşleşme süresi
+
+<dl class="ip-kv">
+  <dt>Tanım</dt><dd>Talepten ilk gerçek teklife kadar medyan süre</dd>
+  <dt>Güçlü yanı</dt><dd>Rakiple (telefon) doğrudan karşılaştırılabilir; günlük ölçülür</dd>
+  <dt>Zayıf yanı</dt><dd>Tek başına iş sonucunu göstermez</dd>
+  <dt>Uygunluk</dt><dd><Tag tone="ok">Yüksek</Tag> — en iyi öncü gösterge</dd>
+</dl>
+
+## Öneri: aşamalı North Star
+
+| Dönem | North Star | Gerekçe |
+| ----- | ---------- | ------- |
+| 0-90 gün | **Karşılanmış nitelikli teklif talebi** | Erken sinyal verir, hem arzı hem talebi ölçer |
+| 3-12 ay | **Tamamlanmış işlem sayısı** | Gerçek değer, yeterli hacim oluşur |
+| 12+ ay | **Tekrar eden alıcı-satıcı çifti** | Ağın kalıcılığını ölçer |
+
+<Aside type="tip" title="Neden değişebilir bir North Star">
+Klasik öğreti "North Star değişmez" der. Sıfır likiditeli bir şirkette bu öğreti işe
+yaramaz: 15 işlemin olduğu bir dönemde "tekrar eden çift" metriği neredeyse hep sıfırdır ve
+ekibe hiçbir yön vermez. Önemli olan metriğin sabitliği değil, **ne zaman değişeceğinin
+önceden yazılmış olmasıdır.**
+</Aside>
+
+## North Star'a eşlik edecek koruyucu metrikler
+
+Tek metrik her zaman istismara açıktır. Yanına iki koruyucu konur:
+
+| Koruyucu | Neyi engeller |
+| -------- | ------------- |
+| Teklif cevap oranı | Niteliksiz talep üretmeyi |
+| Satıcı 14 gün aktiflik oranı | Ölü satıcı kaydını |
+
+Ana metrik yükselirken koruyuculardan biri düşüyorsa, kazanım sahtedir.

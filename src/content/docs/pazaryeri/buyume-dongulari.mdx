@@ -1,0 +1,155 @@
+---
+title: Büyüme döngüleri
+description: İstoc için kurulabilecek büyüme döngülerinin girdi-eylem-çıktı-pekiştirme modeliyle tanımı ve hangilerinin bugün çalışabileceği.
+kanit: uzman-gorusu
+guven: orta
+tur: harita
+faz: her-ikisi
+sidebar:
+  order: 9
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Figure from '@components/Figure.astro';
+import Tag from '@components/Tag.astro';
+
+## Huni değil döngü
+
+Huni tek yönlüdür: üstten girer, alttan çıkar, biter. Döngü ise çıktısını tekrar girdi
+haline getirir. Sürdürülebilir büyüme döngülerden gelir; huniden değil.
+
+Her döngü dört alanla yazılır: **Girdi → Eylem → Çıktı → Pekiştirme**.
+
+## Bugün kurulabilir döngüler
+
+### 1. Talep döngüsü <Tag tone="ok">Öncelik 1</Tag>
+
+<dl class="ip-kv">
+  <dt>Girdi</dt><dd>Ekip alıcıdan alım talebi toplar</dd>
+  <dt>Eylem</dt><dd>Talep satıcıya götürülür, satıcı platforma girer</dd>
+  <dt>Çıktı</dt><dd>Arz yoğunluğu artar</dd>
+  <dt>Pekiştirme</dt><dd>Artan arz, alıcı için platformu değerli kılar; alıcı daha çok talep gönderir</dd>
+  <dt>Bugün çalışır mı</dt><dd><Tag tone="ok">Evet</Tag> — insan gücüyle, yazılım gerekmeden</dd>
+</dl>
+
+### 2. Kanıt döngüsü <Tag tone="ok">Öncelik 2</Tag>
+
+<dl class="ip-kv">
+  <dt>Girdi</dt><dd>Tamamlanan işlem</dd>
+  <dt>Eylem</dt><dd>Hikâyesi izinli olarak yazıya dökülür</dd>
+  <dt>Çıktı</dt><dd>Satış görüşmesinde kullanılabilir kanıt</dd>
+  <dt>Pekiştirme</dt><dd>Kanıt satışı kolaylaştırır, daha çok işlem çıkar, daha çok kanıt birikir</dd>
+  <dt>Bugün çalışır mı</dt><dd><Tag tone="ok">Evet</Tag> — maliyeti neredeyse sıfır</dd>
+</dl>
+
+### 3. Yönlendirme döngüsü <Tag tone="ok">Öncelik 3</Tag>
+
+<dl class="ip-kv">
+  <dt>Girdi</dt><dd>Memnun satıcı veya alıcı</dd>
+  <dt>Eylem</dt><dd>Komşusunu, tedarikçisini veya müşterisini önerir</dd>
+  <dt>Çıktı</dt><dd>Güven transferiyle gelen yeni kullanıcı</dd>
+  <dt>Pekiştirme</dt><dd>Yeni kullanıcı da memnun olursa döngü genişler</dd>
+  <dt>Bugün çalışır mı</dt><dd><Tag tone="ok">Evet</Tag> — İSTOÇ'ta komşuluk ilişkisi güçlü</dd>
+</dl>
+
+<Aside type="tip" title="Fiziksel kümede yönlendirme neden güçlü">
+İSTOÇ'ta esnaf komşusunu her gün görür. Bir satıcının "bak bu işe yaradı" demesi, en
+pahalı reklamdan etkilidir ve maliyeti sıfırdır. Ekip bu döngüyü tetiklemek için tek şey
+yapmalı: **memnun satıcıdan açıkça yönlendirme istemek.** İstenmeyen yönlendirme gelmez.
+</Aside>
+
+### 4. İçerik ve arama döngüsü <Tag tone="warn">Öncelik 4</Tag>
+
+<dl class="ip-kv">
+  <dt>Girdi</dt><dd>Gerçek talepler ve ürün verisi</dd>
+  <dt>Eylem</dt><dd>Kategori ve ürün sayfaları yayınlanır</dd>
+  <dt>Çıktı</dt><dd>Arama motorundan nitelikli trafik</dd>
+  <dt>Pekiştirme</dt><dd>Trafik yeni talep üretir, yeni talep yeni içerik üretir</dd>
+  <dt>Bugün çalışır mı</dt><dd><Tag tone="warn">Kısmen</Tag> — 3-6 ayda sonuç verir, sabır gerektirir</dd>
+</dl>
+
+## Döngülerin bağlanışı
+
+<Figure title="Dört döngünün birbirini beslemesi" caption="Talep döngüsü motoru çalıştırır; kanıt döngüsü hızlandırır; yönlendirme ve içerik döngüleri maliyeti düşürür.">
+  <svg slot="svg" class="ip-svg" viewBox="0 0 660 340" width="660" height="340" role="img" aria-labelledby="dongu2">
+    <title id="dongu2">Büyüme döngüleri diyagramı</title>
+
+    <rect class="d-box-accent" x="230" y="130" width="200" height="70" rx="10"/>
+    <text x="330" y="158" text-anchor="middle" font-size="14" font-weight="700">TAMAMLANMIŞ</text>
+    <text x="330" y="180" text-anchor="middle" font-size="14" font-weight="700">İŞLEM</text>
+
+    <rect class="d-box" x="40" y="30" width="180" height="60" rx="8"/>
+    <text x="130" y="55" text-anchor="middle" font-size="13" font-weight="700">Talep döngüsü</text>
+    <text x="130" y="75" text-anchor="middle" font-size="11.5" class="d-muted">Talep topla, satıcıya götür</text>
+
+    <rect class="d-box" x="440" y="30" width="180" height="60" rx="8"/>
+    <text x="530" y="55" text-anchor="middle" font-size="13" font-weight="700">Kanıt döngüsü</text>
+    <text x="530" y="75" text-anchor="middle" font-size="11.5" class="d-muted">Hikâyeyi yaz, satışta kullan</text>
+
+    <rect class="d-box" x="40" y="240" width="180" height="60" rx="8"/>
+    <text x="130" y="265" text-anchor="middle" font-size="13" font-weight="700">Yönlendirme</text>
+    <text x="130" y="285" text-anchor="middle" font-size="11.5" class="d-muted">Komşusuna anlat</text>
+
+    <rect class="d-box" x="440" y="240" width="180" height="60" rx="8"/>
+    <text x="530" y="265" text-anchor="middle" font-size="13" font-weight="700">İçerik ve arama</text>
+    <text x="530" y="285" text-anchor="middle" font-size="11.5" class="d-muted">Sayfa yayınla, trafik al</text>
+
+    <path class="d-line-accent" d="M220 70 L250 128" marker-end="url(#bd)"/>
+    <path class="d-line-accent" d="M420 140 L448 92" marker-end="url(#bd)"/>
+    <path class="d-line-accent" d="M250 200 L220 246" marker-end="url(#bd)"/>
+    <path class="d-line-accent" d="M420 190 L448 240" marker-end="url(#bd)"/>
+    <path class="d-line d-dash" d="M130 240 V90" marker-end="url(#bd2)"/>
+    <path class="d-line d-dash" d="M530 240 V92" marker-end="url(#bd2)"/>
+
+    <defs>
+      <marker id="bd" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+        <path d="M0 0 L9 4.5 L0 9 z" fill="var(--d-accent)"/>
+      </marker>
+      <marker id="bd2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+        <path d="M0 0 L9 4.5 L0 9 z" fill="currentColor" class="d-muted"/>
+      </marker>
+    </defs>
+  </svg>
+
+  <div slot="alt">
+    Merkezde vurgulu "TAMAMLANMIŞ İŞLEM" kutusu vardır. Sol üstte Talep döngüsü (talep topla,
+    satıcıya götür) merkeze ok gönderir. Merkezden sağ üstteki Kanıt döngüsüne (hikâyeyi yaz,
+    satışta kullan) ok gider. Merkezden sol alttaki Yönlendirme (komşusuna anlat) ve sağ alttaki
+    İçerik ve arama (sayfa yayınla, trafik al) kutularına oklar gider. Yönlendirme ve içerik
+    kutularından yukarıdaki talep ve kanıt döngülerine kesikli geri besleme okları vardır.
+  </div>
+</Figure>
+
+## Bugün kurulamaz döngüler
+
+Dürüstlük gereği, işe yaramayacakların listesi:
+
+| Döngü | Neden bugün çalışmaz |
+| ----- | -------------------- |
+| Viral döngü | B2B'de kullanıcı sayısı az, paylaşım davranışı yok |
+| Değerlendirme döngüsü | 5 işlemde yıldız puanı anlamsız |
+| Veri döngüsü | Öneri motoru için yeterli veri yok |
+| Topluluk döngüsü | Kendi kendine dönen topluluk, önce değer ister |
+| Ücretli reklam döngüsü | Likidite kurulmadan dönüşüm çok düşük |
+| Ortaklık döngüsü | Ortak, gösterecek kanıt ister |
+
+<Aside type="caution" title="Zamanlama kuralı">
+Bu döngüler yanlış değil, **erken**. Her biri için bir açılış eşiği tanımlayın:
+"Değerlendirme sistemi, 50. işlemden sonra açılır." Böylece hem unutulmaz hem erken açılmaz.
+</Aside>
+
+## Döngü sağlığı ölçümü
+
+Her döngü için tek bir sağlık göstergesi tanımlayın:
+
+| Döngü | Sağlık göstergesi | Hedef |
+| ----- | ----------------- | ----- |
+| Talep | Haftalık yeni alım talebi | Artan |
+| Kanıt | Yazıya dökülen işlem hikâyesi oranı | %80 |
+| Yönlendirme | Yönlendirmeyle gelen yeni kullanıcı oranı | %20 |
+| İçerik | Aramadan gelen nitelikli talep | Artan |
+
+<Aside type="tip">
+Bir döngünün göstergesi üç hafta üst üste düşüyorsa döngü kırılmıştır. Nedenini aramak,
+yeni bir döngü kurmaktan önce gelir.
+</Aside>

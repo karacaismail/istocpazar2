@@ -1,0 +1,25 @@
+---
+/**
+ * Erişilebilir statik SVG diyagram sarmalayıcı.
+ * Mermaid kullanılmaz. Her diyagramın metinsel karşılığı zorunludur.
+ */
+interface Props {
+  title: string;
+  caption?: string;
+  altTextTitle?: string;
+}
+
+const { title, caption, altTextTitle = 'Diyagramın metinsel karşılığı' } = Astro.props;
+---
+
+<figure class="ip-figure">
+  <div class="ip-figure__scroll">
+    <slot name="svg" />
+  </div>
+  {caption && <figcaption class="ip-figure__caption">{caption}</figcaption>}
+  <details class="ip-figure__alt">
+    <summary>{altTextTitle}</summary>
+    <slot name="alt" />
+  </details>
+  <span class="sr-only">{title}</span>
+</figure>

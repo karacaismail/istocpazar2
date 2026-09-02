@@ -1,0 +1,79 @@
+---
+title: Deney portföyü
+description: İlk 90 günde koşulacak deneylerin listesi, öncelik sırası, maliyeti ve hangi varsayımı test ettiği.
+kanit: cikarim
+guven: orta
+tur: operasyon
+faz: faz-2
+sidebar:
+  order: 1
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Portföy mantığı
+
+Deneyler tek tek değil, **portföy olarak** yönetilir. Portföyün dengesi:
+
+| Tip | Pay | Amaç |
+| --- | --- | ---- |
+| Ucuz ve hızlı öğrenme | %60 | Varsayımları elemek |
+| Orta maliyetli doğrulama | %30 | Modeli test etmek |
+| Pahalı bahis | %10 | Büyük soruyu cevaplamak |
+
+<Aside type="caution" title="Aynı anda kaç deney">
+Üç kişilik ekipte aynı anda **en fazla 2 deney** koşulmalıdır. Daha fazlası hem ölçümü
+bozar hem kimsenin asıl işini yapmasına izin vermez.
+</Aside>
+
+## Öncelik sırası
+
+`Öncelik = (Yanlış çıkarsa etki) x (Belirsizlik) / (Maliyet)`
+
+| # | Deney | Test ettiği varsayım | Maliyet | Süre | Öncelik |
+| - | ----- | -------------------- | ------- | ---- | ------- |
+| D1 | 20 alıcı davranış görüşmesi | V1, H5 | Çok düşük | 2 hafta | <Tag tone="ok">1</Tag> |
+| D2 | 20 satıcı motivasyon görüşmesi | V2, H1, H2 | Çok düşük | 2 hafta | <Tag tone="ok">2</Tag> |
+| D3 | Kategori derinlik sayımı | V3, H8 | Düşük | 1 hafta | <Tag tone="ok">3</Tag> |
+| D4 | "Sizin yerinize yükleyelim" teklifi | V7, H3 | Düşük | 2 hafta | <Tag tone="ok">4</Tag> |
+| D5 | Hazır talep ile satıcı ikna testi | V2 | Düşük | 3 hafta | <Tag tone="ok">5</Tag> |
+| D6 | Kurucu satıcı + eşzamanlı taahhüt | Mekanizma | Düşük | 4 hafta | <Tag tone="warn">6</Tag> |
+| D7 | 2 saatlik cevap vaadi pilotu | Kuyruk etkisi | Orta | 4 hafta | <Tag tone="warn">7</Tag> |
+| D8 | Kurumsal iş birliği geliri testi | Gelir modeli | Düşük | 6 hafta | <Tag tone="warn">8</Tag> |
+| D9 | Gizli fiyat vs açık fiyat | V5, H2 | Orta | 6 hafta | <Tag tone="warn">9</Tag> |
+| D10 | RFQ vs katalog dönüşümü | V8, H11 | Orta | 8 hafta | <Tag tone="warn">10</Tag> |
+
+## Zamanlama
+
+| Hafta | Koşan deneyler |
+| ----- | -------------- |
+| 1-2 | D1, D3 |
+| 3-4 | D2, D4 |
+| 5-6 | D5 |
+| 7-8 | D6, D8 |
+| 9-12 | D7, D9 |
+| 13+ | D10 |
+
+<Aside type="tip" title="İlk üç deneyin toplam maliyeti">
+D1, D2 ve D3'ün toplam maliyeti **neredeyse sıfırdır** ve rehberdeki en kritik belirsizliklerin
+çoğunu çözer. Hiçbir bütçe, hiçbir yazılım, hiçbir izin gerekmez; yalnızca 40 görüşme ve
+bir sayım. Bunlar yapılmadan hiçbir karar alınmamalıdır.
+</Aside>
+
+## Portföy sağlığı kontrolü
+
+Her ay sorulur:
+
+| Soru | Sağlıklı cevap |
+| ---- | -------------- |
+| Kaç deney tamamlandı | En az 2 |
+| Kaç varsayım çürütüldü | En az 1 |
+| Hiçbir varsayım çürütülmediyse | Deneyler yeterince keskin değil |
+| Kaç deney süresini aştı | 0 |
+| Kaç deney durdurma eşiğini uyguladı | Gerekense uygulanmış |
+
+<Aside type="danger" title="Hiçbir varsayımın çürütülmemesi kötü haberdir">
+Deneylerin tamamı varsayımları doğruluyorsa, ya çok şanslısınız ya da deneyler gerçek bir
+test değil. İyi bir deney portföyünde varsayımların **en az üçte biri çürür**.
+</Aside>

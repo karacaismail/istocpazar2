@@ -1,0 +1,150 @@
+---
+title: Kural kütüphanesi
+description: İstoc'un bugün uygulayabileceği somut olay-koşul-aksiyon kuralları, sahipleri ve ölçütleri.
+kanit: cikarim
+guven: orta
+tur: operasyon
+faz: faz-2
+sidebar:
+  order: 4
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+Aşağıdaki kurallar bugünden uygulanabilir. Her biri insan eliyle işletilir; otomasyon
+[eşiklere bağlıdır](/istocpazar2/karar-sistemi/eca-plus/).
+
+## Grup A — Likidite koruma kuralları
+
+### K-01 Cevapsız talep
+
+<dl class="ip-kv">
+  <dt>Olay</dt><dd>Bir alım talebi 24 saattir cevapsız</dd>
+  <dt>Koşul</dt><dd>Talep nitelikli ve kategoride en az 1 uygun satıcı var</dd>
+  <dt>Aksiyon</dt><dd>Masa Başı uygun satıcıları telefonla arar; hiçbiri cevap veremiyorsa alıcıya durum bildirilir ve alternatif önerilir</dd>
+  <dt>Sahip</dt><dd>Masa Başı</dd>
+  <dt>Ölçüm</dt><dd>Cevapsız talep sayısı (hedef: 0)</dd>
+</dl>
+
+### K-02 Kapasite kapısı
+
+<dl class="ip-kv">
+  <dt>Olay</dt><dd>Bir kategoriye alıcı çekme fikri gündeme geldi</dd>
+  <dt>Koşul</dt><dd>O kategoride aktif satıcı sayısı 20'nin altında</dd>
+  <dt>Aksiyon</dt><dd>Talep artıran aksiyon <strong>başlatılmaz</strong>; önce arz kurulur</dd>
+  <dt>Sahip</dt><dd>Yönetim</dd>
+  <dt>Ölçüm</dt><dd>Arama doluluk oranı</dd>
+</dl>
+
+### K-03 Satıcı sessizliği
+
+<dl class="ip-kv">
+  <dt>Olay</dt><dd>Aktif satıcı 14 gündür giriş yapmadı veya talebe cevap vermedi</dd>
+  <dt>Koşul</dt><dd>Satıcı son 30 günde en az 1 talep almış</dd>
+  <dt>Aksiyon</dt><dd>Saha ziyaret eder; sebep öğrenilir ve CRM'e yazılır</dd>
+  <dt>Sahip</dt><dd>Saha</dd>
+  <dt>Ölçüm</dt><dd>14 gün aktiflik oranı</dd>
+</dl>
+
+### K-04 Yeni satıcı sihirli anı
+
+<dl class="ip-kv">
+  <dt>Olay</dt><dd>Yeni satıcı kaydoldu</dd>
+  <dt>Koşul</dt><dd>48 saat içinde hiç nitelikli talep görmedi</dd>
+  <dt>Aksiyon</dt><dd>Ekip elle uygun talep bulur ve satıcıya yönlendirir</dd>
+  <dt>Sahip</dt><dd>Masa Başı</dd>
+  <dt>Ölçüm</dt><dd>Satıcı ilk talep süresi</dd>
+</dl>
+
+## Grup B — Kalite ve güven kuralları
+
+### K-05 Ölü ilan temizliği
+
+<dl class="ip-kv">
+  <dt>Olay</dt><dd>Bir ilan 30 gündür güncellenmedi</dd>
+  <dt>Koşul</dt><dd>Satıcıya hatırlatma yapıldı, yanıt gelmedi</dd>
+  <dt>Aksiyon</dt><dd>İlan pasife alınır, arama sonuçlarından çıkarılır</dd>
+  <dt>Sahip</dt><dd>Masa Başı</dd>
+  <dt>Ölçüm</dt><dd>Güncel ilan oranı</dd>
+</dl>
+
+### K-06 Doğrulanmamış satıcı
+
+<dl class="ip-kv">
+  <dt>Olay</dt><dd>Satıcı kaydoldu ama belgeleri eksik</dd>
+  <dt>Koşul</dt><dd>7 gün geçti</dd>
+  <dt>Aksiyon</dt><dd>Görünürlük kısıtlanır; "doğrulanmamış" ibaresi gösterilir</dd>
+  <dt>Sahip</dt><dd>Masa Başı</dd>
+  <dt>Ölçüm</dt><dd>Doğrulanmış satıcı oranı</dd>
+</dl>
+
+### K-07 İlk uyuşmazlık
+
+<dl class="ip-kv">
+  <dt>Olay</dt><dd>Bir işlemde taraflar arasında sorun çıktı</dd>
+  <dt>Koşul</dt><dd>Herhangi bir tutar</dd>
+  <dt>Aksiyon</dt><dd>Aynı gün her iki tarafla ayrı ayrı görüşülür; yazılı politika uygulanır; sonuç kayda geçer</dd>
+  <dt>Sahip</dt><dd>Organizatör</dd>
+  <dt>Onay</dt><dd>Tazmin söz konusuysa kurucu onayı</dd>
+</dl>
+
+## Grup C — Öğrenme kuralları
+
+### K-08 Tekrar eden itiraz
+
+<dl class="ip-kv">
+  <dt>Olay</dt><dd>Aynı itiraz 3. kez duyuldu</dd>
+  <dt>Koşul</dt><dd>Farklı kişilerden</dd>
+  <dt>Aksiyon</dt><dd>İtiraz kütüphanesine eklenir, aşılama içeriği üretilir (L2)</dd>
+  <dt>Sahip</dt><dd>Masa Başı</dd>
+  <dt>Ölçüm</dt><dd>İtirazın tekrar sıklığı (düşmeli)</dd>
+</dl>
+
+### K-09 Boş arama
+
+<dl class="ip-kv">
+  <dt>Olay</dt><dd>Bir arama terimi sonuçsuz dönüyor</dd>
+  <dt>Koşul</dt><dd>Aynı terim 5 kez arandı</dd>
+  <dt>Aksiyon</dt><dd>Terim, hedef satıcı listesine ürün ihtiyacı olarak eklenir</dd>
+  <dt>Sahip</dt><dd>Masa Başı</dd>
+  <dt>Ölçüm</dt><dd>Arama doluluk oranı</dd>
+</dl>
+
+### K-10 Tamamlanan işlem
+
+<dl class="ip-kv">
+  <dt>Olay</dt><dd>Bir işlem tamamlandı</dd>
+  <dt>Koşul</dt><dd>Her işlem</dd>
+  <dt>Aksiyon</dt><dd>7 gün içinde her iki tarafla görüşülür; izinli hikâye yazıya dökülür; kanıt dosyasına eklenir; yönlendirme istenir</dd>
+  <dt>Sahip</dt><dd>Saha</dd>
+  <dt>Ölçüm</dt><dd>Hikâyeye dönüşen işlem oranı (hedef %80)</dd>
+</dl>
+
+## Grup D — Dış olay kuralları
+
+### K-11 Sektörel grupta İstoc konuşuluyor
+
+<dl class="ip-kv">
+  <dt>Olay</dt><dd>Bir WhatsApp veya sosyal grupta İstoc'tan bahsedildi</dd>
+  <dt>Koşul</dt><dd>Olumsuz ve gerçek dışı bilgi içeriyorsa</dd>
+  <dt>Aksiyon</dt><dd>Grupta tartışmaya girilmez; ilgili kişiyle <strong>özel</strong> iletişim kurulur (L3)</dd>
+  <dt>Sahip</dt><dd>Organizatör</dd>
+  <dt>Not</dt><dd>Amplifikasyon riski yüksektir; grupta cevap vermek olayı büyütür</dd>
+</dl>
+
+### K-12 Rakip hamlesi
+
+<dl class="ip-kv">
+  <dt>Olay</dt><dd>Bir rakip kampanya, indirim veya yeni özellik açıkladı</dd>
+  <dt>Koşul</dt><dd>Bizim hedef kitlemizi etkiliyorsa</dd>
+  <dt>Aksiyon</dt><dd>Varsayılan: <strong>L0/L1 — kaydet ve izle.</strong> Aynı araçla misilleme yapılmaz</dd>
+  <dt>Sahip</dt><dd>Organizatör</dd>
+  <dt>Not</dt><dd>Ortogonal cevap kuralı: indirime indirimle değil, güvence veya hızla cevap verilir</dd>
+</dl>
+
+<Aside type="tip" title="Kütüphanenin bakımı">
+Her kural aylık gözden geçirilir. Üç ay boyunca hiç tetiklenmeyen kural kaldırılır;
+haftada birden fazla tetiklenen kural otomasyon adayıdır. Kütüphane büyüdükçe değil,
+**işe yaradıkça** değerlidir.
+</Aside>

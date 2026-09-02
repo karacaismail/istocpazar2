@@ -1,0 +1,93 @@
+---
+title: Sihirli an
+description: Satıcı ve alıcı için "bu işe yarıyor" dedirten ilk anın tanımı, ölçümü ve tasarımı.
+kanit: uzman-gorusu
+guven: orta
+tur: harita
+faz: her-ikisi
+sidebar:
+  order: 5
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Neden bu kavram belirleyici
+
+Bir kullanıcının kalıp kalmayacağını belirleyen şey, kayıt ekranı veya tanıtım değil;
+**değeri ilk kez somut olarak hissettiği andır**. Bu an tasarlanmamışsa, kullanıcı kaydolur,
+bekler, hiçbir şey hissetmez ve gider.
+
+<Aside type="danger" title="İstoc'un mevcut durumu">
+Bugün İstoc'ta satıcı için sihirli an **tanımlı değildir**. Satıcı kaydolur, 40 ürün yükler
+ve hiçbir şey olmaz. Emek harcanmış, karşılığı gelmemiştir. Bu, satıcı kaybının tek başına
+en büyük sebebidir. Ayrıntı: [Problem haritası](/istocpazar2/teshis/problem-haritasi/) P3.
+</Aside>
+
+## Satıcı için sihirli an
+
+| Aday an | Ne kadar güçlü | Ne kadar sürede yaşanmalı |
+| ------- | -------------- | ------------------------- |
+| Kaydolmak | <Tag tone="risk">Zayıf</Tag> | — |
+| Ürünlerini yüklemek | <Tag tone="risk">Zayıf</Tag> — emek, karşılık yok | — |
+| İlk görüntülenmeyi görmek | <Tag tone="warn">Orta</Tag> | İlk 24 saat |
+| **İlk nitelikli alım talebini almak** | <Tag tone="ok">Çok güçlü</Tag> | **İlk 48 saat** |
+| İlk siparişi almak | <Tag tone="ok">En güçlü</Tag> | İlk 14 gün |
+
+<Aside type="tip" title="Tasarım kuralı">
+**Hiçbir satıcı, ilk 48 saat içinde en az bir nitelikli alım talebi görmeden bırakılmamalıdır.**
+Talep organik olarak gelmiyorsa, ekip elle bulup getirir. Bu "hile" değil, concierge modelin
+tanımıdır: elle yapılan şey, sonra otomatikleştirilecek olan şeydir.
+</Aside>
+
+### Satıcının ilk 14 günü
+
+| Gün | Ne olmalı | Kim sağlar |
+| --- | --------- | ---------- |
+| 0 | Kayıt tamamlandı, katalog ekip tarafından yüklendi | Masa Başı |
+| 1-2 | En az 1 nitelikli alım talebi ulaştı | Saha / Organizatör |
+| 3 | İlk teklifini verdi | Saha destekli |
+| 7 | En az 3 talep görmüş oldu | Ekip |
+| 14 | İlk işlemi tamamladı veya net sebebini biliyor | Ekip |
+
+## Alıcı için sihirli an
+
+| Aday an | Ne kadar güçlü | Süre |
+| ------- | -------------- | ---- |
+| Kaydolmak | <Tag tone="risk">Zayıf</Tag> | — |
+| Arama sonucu görmek | <Tag tone="warn">Orta</Tag> | İlk ziyaret |
+| Talep göndermek | <Tag tone="warn">Orta</Tag> | İlk ziyaret |
+| **2 saat içinde 3 gerçek teklif almak** | <Tag tone="ok">Çok güçlü</Tag> | **İlk 2 saat** |
+| Teklifleri yan yana karşılaştırmak | <Tag tone="ok">Güçlü</Tag> | Aynı gün |
+| Sorunsuz teslim almak | <Tag tone="ok">En güçlü</Tag> | İlk işlem |
+
+<Aside type="caution" title="Alıcı tarafında tek kritik sayı">
+**İlk teklife kadar geçen süre.** Bu süre saatlerden günlere çıktığında alıcı telefonu açar
+ve tanıdığını arar. Rakip Alibaba değil, o telefondur. Ayrıntı:
+[Geniş rekabet haritası](/istocpazar2/rekabet/rekabet-haritasi/).
+</Aside>
+
+## Sihirli anı ölçmek
+
+| Metrik | Tanım | Hedef |
+| ------ | ----- | ----- |
+| Satıcı ilk talep süresi | Kayıttan ilk nitelikli talebe kadar geçen süre | 48 saat altı |
+| Satıcı 14 gün aktiflik | 14. günde hâlâ giriş yapan satıcı oranı | %60 üstü |
+| Alıcı ilk teklif süresi (medyan) | Talepten ilk teklife | 2 saat altı |
+| Alıcı teklif sayısı | Talep başına gelen teklif | 3 üstü |
+| Alıcı ikinci talep oranı | 30 gün içinde ikinci talep gönderen alıcı | %40 üstü |
+
+## Sihirli anı öne çekmenin yolları
+
+| Yöntem | Nasıl | Maliyet |
+| ------ | ----- | ------- |
+| Kayıttan önce talep göster | "Sizin kategorinizde 12 bekleyen talep var" ekranı | Düşük |
+| Katalogu ekip yüklesin | Satıcının emeğini sıfırla | Orta (emek) |
+| Talebi elle yönlendir | Yeni satıcıya ilk 48 saatte talep ata | Düşük |
+| Cevap süresi vaadi | 2 saatlik cevap taahhüdü | Düşük |
+| İlk işlemi ekip kapatsın | Concierge kapanış | Orta |
+
+<Aside type="tip" title="En ucuz ve en etkili tek hamle">
+"Kayıttan önce bekleyen talebi göstermek." Satıcı daha kaydolmadan değeri görür.
+Bu ekran, bütün satış sunumundan etkilidir ve yalnızca gerçek talep verisi gerektirir.
+</Aside>

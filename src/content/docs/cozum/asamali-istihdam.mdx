@@ -1,0 +1,199 @@
+---
+title: Aşamalı istihdam ve kapılar
+description: Üç personelin üç ay içinde hangi sırayla işe alınacağı, her işe alımın hangi kanıta bağlandığı ve kapı geçilemezse ne yapılacağı.
+kanit: cikarim
+guven: orta
+tur: karar
+faz: faz-2
+sidebar:
+  order: 4
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import Figure from '@components/Figure.astro';
+import Tag from '@components/Tag.astro';
+
+## Neden aşamalı
+
+Üç kişiyi aynı anda işe almak, üç şeyi aynı anda varsaymak demektir: kategorinin doğru olduğunu,
+modelin çalıştığını ve gelirin geleceğini. Üçü de henüz kanıtlanmadı.
+[Kendini ödeyen model](/istocpazar2/cozum/kendini-odeyen-model/) sayfasındaki hesap, eşzamanlı
+istihdamda nakit çukurunun **6. ayda 393 bin TL**'ye kadar indiğini gösteriyor. Aşamalı
+istihdam bu çukuru sığlaştırır ve her adımı bir kanıta bağlar.
+
+<Aside type="tip" title="Kapı mantığı">
+Her işe alım bir **kapıdır**. Kapı, önceki ayın kanıtı gelmeden açılmaz. Bu, personeli
+cezalandırmak için değil, **yanlış kategoriye üç maaş bağlamamak** içindir.
+</Aside>
+
+## Önerilen sıra
+
+<Figure title="Üç aylık aşamalı istihdam ve kapılar" caption="Her kapı, bir sonraki işe alımın ön koşuludur. Kapı geçilemezse yeni işe alım yapılmaz; süre uzatılır veya kategori değiştirilir.">
+  <svg slot="svg" class="ip-svg" viewBox="0 0 760 330" width="760" height="330" role="img" aria-labelledby="istihdam-baslik">
+    <title id="istihdam-baslik">Aşamalı istihdam zaman çizelgesi</title>
+
+    <path class="d-line" d="M40 60 H720"/>
+    <circle cx="60" cy="60" r="6" fill="var(--d-accent)"/>
+    <circle cx="240" cy="60" r="6" fill="var(--d-accent)"/>
+    <circle cx="440" cy="60" r="6" fill="var(--d-accent)"/>
+    <circle cx="640" cy="60" r="6" fill="var(--d-accent)"/>
+
+    <text x="60" y="44" text-anchor="middle" font-size="12" font-weight="700">Kapı 0</text>
+    <text x="240" y="44" text-anchor="middle" font-size="12" font-weight="700">Kapı 1</text>
+    <text x="440" y="44" text-anchor="middle" font-size="12" font-weight="700">Kapı 2</text>
+    <text x="640" y="44" text-anchor="middle" font-size="12" font-weight="700">Kapı 3</text>
+
+    <text x="60" y="82" text-anchor="middle" font-size="11.5" class="d-muted">Başlangıç</text>
+    <text x="240" y="82" text-anchor="middle" font-size="11.5" class="d-muted">1. ay sonu</text>
+    <text x="440" y="82" text-anchor="middle" font-size="11.5" class="d-muted">2. ay sonu</text>
+    <text x="640" y="82" text-anchor="middle" font-size="11.5" class="d-muted">3. ay sonu</text>
+
+    <rect class="d-box-accent" x="70" y="106" width="180" height="60" rx="8"/>
+    <text x="160" y="130" text-anchor="middle" font-size="13" font-weight="700">1. Organizatör</text>
+    <text x="160" y="150" text-anchor="middle" font-size="11.5" class="d-muted">Talep + iş birliği + saha</text>
+
+    <rect class="d-box-accent" x="270" y="106" width="180" height="60" rx="8"/>
+    <text x="360" y="130" text-anchor="middle" font-size="13" font-weight="700">2. Masa Başı</text>
+    <text x="360" y="150" text-anchor="middle" font-size="11.5" class="d-muted">Veri + randevu + takip</text>
+
+    <rect class="d-box-accent" x="470" y="106" width="180" height="60" rx="8"/>
+    <text x="560" y="130" text-anchor="middle" font-size="13" font-weight="700">3. Saha / Satış</text>
+    <text x="560" y="150" text-anchor="middle" font-size="11.5" class="d-muted">Kapanış + ölçekleme</text>
+
+    <rect class="d-box" x="70" y="186" width="180" height="52" rx="8"/>
+    <text x="160" y="208" text-anchor="middle" font-size="11.5">20 alıcı görüşmesi</text>
+    <text x="160" y="226" text-anchor="middle" font-size="11.5">10 gerçek talep</text>
+
+    <rect class="d-box" x="270" y="186" width="180" height="52" rx="8"/>
+    <text x="360" y="208" text-anchor="middle" font-size="11.5">İlk işlem tamamlandı</text>
+    <text x="360" y="226" text-anchor="middle" font-size="11.5">İlk hizmet geliri</text>
+
+    <rect class="d-box" x="470" y="186" width="180" height="52" rx="8"/>
+    <text x="560" y="208" text-anchor="middle" font-size="11.5">Aylık gelir eşiği</text>
+    <text x="560" y="226" text-anchor="middle" font-size="11.5">Tekrar eden işlem</text>
+
+    <text x="40" y="216" text-anchor="end" font-size="11.5" class="d-muted">Kanıt</text>
+
+    <rect class="d-box" x="70" y="262" width="580" height="46" rx="8"/>
+    <text x="360" y="290" text-anchor="middle" font-size="12.5">Kapı geçilemezse: yeni işe alım yok. Süre uzat, kategori değiştir veya durdur.</text>
+  </svg>
+
+  <div slot="alt">
+    Yatay bir zaman çizelgesi üzerinde dört kapı: Kapı 0 başlangıç, Kapı 1 birinci ay sonu,
+    Kapı 2 ikinci ay sonu, Kapı 3 üçüncü ay sonu. Kapıların altında sırayla işe alınacak roller:
+    1. Organizatör (talep, iş birliği ve saha), 2. Masa Başı (veri, randevu ve takip),
+    3. Saha ve Satış (kapanış ve ölçekleme). Her rolün altında geçilmesi gereken kanıt kutusu
+    vardır: 20 alıcı görüşmesi ve 10 gerçek talep; ilk işlem tamamlandı ve ilk hizmet geliri;
+    aylık gelir eşiği ve tekrar eden işlem. En altta: Kapı geçilemezse yeni işe alım yok;
+    süre uzat, kategori değiştir veya durdur.
+  </div>
+</Figure>
+
+## Neden bu sıra
+
+<Steps>
+
+1. **Önce Organizatör.** Birinci ayda ortada kanıt yoktur; kapıdan girip konuşabilen, kurumsal
+   ilişki kurabilen ve hem talep hem iş birliği getirebilen kıdemli bir kişi gerekir. Beyaz
+   tahtada bu rol zaten **"master"** olarak işaretlenmiş ve saha görevleri de ona bağlanmış;
+   bu tespit doğrudur. Ayrıca **likiditeden bağımsız gelir** (kurumsal iş birliği, eğitim,
+   sektörel toplantı) yalnızca bu rolden çıkar — ilk aylarda kasaya giren tek para budur.
+
+2. **Sonra Masa Başı.** İkinci ayda organizatörün darboğazı belli olur: veri, liste, randevu,
+   takip ve CRM işleri saha zamanını yiyordur. Masa başı bu yükü alır ve organizatörün
+   kapasitesini iki katına çıkarır. Bu rol ayrıca hizmet gelirinin (katalog yükleme, içerik,
+   Canva ile görsel) üreticisidir.
+
+3. **En son Saha / Satış.** Üçüncü ayda artık kanıt vardır: gerçek talep, gerçek satıcı,
+   ilk işlem. Bu kanıtla satış yapmak, sıfırdan satış yapmaktan kat kat kolaydır. Yeni gelen
+   kişi ilk günden üretken olur ve öğrenme süresi kısalır.
+
+</Steps>
+
+<Aside type="caution" title="Alternatif sıra ne zaman doğru olur">
+Elinizde hâlihazırda güçlü bir **kapanışçı** varsa (sektörü tanıyan, satış geçmişi olan),
+sıra tersine çevrilebilir: önce Saha, sonra Organizatör, sonra Masa Başı. Belirleyici olan
+unvan değil, **birinci ayda kasaya para veya kanıt getirebilecek kişinin kim olduğudur**.
+</Aside>
+
+## Kapı ölçütleri
+
+### Kapı 0 — İşe alım ilanı yayınlanmadan önce
+
+| Ölçüt | Durum |
+| ----- | ----- |
+| Wedge cümlesi yazılı ve onaylı (kategori + coğrafya + persona) | Zorunlu |
+| 90 gün başarı ve durdurma eşiği yazılı | Zorunlu |
+| Toplu mesaj politikası yazılı olarak izinli modele çevrilmiş | Zorunlu |
+| Nakit dayanma gücü hesaplanmış (en az 6 ay) | Zorunlu |
+| CRM ve takip aracı seçilmiş | Zorunlu |
+
+<Aside type="danger">
+Kapı 0 geçilmeden ilan yayınlanmamalıdır. Kategori belirsizken işe alınan kişi, ilk ayını
+ne yapacağını sormakla geçirir.
+</Aside>
+
+### Kapı 1 — 1. ay sonu (Organizatör'ün ilk ayı)
+
+| Ölçüt | Hedef | Kaynak |
+| ----- | ----- | ------ |
+| Nitelikli alıcı görüşmesi | 20 | Organizatör |
+| Yazılı gerçek alım talebi | 10 | Organizatör |
+| İlgilenen satıcı (yüz yüze görüşülmüş) | 15 | Organizatör |
+| Kurumsal iş birliği görüşmesi başlatılan kurum | 3 | Organizatör |
+| İmzalanan iş birliği | 1 | Organizatör |
+
+**Geçemezse:** Masa Başı işe alınmaz. Bir ay daha verilir. İkinci ayda da geçilemezse
+kategori değiştirilir.
+
+### Kapı 2 — 2. ay sonu (Masa Başı eklendikten sonra)
+
+| Ölçüt | Hedef |
+| ----- | ----- |
+| Tamamlanmış ilk işlem | En az 1 |
+| Toplanan alım talebi (kümülatif) | 30 |
+| Teklif cevap oranı | %70 |
+| İlk hizmet geliri (katalog/görsel/içerik) | En az 1 satış |
+| Aktif satıcı (talebe cevap veren) | 12 |
+
+**Geçemezse:** Saha işe alınmaz. Mevcut iki kişiyle bir ay daha denenir.
+
+### Kapı 3 — 3. ay sonu (tam kadro kararı)
+
+| Ölçüt | Hedef |
+| ----- | ----- |
+| Aylık toplam gelir | Bir kişilik maliyeti karşılıyor |
+| Tamamlanmış işlem (kümülatif) | 15 |
+| Tekrar eden alıcı | En az 3 |
+| Aktif satıcı | 20 |
+| İlk cevap süresi (medyan) | 4 saatin altında |
+
+**Geçemezse:** Ölçekleme durdurulur, [durdurma ölçütlerine](/istocpazar2/olcum/kill-scale/) bakılır.
+
+## Maliyet karşılaştırması
+
+| Senaryo | 1. ay | 2. ay | 3. ay | 6. ay kümülatif |
+| ------- | ----- | ----- | ----- | --------------- |
+| Eşzamanlı 3 kişi | 180k | 180k | 180k | 1.080k |
+| Aşamalı (önerilen) | 60k | 120k | 180k | 900k |
+| **Fark** | | | | **180k tasarruf** |
+
+Tasarrufun kendisinden daha değerli olan şey, **her ay bir çıkış noktası bulunmasıdır**.
+Eşzamanlı modelde yanlış anlaşıldığında üç kişi birden etkilenir.
+
+## İşe alım öncesi hazırlık (beyaz tahtadan)
+
+Beyaz tahtadaki saha sütununda yer alan hazırlık listesi doğrudur ve Kapı 0'a aittir:
+
+| Madde | Kim | Ne zaman |
+| ----- | --- | -------- |
+| Mekân bul | Yönetim | Kapı 0 |
+| Personel bul | Yönetim | Kapı 0 |
+| Onboard planı | Yönetim | Kapı 0 |
+| Gereksinimler (ekipman, hat, hesaplar, e-posta) | Yönetim / IT | Kapı 0 |
+| Oryantasyon | Yönetim | İlk 3 gün |
+| Dokümantasyon ve eğitim | Yönetim | İlk 2 hafta |
+| Görev listesi (task) | Yönetim | İlk gün |
+| Hedefler (KPI) | Yönetim | İlk gün |
+
+Ayrıntı: [İşe alım ve onboarding](/istocpazar2/organizasyon/ise-alim/).

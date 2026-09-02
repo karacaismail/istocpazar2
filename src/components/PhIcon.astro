@@ -1,0 +1,58 @@
+---
+/**
+ * Yerel Phosphor SVG ikonu.
+ * Kaynak: src/assets/icons/<name>.svg (vendor edilmiş; CDN, çalışma zamanı indirmesi veya emoji yok).
+ * SVG'ler derleme anında Vite tarafından ham metin olarak paketlenir.
+ */
+interface Props {
+  name: string;
+  size?: number;
+  label?: string;
+  class?: string;
+}
+
+const { name, size = 20, label, class: className } = Astro.props;
+
+const files = import.meta.glob('../assets/icons/*.svg', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
+
+const raw = files[`../assets/icons/${name}.svg`];
+
+if (raw === undefined) {
+  const available = Object.keys(files)
+    .map((k) => k.replace('../assets/icons/', '').replace('.svg', ''))
+    .sort()
+    .join(', ');
+  throw new Error(
+    `PhIcon: "${name}" ikonu bulunamadı. scripts/vendor-icons.mjs listesine ekleyip ` +
+      `\`node scripts/vendor-icons.mjs\` çalıştırın. Mevcut ikonlar: ${available}`
+  );
+}
+
+const inner = raw
+  .replace(/<\?xml[\s\S]*?\?>/g, '')
+  .replace(/<!--[\s\S]*?-->/g, '')
+  .replace(/^[\s\S]*?<svg[^>]*>/, '')
+  .replace(/<\/svg>\s*$/, '')
+  .replace(/fill="(?!none)[^"]*"/g, 'fill="currentColor"')
+  .trim();
+
+const decorative = label === undefined;
+const classes = ['ip-icon', className].filter(Boolean).join(' ');
+---
+
+<svg
+  class={classes}
+  width={size}
+  height={size}
+  viewBox="0 0 256 256"
+  fill="currentColor"
+  role={decorative ? 'presentation' : 'img'}
+  aria-hidden={decorative ? 'true' : undefined}
+  aria-label={decorative ? undefined : label}
+  focusable="false"
+  set:html={inner}
+/>

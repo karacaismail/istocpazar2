@@ -1,0 +1,98 @@
+---
+title: "Premortem: 30 ölüm nedeni"
+description: İstoc'un 2028'de başarısız olduğunu varsayarak geriye doğru üretilmiş 30 olası başarısızlık nedeni ve her birinin erken uyarı sinyali.
+kanit: cikarim
+guven: orta
+tur: harita
+faz: faz-1
+sidebar:
+  order: 4
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Yöntem
+
+Premortem, proje daha başlamadan "battığını varsayalım, neden battı?" sorusuyla yapılır.
+İnsan zihni, olmuş bir olayın sebebini bulmakta, olmamış bir riski öngörmekten çok daha
+başarılıdır. Bu yüzden premortem, klasik risk listesinden daha çok şey bulur.
+
+<Aside type="caution" title="Senaryo">
+Yıl 2028. İstoc.com kapandı. Ekip dağıldı. Şimdi geriye dönüp bakıyoruz: ne oldu?
+</Aside>
+
+## Strateji ve odak kaynaklı (1-7)
+
+| # | Neden | Erken uyarı sinyali | Önlem |
+| - | ----- | ------------------- | ----- |
+| 1 | Kategori kararı hiç verilmedi, her şeyi denedik | 60. günde hâlâ "genel" çalışılıyor | Kapı 0 zorunlu |
+| 2 | İlk kategoride eşiğe varmadan ikinciye geçildi | Kategori sayısı artıyor, işlem artmıyor | Yazılı genişleme kuralı |
+| 3 | Coğrafya çok geniş tutuldu, saha verimsizleşti | Ziyaret başına yol süresi artıyor | Blok bazlı rota |
+| 4 | "Alibaba'nın Türkiye'si" konumlandırması tutmadı | Alıcı vaadi anlamıyor | Telefona göre konumlandırma |
+| 5 | Wedge genişleyemeyen bir çıkmaz sokaktı | İkinci kategoriye geçiş imkânsız | Genişleyebilirlik testi |
+| 6 | Hedefler değişti, ekip yön kaybetti | Aylık hedef sık değişiyor | 90 gün sabitleme kuralı |
+| 7 | Kurucu her hafta yeni fikir getirdi | Ekip önceki işi bitirmeden yenisi geliyor | Tek çeyrek, tek hedef |
+
+## Likidite ve ürün kaynaklı (8-15)
+
+| # | Neden | Erken uyarı sinyali | Önlem |
+| - | ----- | ------------------- | ----- |
+| 8 | Satıcı toplandı ama alıcı gelmedi | Arz artıyor, talep sabit | Talep önce stratejisi |
+| 9 | Alıcı geldi, arama boş döndü, bir daha gelmedi | Arama doluluk oranı düşük | Kapasite kapısı kuralı |
+| 10 | Teklif talepleri cevapsız kaldı | Cevap oranı %70 altında | Günlük cevapsız talep kontrolü |
+| 11 | Cevap süresi günlere çıktı, alıcı telefona döndü | Medyan cevap süresi artıyor | 2 saat vaadi ve takibi |
+| 12 | Ücretsiz listeleme ölü ilanla doldu | Güncellenmemiş ilan oranı artıyor | Kotalı ve güncellik şartlı listeleme |
+| 13 | Satıcı ilk 14 günde hiç talep görmedi ve gitti | 14 gün aktiflik oranı düşük | Sihirli an tasarımı |
+| 14 | Katalog modeli seçildi ama sektör RFQ istiyordu | Katalogdan sipariş gelmiyor | RFQ öncelikli tasarım |
+| 15 | Fiyatlar güncel kalmadı, veri güvenilmez oldu | Şikâyet ve fiyat düzeltme sayısı artıyor | RFQ modeli, anlık fiyat |
+
+## Güven ve işlem kaynaklı (16-21)
+
+| # | Neden | Erken uyarı sinyali | Önlem |
+| - | ----- | ------------------- | ----- |
+| 16 | İlk büyük işlemde ödeme sorunu çıktı, haber yayıldı | İlk uyuşmazlık | Yazılı uyuşmazlık politikası |
+| 17 | Sahte veya yetersiz satıcı platforma girdi | Doğrulanmamış kayıt oranı | KYB zorunlu |
+| 18 | Alıcı ve satıcı tanışıp platformu atladı | İkinci işlem platformda görünmüyor | İşleme değer ekleme |
+| 19 | Uyuşmazlıkta platform taraf tutmakla suçlandı | İtiraz sayısı artıyor | Baştan yazılı ve tarafsız politika |
+| 20 | Kötü bir tedarikçi deneyimi tüm platforma mal edildi | Tek olay, çok konuşma | Doğrulama ve hızlı müdahale |
+| 21 | Değerlendirme sistemi manipüle edildi | Anormal puan dağılımı | Manipüle edilemez metrikler |
+
+## Ekonomi ve finansman kaynaklı (22-26)
+
+| # | Neden | Erken uyarı sinyali | Önlem |
+| - | ----- | ------------------- | ----- |
+| 22 | Komisyon geliri personeli karşılamadı | Aylık gelir maliyetin çok altında | Üç gelir kalemi modeli |
+| 23 | Nakit çukuru derinleşti, para bitti | Kümülatif fark büyüyor | Aşamalı istihdam |
+| 24 | Düşük sepetli kategori seçildi, başabaş uzadı | Ortalama işlem tutarı düşük | Yüksek sepet kaldıracı |
+| 25 | Üç kişi aynı anda alındı, çıkış noktası kalmadı | Kapı sistemi uygulanmadı | Kapılı istihdam |
+| 26 | Sübvansiyon kalkınca satıcılar gitti | Teşvik bitiminde churn | Kalıcı statü, geçici indirim değil |
+
+## Organizasyon ve hukuk kaynaklı (27-30)
+
+| # | Neden | Erken uyarı sinyali | Önlem |
+| - | ----- | ------------------- | ----- |
+| 27 | Toplu mesaj yüzünden numara kapandı, veri gitti | Platform uyarısı | Kişiye özel iletişim politikası |
+| 28 | İdari yaptırım ve itibar hasarı | Şikâyet bildirimi | İYS ve KVKK uyumu |
+| 29 | CRM tutulmadı, kimin ne yaptığı bilinmedi | Eksik kayıt oranı | Günlük CRM kapanışı |
+| 30 | Kayıtlı satıcı sayısı hedeflendi, ölü kayıt üretildi | Kayıt artıyor, işlem artmıyor | İşlem odaklı hedefler |
+
+<Aside type="danger" title="En olası üç neden">
+Bu 30 nedenden İstoc'un mevcut planına göre en olası üçü:
+**9** (boş aramaya trafik), **22** (komisyon personeli karşılamıyor) ve
+**30** (yanlış metrik hedeflendi). Rehberin en çok ısrar ettiği üç konu da bunlardır.
+</Aside>
+
+## Premortem'in kullanımı
+
+| Ne zaman | Ne yapılır |
+| -------- | ---------- |
+| Başlangıçta | Bütün ekip okur, ekleme yapar |
+| Aylık | Erken uyarı sinyalleri kontrol edilir |
+| Kapı toplantılarında | Hangi sinyaller yanıyor, sorulur |
+| Yeni personel geldiğinde | İlk hafta okutulur |
+
+<Aside type="tip">
+Erken uyarı sinyalleri sütunu, bu sayfanın en değerli kısmıdır. Her sinyal ölçülebilir
+olduğu için, "iyi gitmiyor" hissi sayıya dönüşür ve tartışma öznel olmaktan çıkar.
+</Aside>

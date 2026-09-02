@@ -1,0 +1,153 @@
+---
+title: 'Karar Kitabı modelleri'
+description: 'Elinizdeki 83 karar modelinden İstoc''un pazar yeri kararlarında gerçekten iş gören az sayıda modelin seçilmesi ve diğerlerinin neden elendiği.'
+kanit: uzman-gorusu
+guven: orta
+tur: harita
+faz: her-ikisi
+sidebar:
+  order: 4
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Seçim disiplini
+
+Elinizdeki koleksiyonda 83 model var. **Hepsini pazarlamaya uygulamak sahte derinlik üretir.**
+Bir model, ancak şu üç şartı birlikte sağlarsa buraya alındı:
+
+1. **Gerçek bir İstoc kararına** bağlanabiliyor (kategori seçimi, teşvik, ekip, ölçüm gibi).
+2. Modeli kullanmak, kullanmamaya göre **farklı bir karar** ürettiriyor.
+3. Model, süslemek için değil **eleme yapmak** için kullanılabiliyor.
+
+Bu üç şarttan biri bile eksikse model dışarıda bırakıldı. Aşağıda **9 model** var; 74 model
+bilinçli olarak dışarıda.
+
+<Aside type="tip" title="Neden az sayıda">
+Karar Kitabı'ndaki **Seçim Fazlalığı** modelinin kendi dersi budur: seçenek arttıkça karar
+kalitesi düşer. Dokuz modeli gerçekten kullanmak, seksen üçünü listelemekten değerlidir.
+</Aside>
+
+## Seçilen 9 model
+
+### 1. Rumsfeld Matrisi — bilgi durumu
+
+<dl class="ip-kv">
+  <dt>Hangi karar</dt><dd>Hangi konuda ölçüm yapmalı, hangi konuda karar vermeli</dd>
+  <dt>Nasıl eler</dt><dd>"Bilmediğimizi bilmediğimiz" kutusunu görünür kılar; erken kararı engeller</dd>
+  <dt>İstoc'ta uygulaması</dt><dd><a href="/istocpazar2/teshis/bilinmeyenler-haritasi/">Bilinmeyenler haritası</a></dd>
+  <dt>Değer</dt><dd><Tag tone="ok">Çok yüksek</Tag></dd>
+</dl>
+
+### 2. Pazar Boşluğu Modeli — wedge seçimi
+
+<dl class="ip-kv">
+  <dt>Hangi karar</dt><dd>Hangi kategori ve hangi alıcı ile başlanacak</dd>
+  <dt>Nasıl eler</dt><dd>İki eksende (ihtiyaç yoğunluğu, mevcut çözüm yeterliliği) boş hücreyi bulur</dd>
+  <dt>İstoc'ta uygulaması</dt><dd><a href="/istocpazar2/pazaryeri/wedge-secenekleri/">Wedge seçenekleri</a></dd>
+  <dt>Değer</dt><dd><Tag tone="ok">Çok yüksek</Tag></dd>
+</dl>
+
+### 3. Mahkûm İkilemi — satıcı neden ilk adımı atmıyor
+
+<dl class="ip-kv">
+  <dt>Hangi karar</dt><dd>Teşvik nasıl tasarlanmalı</dd>
+  <dt>Nasıl eler</dt><dd>"İkna" ile çözülemeyecek, yalnızca ödeme yapısı değiştirilerek çözülecek problemleri ayırır</dd>
+  <dt>İstoc'ta içgörü</dt><dd>Hiçbir satıcı ilk giren olmak istemez; herkes diğerinin girmesini bekler. Bu bir ikna problemi değil, <strong>oyun yapısı problemidir</strong>. Çözüm: ilk girene kalıcı ve devredilemez bir avantaj vermek (kurucu satıcı statüsü, ömür boyu komisyon indirimi, kategori önceliği).</dd>
+  <dt>Değer</dt><dd><Tag tone="ok">Çok yüksek</Tag></dd>
+</dl>
+
+### 4. Ortak Malların Trajedisi — ücretsiz listeleme tuzağı
+
+<dl class="ip-kv">
+  <dt>Hangi karar</dt><dd>Listeleme ücretsiz mi olmalı</dd>
+  <dt>Nasıl eler</dt><dd>Bedava kaynağın aşırı ve kalitesiz kullanımla değersizleşmesini öngörür</dd>
+  <dt>İstoc'ta içgörü</dt><dd>Ücretsiz listeleme çok satıcı getirir ama <strong>güncelliği bozuk, ilgisiz ve terk edilmiş ilanlar</strong> da getirir. Alıcı ilk aramada üç ölü ilan görürse bir daha gelmez. Çözüm: ücretsiz ama <strong>kotalı</strong> ve <strong>güncellik şartlı</strong> listeleme.</dd>
+  <dt>Değer</dt><dd><Tag tone="ok">Yüksek</Tag></dd>
+</dl>
+
+### 5. Uçurum / Difüzyon Modeli — kimden başlanır
+
+<dl class="ip-kv">
+  <dt>Hangi karar</dt><dd>İlk 50 satıcı kim olmalı</dd>
+  <dt>Nasıl eler</dt><dd>Yenilikçi ve erken benimseyenleri, erken çoğunluktan ayırır; ikisine aynı mesaj verilmez</dd>
+  <dt>İstoc'ta içgörü</dt><dd>İlk satıcılar "en büyük" değil, <strong>en aç</strong> olanlardır: yeni kurulmuş, kapasitesi boş, müşteri arayan, dijitale meraklı. En büyük toptancı en son gelir; onu ikna etmeye çalışmak ilk 6 ayın en yaygın zaman kaybıdır.</dd>
+  <dt>Değer</dt><dd><Tag tone="ok">Çok yüksek</Tag></dd>
+</dl>
+
+### 6. Pareto İlkesi — arz yoğunluğu
+
+<dl class="ip-kv">
+  <dt>Hangi karar</dt><dd>Arz genişliği mi derinliği mi</dd>
+  <dt>Nasıl eler</dt><dd>Az sayıda satıcının işlemlerin çoğunu üreteceğini öngörür; geniş arzı gereksiz kılar</dd>
+  <dt>İstoc'ta içgörü</dt><dd>1000 satıcıya ulaşmak yerine, doğru 40 satıcıyı derinlemesine kazanmak. <strong>Uzun kuyruk stratejisi soğuk başlangıçta çalışmaz</strong>; kuyruk ancak baş kurulduktan sonra değerlidir.</dd>
+  <dt>Değer</dt><dd><Tag tone="ok">Yüksek</Tag></dd>
+</dl>
+
+### 7. Durma Kuralı — deney ne zaman biter
+
+<dl class="ip-kv">
+  <dt>Hangi karar</dt><dd>Bir deney veya kanal ne zaman kapatılır</dd>
+  <dt>Nasıl eler</dt><dd>"Biraz daha deneyelim" döngüsünü baştan yazılı eşikle keser</dd>
+  <dt>İstoc'ta uygulaması</dt><dd><a href="/istocpazar2/olcum/kill-scale/">Durdurma ve ölçekleme ölçütleri</a></dd>
+  <dt>Değer</dt><dd><Tag tone="ok">Yüksek</Tag></dd>
+</dl>
+
+### 8. Hedef Sabitleme Tuzağı — yanlış metriğe koşmak
+
+<dl class="ip-kv">
+  <dt>Hangi karar</dt><dd>Ekip hangi sayıya göre değerlendirilir</dd>
+  <dt>Nasıl eler</dt><dd>Ölçüt hedefe dönüşünce bozulacağını önceden gösterir</dd>
+  <dt>İstoc'ta içgörü</dt><dd>Personele "kayıtlı satıcı sayısı" hedefi verilirse, 500 ölü kayıt gelir. Hedef <strong>işlem yapan satıcı</strong> olmalıdır. Ayrıntı: <a href="/istocpazar2/olcum/goodhart/">Goodhart tuzağı</a></dd>
+  <dt>Değer</dt><dd><Tag tone="ok">Çok yüksek</Tag></dd>
+</dl>
+
+### 9. SMART Hedefler — personel hedeflerinin yazımı
+
+<dl class="ip-kv">
+  <dt>Hangi karar</dt><dd>Üç yeni personelin hedefleri nasıl yazılır</dd>
+  <dt>Nasıl eler</dt><dd>Ölçülemeyen, süresiz ve sahipsiz hedefleri eler</dd>
+  <dt>İstoc'ta uygulaması</dt><dd><a href="/istocpazar2/organizasyon/smart-hedefler/">SMART hedefler</a></dd>
+  <dt>Değer</dt><dd><Tag tone="ok">Yüksek</Tag></dd>
+</dl>
+
+## İkinci halka: koşullu olarak faydalı
+
+Bu üç model bugün gerekli değil ama belirli bir eşik geçilince devreye girer.
+
+| Model | Ne zaman devreye girer | Hangi karar için |
+| ----- | ---------------------- | ---------------- |
+| Porter Beş Güç | Kategori seçildikten sonra | O kategoride tedarikçi ve alıcı pazarlık gücü |
+| Mavi Okyanus | Likidite kurulduktan sonra | Kategori tasarımı ve farklılaşma ekseni |
+| VRIO | 12. aydan sonra | Elde edilen avantaj taklit edilebilir mi |
+
+## Bilinçli olarak elenenler ve nedeni
+
+Dürüstlük gereği, dışarıda bıraktıklarımızın gerekçesi:
+
+| Model ailesi | Neden elendi |
+| ------------ | ------------ |
+| Eisenhower, Pareto zaman yönetimi, akış, Johari, enerji modeli | Kişisel verimlilik araçları; şirket stratejisi kararı üretmezler |
+| Maslow, Freud belirti okuma, bilinçsiz düşünme, siyasi pusula | Açıklayıcı psikoloji modelleri; İstoc kararında eleme yapmazlar |
+| SWOT, PESTLE, McKinsey 7S, Dengeli Karne | Doldurulması kolay, karar üretmesi zor. Doldurulduğunda "yapılmış iş" hissi verir ama hiçbir seçeneği elemez |
+| BCG, Ansoff, portföy matrisleri | Çok ürünlü, olgun şirketler içindir. Tek ürünlü ve sıfır likiditeli bir platformda anlamsız |
+| Kaizen, Yalın, Altı Sigma, TZÜ, TKY, SCOR | Süreç iyileştirme aileleri. İyileştirilecek tekrar eden süreç henüz yok |
+| Liderlik ve koçluk modelleri (GROW, durumsal liderlik, Drexler-Sibbet) | Ekip kurulduktan sonra yönetim aracı; strateji kararı değil |
+| Dahi stratejileri, yaratıcılık modelleri (SCAMPER, kutunun dışında) | Fikir üretimi için değerli; İstoc'un problemi fikir kıtlığı değil, doğrulama kıtlığı |
+
+<Aside type="caution" title="En sık yapılan hata">
+SWOT ve PESTLE gibi araçlar toplantıda doldurulur, sunuma konur ve hiçbir karar değiştirmez.
+Bir analiz aracı, sonunda **bir seçeneği elemiyorsa** zaman tüketicisidir. Bu rehberdeki
+her model, hangi seçeneği elediğiyle birlikte yazılmıştır.
+</Aside>
+
+## Modelleri birlikte kullanmak
+
+Dokuz model, üç karar anında birlikte çalışır:
+
+| Karar anı | Sırayla kullanılacak modeller |
+| --------- | ----------------------------- |
+| Kategori ve wedge seçimi | Rumsfeld → Pazar Boşluğu → Pareto |
+| Teşvik ve fiyat tasarımı | Mahkûm İkilemi → Ortak Malların Trajedisi → Difüzyon |
+| Ekip hedefi ve ölçüm | SMART → Hedef Sabitleme Tuzağı → Durma Kuralı |

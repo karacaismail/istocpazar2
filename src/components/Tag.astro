@@ -1,0 +1,15 @@
+---
+/** Kanıt seviyesi / güven / durum etiketi. */
+interface Props {
+  tone?: 'ok' | 'warn' | 'risk' | 'info';
+  icon?: string;
+}
+import PhIcon from './PhIcon.astro';
+
+const { tone = 'info', icon } = Astro.props;
+---
+
+<span class={`ip-tag ip-tag--${tone}`}>
+  {icon && <PhIcon name={icon} size={14} />}
+  <slot />
+</span>

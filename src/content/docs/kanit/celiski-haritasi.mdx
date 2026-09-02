@@ -1,0 +1,107 @@
+---
+title: Çelişki haritası
+description: Rehberdeki önerilerin birbiriyle ve dış kanıtla çeliştiği noktalar; hangi koşulda hangisinin doğru olduğu.
+kanit: cikarim
+guven: orta
+tur: harita
+faz: faz-1
+sidebar:
+  order: 2
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Neden bu sayfa var
+
+İyi bir araştırma tek bir tutarlı hikâye sunmaz; **çelişkileri görünür kılar**. Aşağıdaki
+her satırda bir iddia, onu destekleyen kanıt, çürüten kanıt ve hangi koşulda hangisinin
+geçerli olduğu yer alır.
+
+## Çelişki 1 — Yüksek sepet mi, yüksek tekrar mı
+
+| Alan | İçerik |
+| ---- | ------ |
+| **İddia** | Yüksek sepetli kategoriyle başlanmalı |
+| **Lehine** | Başabaş noktasını doğrusal olarak düşürür; 3 kişilik ekip az sayıda büyük işlemi yönetebilir |
+| **Aleyhine** | Yüksek sepet = uzun satış döngüsü + yüksek güven ihtiyacı; sıfır itibarlı platform bunu alamaz |
+| **Hangi koşulda lehte** | Nakit kısıtı baskınsa, saha ekibi güçlüyse, ilişki satışı mümkünse |
+| **Hangi koşulda aleyhte** | Güven altyapısı yoksa, satış döngüsü 90 günü aşıyorsa |
+| **Güven** | <Tag tone="warn">Orta</Tag> |
+
+## Çelişki 2 — Ücretsiz mi, ücretli mi
+
+| Alan | İçerik |
+| ---- | ------ |
+| **İddia** | Listeleme ücretsiz olmalı |
+| **Lehine** | Giriş engelini kaldırır, arz hızlı toplanır |
+| **Aleyhine** | Ortak malların trajedisi: ölü ilan, kalitesiz arz, alıcı kaybı |
+| **Hangi koşulda lehte** | Kota ve güncellik şartı varsa |
+| **Hangi koşulda aleyhte** | Şartsız ve denetimsizse |
+| **Güven** | <Tag tone="ok">Yüksek</Tag> — koşullu ücretsiz modeli her iki kanıtı da karşılar |
+
+## Çelişki 3 — Elle mi, otomatik mi
+
+| Alan | İçerik |
+| ---- | ------ |
+| **İddia** | İlk 100 işlem elle yapılmalı |
+| **Lehine** | Neyin otomatikleşmesi gerektiğini öğretir; hızlı başlar; yazılım beklemez |
+| **Aleyhine** | Ölçeklenmez; ekip bağımlılığı yaratır; alışkanlık haline gelirse platform hiç kurulmaz |
+| **Hangi koşulda lehte** | İlk 90 gün, öğrenme amaçlı |
+| **Hangi koşulda aleyhte** | 6 ay sonra hâlâ elle yapılıyorsa |
+| **Güven** | <Tag tone="ok">Yüksek</Tag> — süre sınırı konursa |
+
+## Çelişki 4 — Talep önce mi, arz önce mi
+
+| Alan | İçerik |
+| ---- | ------ |
+| **İddia** | Önce talep toplanmalı |
+| **Lehine** | Satıcıyı ikna etmenin en ucuz argümanı; elle yapılabilir |
+| **Aleyhine** | Talep toplanıp karşılanamazsa alıcı kalıcı olarak kaybedilir |
+| **Hangi koşulda lehte** | Toplanan talep sayısı, karşılanabilir kapasitede tutulursa |
+| **Hangi koşulda aleyhte** | Talep, arzın karşılayabileceğinden hızlı büyürse |
+| **Güven** | <Tag tone="ok">Yüksek</Tag> — kapasite kapısı kuralıyla |
+
+## Çelişki 5 — Kontrgerilla erken mi, gerekli mi
+
+| Alan | İçerik |
+| ---- | ------ |
+| **İddia** | Kontrgerilla sistemi bugün kurulmamalı |
+| **Lehine** | Tetiklenecek olay yok, kapasite yok, kanıt yok |
+| **Aleyhine** | Sistem kurulmamışsa ilk saldırı geldiğinde hazırlıksız yakalanılır |
+| **Hangi koşulda lehte** | Marka tanınmıyorken |
+| **Hangi koşulda aleyhte** | Bir rakip doğrudan hedef alırsa |
+| **Güven** | <Tag tone="warn">Orta</Tag> — üç parçası bugün uygulanıyor, gerisi bekliyor |
+
+## Çelişki 6 — Fiziksel yakınlık avantaj mı engel mi
+
+| Alan | İçerik |
+| ---- | ------ |
+| **İddia** | İSTOÇ fiziksel kümesi avantajdır |
+| **Lehine** | Saha verimliliği, hazır güven, eşzamanlı taahhüt kolaylığı, komşuluk yönlendirmesi |
+| **Aleyhine** | Yakınlık dijitalleşme ihtiyacını azaltır; "zaten yürüyerek gidiyorum" |
+| **Hangi koşulda lehte** | Hedef alıcı İSTOÇ'a gelemeyen alıcıysa |
+| **Hangi koşulda aleyhte** | Hedef alıcı zaten İSTOÇ'a gelen alıcıysa |
+| **Güven** | <Tag tone="risk">Düşük</Tag> — ölçülmemiş, en kritik belirsizlik |
+
+## Çelişki 7 — Üç kişi mi, tek kişi mi
+
+| Alan | İçerik |
+| ---- | ------ |
+| **İddia** | Üç rol de gereklidir |
+| **Lehine** | Talep üretimi, erişim ve kapanış farklı yetkinliklerdir |
+| **Aleyhine** | Likidite kurulmadan üç maaş, nakit çukurunu derinleştirir |
+| **Hangi koşulda lehte** | Aşamalı ve kapılı işe alımla |
+| **Hangi koşulda aleyhte** | Eşzamanlı ve kapısız işe alımla |
+| **Güven** | <Tag tone="ok">Yüksek</Tag> — aşamalı model iki kanıtı da karşılar |
+
+<Aside type="tip" title="Çelişki haritasının kullanımı">
+Bir öneri sorgulandığında bu sayfaya bakın. Çoğu tartışma, tarafların **farklı koşulları**
+varsayarak aynı soruyu tartışmasından çıkar. Koşul netleştiğinde çelişki genellikle çözülür.
+</Aside>
+
+<Aside type="danger" title="Çözülemeyen tek çelişki">
+**Çelişki 6.** Fiziksel yakınlığın avantaj mı engel mi olduğu, İstoc'un tüm stratejisini
+değiştirir ve hiçbir masabaşı analizle çözülemez. Yalnızca alıcı görüşmeleriyle çözülür.
+Bu, 1. haftanın en önemli işidir.
+</Aside>

@@ -1,0 +1,133 @@
+---
+title: 'Strateji soy ağacı'
+description: 'Pazarlama ve büyüme strateji ailelerinin sınıflandırması, her birinin ne zaman çalıştığı ve İstoc''un soğuk başlangıç durumuna uygunluğu.'
+kanit: uzman-gorusu
+guven: orta
+tur: harita
+faz: faz-1
+sidebar:
+  order: 2
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+Uzman yönergesi, tek bir zaman çizgisi yerine strateji **ailelerinin** birlikte incelenmesini
+istiyordu. Aşağıdaki tablolarda her ailenin çekirdek sorusu, çalışma koşulu ve İstoc'a
+uygunluğu var. Uygunluk sütunu **bugünkü duruma** (likidite sıfıra yakın) göredir; likidite
+kurulduktan sonra birçoğu yükselir.
+
+## Aile 1 — Klasik ve stratejik
+
+| Yaklaşım | Çekirdek sorusu | Ne zaman çalışır | İstoc bugün |
+| -------- | --------------- | ---------------- | ----------- |
+| Klasik pazarlama (4P) | Ürün, fiyat, yer, tutundurma nasıl kurgulanır | Ürün ve pazar tanımlıyken | <Tag tone="warn">Kısmen</Tag> |
+| Stratejik pazarlama | Hangi pazarda, hangi konumda oynayacağız | Seçenekler netken | <Tag tone="ok">Yüksek</Tag> |
+| Konumlandırma | Zihinde hangi yeri tutuyoruz | Rakip kalabalıkken | <Tag tone="ok">Yüksek</Tag> |
+| Kategori tasarımı | Yeni bir kategori yaratıp sahibi olabilir miyiz | Mevcut kategoride kaybediyorsanız | <Tag tone="warn">Orta</Tag> |
+| Meydan okuyan (challenger) | Lidere karşı hangi asimetriyi kullanırız | Net lider varken | <Tag tone="warn">Orta</Tag> |
+
+## Aile 2 — İlişki ve izin
+
+| Yaklaşım | Çekirdek sorusu | Ne zaman çalışır | İstoc bugün |
+| -------- | --------------- | ---------------- | ----------- |
+| Doğrudan pazarlama | Kime, hangi listeyle, hangi teklifle ulaşırız | Liste kaliteliyken | <Tag tone="warn">Kısmen</Tag> |
+| İlişki pazarlaması | Tekrar eden ilişkiyi nasıl derinleştiririz | Uzun ömürlü müşteri varken | <Tag tone="ok">Yüksek</Tag> |
+| Veritabanı pazarlaması | Davranış verisini nasıl kullanırız | Veri birikmişken | <Tag tone="risk">Düşük — veri yok</Tag> |
+| İzinli pazarlama | İletişim iznini nasıl kazanırız | Her zaman | <Tag tone="ok">Kritik</Tag> |
+| Hesap tabanlı pazarlama (ABM) | Belirli 50 hesabı nasıl kazanırız | Az sayıda büyük hesap varken | <Tag tone="ok">Çok yüksek</Tag> |
+
+<Aside type="tip" title="ABM neden İstoc için kritik">
+İstoc'un ilk 50 satıcısı reklamla değil, **isimle** kazanılır. ABM tam olarak bunun
+disiplinidir: hedef listesi, kişi bazlı araştırma, kişiye özel teklif, çok temaslı takip.
+Beyaz tahtadaki "saha" rolünün doğru adı aslında budur.
+</Aside>
+
+## Aile 3 — Dikkat ve sürpriz
+
+| Yaklaşım | Çekirdek sorusu | Ne zaman çalışır | İstoc bugün |
+| -------- | --------------- | ---------------- | ----------- |
+| Gerilla pazarlama | Az bütçeyle çok dikkat nasıl üretilir | Ürün hazırken | <Tag tone="warn">Erken</Tag> |
+| Ambush (pusu) pazarlama | Başkasının etkinliğinden nasıl yararlanırız | Büyük etkinlik varken | <Tag tone="warn">Erken</Tag> |
+| Kontrgerilla | Dış hamlelere hangi kuralla karşılık verilir | Rakip aktif saldırırken | <Tag tone="warn">Erken</Tag> |
+| Anlık (moment) pazarlama | Gündemi nasıl yakalarız | Marka tanınırken | <Tag tone="risk">Düşük</Tag> |
+| Memetik / kültürel | Fikir kendi kendine nasıl yayılır | Geniş kitle ilgisi varken | <Tag tone="risk">Düşük — B2B</Tag> |
+
+## Aile 4 — Büyüme ve ürün
+
+| Yaklaşım | Çekirdek sorusu | Ne zaman çalışır | İstoc bugün |
+| -------- | --------------- | ---------------- | ----------- |
+| Growth hacking | Hangi ucuz kaldıraç hızlı büyütür | Ürün-pazar uyumu varken | <Tag tone="risk">Erken</Tag> |
+| Performans pazarlaması | Hangi kanal en ucuz dönüşümü verir | Dönüşüm çalışırken | <Tag tone="risk">Erken</Tag> |
+| Ürün öncülüğünde büyüme (PLG) | Ürün kendini nasıl satar | Tek başına değer varken | <Tag tone="ok">Yüksek</Tag> |
+| Satış öncülüğünde büyüme | İnsan gücüyle nasıl kazanırız | Yüksek değerli, karmaşık satışta | <Tag tone="ok">Çok yüksek</Tag> |
+| Topluluk öncülüğünde büyüme | Topluluk nasıl kendi kendini büyütür | Ortak kimlik varken | <Tag tone="ok">Yüksek</Tag> |
+| Ortak öncülüğünde büyüme | Kimin kitlesini ödünç alırız | Güvenilir aracı varken | <Tag tone="ok">Çok yüksek</Tag> |
+| Ekosistem öncülüğünde büyüme | Hangi ekosisteme eklemleniriz | Platform ekosistemi varken | <Tag tone="warn">Orta</Tag> |
+
+<Aside type="caution" title="Bu tablonun okunuşu">
+"Çok yüksek" işaretli üç yaklaşım — ABM, satış öncülüğünde büyüme ve ortak öncülüğünde
+büyüme — hepsi **insan gücüyle, elle, tek tek** çalışan yaklaşımlardır. Ölçeklenmezler ve
+bu bir kusur değil, soğuk başlangıç döneminin doğasıdır. Ölçeklenebilirlik likidite
+kurulduktan sonra aranır.
+</Aside>
+
+## Aile 5 — Talep ve dönüşüm
+
+| Yaklaşım | Çekirdek sorusu | İstoc bugün |
+| -------- | --------------- | ----------- |
+| Talep yaratma (demand generation) | Var olmayan talebi nasıl doğururuz | <Tag tone="warn">Orta</Tag> |
+| Talep yakalama (demand capture) | Var olan talebi nasıl kendimize çekeriz | <Tag tone="ok">Yüksek</Tag> |
+| Brandformance | Marka ve performansı nasıl birlikte ölçeriz | <Tag tone="warn">Erken</Tag> |
+| Yönlendirme döngüleri (referral) | Müşteri müşteriyi nasıl getirir | <Tag tone="ok">Yüksek</Tag> |
+| Viral döngüler | Kullanım kendini nasıl çoğaltır | <Tag tone="warn">Orta</Tag> |
+| Savunuculuk (advocacy) | Memnun müşteri nasıl sesli olur | <Tag tone="warn">Erken</Tag> |
+
+<Aside type="tip" title="Talep yakalama neden yüksek">
+Kimse "keşke bir B2B pazar yeri olsa" diye aramıyor. Ama binlerce kişi
+"aydınlatma toptancısı İstanbul", "toptan fiyat listesi", "İSTOÇ tedarikçi" arıyor.
+Var olan bu talebi yakalamak, olmayan talebi yaratmaktan hem ucuz hem hızlıdır.
+</Aside>
+
+## Aile 6 — Pazar yeri ve platforma özgü
+
+Bu aile, İstoc için diğer beş aileden **daha belirleyicidir** ve beyaz tahtadaki planda hiç yok.
+
+| Yaklaşım | Çekirdek sorusu | İstoc bugün |
+| -------- | --------------- | ----------- |
+| Pazar yeri büyümesi | Hangi taraf önce, hangi yoğunlukta | <Tag tone="ok">Kritik</Tag> |
+| Ağ etkisi stratejisi | Ağ nerede yoğunlaşırsa kendini besler | <Tag tone="ok">Kritik</Tag> |
+| Platform ekonomisi | Kim kimden ne alır, kim sübvanse edilir | <Tag tone="ok">Kritik</Tag> |
+| Eşleştirme teorisi | Kim kiminle, hangi kuralla eşleşir | <Tag tone="ok">Kritik</Tag> |
+| Mekanizma tasarımı | İstenen davranış hangi kuralla kendiliğinden çıkar | <Tag tone="ok">Kritik</Tag> |
+| Yönetilen pazar yeri | Platform işlemin ne kadarını kendisi yapar | <Tag tone="ok">Yüksek</Tag> |
+
+## Aile 7 — Azaltıcı ve savunmacı
+
+| Yaklaşım | Ne yapar | İstoc bugün |
+| -------- | -------- | ----------- |
+| Countermarketing | Zararlı ürünün talebini azaltır | <Tag tone="risk">İlgisiz</Tag> |
+| Demarketing | Aşırı veya istenmeyen talebi azaltır | <Tag tone="warn">İleride</Tag> |
+| Aşılama (inoculation) | Gelecek itirazlara karşı önceden hazırlar | <Tag tone="ok">Yüksek</Tag> |
+| Rekabetçi karşılık | Rakip hamlesine cevap verir | <Tag tone="warn">Erken</Tag> |
+
+<Aside type="tip" title="Aşılama neden yüksek">
+Satıcının aklındaki itirazlar bellidir: "komisyon veriyorum", "müşterimi görürler",
+"zahmetli", "ödemem gelmez". Bu itirazlar **satış görüşmesinde çıkmadan önce** içerikle
+cevaplanırsa, saha ekibinin işi kökten kolaylaşır. Bu, İstoc'un en ucuz ve en hızlı
+pazarlama kazancıdır.
+</Aside>
+
+## Birleştirilince ne çıkar
+
+Uzman yönergesinin sorduğu soru: hangi aileler birleşirse gerçekten yeni bir model çıkar?
+İstoc bağlamındaki cevap:
+
+> **ABM + yönetilen pazar yeri + mekanizma tasarımı + aşılama.**
+
+Yani: isimli 50 hedef satıcı, platformun işin bir kısmını üstlendiği bir hizmet modeli,
+davranışı kuralla üreten teşvikler ve itirazları önceden çözen içerik. Bu dördü birlikte
+uygulandığında ortaya çıkan şey ne klasik pazarlamadır ne de gerilla; **elle kurulan likidite**
+diyebileceğimiz bir operasyondur.
+
+Ayrıntı: [Çözüm özeti](/istocpazar2/cozum/cozum-ozeti/).

@@ -1,0 +1,138 @@
+---
+title: Durdurma ve ölçekleme ölçütleri
+description: Her deneyin ve bütün programın hangi şartta durdurulacağı, hangi şartta ölçekleneceği ve geri dönülebilirlik sınıflaması.
+kanit: cikarim
+guven: orta
+tur: karar
+faz: faz-2
+sidebar:
+  order: 5
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Neden önceden yazılır
+
+Bir deney sürerken durdurma kararı vermek neredeyse imkânsızdır: harcanan emek, umut ve
+"biraz daha deneyelim" hissi kararı sürekli erteler. Bu yüzden durdurma ölçütü
+**deney başlamadan** yazılır ve imzalanır.
+
+<Aside type="tip" title="Karar Kitabı bağlantısı">
+Bu, **Durma Kuralı** modelinin uygulamasıdır: aramayı ne zaman bırakacağını baştan
+belirlemek, sonsuz aramadan iyi sonuç verir.
+</Aside>
+
+## Deney kartı zorunlu alanları
+
+Her deney başlamadan şu altı alan doldurulur:
+
+| Alan | Örnek |
+| ---- | ----- |
+| Başarı eşiği | "4 hafta içinde 8 nitelikli randevu" |
+| Başarısızlık eşiği | "4 hafta içinde 2'den az randevu" |
+| Azami harcama | "20 bin TL" |
+| Azami süre | "4 hafta" |
+| Durdurma koşulu | "2. haftada sıfır randevu" |
+| Ölçekleme koşulu | "Randevuların %50'si sahada ilerliyorsa" |
+
+## 90 günlük programın eşikleri
+
+### Yeşil — devam ve ölçekle
+
+Tüm koşullar sağlanmalı:
+
+| Gösterge | Eşik |
+| -------- | ---- |
+| Aktif satıcı | 20+ |
+| Tamamlanmış işlem | 15+ |
+| Tekrar eden alıcı | 3+ |
+| Teklif cevap oranı | %80+ |
+| Medyan ilk teklif süresi | 4 saat altı |
+| Aylık gelir | 1 kişilik maliyeti karşılıyor |
+
+**Karar:** İkinci kategori veya ikinci coğrafya açılır; 4. kişi işe alınır.
+
+### Sarı — devam ama değiştir
+
+Yukarıdakilerin yarısı sağlanıyor ve **yön doğru** görünüyorsa:
+
+| Karar | Ne yapılır |
+| ----- | ---------- |
+| Süre uzatma | 60 gün ek süre |
+| Tek değişken değişimi | Yalnızca bir şey değiştirilir: kategori, persona veya model |
+| Ekip sabit kalır | Yeni işe alım yok |
+| Yeni eşik yazılır | 60 gün sonunda yeşil veya kırmızı |
+
+<Aside type="caution" title="Sarıda tek değişken kuralı">
+Aynı anda hem kategoriyi hem personayı hem modeli değiştirirseniz, sonuç değişse bile
+hangisinin işe yaradığını bilemezsiniz. Her seferinde **tek değişken**.
+</Aside>
+
+### Kırmızı — durdur
+
+| Gösterge | Eşik |
+| -------- | ---- |
+| Tamamlanmış işlem | 5'ten az |
+| Aktif satıcı | 10'dan az |
+| Tekrar eden alıcı | 0 |
+| Aylık gelir | Bir kişilik maliyetin %25'inden az |
+
+**Karar:** Program durdurulur. Üç seçenek değerlendirilir: kategori değişimi, iş modeli
+değişimi, veya kapanış.
+
+## Ara durdurma noktaları
+
+90 günü beklemeden durdurulması gereken durumlar:
+
+| Durum | Ne zaman | Karar |
+| ----- | -------- | ----- |
+| Kapı 1 iki kez geçilemedi | 60. gün | Kategori değiştir |
+| İlk 20 görüşmede hiç acı bulunamadı | 20. gün | <Tag tone="risk">Model sorgula</Tag> |
+| Kategoride yeterli arz yok | 15. gün | Kategori değiştir |
+| Nakit 3 aylık maliyetin altına düştü | Her an | İşe alım durdur |
+| Hukuki veya platform yaptırımı geldi | Her an | İlgili faaliyeti durdur |
+
+<Aside type="danger" title="20. gün kontrolü en kritik">
+İlk 20 alıcı görüşmesinde tekrar eden somut bir sıkıntı bulunamadıysa, bu bir pazarlama
+problemi değil **değer önerisi problemidir** ve devam etmek 70 gün daha kaybettirir.
+Bu kontrolü mutlaka yapın. Ayrıntı:
+[Alternatif hipotezler](/istocpazar2/teshis/alternatif-hipotezler/) H5.
+</Aside>
+
+## Geri dönülebilirlik sınıflaması
+
+Yüksek belirsizlikte önce geri dönülebilir kararlar alınır.
+
+| Karar | Sınıf | Not |
+| ----- | ----- | --- |
+| Kategori seçimi | <Tag tone="ok">Geri dönülebilir</Tag> | 90 günde değiştirilebilir |
+| Coğrafya seçimi | <Tag tone="ok">Geri dönülebilir</Tag> | — |
+| Deney başlatma | <Tag tone="ok">Geri dönülebilir</Tag> | Eşikle durdurulur |
+| Fiyat/komisyon oranı | <Tag tone="warn">Kısmen</Tag> | Değiştirmek güven sarsar |
+| Teşvik verme | <Tag tone="warn">Kısmen</Tag> | Beklenti kalıcıdır |
+| Kurucu satıcı statüsü | <Tag tone="risk">Geri dönülemez</Tag> | Ömür boyu taahhüt |
+| İşe alım | <Tag tone="risk">Zor geri dönülür</Tag> | İnsani ve hukuki maliyet |
+| Toplu mesaj gönderimi | <Tag tone="risk">Geri dönülemez</Tag> | Gönderilen geri alınmaz |
+| Kurumsal sözleşme | <Tag tone="risk">Zor geri dönülür</Tag> | İtibar riski |
+
+<Aside type="tip" title="Karar kuralı">
+Geri dönülemez kararlar için **iki kat daha fazla kanıt** aranır ve karar kurucuya aittir.
+Geri dönülebilir kararlar hızlı alınır, deneyle test edilir.
+</Aside>
+
+## Karşı-olgusal kontrol
+
+Her deney sonucunda sorulacak son soru:
+
+> **"Bu deneyi hiç yapmasaydık ne olurdu?"**
+
+Cevap "muhtemelen aynı sonuç" ise, deney bir şey öğretmemiştir ve tekrarlanmamalıdır.
+Bu kontrol yapılmazsa doğal dalgalanma, kampanya başarısı sanılır.
+
+| Kontrol yöntemi | Nasıl |
+| --------------- | ----- |
+| Zaman serisi karşılaştırma | Önceki 4 hafta ile karşılaştır |
+| Bölgesel kontrol | Bir blokta uygula, diğerinde uygulama |
+| Kanal kontrolü | Bir kanalda uygula, diğerinde uygulama |
+| Sıfır hipotezi | "Hiçbir şey yapmasak beklenen sayı neydi" yazılır |

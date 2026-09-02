@@ -1,0 +1,149 @@
+---
+title: Organizasyon hipotezi
+description: Beyaz tahtada tanımlanan üç rolün yapısı, bu yapının hangi kısmının sabit hangi kısmının doğrulanacağı ve rollerin birbirini nasıl beslediği.
+kanit: cikarim
+guven: orta
+tur: karar
+faz: faz-2
+sidebar:
+  order: 1
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Figure from '@components/Figure.astro';
+import Tag from '@components/Tag.astro';
+
+## Sabit olan: üç rol
+
+Beyaz tahtada üç rol tanımlanmış ve bu karar verilmiş kabul edilir:
+
+| Rol | Tahtadaki adı | Ana işlevi |
+| --- | ------------- | ---------- |
+| 1 | Masa Başı Pazarlama (maaşlı x1) | Veri, temas, randevu, CRM, içerik |
+| 2 | Organizatör (master x1) | Kurumsal iş birliği, etkinlik, eğitim, saha |
+| 3 | Saha / Satışçı | Randevulu satış, kapanış, GTM hunisi |
+
+<Aside type="tip" title="Rol yapısı neden mantıklı">
+Üç rol, bir satış organizasyonunun klasik üç işlevine karşılık gelir: **talep üretimi**
+(masa başı), **ilişki ve erişim** (organizatör), **kapanış** (saha). Bu ayrım doğrudur ve
+küçük ekipler için standart yapıdır. Rehberin itirazı role değil, rollerin **hedefsiz**
+tanımlanmış olmasınadır.
+</Aside>
+
+## Doğrulanacak olan: sıra, hedef ve kapasite
+
+Sabit olmayan üç şey var ve bunlar ilk 90 günde ölçülecek:
+
+| Belirsizlik | Soru | Nasıl ölçülür |
+| ----------- | ---- | ------------- |
+| Sıra | Hangi rol önce işe alınmalı | [Aşamalı istihdam kapıları](/istocpazar2/cozum/asamali-istihdam/) |
+| Hedef seviyesi | Günde 20 temas, haftada 2 etkinlik gerçekçi mi | İlk ayın gerçek verimi |
+| Kapasite dağılımı | Saha mı masa başı mı daha çok işlem üretiyor | Rol başına işlem katkısı |
+
+## Roller birbirini nasıl besler
+
+<Figure title="Üç rolün iş akışı ve devir noktaları" caption="Her rol bir sonrakine tanımlı bir çıktı devreder. Devir noktası belirsizse iş iki kişinin arasında düşer.">
+  <svg slot="svg" class="ip-svg" viewBox="0 0 740 380" width="740" height="380" role="img" aria-labelledby="rol-akis">
+    <title id="rol-akis">Üç rolün iş akışı diyagramı</title>
+
+    <rect class="d-box-accent" x="30" y="30" width="200" height="76" rx="10"/>
+    <text x="130" y="56" text-anchor="middle" font-size="14" font-weight="700">MASA BAŞI</text>
+    <text x="130" y="77" text-anchor="middle" font-size="12">Liste, temas, veri</text>
+    <text x="130" y="95" text-anchor="middle" font-size="12">randevu üretir</text>
+
+    <rect class="d-box-accent" x="270" y="30" width="200" height="76" rx="10"/>
+    <text x="370" y="56" text-anchor="middle" font-size="14" font-weight="700">ORGANİZATÖR</text>
+    <text x="370" y="77" text-anchor="middle" font-size="12">Kurum, etkinlik,</text>
+    <text x="370" y="95" text-anchor="middle" font-size="12">erişim ve güven açar</text>
+
+    <rect class="d-box-accent" x="510" y="30" width="200" height="76" rx="10"/>
+    <text x="610" y="56" text-anchor="middle" font-size="14" font-weight="700">SAHA / SATIŞ</text>
+    <text x="610" y="77" text-anchor="middle" font-size="12">Ziyaret eder,</text>
+    <text x="610" y="95" text-anchor="middle" font-size="12">işlemi kapatır</text>
+
+    <path class="d-line-accent" d="M230 68 H266" marker-end="url(#ro)"/>
+    <path class="d-line-accent" d="M470 68 H506" marker-end="url(#ro)"/>
+
+    <text x="248" y="58" text-anchor="middle" font-size="10.5" class="d-muted">randevu</text>
+    <text x="488" y="58" text-anchor="middle" font-size="10.5" class="d-muted">nitelikli fırsat</text>
+
+    <rect class="d-box" x="30" y="140" width="200" height="58" rx="8"/>
+    <text x="130" y="163" text-anchor="middle" font-size="11.5" font-weight="700">Devir ölçütü</text>
+    <text x="130" y="183" text-anchor="middle" font-size="11.5">Randevu teyitli ve notlu</text>
+
+    <rect class="d-box" x="270" y="140" width="200" height="58" rx="8"/>
+    <text x="370" y="163" text-anchor="middle" font-size="11.5" font-weight="700">Devir ölçütü</text>
+    <text x="370" y="183" text-anchor="middle" font-size="11.5">Karar verici belirlenmiş</text>
+
+    <rect class="d-box" x="510" y="140" width="200" height="58" rx="8"/>
+    <text x="610" y="163" text-anchor="middle" font-size="11.5" font-weight="700">Devir ölçütü</text>
+    <text x="610" y="183" text-anchor="middle" font-size="11.5">İşlem veya net ret</text>
+
+    <path class="d-line d-dash" d="M610 198 V240 H130 V198" marker-end="url(#ro2)"/>
+    <text x="370" y="258" text-anchor="middle" font-size="12" class="d-muted">Sonuç geri döner: hangi liste işe yaradı, hangi mesaj tuttu</text>
+
+    <rect class="d-box" x="30" y="286" width="680" height="76" rx="10"/>
+    <text x="50" y="310" font-size="13" font-weight="700">Ortak sorumluluk</text>
+    <text x="50" y="332" font-size="12">Her temas CRM'e yazılır. Yazılmayan temas olmamış sayılır.</text>
+    <text x="50" y="352" font-size="12">Hiçbir talep cevapsız kalmaz. Cevapsız talep, kaybedilmiş alıcıdır.</text>
+
+    <defs>
+      <marker id="ro" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+        <path d="M0 0 L9 4.5 L0 9 z" fill="var(--d-accent)"/>
+      </marker>
+      <marker id="ro2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+        <path d="M0 0 L9 4.5 L0 9 z" fill="currentColor" class="d-muted"/>
+      </marker>
+    </defs>
+  </svg>
+
+  <div slot="alt">
+    Üç kutu soldan sağa: MASA BAŞI (liste, temas, veri, randevu üretir), ORGANİZATÖR
+    (kurum, etkinlik, erişim ve güven açar), SAHA/SATIŞ (ziyaret eder, işlemi kapatır).
+    Masa başından organizatöre "randevu", organizatörden sahaya "nitelikli fırsat" oku gider.
+    Her rolün altında devir ölçütü kutusu vardır: randevu teyitli ve notlu; karar verici
+    belirlenmiş; işlem veya net ret. Sahadan masa başına geri dönen kesikli bir ok üzerinde
+    "Sonuç geri döner: hangi liste işe yaradı, hangi mesaj tuttu" yazar. En altta ortak
+    sorumluluk kutusu: her temas CRM'e yazılır, yazılmayan temas olmamış sayılır; hiçbir
+    talep cevapsız kalmaz, cevapsız talep kaybedilmiş alıcıdır.
+  </div>
+</Figure>
+
+## Devir noktaları: en sık kaybedilen yer
+
+Küçük ekiplerde iş, rollerin ortasında kaybolur. Bu yüzden her devir için **tek bir ölçüt**
+tanımlıdır:
+
+| Devir | Kimden kime | Ölçüt | Kabul edilmezse |
+| ----- | ----------- | ----- | --------------- |
+| Randevu | Masa Başı → Organizatör/Saha | Tarih teyitli, muhatap adı ve unvanı belli, ihtiyaç notu var | Masa Başı'na geri döner |
+| Fırsat | Organizatör → Saha | Karar verici belirlenmiş, bütçe ve zaman öğrenilmiş | Organizatör'e geri döner |
+| Sonuç | Saha → CRM | İşlem tamamlandı veya net ret sebebi yazıldı | Kapanmamış sayılır |
+
+<Aside type="danger" title="En yaygın hata">
+"Randevu aldım" denip muhatabın kim olduğunun bilinmemesi. Saha kişisi kapıya gider,
+karşısına yetkisiz biri çıkar, ziyaret boşa gider. Devir ölçütü bunu engellemek içindir.
+</Aside>
+
+## Üç rolün ortak kuralları
+
+1. **Her temas CRM'e yazılır.** İstisnasız.
+2. **Hiçbir alım talebi cevapsız kalmaz.** 24 saat içinde en az bir dönüş yapılır.
+3. **Kayıtlı satıcı sayısı hedef değildir.** Hedef, işlem yapan satıcıdır.
+4. **Toplu ticari mesaj gönderilmez.** İzinli ve bire bir iletişim esastır.
+5. **Verilen söz kaydedilir.** Satıcıya verilen her istisna yazılır; sözlü söz yoktur.
+
+## Ölçüm: hangi rol ne üretiyor
+
+Üç ay sonunda şu tablo doldurulacak. Bu tablo, rol yapısının doğrulanmasıdır.
+
+| Rol | Ürettiği talep | Ürettiği satıcı | Katkıda bulunduğu işlem | Ürettiği gelir | Maliyeti |
+| --- | -------------- | --------------- | ----------------------- | -------------- | -------- |
+| Masa Başı | ... | ... | ... | ... | ... |
+| Organizatör | ... | ... | ... | ... | ... |
+| Saha | ... | ... | ... | ... | ... |
+
+<Aside type="tip">
+Bu tablo suçlama aracı değil, **kaynak dağıtım aracıdır**. Hangi rolün daha çok ürettiği
+ortaya çıkınca, 4. ayda ikinci kişi o role alınır.
+</Aside>

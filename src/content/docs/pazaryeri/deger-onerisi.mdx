@@ -1,0 +1,93 @@
+---
+title: Taraf taraf değer önerisi
+description: Pazar yerinin tek bir değer önerisi olamayacağı; satıcı, alıcı ve kurumsal paydaşlar için ayrı ayrı vaat tanımları.
+kanit: cikarim
+guven: orta
+tur: harita
+faz: her-ikisi
+sidebar:
+  order: 6
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Kural
+
+Bir pazar yerinin **tek bir değer önerisi olmaz**. Her tarafa ayrı vaat verilir ve bu vaatler
+birbiriyle çelişebilir. Örneğin alıcıya "en ucuz fiyat" vaat etmek, satıcıya "kârlı satış"
+vaat etmekle çelişir. Bu çelişki yönetilmezse iki taraf da güvenini kaybeder.
+
+## Değer önerisi şablonu
+
+Her taraf için şu beş alan doldurulur:
+
+| Alan | Soru |
+| ---- | ---- |
+| Kim | Tam olarak hangi kişi, hangi unvan |
+| Acı | Bugün neyi çekiyor, somut olarak |
+| Neyin yerine | Hangi mevcut davranışın yerini alıyoruz |
+| Vaat | Tek cümle, ölçülebilir |
+| Kanıt | Vaadi neyle destekliyoruz |
+
+## Satıcı değer önerisi
+
+<dl class="ip-kv">
+  <dt>Kim</dt><dd>İSTOÇ'ta toptancı; sahibi veya satış sorumlusu</dd>
+  <dt>Acı</dt><dd>Boş kapasite; sezon dışında sipariş yok; yeni müşteri bulmak tesadüfe bağlı; tahsilat riski</dd>
+  <dt>Neyin yerine</dt><dd>Kapıdan gelen müşteriyi beklemek; tanıdık üzerinden iş almak</dd>
+  <dt>Vaat</dt><dd>"Kendi kategorinizde bekleyen alım taleplerini görün ve teklif verin; ürünlerinizi sizin yerinize biz yükleyelim."</dd>
+  <dt>Kanıt</dt><dd>Bekleyen talep sayısı ekranı; tamamlanmış işlem hikâyeleri; kurucu satıcı listesi</dd>
+</dl>
+
+<Aside type="caution" title="Satıcıya vaat edilmemesi gerekenler">
+"Binlerce yeni müşteri", "satışlarınız katlanacak", "kısa sürede büyük hacim". Bu vaatler
+tutulamaz ve tutulmadığında satıcı hem gider hem de çevresine anlatır. B2B'de kötü haber
+hızlı yayılır.
+</Aside>
+
+## Alıcı değer önerisi
+
+<dl class="ip-kv">
+  <dt>Kim</dt><dd>Proje müteahhidi, satın almacı veya esnaf</dd>
+  <dt>Acı</dt><dd>Acil ihtiyaçta tedarikçi bulamamak; fiyat karşılaştıramamak; tanımadığına güvenememek</dd>
+  <dt>Neyin yerine</dt><dd>Telefonla 5 yeri aramak; WhatsApp'tan fiyat sormak; tanıdıkla idare etmek</dd>
+  <dt>Vaat</dt><dd>"İhtiyacınızı bir kez yazın, 2 saat içinde doğrulanmış tedarikçilerden 3 teklif alın."</dd>
+  <dt>Kanıt</dt><dd>Medyan cevap süresi; doğrulanmış tedarikçi rozeti; gerçek teklif örnekleri</dd>
+</dl>
+
+## Diğer paydaşlar
+
+| Paydaş | Acı | Vaat |
+| ------ | --- | ---- |
+| Üretici | Bayi ağı dışına çıkamıyor | "Ürününüz doğrudan proje alıcısına ulaşsın" |
+| Distribütör / bayi | Stok eriyor, talep düzensiz | "Ölü stoğunuza talep bulun" |
+| Ticaret odası / dernek | Üyeye somut fayda sunmak | "Üyelerinize ücretsiz dijital tedarik kanalı" |
+| İSTOÇ site yönetimi | Merkezin cazibesini korumak | "İSTOÇ'un dijital vitrini" |
+| Lojistik firması | Düzenli sevkiyat hacmi | "Platform üzerinden düzenli iş" |
+| Kurumsal satın alma | Onaylı tedarikçi havuzu ve evrak | "Belgeli tedarikçi, tek noktadan teklif" |
+
+<Aside type="tip" title="Oda ve site yönetimi neden ayrı bir vaat gerektirir">
+Bu paydaşlar müşteri değil, **erişim kapısıdır**. Onlara satış yapılmaz; onlara üyelerine
+sunabilecekleri bir fayda verilir. Bu, organizatör rolünün en yüksek getirili işidir.
+Ayrıntı: [Görev tanımı: Organizatör](/istocpazar2/organizasyon/gorev-tanimi-organizator/).
+</Aside>
+
+## Vaatler arası çelişki yönetimi
+
+| Çelişki | Nasıl yönetilir |
+| ------- | --------------- |
+| Alıcıya "en ucuz" vs satıcıya "kârlı satış" | "En ucuz" vaat edilmez; "karşılaştırılabilir ve şeffaf" vaat edilir |
+| Satıcıya "müşterin gizli" vs alıcıya "şeffaflık" | Fiyat gizli, tedarikçi kimliği açık modeli |
+| Alıcıya "hızlı" vs satıcıya "zahmetsiz" | Hız yükünü platform üstlenir: ekip talebi elle iletir |
+| Platforma "komisyon" vs iki tarafa "ucuz" | Komisyonun neyi satın aldığı açıkça anlatılır |
+
+## Vaat testi
+
+Bir değer önerisi şu üç testi geçmelidir:
+
+1. **Somutluk testi.** Vaatte ölçülebilir bir sayı var mı? ("2 saat", "3 teklif")
+2. **Yerine geçme testi.** Muhatap bugün ne yapıyor ve biz onun yerine ne koyuyoruz?
+3. **Kanıt testi.** Vaat sorgulanırsa gösterecek bir şeyimiz var mı?
+
+Üçünden birini geçemeyen vaat, satış görüşmesinde çöker.

@@ -1,0 +1,92 @@
+---
+title: Sürüm günlüğü
+description: Rehberin sürümleri, eklenen bölümler, değişen görüşler ve çürütülen varsayımların kaydı.
+kanit: resmi-kaynak
+guven: yuksek
+tur: referans
+faz: her-ikisi
+sidebar:
+  order: 3
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+## Sürümleme kuralı
+
+| Değişiklik tipi | Sürüm etkisi |
+| --------------- | ------------ |
+| Yazım ve biçim düzeltmesi | Yama (0.1.x) |
+| Yeni sayfa veya bölüm | Küçük (0.x.0) |
+| Bir öneri veya teşhisin değişmesi | Küçük, günlükte ayrı başlık |
+| Stratejinin temelden değişmesi | Büyük (x.0.0) |
+
+<Aside type="caution" title="Silme yasağı">
+Bir varsayım çürüdüğünde ilgili sayfa **silinmez**. Üzerine karşı kanıt eklenir ve bu
+günlüğe yazılır. Böylece "neden fikir değiştirdik" sorusunun cevabı kayıtta kalır.
+Fikir değiştirmenin kaydı, fikrin kendisinden değerlidir.
+</Aside>
+
+## 0.1.0 — İlk sürüm
+
+**Kapsam:** Faz 1 problem uzayı ve Faz 2 çözüm önerileri birlikte yayınlandı.
+
+**Eklenen bölümler**
+
+| Bölüm | Sayfa | İçerik |
+| ----- | ----- | ------ |
+| Başlangıç | 4 | İki dakikalık özet, okuma kılavuzu, sizden istenen kararlar, sözlük |
+| Teşhis | 4 | Problem haritası, alternatif hipotezler, bilinmeyenler, varsayım kütüğü |
+| Teori | 6 | Pazarlama sürümleri, strateji soy ağacı, gerilla/kontrgerilla, disiplin transferi, Karar Kitabı, ikna psikolojisi |
+| Pazar yeri | 9 | Likidite, soğuk başlangıç aileleri, atomik ağ, wedge, sihirli an, değer önerisi, güven, teşvik, büyüme döngüleri |
+| Rekabet | 4 | Rekabet haritası, tüketilmeyen pazar, neden şimdi, ajan tabanlı ticaret |
+| Kanıt | 5 | Kanıt haritası, çelişki haritası, başarısızlık haritası, premortem, kırmızı takım |
+| Çözüm | 6 | Çözüm özeti, wedge önerisi, kendini ödeyen model, aşamalı istihdam, SMART eylem planı, seçilmeyenler |
+| Karar sistemi | 4 | ECA+/SIDAML, karşılık merdiveni, puanlama, kural kütüphanesi |
+| Ölçüm | 5 | Hedeflerimiz, North Star, metrik sözlüğü, Goodhart, durdurma ölçütleri |
+| Organizasyon | 9 | Hipotez, kalifikasyonlar, üç görev tanımı, günlük akışlar, SMART hedefler, işe alım, yasal sınırlar |
+| Deney | 2 | Portföy, deney kartları |
+| Açık uçlar | 2 | Cevaplanmamış sorular, araştırma akışları |
+| Yayın | 3 | Test kapıları, yayın prosedürü, sürüm günlüğü |
+
+**Bu sürümde alınan başlıca konumlar**
+
+| Konu | Konum |
+| ---- | ----- |
+| Problem tanımı | Pazarlama problemi değil, pazar yeri likidite problemi |
+| Pazarlama sürümü | Sürüm değil katman; İstoc L0'da |
+| Kontrgerilla | Değerli ama erken; üç parçası bugün uygulanıyor |
+| Karar Kitabı | 83 modelden 9'u seçildi, 74'ü gerekçeyle elendi |
+| Strateji | Talep önce + concierge + tek kategori yoğunlaşması |
+| Ekip | Üç rol korundu; sıra aşamalı ve kapılı hâle getirildi |
+| Gelir | Komisyon tek başına yetmez; üç kalemli model |
+| Toplu mesaj | Kişiye özel izinli modele çevrildi |
+| North Star | Seçim 90 gün sonuna ertelendi |
+
+**Bilinen eksikler**
+
+| Eksik | Neden |
+| ----- | ----- |
+| İstoc'a özgü hiçbir alan verisi yok | Görüşme yapılmadı |
+| Gerçek maliyet ve komisyon rakamları yok | Paylaşılmadı |
+| Kategori verisi yok | Sayım yapılmadı |
+| Rakip kategori derinliği doğrulanmadı | Tarama yapılmadı |
+| Hukuki görüş alınmadı | Avukat çalışması bekliyor |
+
+<Aside type="tip" title="Bir sonraki sürümde beklenen">
+0.2.0 sürümü, alan araştırmasının (D1, D2, D3) sonuçlarıyla güncellenecek. O sürümde
+varsayım kütüğündeki en az beş satırın kanıt seviyesi yükselecek ve muhtemelen en az bir
+strateji önerisi değişecek.
+</Aside>
+
+## Değişiklik kaydı şablonu
+
+Yeni sürüm eklerken kullanılacak biçim:
+
+| Alan | İçerik |
+| ---- | ------ |
+| Sürüm | 0.x.0 |
+| Tarih | YYYY-AA-GG |
+| Neden değişti | Hangi yeni bilgi geldi |
+| Ne değişti | Hangi sayfalar, hangi öneriler |
+| Çürütülen varsayım | Varsa hangisi ve neyle |
+| Etkilenen kararlar | Hangi kararlar yeniden gözden geçirilmeli |

@@ -1,0 +1,193 @@
+---
+title: SMART hedefler
+description: Üç rol için haftalık, aylık ve üç aylık SMART hedefler; her hedefin şirket hedefine katkısı ve ölçüm kaynağı.
+kanit: cikarim
+guven: orta
+tur: operasyon
+faz: faz-2
+sidebar:
+  order: 7
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Chart from '@components/Chart.astro';
+import Tag from '@components/Tag.astro';
+
+## SMART yazım kuralı
+
+Bu ekipte bir hedef, beş sorunun hepsine cevap vermiyorsa hedef sayılmaz:
+
+| Harf | Soru | Kötü örnek | İyi örnek |
+| ---- | ---- | ---------- | --------- |
+| S | Tam olarak ne | "Satıcı kazanmak" | "Aydınlatma kategorisinde aktif satıcı kazanmak" |
+| M | Nasıl ölçülür | "Daha çok" | "En az 20, CRM'den okunur" |
+| A | Gerçekçi mi | "1000 satıcı" | "20 satıcı, günde 6 ziyaretle" |
+| R | Neye hizmet eder | — | "Likidite eşiğine ulaşmak için" |
+| T | Ne zaman | "En kısa sürede" | "90. gün sonuna kadar" |
+
+<Aside type="danger" title="Hedef yazarken tek yasak">
+**Kayıtlı satıcı sayısı hiçbir rolün hedefi olamaz.** Bu ölçüt hedefe dönüştüğü anda ölü
+kayıtla doldurulur ve platform alıcı gözünde değersizleşir. Ayrıntı:
+[Goodhart tuzağı](/istocpazar2/olcum/goodhart/).
+</Aside>
+
+## Şirket hedefi ve rollerin katkısı
+
+Her rolün hedefi, tek bir şirket hedefine bağlanır.
+
+> **Şirket 90 gün hedefi:** Seçilen kategori ve coğrafyada 20 aktif satıcı, 15 tamamlanmış
+> işlem, 3 tekrar eden alıcı ve bir kişilik personel maliyetini karşılayan aylık gelir.
+
+| Rol | Katkı zinciri | Ölçülen katkı |
+| --- | ------------- | ------------- |
+| Masa Başı | Doğrulanmış kayıt → temas → nitelikli randevu | Randevunun sahada ilerleme oranı |
+| Organizatör | Kurumsal erişim → iş birliği geliri → meşruiyet | Likiditeden bağımsız gelir |
+| Saha | Randevu → aktif satıcı → tamamlanmış işlem | İşlem sayısı ve tekrar eden alıcı |
+
+## Masa Başı — SMART hedefler
+
+### Haftalık
+
+| # | Hedef (SMART) | Ölçüm kaynağı |
+| - | ------------- | ------------- |
+| MB-H1 | Her hafta 100 izinli bire bir temas kurmak (günde 20 x 5 gün) | CRM temas kaydı |
+| MB-H2 | Her hafta 40 tamamlanmış telefon görüşmesi yapmak | CRM görüşme kaydı |
+| MB-H3 | Her hafta 8 nitelikli randevu üretmek (devir ölçütünü sağlayan) | CRM randevu kaydı |
+| MB-H4 | Her hafta 50 yeni doğrulanmış kayıt eklemek | CRM kayıt sayısı |
+| MB-H5 | Her hafta temasların %100'ünü aynı gün CRM'e yazmak | CRM denetimi |
+
+### Aylık
+
+| # | Hedef (SMART) | Hedef değer |
+| - | ------------- | ----------- |
+| MB-A1 | Ay sonunda nitelikli randevu sayısı | 32 |
+| MB-A2 | Ay sonunda toplam doğrulanmış kayıt | 200 |
+| MB-A3 | Randevuların sahada ilerleme oranı | %40 |
+| MB-A4 | Üretilen satış materyali (broşür, kanıt sayfası, itiraz metni) | 4 |
+| MB-A5 | Cevapsız kalan alım talebi sayısı | 0 |
+
+### Üç aylık
+
+| # | Hedef (SMART) | Hedef değer |
+| - | ------------- | ----------- |
+| MB-Ç1 | 90. gün sonunda toplam nitelikli randevu | 96 |
+| MB-Ç2 | 90. gün sonunda doğrulanmış kayıt havuzu | 600 |
+| MB-Ç3 | Randevuların sahada ilerleme oranı (son ay) | %50 |
+| MB-Ç4 | Katkı verdiği hizmet geliri satışı | En az 3 |
+| MB-Ç5 | CRM veri bütünlüğü (eksik alanı olan kayıt oranı) | %5 altı |
+
+## Organizatör — SMART hedefler
+
+### Haftalık
+
+| # | Hedef (SMART) | Ölçüm kaynağı |
+| - | ------------- | ------------- |
+| OR-H1 | Her hafta 2 kurumsal görüşme yapmak | CRM kurum kaydı |
+| OR-H2 | Her hafta 15 saha ziyareti yapmak (ilk 2 ay) | CRM ziyaret kaydı |
+| OR-H3 | Her hafta 3 yazılı alım talebi toplamak (ilk ay) | Talep kaydı |
+| OR-H4 | Her gün 5 dakikalık eğitim vermek | Ayakta toplantı kaydı |
+| OR-H5 | Etkinlik hazırlığında haftalık ilerleme kaydetmek | Etkinlik kontrol listesi |
+
+### Aylık
+
+| # | Hedef (SMART) | Hedef değer |
+| - | ------------- | ----------- |
+| OR-A1 | Kurumsal görüşme sayısı | 8 |
+| OR-A2 | İmzalanan iş birliği | 1 |
+| OR-A3 | İş birliğinden gelen gelir | Aylık hedef (aşağıdaki grafik) |
+| OR-A4 | Düzenlenen etkinlik | 1 |
+| OR-A5 | Etkinlik katılımcısı | 15-30 |
+| OR-A6 | Etkinlik sonrası 72 saat içinde takip oranı | %100 |
+
+### Üç aylık
+
+| # | Hedef (SMART) | Hedef değer |
+| - | ------------- | ----------- |
+| OR-Ç1 | 90. gün sonunda imzalanmış iş birliği | 3 |
+| OR-Ç2 | 90. gün sonunda kümülatif iş birliği geliri | 160 bin TL |
+| OR-Ç3 | Düzenlenen etkinlik | 3 |
+| OR-Ç4 | Etkinliklerden çıkan aktif satıcı | 10 |
+| OR-Ç5 | Saha yükünün Saha rolüne devredilmesi | 3. ay sonunda tamam |
+
+## Saha — SMART hedefler
+
+### Haftalık
+
+| # | Hedef (SMART) | Ölçüm kaynağı |
+| - | ------------- | ------------- |
+| SH-H1 | Her hafta 30 planlı ziyaret yapmak (günde 6 x 5 gün) | CRM ziyaret kaydı |
+| SH-H2 | Her hafta 10 fırsatı bir sonraki huni aşamasına taşımak | CRM aşama değişimi |
+| SH-H3 | Her hafta 3 satıcıyı aktif hale getirmek (ilk teklifini verdiren) | Platform kaydı |
+| SH-H4 | Her hafta ziyaretlerin %100'ünü aynı gün CRM'e yazmak | CRM denetimi |
+| SH-H5 | Her hafta cevapsız teklif talebi sayısını sıfırlamak | Günlük kontrol listesi |
+
+### Aylık
+
+| # | Hedef (SMART) | Hedef değer |
+| - | ------------- | ----------- |
+| SH-A1 | Planlı ziyaret | 120 |
+| SH-A2 | Yeni aktif satıcı | 12 |
+| SH-A3 | Tamamlanmış işlem | 10 |
+| SH-A4 | Medyan ilk teklif cevap süresi | 4 saat altı |
+| SH-A5 | Net ret alınan fırsat oranı (belirsiz bırakılmayan) | %90 |
+
+### Üç aylık
+
+| # | Hedef (SMART) | Hedef değer |
+| - | ------------- | ----------- |
+| SH-Ç1 | 90. gün sonunda aktif satıcı | 20 |
+| SH-Ç2 | 90. gün sonunda tamamlanmış işlem | 15 |
+| SH-Ç3 | Tekrar eden alıcı | 3 |
+| SH-Ç4 | Kendi maliyetini gelirle karşılama oranı | %50 |
+| SH-Ç5 | Medyan ilk teklif cevap süresi (son ay) | 2 saat altı |
+
+## Üç aylık hedef eğrisi
+
+<Chart
+  id="smart-hedef-egrisi"
+  title="Rol bazında üç aylık kümülatif hedefler"
+  source="Yukarıdaki SMART tablolarından türetilmiştir. Aşamalı istihdam nedeniyle Masa Başı 2. ayda, Saha 3. ayda başlar."
+  height="21rem"
+  columns={['Ay', 'Nitelikli randevu (Masa Başı)', 'Kurumsal görüşme (Organizatör)', 'Tamamlanmış işlem (Saha)', 'Aktif satıcı (toplam)']}
+  rows={[
+    ['1. ay', 0, 8, 0, 5],
+    ['2. ay', 32, 16, 2, 12],
+    ['3. ay', 96, 24, 15, 20],
+  ]}
+  option={{
+    grid: { left: 52, right: 20, top: 60, bottom: 40 },
+    legend: { top: 8, data: ['Nitelikli randevu', 'Kurumsal görüşme', 'Tamamlanmış işlem', 'Aktif satıcı'] },
+    tooltip: { trigger: 'axis' },
+    xAxis: { type: 'category', data: ['1. ay', '2. ay', '3. ay'] },
+    yAxis: { type: 'value', name: 'kümülatif adet' },
+    series: [
+      { name: 'Nitelikli randevu', type: 'bar', itemStyle: { color: '#3f7fbf' }, data: [0, 32, 96] },
+      { name: 'Kurumsal görüşme', type: 'bar', itemStyle: { color: '#c2913f' }, data: [8, 16, 24] },
+      { name: 'Tamamlanmış işlem', type: 'bar', itemStyle: { color: '#4f9e77' }, data: [0, 2, 15] },
+      { name: 'Aktif satıcı', type: 'line', symbolSize: 8, lineStyle: { width: 3 }, itemStyle: { color: '#a05195' }, data: [5, 12, 20] },
+    ],
+  }}
+/>
+
+## Hedeflerin birbirine bağı
+
+<Aside type="tip" title="Zincir kontrolü">
+Hedefler tutarlı mı diye şu zinciri kontrol edin: 96 nitelikli randevu x %50 sahada ilerleme
+= 48 ilerleyen fırsat. 48 fırsat x %31 kapanış = 15 tamamlanmış işlem. Zincir tutuyor.
+Bir hedefi değiştirirseniz zincirin tamamını yeniden hesaplayın; yoksa hedefler birbiriyle
+çelişir ve ekip hangi sayının doğru olduğunu bilemez.
+</Aside>
+
+## Hedeflerin gözden geçirilmesi
+
+| Sıklık | Ne yapılır |
+| ------ | ---------- |
+| Haftalık | Haftalık hedefler okunur; tutmadıysa sebebi yazılır |
+| Aylık | Aylık hedefler kapı ölçütleriyle birlikte değerlendirilir |
+| 90 günde bir | Hedeflerin **seviyesi** yeniden belirlenir; ilk çeyrek verisi ile |
+
+<Aside type="caution" title="İlk çeyrek hedefleri tahmindir">
+Bu sayfadaki bütün rakamlar, İstoc verisi olmadan kurulmuş <Tag tone="warn">çıkarımlardır</Tag>.
+İlk 30 gün sonunda gerçek verimlilik ölçülünce hedefler **yukarı veya aşağı** çekilmelidir.
+Tutmayan hedefi korumak, ekibi demoralize eder; kolay hedefi korumak, ekibi uyutur.
+</Aside>

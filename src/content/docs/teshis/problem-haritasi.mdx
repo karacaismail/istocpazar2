@@ -1,0 +1,152 @@
+---
+title: 'Problem haritası'
+description: 'İstoc.com''un yaşadığı semptomların kök nedenlere ayrıştırılması ve problemin gerçekte hangi katmanda olduğunun haritalanması.'
+kanit: cikarim
+guven: orta
+tur: harita
+faz: faz-1
+sidebar:
+  order: 1
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Figure from '@components/Figure.astro';
+import Tag from '@components/Tag.astro';
+
+## Kural: semptom kök neden değildir
+
+"Satıcı gelmiyor" bir semptomdur. Sebebi olabilecek en az dokuz farklı kök neden vardır ve
+bunların hepsi farklı çözüm gerektirir. Yanlış kök nedene doğru çözüm uygulamak, hiçbir şey
+yapmamaktan pahalıdır; çünkü hem para hem zaman hem de ilk izlenim harcanır.
+
+<Figure title="Problem ağacı: semptomdan kök nedene" caption="Tek bir semptom (düşük likidite) dokuz farklı kök nedenden doğabilir. Her kök nedenin çözümü ve sahibi farklıdır.">
+  <svg slot="svg" class="ip-svg" viewBox="0 0 780 460" width="780" height="460" role="img" aria-labelledby="agac-baslik">
+    <title id="agac-baslik">Problem ağacı diyagramı</title>
+
+    <rect class="d-box-accent" x="270" y="16" width="240" height="52" rx="10"/>
+    <text x="390" y="38" text-anchor="middle" font-size="14" font-weight="700">SEMPTOM</text>
+    <text x="390" y="57" text-anchor="middle" font-size="13">Likidite yok, işlem olmuyor</text>
+
+    <path class="d-line" d="M390 68 V96"/>
+    <path class="d-line" d="M130 96 H650"/>
+    <path class="d-line" d="M130 96 V120"/>
+    <path class="d-line" d="M390 96 V120"/>
+    <path class="d-line" d="M650 96 V120"/>
+
+    <rect class="d-box" x="30" y="120" width="200" height="44" rx="8"/>
+    <text x="130" y="147" text-anchor="middle" font-size="13.5" font-weight="700">Arz tarafı</text>
+
+    <rect class="d-box" x="290" y="120" width="200" height="44" rx="8"/>
+    <text x="390" y="147" text-anchor="middle" font-size="13.5" font-weight="700">Talep tarafı</text>
+
+    <rect class="d-box" x="550" y="120" width="200" height="44" rx="8"/>
+    <text x="650" y="147" text-anchor="middle" font-size="13.5" font-weight="700">Platform tarafı</text>
+
+    <g font-size="12">
+      <rect class="d-box" x="30" y="190" width="200" height="36" rx="6"/>
+      <text x="42" y="213" font-size="12">A1 Dijital satış istemiyor</text>
+      <rect class="d-box" x="30" y="236" width="200" height="36" rx="6"/>
+      <text x="42" y="259" font-size="12">A2 Fiyatını açmak istemiyor</text>
+      <rect class="d-box" x="30" y="282" width="200" height="36" rx="6"/>
+      <text x="42" y="305" font-size="12">A3 Ürün yüklemek zahmetli</text>
+      <rect class="d-box" x="30" y="328" width="200" height="36" rx="6"/>
+      <text x="42" y="351" font-size="12">A4 Komisyon kabul etmiyor</text>
+
+      <rect class="d-box" x="290" y="190" width="200" height="36" rx="6"/>
+      <text x="302" y="213" font-size="12">T1 Yeterli tedarikçi yok</text>
+      <rect class="d-box" x="290" y="236" width="200" height="36" rx="6"/>
+      <text x="302" y="259" font-size="12">T2 Mevcut kanal yeterli</text>
+      <rect class="d-box" x="290" y="282" width="200" height="36" rx="6"/>
+      <text x="302" y="305" font-size="12">T3 Güven yok</text>
+      <rect class="d-box" x="290" y="328" width="200" height="36" rx="6"/>
+      <text x="302" y="351" font-size="12">T4 Marka bilinmiyor</text>
+
+      <rect class="d-box" x="550" y="190" width="200" height="36" rx="6"/>
+      <text x="562" y="213" font-size="12">P1 Katalog modeli yanlış</text>
+      <rect class="d-box" x="550" y="236" width="200" height="36" rx="6"/>
+      <text x="562" y="259" font-size="12">P2 Kategori çok geniş</text>
+      <rect class="d-box" x="550" y="282" width="200" height="36" rx="6"/>
+      <text x="562" y="305" font-size="12">P3 Sihirli an tasarlanmamış</text>
+      <rect class="d-box" x="550" y="328" width="200" height="36" rx="6"/>
+      <text x="562" y="351" font-size="12">P4 Eşleştirme yok</text>
+    </g>
+
+    <path class="d-line d-dash" d="M130 164 V190"/>
+    <path class="d-line d-dash" d="M390 164 V190"/>
+    <path class="d-line d-dash" d="M650 164 V190"/>
+
+    <rect class="d-box-accent" x="150" y="400" width="480" height="44" rx="10"/>
+    <text x="390" y="428" text-anchor="middle" font-size="13">Hangisi doğru? Henüz bilmiyoruz. İlk işimiz bunu ölçmek.</text>
+  </svg>
+
+  <div slot="alt">
+    En üstte "SEMPTOM: Likidite yok, işlem olmuyor" kutusu vardır. Altında üç dal ayrılır:
+    Arz tarafı, Talep tarafı ve Platform tarafı. Arz tarafı altında dört kök neden listelenir:
+    A1 dijital satış istemiyor, A2 fiyatını açmak istemiyor, A3 ürün yüklemek zahmetli,
+    A4 komisyon kabul etmiyor. Talep tarafı altında: T1 yeterli tedarikçi yok, T2 mevcut kanal
+    yeterli, T3 güven yok, T4 marka bilinmiyor. Platform tarafı altında: P1 katalog modeli yanlış,
+    P2 kategori çok geniş, P3 sihirli an tasarlanmamış, P4 eşleştirme yok. En altta vurgulu
+    bir kutu: "Hangisi doğru? Henüz bilmiyoruz. İlk işimiz bunu ölçmek."
+  </div>
+</Figure>
+
+## Kök neden kataloğu
+
+Her satır bir hipotezdir. Sağdaki sütun, o hipotez doğruysa **hangi çözümün işe yarayacağını**
+gösterir. Dikkat edin: sekiz satırdan yalnızca ikisinin çözümü pazarlamadır.
+
+| Kod | Kök neden | Doğruysa çözüm nerede | Test yöntemi |
+| --- | --------- | --------------------- | ------------ |
+| A1 | Satıcı dijital satış istemiyor | İş modeli / segment değişimi | 20 satıcı görüşmesi |
+| A2 | Fiyatını rakibe göstermek istemiyor | Ürün: gizli fiyat, RFQ modeli | Fiyat görünürlüğü A/B testi |
+| A3 | Ürün yüklemek zahmetli | Operasyon: yerine biz yükleyelim | Elle yükleme teklifi kabul oranı |
+| A4 | Komisyon oranını kabul etmiyor | Fiyatlama / iş modeli | Komisyonsuz pilot |
+| T1 | Alıcı yeterli tedarikçi bulamıyor | Arz yoğunluğu (kategori daraltma) | Arama sonucu doluluk ölçümü |
+| T2 | Mevcut kanal (telefon/WhatsApp) yeterli | Değer önerisi baştan yanlış | "Neden platform" görüşmesi |
+| T3 | Tanımadığına para göndermiyor | Güven mimarisi (escrow, KYB) | Escrow'lu vs escrow'suz dönüşüm |
+| T4 | Marka bilinmiyor | **Pazarlama** | Marka bilinirlik anketi |
+| P1 | B2B katalog değil RFQ ister | Ürün: RFQ öncelikli akış | RFQ vs katalog dönüşümü |
+| P2 | Kategori çok geniş, hiçbiri derin değil | Kapsam daraltma | Kategori bazlı doluluk |
+| P3 | Satıcı emeğinin karşılığını görmüyor | Ürün: sihirli an tasarımı | İlk 14 gün satıcı davranışı |
+| P4 | Talep ile arz eşleştirilmiyor | Ürün: eşleştirme motoru | Elle eşleştirme pilotu |
+
+<Aside type="caution" title="Bu tablonun en önemli satırı">
+**T2** satırıdır. Eğer alıcılar mevcut kanallarından memnunsa, İstoc'un problemi soğuk
+başlangıç bile değildir; **değer önerisinin baştan yanlış kurulmuş olmasıdır**. Bu ihtimal
+ölçülmeden hiçbir bütçe bağlanmamalıdır. Ayrıntı:
+[Tüketilmeyen pazar ve geçiş maliyeti](/istocpazar2/rekabet/tuketilmeyen-pazar/).
+</Aside>
+
+## Problemin hangi katmanda olduğu
+
+Uzman yönergesinin istediği geniş seçenek uzayı. Her katman ayrı bir sahiplik gerektirir.
+
+| Katman | İstoc için geçerlilik | Not |
+| ------ | --------------------- | --- |
+| Pazarlama | <Tag tone="warn">Kısmen</Tag> | Yalnızca T4 doğruysa birincil |
+| Satış | <Tag tone="ok">Yüksek</Tag> | İlk 50 satıcı elle kazanılır, reklamla değil |
+| Ürün | <Tag tone="ok">Yüksek</Tag> | Sihirli an, RFQ akışı, eşleştirme |
+| Pazar yeri tasarımı | <Tag tone="ok">Yüksek</Tag> | Kategori genişliği, eşleştirme kuralları |
+| Fiyatlama | <Tag tone="warn">Kısmen</Tag> | Komisyon direnci varsa birincil |
+| Teşvik tasarımı | <Tag tone="ok">Yüksek</Tag> | Hangi taraf sübvanse edilecek |
+| Güven | <Tag tone="ok">Yüksek</Tag> | B2B'de ödeme riski belirleyicidir |
+| Arz | <Tag tone="ok">Yüksek</Tag> | Yoğunluk, genişlik değil |
+| Talep | <Tag tone="ok">Yüksek</Tag> | Nitelikli alıcı, ziyaretçi değil |
+| Likidite | <Tag tone="ok">Kritik</Tag> | Asıl ölçüt |
+| Coğrafya | <Tag tone="ok">Yüksek</Tag> | İSTOÇ fiziksel kümesi bir avantaj olabilir |
+| Dikey seçimi | <Tag tone="ok">Kritik</Tag> | Karar 1 |
+| Dağıtım | <Tag tone="warn">Kısmen</Tag> | Kanal seçimi likiditeden sonra gelir |
+| Ortaklıklar | <Tag tone="warn">Kısmen</Tag> | Oda, dernek, site yönetimi |
+| Topluluk | <Tag tone="warn">Kısmen</Tag> | Mevcut WhatsApp grupları bir varlıktır |
+| Etkinlik | <Tag tone="warn">Kısmen</Tag> | Organizatör rolünün dayanağı |
+| Operasyon | <Tag tone="ok">Yüksek</Tag> | Elle yükleme, elle eşleştirme |
+| Finansman | <Tag tone="info">Bilinmiyor</Tag> | Vade/finansman bir kanca olabilir |
+| İş modeli | <Tag tone="warn">Kısmen</Tag> | Komisyon mu abonelik mi lead mi |
+
+## Bir sonraki adım
+
+Bu haritanın tek amacı, "hangi problem?" sorusunu ölçülebilir hale getirmektir. Devamı:
+
+- [Alternatif hipotezler](/istocpazar2/teshis/alternatif-hipotezler/) — her kök nedenin rakip açıklamaları
+- [Varsayım kütüğü](/istocpazar2/teshis/varsayim-kutugu/) — hangi varsayım, hangi maliyetle test edilir
+- [Deney portföyü](/istocpazar2/deney/portfoy/) — ilk hangi testler koşulur

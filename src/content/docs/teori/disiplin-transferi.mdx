@@ -1,0 +1,142 @@
+---
+title: 'Pazarlama dışı disiplinler'
+description: 'Oyun teorisi, mekanizma tasarımı, eşleştirme teorisi, ağ bilimi ve kuyruk teorisinden İstoc kararlarına doğrudan transfer edilebilecek yöntemler.'
+kanit: hakemli-arastirma
+guven: orta
+tur: harita
+faz: faz-1
+sidebar:
+  order: 6
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+Uzman yönergesinin en isabetli maddesi buydu: bilinmeyen bilinmeyenlerin en büyük kaynağı,
+komşu disiplinlerdir. Ancak burada da aynı eleme kuralı geçerli — bir disiplin, ancak
+**farklı bir karar ürettiriyorsa** listeye alındı.
+
+## Transfer edilen 6 disiplin
+
+### 1. Mekanizma tasarımı
+
+<dl class="ip-kv">
+  <dt>Temel fikri</dt>
+  <dd>İstenen davranışı ikna ederek değil, <strong>kuralları öyle kurarak</strong> elde etmek ki
+  herkes kendi çıkarına göre davrandığında istenen sonuç kendiliğinden çıksın.</dd>
+  <dt>İstoc'ta değiştirdiği karar</dt>
+  <dd>"Satıcıyı nasıl ikna ederiz" sorusu, "hangi kural altında satıcının girmesi kendi
+  çıkarına olur" sorusuna dönüşür.</dd>
+  <dt>Somut sonuç</dt>
+  <dd>Kurucu satıcı statüsü, ilk girene devredilemez ve kalıcı avantaj; geç girenin bunu
+  satın alamaması. Bekleme stratejisini <strong>maliyetli</strong> hale getirmek.</dd>
+</dl>
+
+### 2. Eşleştirme teorisi
+
+<dl class="ip-kv">
+  <dt>Temel fikri</dt>
+  <dd>Fiyat tek başına yeterli olmadığında, kimin kiminle eşleşeceğini belirleyen kurallar
+  piyasanın verimliliğini belirler. İstikrarlı eşleşme, herkesin daha iyi bir alternatifi
+  olmadığı eşleşmedir.</dd>
+  <dt>İstoc'ta değiştirdiği karar</dt>
+  <dd>"Daha çok ilan" değil, "daha iyi eşleştirme". Bir teklif talebinin kaç satıcıya
+  gönderileceği, kimlere gönderileceği ve ne kadar sürede cevaplanması gerektiği tasarım
+  kararıdır.</dd>
+  <dt>Somut sonuç</dt>
+  <dd>Teklif talebi herkese değil, <strong>en fazla 5 uygun satıcıya</strong> gider. Böylece
+  satıcı her talebi ciddiye alır, alıcı da yönetilebilir sayıda teklif alır. Herkese açık
+  ihale modeli, satıcıda "nasılsa kazanamam" hissi yaratıp cevap oranını düşürür.</dd>
+</dl>
+
+### 3. Oyun teorisi
+
+<dl class="ip-kv">
+  <dt>Temel fikri</dt>
+  <dd>Sonuç, tek bir tarafın kararına değil tarafların birbirinin kararına dair
+  beklentisine bağlıdır.</dd>
+  <dt>İstoc'ta değiştirdiği karar</dt>
+  <dd>Satıcının girmemesi bir tutum değil, <strong>rasyonel bir denge</strong>. Herkes
+  diğerinin girmesini bekliyor. İkna bu dengeyi bozmaz; sadece ödemeleri değiştirmek bozar.</dd>
+  <dt>Somut sonuç</dt>
+  <dd>Koordinasyon problemini kırmak için <strong>eşzamanlı taahhüt</strong>: "Bu kategoride
+  20 satıcı imzalarsa hepsi aynı gün açılır, 20 olmazsa kimse yükümlü değil." Kimse tek
+  başına riske girmez; herkes birlikte girer.</dd>
+</dl>
+
+<Aside type="tip" title="Bu tek fikir tek başına değerli">
+Eşzamanlı taahhüt mekanizması, soğuk başlangıcın en zarif çözümlerinden biridir ve İstoc'un
+fiziksel İSTOÇ kümesinde uygulanması özellikle kolaydır: aynı koridordaki 20 esnaf aynı gün
+açılır. Bir tanesi yalnız kalmaz.
+</Aside>
+
+### 4. Ağ bilimi
+
+<dl class="ip-kv">
+  <dt>Temel fikri</dt>
+  <dd>Ağın değeri düğüm sayısından çok <strong>yoğunluğuna</strong> ve kümelenmesine bağlıdır.
+  Kritik eşiğin altında ağ söner, üstünde kendi kendini besler.</dd>
+  <dt>İstoc'ta değiştirdiği karar</dt>
+  <dd>"Türkiye geneli 1000 satıcı" hedefi yerine "tek kategoride yoğunluk" hedefi.
+  Dağınık 1000 satıcı, yoğun 40 satıcıdan değersizdir.</dd>
+  <dt>Somut sonuç</dt>
+  <dd><a href="/istocpazar2/pazaryeri/atomik-ag/">Atomik ağ</a> tanımı ve kategori bazlı
+  doluluk ölçümü.</dd>
+</dl>
+
+### 5. Kuyruk teorisi
+
+<dl class="ip-kv">
+  <dt>Temel fikri</dt>
+  <dd>Bekleme süresi, hizmet kapasitesi ile talep arasındaki ilişkiye göre <strong>doğrusal
+  değil, üstel</strong> artar. Kapasite doluluğa yaklaştıkça bekleme patlar.</dd>
+  <dt>İstoc'ta değiştirdiği karar</dt>
+  <dd>Alıcının teklif bekleme süresi, ürün özelliği değil <strong>terk sebebi</strong>.
+  "Kaç teklif geldi" değil, "ilk teklif kaç dakikada geldi" ölçülmeli.</dd>
+  <dt>Somut sonuç</dt>
+  <dd>Hizmet vaadi: <strong>teklif talebine ilk cevap 2 saat içinde</strong>. Bu vaat
+  tutulamıyorsa o kategoriye alıcı çekilmez. Bu, kapasite kapısı kuralının ölçülebilir hali.</dd>
+</dl>
+
+### 6. Davranışsal iktisat
+
+<dl class="ip-kv">
+  <dt>Temel fikri</dt>
+  <dd>İnsan kaybı kazançtan güçlü hisseder; mevcut durumu korumaya eğilimlidir; sahip olduğunu
+  olduğundan değerli sanır.</dd>
+  <dt>İstoc'ta değiştirdiği karar</dt>
+  <dd>Mesaj "yeni müşteri kazanın" değil, <strong>"kaybettiğiniz talebi görün"</strong> olmalı.
+  Kayıp çerçevesi kazanç çerçevesinden güçlüdür.</dd>
+  <dt>Somut sonuç</dt>
+  <dd>Satıcıya gösterilecek ilk ekran: "Geçen ay sizin kategorinizde 38 teklif talebi geldi,
+  siz hiçbirine cevap veremediniz." Bu ekran, bütün satış sunumundan etkilidir — ve
+  <strong>gerçek veriye dayandığı sürece</strong> dürüsttür.</dd>
+</dl>
+
+## Karar döngüsü: OODA ve kontrol teorisi
+
+Kontrgerilla çalışmanızdaki ECA yapısının doğal üst modeli budur: gözlemle, yönlendir,
+karar ver, uygula; sonra sonucu ölç ve döngüyü besle. Rehberde bu,
+[SIDAML döngüsü](/istocpazar2/karar-sistemi/eca-plus/) olarak genişletilmiştir.
+
+Kontrol teorisinden alınan tek ama kritik ders: **geri besleme gecikmesi, sistemi
+kararsızlaştırır.** Ölçüm 30 günde bir yapılırsa, ekip 30 gün boyunca yanlış yönde koşabilir.
+Bu yüzden günlük öncü göstergeler haftalık ardıl göstergelerden önemlidir.
+
+## Elenen disiplinler ve nedeni
+
+| Disiplin | Neden bugün eleniyor |
+| -------- | -------------------- |
+| Bilgi teorisi | Metafor düzeyinde kalıyor; karar değiştirmiyor |
+| Portföy teorisi, reel opsiyonlar | Çoklu yatırım kararı yok; tek bahis var. 12. aydan sonra anlamlı |
+| Epidemiyoloji / yayılım modelleri | B2B'de temas sayısı düşük; model parametreleri ölçülemez |
+| Karmaşık uyarlanabilir sistemler | Açıklayıcı; öngörü veya karar üretmiyor |
+| Evrimsel strateji, sürü zekâsı | Uzun vadeli benzetme; operasyonel çıktı yok |
+| Savaş oyunu (wargaming) | <Tag tone="warn">Ertelendi</Tag> — rakip aktif hamle yapınca değerli olur |
+| Açık artırma teorisi | Şu an tek fiyat mekanizması yok; RFQ modeli oturunca gerekli olur |
+
+<Aside type="caution">
+Bir disiplinin adını stratejide anmak, o disiplini kullanmak değildir. Yukarıdaki altı
+disiplin, **somut bir tasarım kararına** dönüştüğü için burada. Diğerleri, dönüştüğü gün
+eklenecek.
+</Aside>

@@ -1,0 +1,162 @@
+---
+title: 'İki dakikalık özet'
+description: 'İstoc.com''un yumurta-tavuk problemi, bunun neden bir reklam problemi olmadığı ve sizden istenen üç karar.'
+kanit: karma
+guven: orta
+tur: harita
+faz: her-ikisi
+sidebar:
+  order: 1
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import Figure from '@components/Figure.astro';
+import Tag from '@components/Tag.astro';
+
+## Problem, tek paragrafta
+
+İstoc.com iki taraflı bir pazar yeridir: bir tarafta satıcı, diğer tarafta alıcı vardır.
+Satıcı platforma girmiyor çünkü orada alıcı göremiyor. Alıcı platforma girmiyor çünkü orada
+yeterli ürün ve tedarikçi göremiyor. Her iki taraf da diğerini bekliyor. Bu, pazar yeri
+literatüründe **soğuk başlangıç problemi** (cold start) olarak bilinir ve klasik bir
+reklam bütçesi problemi değildir.
+
+<Figure title="İstoc'un kısır döngüsü ve döngüyü kıran üç müdahale noktası" caption="Kısır döngü kendi kendini besler. Döngüyü kırmak için üç noktadan birine dışarıdan enerji verilmesi gerekir: tek oyunculu fayda, çapa tedarikçi veya çapa talep.">
+  <svg slot="svg" class="ip-svg" viewBox="0 0 720 330" width="720" height="330" role="img" aria-labelledby="dongu-baslik">
+    <title id="dongu-baslik">İstoc kısır döngüsü diyagramı</title>
+
+    <rect class="d-box" x="40" y="30" width="200" height="70" rx="10"/>
+    <text x="140" y="60" text-anchor="middle" font-size="15" font-weight="700">Satıcı gelmiyor</text>
+    <text x="140" y="80" text-anchor="middle" font-size="12.5" class="d-muted">"Burada alıcı yok"</text>
+
+    <rect class="d-box" x="480" y="30" width="200" height="70" rx="10"/>
+    <text x="580" y="60" text-anchor="middle" font-size="15" font-weight="700">Alıcı gelmiyor</text>
+    <text x="580" y="80" text-anchor="middle" font-size="12.5" class="d-muted">"Burada tedarikçi yok"</text>
+
+    <rect class="d-box" x="260" y="150" width="200" height="70" rx="10"/>
+    <text x="360" y="180" text-anchor="middle" font-size="15" font-weight="700">Eşleşme olmuyor</text>
+    <text x="360" y="200" text-anchor="middle" font-size="12.5" class="d-muted">Likidite sıfıra yakın</text>
+
+    <path class="d-line" d="M240 65 H470" marker-end="url(#ok)"/>
+    <path class="d-line" d="M560 100 L400 148" marker-end="url(#ok)"/>
+    <path class="d-line" d="M300 148 L160 102" marker-end="url(#ok)"/>
+
+    <rect class="d-box-accent" x="40" y="250" width="180" height="55" rx="10"/>
+    <text x="130" y="272" text-anchor="middle" font-size="13" font-weight="700">Tek oyunculu fayda</text>
+    <text x="130" y="291" text-anchor="middle" font-size="11.5" class="d-muted">Ağ olmadan da işe yarar</text>
+
+    <rect class="d-box-accent" x="270" y="250" width="180" height="55" rx="10"/>
+    <text x="360" y="272" text-anchor="middle" font-size="13" font-weight="700">Çapa tedarikçi</text>
+    <text x="360" y="291" text-anchor="middle" font-size="11.5" class="d-muted">Arzı elle kur</text>
+
+    <rect class="d-box-accent" x="500" y="250" width="180" height="55" rx="10"/>
+    <text x="590" y="272" text-anchor="middle" font-size="13" font-weight="700">Çapa talep</text>
+    <text x="590" y="291" text-anchor="middle" font-size="11.5" class="d-muted">Talebi garanti et</text>
+
+    <path class="d-line-accent d-dash" d="M130 250 V115" marker-end="url(#okA)"/>
+    <path class="d-line-accent d-dash" d="M360 250 V225" marker-end="url(#okA)"/>
+    <path class="d-line-accent d-dash" d="M590 250 V115" marker-end="url(#okA)"/>
+
+    <defs>
+      <marker id="ok" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+        <path d="M0 0 L9 4.5 L0 9 z" fill="currentColor" class="d-muted"/>
+      </marker>
+      <marker id="okA" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+        <path d="M0 0 L9 4.5 L0 9 z" fill="var(--d-accent)"/>
+      </marker>
+    </defs>
+  </svg>
+
+  <div slot="alt">
+    Üç kutu bir döngü oluşturur. "Satıcı gelmiyor — burada alıcı yok" kutusundan
+    "Alıcı gelmiyor — burada tedarikçi yok" kutusuna ok gider. Oradan
+    "Eşleşme olmuyor, likidite sıfıra yakın" kutusuna, oradan da tekrar "Satıcı gelmiyor"
+    kutusuna ok gider; döngü kapanır. Altta üç adet kesikli ok döngüye dışarıdan bağlanır:
+    "Tek oyunculu fayda — ağ olmadan da işe yarar" satıcı tarafına, "Çapa tedarikçi — arzı elle kur"
+    eşleşme kutusuna, "Çapa talep — talebi garanti et" alıcı tarafına.
+  </div>
+</Figure>
+
+## Neden "daha çok reklam" varsayılan cevap değil
+
+Reklam, insanları bir yere getirir. Pazar yerinin problemi insanların gelmemesi değil,
+**geldiklerinde işe yarar bir şey bulamamaları**dır. Boş bir pazar yerine daha çok trafik
+getirmek, boş dükkânın önünden geçen insan sayısını artırmaktan ibarettir; dükkân yine boştur
+ve gelen bir daha gelmez. Bu yüzden pazarlama bütçesi, likidite oluşmadan harcandığında
+kalıcı zarar üretebilir: platformu bir kez boş gören alıcı, ikinci kez zor gelir.
+
+<Aside type="danger" title="En pahalı hata">
+Boş bir pazar yerine büyük ölçekli tanıtım yapmak, hem bütçeyi hem de **ilk izlenim hakkını**
+harcar. İlk izlenim tek kullanımlıktır.
+</Aside>
+
+## Somut yolculuk: bugün ne oluyor
+
+<Steps>
+
+1. **Bir toptancı** (satıcı) İstoc.com'a kaydoluyor. 40 ürününü tek tek yüklemesi 3 saat sürüyor.
+
+2. **İki hafta bekliyor.** Tek bir teklif talebi gelmiyor. Panelde "0 görüntülenme" yazıyor.
+
+3. **Vazgeçiyor.** Ürünlerini güncellemiyor. Fiyatlar eskiyor.
+
+4. **Bir alıcı** geliyor, arama yapıyor. Karşısına 40 adet güncelliği belirsiz ürün çıkıyor.
+
+5. **Alıcı telefonu açıyor** ve zaten tanıdığı Ahmet Bey'i arıyor. Platformdan çıkıyor, bir daha gelmiyor.
+
+</Steps>
+
+Bu yolculukta hata "yeterince duyurmadık" değildir. Hata, **satıcının emeğinin karşılığını
+alacağı bir an tasarlanmamış olmasıdır**. Buna rehberde
+[sihirli an](/istocpazar2/pazaryeri/sihirli-an/) diyoruz.
+
+## Üç temel bulgu
+
+<Steps>
+
+1. **Asıl ölçüt satıcı sayısı değil, eşleşme sıklığıdır.** 50.000 kayıtlı satıcı ve sıfır
+   işlem, 50 satıcı ve haftada 30 işlemden kötüdür. Ayrıntı:
+   [Likidite](/istocpazar2/pazaryeri/likidite/) ve [Goodhart tuzağı](/istocpazar2/olcum/goodhart/).
+
+2. **En tehlikeli rakip başka bir yazılım değil, telefon ve WhatsApp'tır.** İstoc'un rakip
+   haritası Alibaba ile başlamaz; "zaten Ahmet Bey'i arıyoruz" ile başlar. Ayrıntı:
+   [Geniş rekabet haritası](/istocpazar2/rekabet/rekabet-haritasi/).
+
+3. **Türkiye'yi değil, tek bir atomik ağı hedefleyin.** Çalışabilen en küçük kendi kendine
+   yeterli ağ nedir sorusu, bütün pazarlama sorularından önce gelir. Ayrıntı:
+   [Atomik ağ](/istocpazar2/pazaryeri/atomik-ag/) ve
+   [Wedge seçenekleri](/istocpazar2/pazaryeri/wedge-secenekleri/).
+
+</Steps>
+
+## Beyaz tahtadaki plan hakkında dürüst değerlendirme
+
+Beyaz tahtada üç rol var: masa başı pazarlama, saha pazarlama, organizatör. Bu yapı
+**mantıklı bir başlangıç hipotezidir** ve rehberde tam görev tanımı, günlük akış ve
+SMART hedeflerle işlenmiştir. Ancak iki uyarı zorunludur:
+
+<Tag tone="risk" icon="shield-warning">Hukuki risk</Tag> Tahtadaki "WhatsApp spam günlük=20",
+"il gruplara spam" ve "sosyal medya grup spam" maddeleri Türkiye'de 6563 sayılı kanun ve
+İYS yükümlülüğü nedeniyle **idari para cezası riski taşır**. Rehber bu maddeleri izinli ve
+yasal karşılıklarıyla değiştirir: [Yasal sınırlar](/istocpazar2/organizasyon/yasal-sinirlar/).
+
+<Tag tone="warn" icon="warning-circle">Sıralama riski</Tag> Üç rolü aynı anda işe almak,
+likidite hangi taraftan kurulacağı belli olmadan kapasite satın almak demektir. Rehber
+**önce tek rolle başlayıp 6 haftada karar verme** seçeneğini de sunar:
+[Organizasyon hipotezi](/istocpazar2/organizasyon/hipotez/).
+
+## Sizden istenen üç karar
+
+Bu rehber size karar dayatmaz; kararı netleştirir. Ayrıntı:
+[Sizden istenen kararlar](/istocpazar2/baslangic/yonetici-karari/).
+
+| # | Karar | Neden şimdi gerekli |
+| - | ----- | ------------------- |
+| 1 | Hangi tek kategori ve tek coğrafya ile başlıyoruz | Atomik ağ tanımlanmadan hiçbir hedef ölçülemez |
+| 2 | Hangi tarafı sübvanse ediyoruz (satıcı mı, alıcı mı) | Bütçe ve ekip yapısı bu karara bağlı değişir |
+| 3 | İlk 90 günün başarı ve durdurma eşiği nedir | Eşiksiz deney, sonsuz harcamaya dönüşür |
+
+<Aside type="tip" title="Bu rehber ne değildir">
+Yol haritası, bütçe planı veya kesin strateji değildir. Kanıt seviyeleri işaretlenmiş bir
+seçenek haritası, koşullu çözüm önerileri ve ekip kurulum kılavuzudur.
+</Aside>

@@ -1,0 +1,125 @@
+---
+title: 'Sözlük'
+description: 'Rehberde geçen pazar yeri, büyüme ve ölçüm terimlerinin teknik olmayan okuyucu için Türkçe karşılıkları.'
+kanit: karma
+guven: yuksek
+tur: referans
+faz: her-ikisi
+sidebar:
+  order: 4
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="tip">
+Bu sayfa aranabilir. Sağ üstteki arama kutusuna terimi yazarak doğrudan buraya gelebilirsiniz.
+</Aside>
+
+## Pazar yeri temelleri
+
+**İki taraflı pazar yeri.** Aynı platformda birbirini arayan iki farklı kullanıcı grubunu
+buluşturan iş modeli. İstoc'ta bunlar satıcı (toptancı, üretici, distribütör) ve alıcı
+(perakendeci, kurumsal satın almacı, esnaf) taraflarıdır.
+
+**Likidite.** Doğru alıcının doğru satıcıyı, makul sürede ve yeterli sıklıkta bulabilmesi.
+Pazar yerinin sağlık göstergesi budur; kayıtlı kullanıcı sayısı değildir.
+
+**Soğuk başlangıç problemi.** Yeni bir pazar yerinin, hiçbir taraf yokken ilk tarafı
+getirememesi durumu. "Yumurta-tavuk problemi" ile aynı şey.
+
+**Ağ etkisi.** Bir tarafa katılan her yeni kullanıcının, diğer taraf için platformun değerini
+artırması. Daha çok satıcı, alıcı için daha değerli demektir. Ters yönde de çalışır: taraf
+azalınca değer hızla düşer.
+
+**Atomik ağ.** Kendi kendine çalışabilen, dışarıdan destek olmadan ayakta kalan en küçük
+alıcı-satıcı topluluğu. Örneğin "İSTOÇ'ta 40 aydınlatma toptancısı ve 300 elektrikçi".
+
+**Wedge.** Pazara giriş kaması. Büyük pazarın tamamı yerine, hızlı kazanılabilir ve
+sonradan genişletilebilir dar bir giriş noktası.
+
+**Tek oyunculu mod.** Platformun, karşı taraf hiç yokken bile kullanıcıya fayda sağlaması.
+Örneğin satıcı için ücretsiz bir stok veya fiyat listesi aracı.
+
+**Çapa tedarikçi / çapa alıcı.** Varlığı tek başına diğer tarafı çeken, ismi bilinen büyük
+oyuncu. Bir pazar yerinde ilk 10 satıcının kim olduğu, sonraki 1000'i belirler.
+
+**Sihirli an.** Kullanıcının "bu işe yarıyor" dediği ilk somut an. Satıcı ve alıcı için farklıdır.
+
+## Ölçüm
+
+**GMV.** Platform üzerinden geçen toplam işlem hacmi. Tek başına yanıltıcıdır; tekrar oranıyla
+birlikte okunmalıdır.
+
+**North Star metriği.** Şirketin tek ana başarı göstergesi. Yanlış seçilirse bütün ekip
+yanlış yöne koşar.
+
+**Vanity metrik (gösteriş metriği).** İyi göründüğü hâlde iş sonucuyla ilişkisi olmayan sayı.
+Kayıtlı satıcı sayısı, takipçi sayısı, gösterim sayısı bunlara örnektir.
+
+**Goodhart yasası.** Bir ölçüt hedefe dönüştüğünde, iyi bir ölçüt olmaktan çıkar. Satıcı
+sayısını hedeflerseniz, sahte ve ölü satıcı kaydı üretilir.
+
+**Karşı-olgusal değerlendirme.** "Hiçbir şey yapmasaydık ne olurdu?" sorusunun ölçülmesi.
+Bu yapılmazsa doğal büyüme, kampanya başarısı sanılır.
+
+**CAC.** Bir müşteriyi kazanmanın maliyeti. Pazar yerinde satıcı ve alıcı için ayrı ayrı hesaplanır.
+
+**Churn.** Kullanıcının platformu terk etmesi. Pazar yerinde satıcı churn'ü alıcı churn'ünden
+daha tehlikelidir, çünkü arz kaybı görünürdür.
+
+## Strateji ve pazarlama
+
+**Gerilla pazarlama.** Az kaynakla yüksek dikkat üretmeyi hedefleyen yaratıcı yöntemler bütünü.
+
+**Kontrgerilla pazarlama.** Bu rehberde kullanıldığı anlamıyla: rakip, platform ve gündem
+kaynaklı dikkat olaylarına önceden tanımlanmış kurallarla karşılık veren üst karar katmanı.
+Cevap vermemeyi de meşru bir strateji sayar.
+
+**Countermarketing.** Zararlı bir ürünün talebini bilinçli olarak azaltma (ör. tütün karşıtı
+kampanyalar). İstoc bağlamında doğrudan uygulanabilir değildir.
+
+**Demarketing.** Aşırı veya istenmeyen talebi azaltma. Kapasite yetmediğinde kullanılır.
+
+**ECA.** Event-Condition-Action; olay, koşul ve aksiyon. Otomasyon kurallarının temel yapısı.
+
+**SIDAML.** Bu rehberde önerilen genişletilmiş döngü: Sense (algıla), Interpret (yorumla),
+Decide (karar ver), Act (uygula), Measure (ölç), Learn (öğren).
+
+**Ortogonal cevap.** Rakibin kullandığı araçla değil, farklı bir eksenden karşılık verme.
+İndirime indirimle değil, toplam maliyet şeffaflığıyla cevap vermek gibi.
+
+**Amplifikasyon riski.** Bir olaya cevap verildiğinde, o olayın daha çok kişiye ulaşması riski.
+
+## Güven ve hukuk
+
+**KYB.** Know Your Business; satıcının gerçek ve faal bir işletme olduğunun doğrulanması.
+
+**Escrow (emanet).** Ödemenin, mal teslim edilene kadar tarafsız bir hesapta tutulması.
+
+**RFQ.** Request for Quotation; teklif talebi. Alıcının ihtiyacını yazıp birden çok
+satıcıdan fiyat toplaması.
+
+**İYS.** İleti Yönetim Sistemi. Türkiye'de ticari elektronik ileti izinlerinin kayıt altına
+alındığı zorunlu ulusal sistem.
+
+**6563 sayılı Kanun.** Elektronik Ticaretin Düzenlenmesi Hakkında Kanun. Ticari elektronik
+ileti gönderimini izne bağlar.
+
+**KVKK.** 6698 sayılı Kişisel Verilerin Korunması Kanunu. Kişisel veri toplama, işleme ve
+saklamayı düzenler.
+
+## Ekip ve hedef
+
+**SMART hedef.** Specific (belirli), Measurable (ölçülebilir), Achievable (ulaşılabilir),
+Relevant (ilgili), Time-bound (süreli) ölçütlerini karşılayan hedef.
+
+**Öncü gösterge (leading indicator).** Sonucu önceden haber veren, günlük kontrol edilebilen
+sayı. Örneğin "yapılan nitelikli görüşme sayısı".
+
+**Ardıl gösterge (lagging indicator).** Sonucu geriden bildiren sayı. Örneğin "tamamlanan işlem".
+
+**Kill criteria (durdurma ölçütü).** Bir deneyin hangi şartta durdurulacağının, deney
+başlamadan yazılması.
+
+**Premortem.** Proje henüz başlamadan, "battığını varsayalım, neden battı?" sorusuyla yapılan
+başarısızlık analizi.

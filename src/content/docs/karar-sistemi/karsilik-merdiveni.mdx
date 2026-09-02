@@ -1,0 +1,113 @@
+---
+title: Karşılık merdiveni
+description: Bir olaya verilecek karşılığın sekiz kademesi, hangi kademenin ne zaman seçileceği ve cevapsızlığın neden meşru bir strateji olduğu.
+kanit: cikarim
+guven: orta
+tur: harita
+faz: her-ikisi
+sidebar:
+  order: 2
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Temel ilke
+
+Her olaya cevap verilmez. Küçük ekipte en kıt kaynak dikkat ve zamandır; her tepki bu
+kaynaktan harcar. Bu yüzden karşılık, **kademeli** olmalıdır.
+
+<Aside type="tip" title="Bu çerçevenin en değerli katkısı">
+Kontrgerilla çalışmanızın en özgün yanı, **cevapsızlığı meşru bir strateji saymasıdır.**
+Çoğu şirket bunu yapamaz; her olaya bir şey yapması gerektiğini sanır. Bu merdiven, hiçbir
+şey yapmamayı da bir karar haline getirir.
+</Aside>
+
+## Sekiz kademe
+
+| Seviye | Karşılık | Ne zaman | İstoc'ta bugün kullanımı |
+| ------ | -------- | -------- | ------------------------ |
+| L0 | Kaydet | Etkisi düşük, doğruluğu belirsiz | <Tag tone="ok">Aktif</Tag> |
+| L1 | İzle | Büyüyebilir ama henüz müdahale gerekmiyor | <Tag tone="ok">Aktif</Tag> |
+| L2 | Aşıla | Beklenen itiraz veya iddia gelmeden önce | <Tag tone="ok">Aktif</Tag> |
+| L3 | Sınırla | Yanlış bilgi yayılıyor, önce etki alanı daraltılmalı | <Tag tone="warn">Hazır</Tag> |
+| L4 | Kanıtla | İddia veriyle cevaplanabilir | <Tag tone="warn">Veri gerektirir</Tag> |
+| L5 | Çerçeveyi değiştir | Karşılaştırma ekseni bize zarar veriyor | <Tag tone="warn">Hazır</Tag> |
+| L6 | Araya gir / tersine çevir | Rakibin hamlesi avantaja çevrilebilir | <Tag tone="risk">Erken</Tag> |
+| L7 | Yükselt | Hukuk, güvenlik veya üst yönetim gerekiyor | <Tag tone="risk">Nadiren</Tag> |
+
+## İstoc'ta bugün uygulanabilir kademeler
+
+### L0 — Kaydet
+
+Bir olay görüldü, etkisi belirsiz. Yapılacak tek şey **kaydetmek**. Üç ay sonra aynı olay
+beşinci kez kaydedilmişse, artık bir kalıptır ve üst kademeye çıkar.
+
+Örnek: Bir satıcı "komisyon çok" dedi. Tek başına anlamsız; beşinci kez duyulduğunda
+fiyatlama kararıdır.
+
+### L1 — İzle
+
+Olay büyüyebilir ama henüz müdahale gerekmiyor. Bir kontrol noktası ve tarih belirlenir.
+
+Örnek: Sektörel bir grupta rakip bir platform konuşuluyor. Müdahale edilmez; iki hafta
+sonra tekrar bakılır.
+
+### L2 — Aşıla
+
+Beklenen itiraz gelmeden önce cevabı hazırlanır ve yayınlanır. **İstoc'un bugün en yüksek
+getirili karşılık kademesi budur.**
+
+| Beklenen itiraz | Aşılama içeriği | Kim üretir |
+| --------------- | --------------- | ---------- |
+| "Komisyon çok" | Komisyonun neyi satın aldığı sayfası | Masa Başı |
+| "Müşterimi görürler" | Gizli fiyat özelliği anlatımı | Masa Başı |
+| "Zahmetli" | "Sizin yerinize yükleyelim" anlatımı | Masa Başı |
+| "Param gelmez" | Ödeme akışı adım adım | Masa Başı |
+| "Daha önce denedik" | Neyin farklı olduğu | Organizatör |
+
+### L4 — Kanıtla
+
+Bir iddia doğrulanabilir veriyle cevaplanır. Bugün için sınırlı, çünkü veri henüz az.
+Ancak ilk 15 işlemden sonra devreye girer.
+
+## Kademe seçim akışı
+
+Bir olay geldiğinde sırayla sorulur:
+
+1. Doğru mu? Bilinmiyorsa → **L0**
+2. Büyüyor mu? Hayır ise → **L1**
+3. Önceden tahmin edilebilir miydi? Evet ise → **L2** (bir daha yaşanmasın)
+4. Yanlış bilgi yayılıyor mu? Evet ise → **L3**
+5. Elimizde kanıt var mı? Evet ise → **L4**
+6. Karşılaştırma ekseni bize zarar mı veriyor? Evet ise → **L5**
+7. Rakibin hamlesi avantaja çevrilebilir mi? Evet ise → **L6**
+8. Hukuki veya güvenlik boyutu var mı? Evet ise → **L7**
+
+## Amplifikasyon kuralı
+
+<Aside type="danger" title="Cevap vermenin gizli maliyeti">
+Bir olaya cevap vermek, o olayı **daha çok kişiye duyurur**. Küçük bir eleştiriye verilen
+büyük cevap, eleştiriyi büyütür. Cevap vermeden önce sorulacak soru:
+**"Cevap verirsem bu olayı kaç kişi daha duyar?"**
+
+Cevabın büyük olduğu durumlarda L0 veya L1 doğru seçimdir.
+</Aside>
+
+## Kapasite kapısı kuralı
+
+Bu, merdivenin İstoc için en kritik kuralıdır ve bugünden uygulanır:
+
+> **Talep artıran hiçbir aksiyon, o talebi karşılayacak arz yokken başlatılmaz.**
+
+Somut karşılığı: bir kategoride 20 aktif satıcı yoksa, o kategoriye alıcı çekilmez.
+Bu tek kural, [en ölümcül anti-pattern'i](/istocpazar2/kanit/basarisizlik-haritasi/)
+(boş rafa trafik) yapısal olarak engeller.
+
+## Sessizlik başarısı
+
+Ölçülmesi gereken ama neredeyse hiç ölçülmeyen metrik:
+
+`Sessizlik başarı oranı = Cevap verilmeden sönen olay / İzlenen toplam olay`
+
+Bu oran yüksekse ekip dikkatini doğru yerlere ayırıyor demektir.

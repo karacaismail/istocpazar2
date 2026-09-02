@@ -1,0 +1,136 @@
+---
+title: Hedeflerimiz nelerdir
+description: Şirket amacından günlük personel çıktısına kadar uzanan hedef hiyerarşisi ve her katmanın birbirine nasıl bağlandığı.
+kanit: cikarim
+guven: orta
+tur: karar
+faz: faz-2
+sidebar:
+  order: 1
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Figure from '@components/Figure.astro';
+import Tag from '@components/Tag.astro';
+
+## Hedef hiyerarşisi
+
+Bir ekipte hedef karmaşası, hedeflerin farklı katmanlara ait olduğunun bilinmemesinden çıkar.
+"Satıcı kazanmak" ile "kârlı olmak" aynı cümlede tartışılamaz; farklı katmanlardadır.
+
+<Figure title="Hedef hiyerarşisi: amaçtan günlük çıktıya" caption="Her katman bir üsttekine hizmet eder. Bir günlük çıktı, hangi şirket hedefine hizmet ettiğini söyleyemiyorsa gereksizdir.">
+  <svg slot="svg" class="ip-svg" viewBox="0 0 700 400" width="700" height="400" role="img" aria-labelledby="hedef-hiyerarsi">
+    <title id="hedef-hiyerarsi">Hedef hiyerarşisi diyagramı</title>
+
+    <rect class="d-box-accent" x="150" y="16" width="400" height="52" rx="10"/>
+    <text x="350" y="38" text-anchor="middle" font-size="13" font-weight="700">AMAÇ (değişmez)</text>
+    <text x="350" y="58" text-anchor="middle" font-size="12">İSTOÇ ticaretini dijital ve güvenli hale getirmek</text>
+
+    <rect class="d-box" x="110" y="82" width="480" height="52" rx="10"/>
+    <text x="350" y="104" text-anchor="middle" font-size="13" font-weight="700">YILLIK HEDEF</text>
+    <text x="350" y="124" text-anchor="middle" font-size="12">Kendini finanse eden, tekrar eden işlem üreten bir pazar yeri</text>
+
+    <rect class="d-box" x="80" y="148" width="540" height="52" rx="10"/>
+    <text x="350" y="170" text-anchor="middle" font-size="13" font-weight="700">90 GÜN HEDEFİ</text>
+    <text x="350" y="190" text-anchor="middle" font-size="12">20 aktif satıcı, 15 işlem, 3 tekrar eden alıcı, 1 kişilik maliyeti karşılayan gelir</text>
+
+    <rect class="d-box" x="50" y="214" width="600" height="52" rx="10"/>
+    <text x="350" y="236" text-anchor="middle" font-size="13" font-weight="700">AYLIK HEDEF (rol bazında)</text>
+    <text x="350" y="256" text-anchor="middle" font-size="12">Nitelikli randevu, kurumsal görüşme, tamamlanmış işlem, iş birliği geliri</text>
+
+    <rect class="d-box" x="30" y="280" width="640" height="52" rx="10"/>
+    <text x="350" y="302" text-anchor="middle" font-size="13" font-weight="700">HAFTALIK HEDEF</text>
+    <text x="350" y="322" text-anchor="middle" font-size="12">100 temas, 8 randevu, 30 ziyaret, 2 kurumsal görüşme</text>
+
+    <rect class="d-box" x="30" y="346" width="640" height="46" rx="10"/>
+    <text x="350" y="368" text-anchor="middle" font-size="13" font-weight="700">GÜNLÜK ÇIKTI</text>
+    <text x="350" y="386" text-anchor="middle" font-size="12">20 temas, 6 ziyaret, CRM %100 kapalı</text>
+  </svg>
+
+  <div slot="alt">
+    Yukarıdan aşağıya genişleyen altı katman. En üstte vurgulu AMAÇ (değişmez): İSTOÇ ticaretini
+    dijital ve güvenli hale getirmek. Altında YILLIK HEDEF: kendini finanse eden, tekrar eden
+    işlem üreten bir pazar yeri. Altında 90 GÜN HEDEFİ: 20 aktif satıcı, 15 işlem, 3 tekrar eden
+    alıcı, bir kişilik maliyeti karşılayan gelir. Altında AYLIK HEDEF (rol bazında): nitelikli
+    randevu, kurumsal görüşme, tamamlanmış işlem, iş birliği geliri. Altında HAFTALIK HEDEF:
+    100 temas, 8 randevu, 30 ziyaret, 2 kurumsal görüşme. En altta GÜNLÜK ÇIKTI: 20 temas,
+    6 ziyaret, CRM yüzde yüz kapalı.
+  </div>
+</Figure>
+
+## Katman katman
+
+### Amaç (değişmez)
+
+> İSTOÇ ve çevresindeki toptan ticareti dijital, karşılaştırılabilir ve güvenli hale getirmek.
+
+Bu cümle yıllarca değişmez. Strateji değişir, amaç değişmez.
+
+### Yıllık hedef
+
+> Kendini finanse eden, tekrar eden işlem üreten çalışan bir pazar yeri kurmak.
+
+<Aside type="tip" title="Anahtar kelime: tekrar eden">
+"Çok işlem" değil, **tekrar eden işlem**. Tek seferlik işlemler bir pazar yeri kurmaz;
+bir aracılık şirketi kurar. Ayrıntı: [Likidite](/istocpazar2/pazaryeri/likidite/).
+</Aside>
+
+### 90 gün hedefi
+
+| Gösterge | Hedef | Neden bu sayı |
+| -------- | ----- | ------------- |
+| Aktif satıcı | 20 | Atomik ağ eşiği tahmini |
+| Tamamlanmış işlem | 15 | Kanıt üretmeye yeter |
+| Tekrar eden alıcı | 3 | Ağın çalıştığının ilk işareti |
+| Aylık gelir | 1 kişilik maliyeti karşılıyor | Kendini ödeme yolunda ilk basamak |
+| Medyan ilk teklif süresi | 2 saat altı | Telefonla rekabet edebilme eşiği |
+
+### Aylık ve haftalık hedefler
+
+Rol bazında tam liste: [SMART hedefler](/istocpazar2/organizasyon/smart-hedefler/).
+
+## Hedef olmayanlar
+
+<Aside type="danger" title="Bilinçli olarak hedef yapılmayanlar">
+| Sayı | Neden hedef değil |
+| ---- | ----------------- |
+| Kayıtlı satıcı sayısı | Ölü kayıt üretir, alıcıyı kaçırır |
+| Sosyal medya takipçisi | İşlemle ilişkisi yok |
+| Sitede geçirilen süre | B2B'de kısa süre iyidir |
+| Ürün ilanı sayısı | Güncelliği olmayan ilan zarardır |
+| Gönderilen mesaj sayısı | Çıktı değil, girdi |
+| Ziyaret sayısı | Sonuç değil, faaliyet |
+| Etkinlik sayısı | Takipsiz etkinlik değersizdir |
+
+Bunlar **izlenir** ama hedeflenmez. Fark önemlidir: izlenen sayı bilgi verir,
+hedeflenen sayı davranış değiştirir. Ayrıntı:
+[Goodhart tuzağı](/istocpazar2/olcum/goodhart/).
+</Aside>
+
+## Hedeflerin çelişmemesi
+
+Hedefler birbirini baltalayabilir. Kontrol edilmesi gereken çelişkiler:
+
+| Hedef A | Hedef B | Çelişki | Çözüm |
+| ------- | ------- | ------- | ----- |
+| Çok satıcı | Yüksek arz kalitesi | Hızlı toplama kaliteyi düşürür | Aktif satıcı hedefi, kayıtlı değil |
+| Çok talep | Yüksek cevap oranı | Talep arzı aşarsa cevapsız kalır | Kapasite kapısı |
+| Hızlı büyüme | Kendini ödeme | Büyüme nakit yer | Aşamalı istihdam |
+| Yüksek komisyon | Satıcı memnuniyeti | Komisyon direnç yaratır | Hizmet geliri ile dengeleme |
+| Çok etkinlik | Takip kalitesi | Kapasite yetmez | Ayda 1 etkinlik |
+
+## Hedeflerin gözden geçirilmesi
+
+| Katman | Değişme sıklığı |
+| ------ | --------------- |
+| Amaç | Yıllarca değişmez |
+| Yıllık hedef | Yılda bir |
+| 90 gün hedefi | Çeyrekte bir, kapı toplantısında |
+| Aylık hedef | Ayda bir, gerçek veriye göre |
+| Haftalık hedef | Haftada bir |
+| Günlük çıktı | Gerektiğinde |
+
+<Aside type="caution" title="90 gün sabitleme kuralı">
+90 gün hedefi, çeyrek içinde **değiştirilmez**. Değiştirilirse ekip neye koştuğunu bilemez
+ve hiçbir varsayım test edilemez. Yeni fikir çıkarsa bir sonraki çeyreğe yazılır.
+</Aside>

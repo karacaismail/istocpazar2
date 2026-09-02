@@ -1,0 +1,116 @@
+---
+title: Goodhart tuzağı
+description: Bir ölçüt hedefe dönüştüğünde nasıl bozulduğu, İstoc'ta hangi metriklerin bu riski taşıdığı ve nasıl korunulacağı.
+kanit: hakemli-arastirma
+guven: yuksek
+tur: harita
+faz: her-ikisi
+sidebar:
+  order: 4
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Kural
+
+> **Bir ölçüt hedefe dönüştüğünde, iyi bir ölçüt olmaktan çıkar.**
+
+Sebep basittir: insanlar ölçülen şeyi iyileştirmek için en kolay yolu bulur ve bu yol
+genellikle asıl amaca hizmet etmez.
+
+## İstoc'ta en tehlikeli üç örnek
+
+### 1. Kayıtlı satıcı sayısı
+
+| Aşama | Ne olur |
+| ----- | ------- |
+| Hedef konur | "Bu ay 100 satıcı kaydı" |
+| Ekip en kolay yolu bulur | Kayıt formunu ekip kendisi doldurur |
+| Sayı tutar | 100 kayıt |
+| Gerçek | 12'si aktif, 88'i ölü |
+| Sonuç | Alıcı arama yapar, ölü ilanlar görür, gider |
+
+<Tag tone="ok" icon="seal-check">Panzehir</Tag> Hedef **aktif satıcı** olmalı:
+son 30 günde en az bir talebe cevap vermiş satıcı.
+
+### 2. Ziyaret sayısı
+
+| Aşama | Ne olur |
+| ----- | ------- |
+| Hedef konur | "Günde 8 ziyaret" |
+| Ekip en kolay yolu bulur | Yakın dükkânlara kısa uğramalar |
+| Sayı tutar | 8 ziyaret |
+| Gerçek | Hiçbiri karar vericiyle görüşme değil |
+| Sonuç | Faaliyet var, ilerleme yok |
+
+<Tag tone="ok" icon="seal-check">Panzehir</Tag> Hedef **aşama ilerleten ziyaret** olmalı.
+
+### 3. Gönderilen mesaj sayısı
+
+| Aşama | Ne olur |
+| ----- | ------- |
+| Hedef konur | "Günde 20 mesaj" |
+| Ekip en kolay yolu bulur | Aynı metni kopyalayıp yapıştırmak |
+| Sayı tutar | 20 mesaj |
+| Gerçek | Kişiselleştirilmemiş, dönüşüm sıfır, platform riski |
+| Sonuç | Hem sonuç yok hem hesap riski |
+
+<Tag tone="ok" icon="seal-check">Panzehir</Tag> Hedef **cevap alan temas** olmalı.
+
+<Aside type="danger" title="Beyaz tahtadaki risk">
+Beyaz tahtadaki hedeflerin çoğu **faaliyet metriğidir**: 20 mesaj, haftada 2 organizasyon,
+çat kapı rutini. Bunların hiçbiri yanlış değil; ama hedef olarak konulursa Goodhart tuzağına
+düşerler. Rehber bu yüzden her faaliyet hedefinin yanına bir **sonuç hedefi** koymuştur.
+</Aside>
+
+## Korunma yöntemleri
+
+### 1. Metrik çifti kuralı
+
+Her faaliyet metriğinin yanına bir kalite metriği konur.
+
+| Faaliyet metriği | Yanına konacak kalite metriği |
+| ---------------- | ----------------------------- |
+| Temas sayısı | Cevap alma oranı |
+| Randevu sayısı | Sahada ilerleme oranı |
+| Ziyaret sayısı | Aşama ilerletme oranı |
+| Satıcı kaydı | 14 gün aktiflik oranı |
+| Etkinlik sayısı | Etkinlikten çıkan aktif satıcı |
+| İlan sayısı | Güncel ilan oranı |
+
+### 2. Sonuç metriğine bağlama
+
+Prim ve değerlendirme, faaliyete değil **sonuca** bağlanır:
+tamamlanmış işlem, tekrar eden alıcı, tahsil edilmiş gelir.
+
+### 3. Denetim örneklemesi
+
+Her ay rastgele 10 CRM kaydı seçilip doğrulanır: gerçekten görüşüldü mü, not doğru mu.
+Bu, sayının kalitesini korur ve bir kereden fazla yapıldığında caydırıcıdır.
+
+### 4. Metriğin ne zaman bozulduğunu izleme
+
+<Aside type="tip" title="Bozulma sinyali">
+Bir metrik hızla iyileşirken bağlı olduğu sonuç metriği iyileşmiyorsa, metrik bozulmuştur.
+Örnek: satıcı kaydı 3 katına çıktı, işlem sayısı sabit. Bu bir başarı değil, bir uyarıdır.
+</Aside>
+
+## İstoc metriklerinin risk sınıflaması
+
+| Metrik | Goodhart riski | Neden |
+| ------ | -------------- | ----- |
+| Kayıtlı satıcı | <Tag tone="risk">Çok yüksek</Tag> | Şişirilmesi çok kolay |
+| Gönderilen mesaj | <Tag tone="risk">Çok yüksek</Tag> | Kopyala-yapıştır |
+| Ziyaret sayısı | <Tag tone="risk">Yüksek</Tag> | Niteliksiz uğrama |
+| İlan sayısı | <Tag tone="risk">Yüksek</Tag> | Toplu yükleme |
+| Nitelikli randevu | <Tag tone="warn">Orta</Tag> | "Nitelikli" tanımı zorlanabilir |
+| Etkinlik katılımcısı | <Tag tone="warn">Orta</Tag> | İlgisiz katılımcı |
+| Tamamlanmış işlem | <Tag tone="ok">Düşük</Tag> | Gerçek para hareketi |
+| Tekrar eden alıcı | <Tag tone="ok">Çok düşük</Tag> | Sahtesi üretilemez |
+| İlk teklif süresi | <Tag tone="ok">Düşük</Tag> | Sistemden otomatik |
+
+<Aside type="tip" title="Sonuç">
+Ekip hedefleri, tablodaki **alt üç satıra** yakın olmalıdır. Üst dört satır izlenir,
+raporlanır ama hedeflenmez.
+</Aside>

@@ -1,0 +1,79 @@
+---
+title: Cevaplanmamış sorular
+description: Rehberin cevaplayamadığı, ancak İstoc verisiyle veya sahibin kararıyla cevaplanabilecek sorular.
+kanit: cikarim
+guven: orta
+tur: harita
+faz: faz-1
+sidebar:
+  order: 1
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Neden bu sayfa var
+
+Bir araştırmanın dürüstlüğü, cevapladıklarıyla değil **cevaplayamadıklarını açıkça
+yazmasıyla** ölçülür. Aşağıdaki sorular rehberde çözülemedi.
+
+## Veri gerektiren sorular
+
+| # | Soru | Nasıl cevaplanır | Öncelik |
+| - | ---- | ---------------- | ------- |
+| 1 | Alıcının gerçek acısı nedir | D1 deneyi | <Tag tone="risk">Kritik</Tag> |
+| 2 | Satıcının gerçek motivasyonu nedir | D2 deneyi | <Tag tone="risk">Kritik</Tag> |
+| 3 | Hangi kategoride yeterli derinlik var | D3 deneyi | <Tag tone="risk">Kritik</Tag> |
+| 4 | İSTOÇ'a gelemeyen alıcı segmenti ne kadar büyük | D1 içinde | <Tag tone="risk">Kritik</Tag> |
+| 5 | B2B satış döngüsü bu kategoride kaç gün | D1 ve D2 içinde | <Tag tone="risk">Kritik</Tag> |
+| 6 | Ortalama işlem tutarı nedir | İlk 20 işlem | Yüksek |
+| 7 | Kritik eşik gerçekte kaç satıcı | Pilot | Yüksek |
+| 8 | Satıcı ve alıcı kazanım maliyeti nedir | İlk 90 gün | Yüksek |
+| 9 | Hangi taraf zor taraf | D1 ve D2 karşılaştırması | Yüksek |
+| 10 | Fiyat şeffaflığı direnci ne kadar güçlü | D2 ve D9 | Orta |
+
+## Karar gerektiren sorular
+
+Bunlar araştırmayla cevaplanmaz; sahibinin karar vermesi gerekir.
+Ayrıntı: [Sizden istenen kararlar](/istocpazar2/baslangic/yonetici-karari/).
+
+| # | Soru |
+| - | ---- |
+| 11 | Nakit dayanma gücü kaç ay? |
+| 12 | Komisyon oranı kaç olacak? |
+| 13 | Platform uyuşmazlıkta taraf mı, aracı mı? |
+| 14 | Kurucu satıcı statüsünde ne verilecek, kalıcı mı? |
+| 15 | Hangi risk iştahıyla çalışıyoruz: hızlı büyüme mi, güvenli ilerleme mi? |
+
+## Henüz sormadığımız sorular
+
+Bilinmeyen bilinmeyenleri açmaya yönelik sorular:
+
+1. Satıcı için asıl değer "yeni müşteri" değil de **tahsilat garantisi** olabilir mi?
+2. Alıcının asıl acısı fiyat değil, **teslim süresi belirsizliği** olabilir mi?
+3. İlk müşterimiz satıcı veya alıcı değil, **aracı/komisyoncu** olabilir mi?
+4. Platformun asıl ürünü pazar yeri değil, **tedarikçi doğrulama servisi** olabilir mi?
+5. İSTOÇ site yönetimi bir ortak değil, **asıl müşteri** olabilir mi?
+6. Komisyon almamak, gelir kaybı değil de **hız kazancı** olarak mı fiyatlanmalı?
+7. Rakip Trendyol değil, satıcılarımızın kendi WhatsApp grubu olabilir mi?
+8. Ekip üç kişi değil de **bir kişi + bir yazılım özelliği** olsaydı sonuç ne olurdu?
+9. 2027'de bir yapay zekâ ajanı İstoc'u okuyabilecek mi, yoksa görünmez mi olacağız?
+10. En değerli varlığımız platform mu, yoksa **topladığımız talep verisi** mi?
+
+<Aside type="tip" title="10. sorunun ağırlığı">
+Toplanan alım talebi verisi, kimin ne aradığını, hangi fiyattan, hangi sıklıkta gösterir.
+Bu veri, platformun kendisinden daha değerli bir varlığa dönüşebilir: sektörel fiyat ve
+talep raporu olarak satılabilir, kurumsal iş birliğinin dayanağı olabilir ve
+[kendini ödeyen modelin](/istocpazar2/cozum/kendini-odeyen-model/) üçüncü gelir kalemini
+besleyebilir. Bu ihtimal ciddiye alınmalı.
+</Aside>
+
+## Rehberin bilerek cevaplamadığı sorular
+
+| Soru | Neden cevaplanmadı |
+| ---- | ------------------ |
+| Hangi yazılım altyapısı kullanılmalı | Rehberin kapsamı dışında; ürün ekibinin kararı |
+| Maaşlar ne kadar olmalı | Piyasa verisi gerekir; sahibinin kararı |
+| Hangi CRM seçilmeli | Reversible teknik karar; ekip seçer |
+| Marka ismi ve kimliği değişmeli mi | Kapsam dışı |
+| Yatırım alınmalı mı | Sahibinin kararı |

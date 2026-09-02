@@ -1,0 +1,112 @@
+---
+title: 'Soğuk başlangıç çözüm aileleri'
+description: 'Yumurta-tavuk problemini çözmek için bilinen bütün strateji ailelerinin kataloğu ve her birinin İstoc''un mevcut kaynaklarıyla uygulanabilirliği.'
+kanit: uzman-gorusu
+guven: orta
+tur: harita
+faz: faz-1
+sidebar:
+  order: 2
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+Bu sayfa uzman yönergesinin 7. maddesinin karşılığıdır: çözüm ailelerinin **tamamını** açmak,
+sonra daraltmak. Uygulanabilirlik sütunu, İstoc'un bilinen kısıtına göre değerlendirilmiştir:
+**3 personel, 3 ayda aşamalı istihdam, sistemin kendini ödemesi gerekliliği.**
+
+## Aile A — Hangi taraf önce
+
+| Strateji | Nasıl çalışır | İstoc'ta uygulanabilirlik | Not |
+| -------- | ------------- | ------------------------- | --- |
+| Arz önce (supply first) | Önce satıcı toplanır, sonra alıcı çağrılır | <Tag tone="ok">Yüksek</Tag> | Saha ekibiyle uyumlu; en klasik yol |
+| Talep önce (demand first) | Önce alıcı talebi toplanır, satıcı talebe çağrılır | <Tag tone="ok">Çok yüksek</Tag> | Satıcıya "hazır talep" götürmek en güçlü argüman |
+| Eşzamanlı tohumlama | İki taraf aynı anda ve koordineli açılır | <Tag tone="ok">Yüksek</Tag> | İSTOÇ fiziksel kümesinde uygulanabilir |
+| Zor taraf önce | Kazanılması zor olan taraf önce çözülür | <Tag tone="ok">Yüksek</Tag> | Zor tarafın hangisi olduğu henüz bilinmiyor |
+
+<Aside type="tip" title="Talep önce neden çok yüksek">
+Satıcıya "platformumuza kaydolun" demek zordur. "Elimde sizin kategorinizde 12 bekleyen alım
+talebi var, cevap vermek ister misiniz" demek kolaydır. Talep, satıcı kazanımının en ucuz
+argümanıdır — ve talebi elle toplamak, 3 kişilik ekibin yapabileceği bir iştir.
+</Aside>
+
+## Aile B — Değer önce, ağ sonra
+
+| Strateji | Nasıl çalışır | Uygulanabilirlik | Not |
+| -------- | ------------- | ---------------- | --- |
+| Tek oyunculu mod | Karşı taraf yokken de fayda veren araç | <Tag tone="ok">Yüksek</Tag> | Fiyat listesi, stok takibi, katalog oluşturucu |
+| Araç için gel, ağ için kal | Ücretsiz araçla kullanıcı toplanır, sonra ağ açılır | <Tag tone="ok">Yüksek</Tag> | Yazılım geliştirme gerektirir |
+| Üretici faydası | Satıcının işini kolaylaştıran özellik | <Tag tone="ok">Yüksek</Tag> | Katalog yükleme hizmeti tam bu |
+| Alıcı faydası | Alıcının işini kolaylaştıran özellik | <Tag tone="warn">Orta</Tag> | Fiyat karşılaştırma; arz gerektirir |
+| İçerik önce | Önce içerikle kitle toplanır | <Tag tone="warn">Orta</Tag> | Yavaş; 90 gün içinde sonuç vermez |
+| Dizin önce (directory) | Önce statik rehber, sonra işlem | <Tag tone="ok">Yüksek</Tag> | Ucuz, hızlı, arama trafiği yakalar |
+
+## Aile C — Elle ve yönetilen modeller
+
+| Strateji | Nasıl çalışır | Uygulanabilirlik | Not |
+| -------- | ------------- | ---------------- | --- |
+| Concierge pazar yeri | Eşleştirmeyi insan yapar, yazılım sonra gelir | <Tag tone="ok">Çok yüksek</Tag> | 3 kişiyle yapılabilecek en etkili model |
+| Yönetilen pazar yeri | Platform işlemin bir kısmını üstlenir | <Tag tone="ok">Yüksek</Tag> | Katalog yükleme, teklif toplama |
+| Hizmet önce | Önce hizmet satılır, sonra platforma taşınır | <Tag tone="warn">Orta</Tag> | Gelir üretir ama ölçeklenmez |
+| İşlem önce | İlk hedef ilk işlemi tamamlamaktır | <Tag tone="ok">Çok yüksek</Tag> | Kendini ödeyen model için gerekli |
+| Lead üretimi önce | Önce nitelikli talep satılır | <Tag tone="ok">Yüksek</Tag> | Erken gelir kaynağı olabilir |
+| RFQ önce | Teklif talebi merkezli akış | <Tag tone="ok">Çok yüksek</Tag> | B2B'nin doğal davranışı |
+
+<Aside type="caution" title="Ölçeklenmezlik burada bir erdem">
+Concierge model "ölçeklenmez" diye eleştirilir. Soğuk başlangıçta bu bir kusur değil,
+gerekliliktir. İlk 100 işlemi elle yapmak, hangi otomasyonun gerekli olduğunu öğrenmenin en
+ucuz yoludur. Otomasyonu önce yazmak, yanlış şeyi otomatikleştirme riskidir.
+</Aside>
+
+## Aile D — Yoğunlaştırma
+
+| Strateji | Nasıl çalışır | Uygulanabilirlik |
+| -------- | ------------- | ---------------- |
+| Coğrafi yoğunlaştırma | Tek şehir veya tek küme | <Tag tone="ok">Çok yüksek</Tag> — İSTOÇ |
+| Dikey yoğunlaştırma | Tek sektör | <Tag tone="ok">Çok yüksek</Tag> |
+| Kategori yoğunlaştırma | Tek ürün kategorisi | <Tag tone="ok">Çok yüksek</Tag> |
+| Persona yoğunlaştırma | Tek alıcı tipi | <Tag tone="ok">Yüksek</Tag> |
+
+## Aile E — Çapa ve ortaklık
+
+| Strateji | Nasıl çalışır | Uygulanabilirlik | Not |
+| -------- | ------------- | ---------------- | --- |
+| Çapa tedarikçi | Bilinen büyük satıcı platformu meşrulaştırır | <Tag tone="warn">Orta</Tag> | Büyükler en son gelir |
+| Çapa alıcı | Bilinen büyük alıcı talebi garanti eder | <Tag tone="ok">Çok yüksek</Tag> | Tek bir zincir alıcı platformu ayakta tutar |
+| Marka kullanıcı (marquee) | Referans değeri yüksek isim | <Tag tone="warn">Orta</Tag> | Erken dönemde zor |
+| Ticaret odası / dernek | Kurumsal meşruiyet ve erişim | <Tag tone="ok">Yüksek</Tag> | Ucuz ve hızlı |
+| Site / küme yönetimi | Fiziksel kümeye toplu erişim | <Tag tone="ok">Yüksek</Tag> | İSTOÇ yönetimi kritik ortak |
+| Talep havuzlama | Küçük alıcıların talebi birleştirilir | <Tag tone="warn">Orta</Tag> | Güçlü ama operasyon ağır |
+| Arz toplulaştırma | Küçük satıcıların arzı birleştirilir | <Tag tone="warn">Orta</Tag> | Lojistik gerektirir |
+
+## Aile F — Dönüşüm yolları
+
+| Strateji | Nasıl çalışır | Uygulanabilirlik |
+| -------- | ------------- | ---------------- |
+| SaaS'tan pazar yerine | Önce yazılım satılır, sonra ağ açılır | <Tag tone="warn">Orta</Tag> |
+| Satın almadan pazar yerine | Kurumsal satın alma aracından başlanır | <Tag tone="warn">Orta</Tag> |
+| Çevrimdışından çevrimiçine | Mevcut fiziksel ticaret dijitalleştirilir | <Tag tone="ok">Çok yüksek</Tag> |
+| Etkinlikten pazar yerine | Fuar veya toplantıdan ağ kurulur | <Tag tone="warn">Orta</Tag> |
+| Topluluktan pazar yerine | Var olan topluluk platforma taşınır | <Tag tone="ok">Yüksek</Tag> |
+
+<Aside type="tip" title="Çevrimdışından çevrimiçine">
+İstoc'un en büyük yapısal avantajı budur: eşleşmeler zaten oluyor, sadece telefonla ve
+elle oluyor. Sıfırdan talep yaratmak yerine, **var olan işlemi kayda geçirmek** çok daha
+kolaydır. Bu, "ilk 100 işlem" hedefinin neden gerçekçi olduğunun sebebidir.
+</Aside>
+
+## İstoc'un kısıtına göre daraltma
+
+3 personel, 3 ay, kendini ödeme zorunluluğu filtresinden geçince geriye **beş strateji** kalıyor:
+
+| Sıra | Strateji | Neden hayatta kaldı |
+| ---- | -------- | ------------------- |
+| 1 | Talep önce | Satıcı kazanımının en ucuz argümanı; elle yapılabilir |
+| 2 | Concierge / RFQ önce | 3 kişiyle uygulanabilir; ilk gelir buradan çıkar |
+| 3 | Kategori + coğrafya yoğunlaştırma | Bedava; sadece karar gerektirir |
+| 4 | Çapa alıcı | Tek isim tüm modeli ayakta tutabilir |
+| 5 | Çevrimdışından çevrimiçine | Var olan işlemi kayda geçirmek en hızlı yol |
+
+Elenenler ve nedeni: [Seçilmeyen seçenekler](/istocpazar2/cozum/secilmeyen-secenekler/).
+Seçilenlerin birleşimi: [Çözüm özeti](/istocpazar2/cozum/cozum-ozeti/).

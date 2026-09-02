@@ -1,0 +1,85 @@
+---
+title: 'Alternatif hipotezler'
+description: '"Satıcı yok çünkü alıcı yok" cümlesinin rakip açıklamaları ve her birinin nasıl ayırt edileceği.'
+kanit: cikarim
+guven: orta
+tur: harita
+faz: faz-1
+sidebar:
+  order: 2
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Başlangıç hipotezi ve neden yetersiz
+
+**H0:** Satıcı gelmiyor çünkü alıcı yok; alıcı gelmiyor çünkü satıcı yok.
+
+Bu cümle doğru olabilir. Ancak aynı gözlemi açıklayan en az on rakip hipotez daha vardır ve
+hepsi farklı çözüm gerektirir. Araştırmanın amacı H0'ı doğrulamak değil, **hangisinin doğru
+olduğunu bulmaktır**. Bir hipotezi doğrulamaya çalışmak (doğrulama yanlılığı), yanlış
+stratejiye tam güvenle yatırım yapmanın en yaygın yoludur.
+
+<Aside type="tip" title="Karar Kitabı bağlantısı">
+Bu sayfa, Karar Kitabı'ndaki **Bilişsel Önyargı** ve **Rumsfeld Matrisi** modellerinin
+doğrudan uygulamasıdır. Ayrıntı: [Karar Kitabı modelleri](/istocpazar2/teori/karar-kitabi/).
+</Aside>
+
+## Rakip hipotezler
+
+| Kod | Hipotez | Doğruysa ne yapılır | Ayırt edici test | Şu anki güven |
+| --- | ------- | ------------------- | ---------------- | ------------- |
+| H0 | Klasik yumurta-tavuk | Atomik ağ kur, tek tarafı sübvanse et | Arz yoğunluğu artınca alıcı dönüşümü artıyor mu | <Tag tone="warn">Orta</Tag> |
+| H1 | Satıcı dijital satış istemiyor | Segment değiştir veya hibrit model | 20 satıcı görüşmesi: "olsa kullanır mıydınız" | <Tag tone="warn">Orta</Tag> |
+| H2 | Satıcı fiyatını kamuya açmak istemiyor | Fiyat gizli, RFQ öncelikli tasarım | Gizli fiyat seçeneği sunulunca kayıt artıyor mu | <Tag tone="warn">Orta-yüksek</Tag> |
+| H3 | Ürün yüklemek çok zahmetli | Elle yükleme hizmeti (concierge) | "Sizin yerinize yükleyelim" teklifi kabul oranı | <Tag tone="ok">Yüksek</Tag> |
+| H4 | Komisyon kabul edilmiyor | Abonelik veya lead ücreti modeli | Komisyonsuz pilot vs komisyonlu | <Tag tone="warn">Orta</Tag> |
+| H5 | Mevcut kanal (telefon/WhatsApp) zaten yeterli | Değer önerisi baştan yeniden kurulmalı | "Son 5 alımınızı nasıl yaptınız" görüşmesi | <Tag tone="risk">Yüksek ve tehlikeli</Tag> |
+| H6 | Güven yok, tanımadığına para göndermiyor | Escrow, KYB, teminat | Escrow'lu teklif dönüşümü | <Tag tone="ok">Yüksek</Tag> |
+| H7 | Marka bilinmiyor | Pazarlama ve bilinirlik | Bilinirlik anketi + hatırlatmalı test | <Tag tone="warn">Düşük-orta</Tag> |
+| H8 | Kategori çok geniş, hiçbiri derin değil | Kapsam daraltma | Kategori bazlı arama doluluk oranı | <Tag tone="ok">Yüksek</Tag> |
+| H9 | Satıcı yeni müşteri istemiyor (kapasite dolu) | Segment değiştir | "Kapasiteniz var mı" sorusu | <Tag tone="info">Bilinmiyor</Tag> |
+| H10 | Mevcut müşteri ilişkisini şeffaflaştırmak istemiyor | Kapalı devre / özel katalog modeli | Mevcut müşteriye özel fiyat özelliği talebi | <Tag tone="warn">Orta</Tag> |
+| H11 | B2B alım katalogla değil ilişkiyle yürür | RFQ + insan destekli eşleştirme | Elle eşleştirme pilotunun dönüşümü | <Tag tone="ok">Yüksek</Tag> |
+| H12 | Ürün çalışıyor ama kimse denemedi (dağıtım problemi) | Dar hedefli dağıtım | Nitelikli 100 kullanıcıya elle ulaşım | <Tag tone="warn">Orta</Tag> |
+
+## En tehlikeli hipotez: H5
+
+H5 doğruysa, İstoc'un problemi soğuk başlangıç değildir. Problem, **çözmeye çalıştığı acının
+yeterince acıtmamasıdır**. Bu durumda ne saha ekibi ne organizasyon ne de reklam işe yarar;
+çünkü hiçbiri müşterinin mevcut davranışını değiştirecek bir sebep üretmez.
+
+<Aside type="danger" title="H5 nasıl ölçülür">
+Anket sormayın. "Platform kullanır mıydınız" sorusuna herkes evet der. Bunun yerine
+**son davranışı** sorun: "Son üç alımınızı nasıl yaptınız? Kimi aradınız? Kaç yere sordunuz?
+Fiyatı nasıl karşılaştırdınız? Ne kadar sürdü? Sizi en çok ne yordu?" Cevaplarda tekrar eden
+somut bir sıkıntı yoksa, İstoc'un çözdüğü bir problem yok demektir.
+</Aside>
+
+## Hipotezleri ayırt etme sırası
+
+Hepsini aynı anda test etmek mümkün değil. Öncelik, **yanlış çıkarsa en pahalıya mal olacak**
+hipotezdedir.
+
+| Sıra | Hipotez | Neden önce | Test maliyeti | Süre |
+| ---- | ------- | ---------- | ------------- | ---- |
+| 1 | H5 | Yanlışsa tüm iş modeli çöker | Çok düşük (20 görüşme) | 2 hafta |
+| 2 | H8 | Kategori kararı diğer her şeyi kilitler | Düşük (mevcut veri analizi) | 1 hafta |
+| 3 | H3 + H2 | Arz kurulumunun önündeki en somut engeller | Düşük (teklif testi) | 2 hafta |
+| 4 | H6 | B2B'de ödeme riski belirleyicidir | Orta (escrow prototipi) | 4 hafta |
+| 5 | H11 | Ürün mimarisini değiştirir | Orta (elle eşleştirme) | 4 hafta |
+| 6 | H0 | Ancak yukarıdakiler elendikten sonra anlamlı | Yüksek | 12 hafta |
+| 7 | H7 | En pahalı, en son | Yüksek | 12 hafta+ |
+
+<Aside type="caution">
+Beyaz tahtadaki plan, doğrudan **7. sıradaki hipotezle** (marka bilinmiyor) başlıyor:
+toplu mesaj, soğuk arama, sosyal medya, etkinlik. Bu, en pahalı ve en zayıf desteklenen
+hipoteze en büyük yatırımı yapmak anlamına gelir. Rehberin ana itirazı budur.
+</Aside>
+
+## Boş hipotez disiplini
+
+Her deney için "hiçbir şey yapmasaydık ne olurdu" sorusunun cevabı önceden yazılmalıdır.
+Aksi hâlde doğal dalgalanma, kampanya başarısı sanılır. Ayrıntı:
+[Durdurma ve ölçekleme ölçütleri](/istocpazar2/olcum/kill-scale/).

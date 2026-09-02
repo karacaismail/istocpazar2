@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="İstoc Pazar Yeri Rehberi">
+  <rect width="64" height="64" rx="14" fill="#12324d"/>
+  <circle cx="22" cy="24" r="7" fill="none" stroke="#7cc0f5" stroke-width="4"/>
+  <circle cx="42" cy="40" r="7" fill="none" stroke="#7cc0f5" stroke-width="4"/>
+  <path d="M27.5 28.5 L36.5 35.5" stroke="#f0c05a" stroke-width="4" stroke-linecap="round"/>
+</svg>

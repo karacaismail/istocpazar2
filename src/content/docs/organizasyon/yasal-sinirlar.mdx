@@ -1,0 +1,130 @@
+---
+title: Yasal sınırlar ve spam riski
+description: Beyaz tahtadaki toplu mesaj planının Türkiye mevzuatındaki durumu, tacir ve esnaf istisnası, İYS yükümlülüğü ve uygulanabilir yasal alternatif.
+kanit: resmi-kaynak
+guven: orta
+tur: karar
+faz: her-ikisi
+sidebar:
+  order: 9
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+<Aside type="danger" title="Bu sayfa hukuki görüş değildir">
+Aşağıdaki bilgiler mevzuatın genel çerçevesini anlatır ve bir avukatın yerini tutmaz.
+Uygulamaya geçmeden önce **bir avukattan yazılı görüş alın**. Özellikle tacir/esnaf
+istisnasının sizin gönderim biçiminize uygulanıp uygulanmadığı, somut duruma göre değişir.
+</Aside>
+
+## Beyaz tahtadaki riskli maddeler
+
+| Madde | Kanal | Durum |
+| ----- | ----- | ----- |
+| "WhatsApp spam günlük=20" | WhatsApp | <Tag tone="risk">Yüksek risk</Tag> |
+| "İl gruplara spam" | WhatsApp grupları | <Tag tone="risk">Yüksek risk</Tag> |
+| "Sosyal medya grup spam" | Sosyal ağ grupları | <Tag tone="warn">Orta risk</Tag> |
+| "E-posta pazarlama" | E-posta | <Tag tone="warn">Koşullu izinli</Tag> |
+| "Soğuk arama" | Telefon | <Tag tone="ok">Koşullu izinli</Tag> |
+
+## Mevzuat çerçevesi
+
+### 6563 sayılı Kanun — ticari elektronik ileti
+
+E-posta, SMS, otomatik arama ve benzeri elektronik kanallarla ticari amaçla gönderilen
+iletiler "ticari elektronik ileti" sayılır ve bu kanuna tabidir.
+
+<Aside type="tip" title="B2B için önemli istisna">
+Kanun, **alıcının tacir veya esnaf olması** hâlinde ticari elektronik ileti göndermek için
+**önceden onay alınmasını zorunlu tutmaz**. İstoc'un muhatapları toptancı, üretici ve
+işletme olduğundan bu istisna büyük ölçüde uygulanabilir görünmektedir.
+
+Ancak istisna, yükümlülüklerin tamamını kaldırmaz. Aşağıdaki üç yükümlülük **her hâlde**
+devam eder.
+</Aside>
+
+### Devam eden üç yükümlülük
+
+| Yükümlülük | Ne demek |
+| ---------- | -------- |
+| **İYS kaydı** | Gönderici olarak İleti Yönetim Sistemi'ne kayıtlı olmak ve gönderim öncesi ret listesini kontrol etmek |
+| **Ret hakkı** | Her iletide kolayca ve ücretsiz ret imkânı sunmak; ret gelirse gönderimi durdurmak |
+| **İçerik ve kimlik** | Göndericinin kim olduğu, iletinin ticari amaçlı olduğu açıkça anlaşılmalı |
+
+Bu yükümlülüklere aykırılık **idari para cezası** ile yaptırıma bağlanmıştır.
+
+### KVKK — kişisel veri
+
+Beyaz tahtadaki "data oluşturmak" maddesi doğrudan KVKK kapsamındadır.
+
+| Konu | Yükümlülük |
+| ---- | ---------- |
+| Veri toplama | İnternetten toplanan ad, telefon, e-posta kişisel veridir; işleme için hukuki sebep gerekir |
+| Aydınlatma | İlgili kişiye veri işlendiği bildirilmelidir |
+| Saklama | Süresiz saklanamaz; saklama ve imha politikası gerekir |
+| Güvenlik | CRM'de erişim yetkilendirmesi ve güvenlik önlemi zorunludur |
+
+<Aside type="caution" title="Sık yapılan hata">
+Firma genel e-postası (info@, satis@) çoğunlukla kişisel veri sayılmaz; ancak
+"ahmet.yilmaz@firma.com" veya bir çalışanın cep telefonu **kişisel veridir**. Ekip bu
+ayrımı bilmelidir.
+</Aside>
+
+### Platform kuralları — kanundan ayrı bir katman
+
+<Aside type="danger" title="WhatsApp için ayrı ve daha katı">
+Bir gönderim kanuna uygun olsa bile, **platformun kendi kuralları** ayrıca bağlar.
+WhatsApp'ın kullanım şartları, toplu ve talep edilmemiş mesaj gönderimini yasaklar.
+Sonuç kanuni bir ceza değil, **numaranın ve iş hesabının kalıcı olarak kapatılmasıdır.**
+
+Günde 20 kişiye aynı metnin gönderilmesi, WhatsApp'ın otomatik tespit sistemleri tarafından
+toplu gönderim olarak işaretlenir. Numara kapandığında yalnızca kampanya değil, o numaraya
+bağlı **bütün müşteri geçmişi** kaybolur.
+</Aside>
+
+Aynı şekilde sosyal ağ gruplarına reklam paylaşımı, grup kurallarına ve platform şartlarına
+aykırıysa hesap kısıtlamasına yol açar.
+
+## Sonuç: ne yapılmalı
+
+<Tag tone="ok" icon="seal-check">Önerilen model</Tag> Beyaz tahtadaki hedefleri **iptal
+etmeye gerek yok**; uygulama biçimini değiştirmek yeterli.
+
+| Tahtadaki madde | Yerine ne yapılır | Neden |
+| --------------- | ----------------- | ----- |
+| Günlük 20 WhatsApp toplu mesaj | Günlük 20 **kişiye özel** mesaj: muhatabın adı, firması ve somut ihtiyacına atıf | Hem platform kuralına uyar hem dönüşümü kat kat yüksektir |
+| İl gruplarına reklam | Gruplara **değerli katkı**: fiyat bilgisi, tedarikçi önerisi, soru cevaplama | Grup kuralını ihlal etmez, güven üretir |
+| Sosyal medya grup reklamı | Sektörel içerik paylaşımı ve yorum | Hesap riski yok |
+| Onaysız e-posta listesi | İYS kayıtlı gönderim, ret listesi kontrolü, ret bağlantısı | Kanuna uygun |
+| Soğuk arama | Devam; arama kaydı ve ret talebi kaydı tutulur | Zaten uygulanabilir |
+
+<Aside type="tip" title="Ticari gerçek: kişiye özel mesaj zaten daha iyi çalışır">
+Toplu mesajın dönüşüm oranı çok düşüktür ve marka algısını bozar. Aynı 20 dakikada
+gönderilen 20 kişiye özel mesaj, 500 toplu mesajdan daha fazla randevu üretir. Yasal sınır
+burada ticari çıkarla **çelişmiyor, örtüşüyor**.
+</Aside>
+
+## Uygulama kontrol listesi
+
+Bu listedeki her madde işaretlenmeden ekip iletişime başlamamalıdır.
+
+| # | Madde | Sorumlu | Durum |
+| - | ----- | ------- | ----- |
+| 1 | Avukattan yazılı görüş alındı | Yönetim | ... |
+| 2 | İYS kaydı yapıldı | Yönetim | ... |
+| 3 | Gönderim öncesi ret listesi kontrol süreci kuruldu | Masa Başı | ... |
+| 4 | Her iletide ret imkânı ve gönderici kimliği var | Masa Başı | ... |
+| 5 | KVKK aydınlatma metni hazırlandı ve yayında | Yönetim | ... |
+| 6 | Veri saklama ve imha politikası yazıldı | Yönetim | ... |
+| 7 | CRM erişim yetkileri tanımlandı | Yönetim | ... |
+| 8 | Ekibe yazılı iletişim politikası tebliğ edildi | Yönetim | ... |
+| 9 | WhatsApp kullanım kuralı yazıldı (toplu gönderim yasak) | Yönetim | ... |
+| 10 | Ret talepleri için kayıt defteri açıldı | Masa Başı | ... |
+
+## Ekibe verilecek tek cümlelik kural
+
+> **"Aynı metni birden fazla kişiye aynı anda göndermiyoruz. Her mesaj tek kişiye, adıyla ve
+> onun işine dair somut bir sebeple yazılır. Ret gelirse o kişiye bir daha yazmıyoruz."**
+
+Bu cümle işe alım sözleşmesinin ekinde yer almalı ve ilk gün imzalatılmalıdır.

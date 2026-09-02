@@ -1,0 +1,93 @@
+---
+title: Kanıt haritası
+description: Rehberdeki temel iddiaların hangi kanıt seviyesine dayandığı ve hangi boşlukların doldurulması gerektiği.
+kanit: karma
+guven: orta
+tur: harita
+faz: faz-1
+sidebar:
+  order: 1
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Amaç
+
+Bir stratejinin en tehlikeli yanı, güçlü ve zayıf kanıta dayanan iddiaların aynı güvenle
+sunulmasıdır. Bu sayfa, rehberdeki her temel iddiayı kanıt seviyesiyle birlikte listeler.
+
+Kanıt seviyeleri: [Bu rehber nasıl okunur](/istocpazar2/baslangic/nasil-okunur/).
+
+## Güçlü kanıta dayanan iddialar
+
+| İddia | Kanıt seviyesi | Kaynak tipi |
+| ----- | -------------- | ----------- |
+| İki taraflı pazarlarda ağ etkisi ve kritik eşik vardır | <Tag tone="ok">Hakemli araştırma</Tag> | Platform ekonomisi literatürü |
+| Mekanizma tasarımı, kuralların davranışı belirlediğini gösterir | <Tag tone="ok">Hakemli araştırma</Tag> | Ekonomi literatürü |
+| İkna ilkeleri (sosyal kanıt, kıtlık, karşılıklılık) davranışı etkiler | <Tag tone="ok">Hakemli araştırma</Tag> | Sosyal psikoloji |
+| Aşılama, sonraki ikna girişimlerine direnç kazandırır | <Tag tone="ok">Hakemli araştırma</Tag> | İkna literatürü |
+| Kuyruk teorisinde bekleme, doluluk arttıkça üstel artar | <Tag tone="ok">Matematiksel</Tag> | Yöneylem araştırması |
+| Ticari elektronik ileti yükümlülükleri mevzuatla tanımlıdır | <Tag tone="ok">Resmî kaynak</Tag> | 6563 sayılı Kanun, İYS |
+| Kişisel veri işleme KVKK kapsamındadır | <Tag tone="ok">Resmî kaynak</Tag> | 6698 sayılı Kanun |
+
+## Orta güçte kanıta dayanan iddialar
+
+| İddia | Kanıt seviyesi | Not |
+| ----- | -------------- | --- |
+| Şirketler rakip hamlesine çoğunlukla aynı araçla karşılık verir | <Tag tone="warn">Sektör verisi</Tag> | Geniş kategori çalışmaları |
+| Gerilla pazarlama büyük markalara yayıldı, sıra dışılık standartlaştı | <Tag tone="warn">Vaka + literatür</Tag> | Yayın tarihçesi |
+| Concierge model soğuk başlangıçta işe yarar | <Tag tone="warn">Vaka çalışması</Tag> | Bilinen pazar yeri örnekleri |
+| Ücretsiz listeleme kalitesiz arz üretir | <Tag tone="warn">Vaka + model</Tag> | Ortak malların trajedisi |
+| Çapa alıcı, soğuk başlangıcı hızlandırır | <Tag tone="warn">Vaka çalışması</Tag> | Pazar yeri örnekleri |
+
+## Zayıf kanıta dayanan iddialar
+
+<Aside type="danger" title="Bu bölüm en önemlisidir">
+Aşağıdaki iddialar rehberin **çözüm önerilerinin temelini** oluşturuyor ama İstoc verisiyle
+doğrulanmamış. Bunlar test edilene kadar hiçbir öneri kesinleşmiş sayılmamalıdır.
+</Aside>
+
+| İddia | Seviye | Nasıl doğrulanır |
+| ----- | ------ | ---------------- |
+| Alıcılar mevcut tedarik yönteminden memnun değil | <Tag tone="risk">Çıkarım</Tag> | 20 alıcı davranış görüşmesi |
+| Satıcılar yeni müşteriye açık | <Tag tone="risk">Çıkarım</Tag> | 20 satıcı görüşmesi |
+| İSTOÇ fiziksel yakınlığı avantajdır | <Tag tone="risk">Çıkarım</Tag> | Saha pilotu |
+| Yüksek sepetli kategori doğru tercihtir | <Tag tone="risk">Çıkarım</Tag> | Kategori karşılaştırma pilotu |
+| Kurumsal iş birliği gelir üretir | <Tag tone="risk">Çıkarım</Tag> | Kapı 1 sonucu |
+| 20 satıcı + 60 alıcı kritik eşiktir | <Tag tone="risk">Spekülasyon</Tag> | Ancak deneyle bulunur |
+| 90 gün yeterli süredir | <Tag tone="risk">Spekülasyon</Tag> | Satış döngüsü ölçümü |
+| Organizatörün önce işe alınması doğrudur | <Tag tone="risk">Çıkarım</Tag> | Kapı 1 sonucu |
+
+## Kanıt boşlukları ve doldurma planı
+
+| Boşluk | Doldurma yöntemi | Süre | Maliyet |
+| ------ | ---------------- | ---- | ------- |
+| Alıcı davranışı | 20 yapılandırılmış görüşme | 2 hafta | Çok düşük |
+| Satıcı motivasyonu | 20 yapılandırılmış görüşme | 2 hafta | Çok düşük |
+| Kategori derinliği | İSTOÇ sayımı ve kategori analizi | 1 hafta | Düşük |
+| Satış döngüsü uzunluğu | Görüşmelerde doğrudan sorulur | 2 hafta | Sıfır |
+| Ortalama işlem tutarı | İlk 20 işlemden ölçülür | 8 hafta | Sıfır |
+| Rakip kategori derinliği | Sektörel site taraması | 1 hafta | Düşük |
+| Kritik eşik | Ancak pilotla bulunur | 12 hafta+ | Orta |
+
+<Aside type="tip" title="Toplam maliyet">
+İlk beş boşluk **yaklaşık 3 haftada ve neredeyse sıfır para ile** doldurulabilir.
+Bu, rehberdeki tüm önerilerden daha yüksek getirili tek iştir. Ayrıntı:
+[SMART eylem planı](/istocpazar2/cozum/eylem-plani/) 1-3. haftalar.
+</Aside>
+
+## Kanıt kullanım kuralı
+
+| Kanıt seviyesi | İzin verilen kullanım |
+| -------------- | --------------------- |
+| Hakemli / resmî | Karar dayanağı olarak kullanılabilir |
+| Sektör verisi / vaka | Yön belirlemede kullanılabilir, tek başına karar dayanağı olamaz |
+| Operatör beyanı / uzman görüşü | Hipotez üretmek için kullanılır |
+| Çıkarım | Test edilmeden karar dayanağı olamaz |
+| Spekülasyon | Yalnızca senaryo kurmak için |
+
+<Aside type="caution">
+Bir toplantıda "araştırmada öyle yazıyordu" denildiğinde sorulacak tek soru:
+**"hangi seviyede kanıt?"** Bu soru, kötü kararların çoğunu baştan engeller.
+</Aside>

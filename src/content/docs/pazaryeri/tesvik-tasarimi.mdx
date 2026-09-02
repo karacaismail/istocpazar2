@@ -1,0 +1,131 @@
+---
+title: Teşvik ve mekanizma tasarımı
+description: Hangi tarafın sübvanse edileceği, teşvik seçenekleri, ücretsiz listelemenin riskleri ve ilk girenlere verilecek kalıcı avantaj.
+kanit: hakemli-arastirma
+guven: orta
+tur: harita
+faz: her-ikisi
+sidebar:
+  order: 8
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Temel fikir
+
+Soğuk başlangıç bir **ikna problemi değil, bir denge problemidir**. Herkes diğerinin
+girmesini beklerken kimse girmez ve bu davranış rasyoneldir. Bu dengeyi bozmanın yolu daha
+iyi anlatmak değil, **ödemeleri değiştirmektir**. Ayrıntı:
+[Pazarlama dışı disiplinler](/istocpazar2/teori/disiplin-transferi/).
+
+## Hangi taraf sübvanse edilir
+
+Kural: **zor taraf sübvanse edilir.** Zor taraf, kazanılması pahalı ve diğer tarafı çeken
+taraftır.
+
+| Soru | Cevap satıcıysa | Cevap alıcıysa |
+| ---- | --------------- | -------------- |
+| Kimi kazanmak daha pahalı | Satıcı zor taraf | Alıcı zor taraf |
+| Hangisi diğerini çeker | Satıcı yoğunluğu alıcıyı çeker | Alıcı talebi satıcıyı çeker |
+| Hangisi olmadan platform anlamsız | Arz | Talep |
+
+<Aside type="caution" title="İstoc için henüz bilinmiyor">
+Bu sorunun cevabı ilk 20 görüşmeden çıkar. Cevap bilinmeden yapılan sübvansiyon, yanlış
+tarafa harcanan bütçedir. Bu yüzden [varsayım kütüğünde](/istocpazar2/teshis/varsayim-kutugu/)
+V1 ve V2 en yüksek öncelikli varsayımlardır.
+</Aside>
+
+## Teşvik seçenekleri
+
+### Satıcı tarafı
+
+| Teşvik | Gücü | Maliyeti | Riski |
+| ------ | ---- | -------- | ----- |
+| Ücretsiz listeleme | Düşük | Düşük | <Tag tone="risk">Kalitesiz arz</Tag> |
+| Komisyon muafiyeti (süreli) | Orta | Orta | Süre bitince kayıp |
+| **Garantili talep sayısı** | <Tag tone="ok">Çok yüksek</Tag> | Emek | Tutulamazsa güven kaybı |
+| Ücretsiz katalog yükleme hizmeti | Yüksek | Emek | Ölçeklenmez |
+| Ürün fotoğrafı ve içerik | Orta | Düşük | — |
+| Kurucu satıcı statüsü | <Tag tone="ok">Yüksek</Tag> | Sıfır | Sonradan geri alınamaz |
+| Kategori önceliği / görünürlük | Orta | Sıfır | Alıcı adaletini bozabilir |
+| Ödeme garantisi | Çok yüksek | Yüksek | Sermaye gerektirir |
+
+### Alıcı tarafı
+
+| Teşvik | Gücü | Maliyeti |
+| ------ | ---- | -------- |
+| Ücretsiz kullanım | Düşük | Düşük |
+| Cevap süresi garantisi | <Tag tone="ok">Yüksek</Tag> | Emek |
+| Fiyat karşılaştırma raporu | Orta | Düşük |
+| İade / uyuşmazlık desteği | Yüksek | Emek |
+| İlk siparişte indirim | Düşük | Orta |
+
+<Aside type="tip" title="En güçlü iki teşvik para değil emek">
+"Garantili talep" ve "cevap süresi garantisi" en güçlü teşviklerdir ve ikisi de nakit
+gerektirmez; **ekip emeği** gerektirir. 3 kişilik bir ekiple bu iki taahhüt verilebilir.
+Nakdi teşvikler ise hem pahalıdır hem kalkınca kayıp yaratır.
+</Aside>
+
+## Ücretsiz listeleme tuzağı
+
+Karar Kitabı'ndaki **Ortak Malların Trajedisi** modelinin doğrudan uygulaması.
+
+| Adım | Ne olur |
+| ---- | ------- |
+| 1 | Listeleme ücretsiz açılır |
+| 2 | Çok sayıda satıcı kaydolur |
+| 3 | Çoğu ilanını güncellemez |
+| 4 | Alıcı arama yapar, ölü ilanlarla karşılaşır |
+| 5 | Alıcı platformu terk eder |
+| 6 | Ciddi satıcı da talep gelmediği için terk eder |
+
+**Çözüm: ücretsiz ama koşullu.**
+
+| Koşul | Etkisi |
+| ----- | ------ |
+| İlan sayısı kotası (ör. 25 ürün) | Kalite baskısı yaratır |
+| Güncellik şartı (30 günde bir onay) | Ölü ilanı otomatik pasifleştirir |
+| Cevap oranı şartı (%60 altı görünürlük düşer) | Cevapsız satıcıyı geri plana atar |
+| Doğrulama şartı | Sahte kaydı engeller |
+
+## Kurucu satıcı mekanizması
+
+Mahkûm ikilemini kırmak için tasarlanmış teşvik. Ayrıntı:
+[Karar Kitabı modelleri](/istocpazar2/teori/karar-kitabi/).
+
+| Özellik | Tasarım |
+| ------- | ------- |
+| Kimler | İlk 30 satıcı, kategori başına |
+| Ne kazanır | Ömür boyu komisyon indirimi, kategori görünürlük önceliği, "kurucu satıcı" rozeti, ürün kararlarında danışma hakkı |
+| Neden güçlü | Devredilemez ve sonradan satın alınamaz; beklemeyi maliyetli hale getirir |
+| Riski | Sonradan geri alınamaz; kârlılığı kalıcı olarak etkiler |
+| Sınırı | Kontenjan **gerçekten** sınırlı olmalı; sahte kıtlık güveni yıkar |
+
+## Eşzamanlı taahhüt mekanizması
+
+Koordinasyon problemini kıran en zarif çözüm.
+
+> **"Bu kategoride 20 satıcı taahhüt verirse, hepsi aynı gün açılır ve kurucu satıcı olur.
+> 20'ye ulaşılmazsa kimse hiçbir şeyle yükümlü değil."**
+
+| Neden çalışır | Nasıl uygulanır |
+| ------------- | --------------- |
+| Kimse yalnız kalma riskini almaz | Taahhüt listesi görünür tutulur |
+| Herkes birlikte girer | Sayaç herkese açık gösterilir |
+| Bekleyen, dışarıda kalma riski hisseder | Kontenjan gerçekten sınırlı |
+| Fiziksel yakınlık sosyal baskı üretir | İSTOÇ'ta komşular birbirini görür |
+
+<Aside type="tip" title="İSTOÇ avantajı">
+Bu mekanizma dağınık coğrafyada zor, **fiziksel kümede kolaydır**. Aynı koridordaki
+esnaf birbirini tanır ve birlikte hareket etme kültürü zaten vardır. İstoc'un en büyük
+yapısal avantajlarından biri budur.
+</Aside>
+
+## Teşvik tasarımında beş kural
+
+1. **Geri alınabilir teşvik, geri alındığında kayıp yaratır.** Süreli indirim yerine kalıcı statü tercih edin.
+2. **Nakit teşvik bağımlılık üretir.** Emek teşviki değer üretir.
+3. **Her teşvikin bitiş koşulu baştan yazılmalıdır.**
+4. **Teşvik, ölçtüğünüz metriği bozmamalıdır.** Kayda para verirseniz kayıt alırsınız, işlem değil.
+5. **Verilen her istisna yazılır.** Sözlü istisna, 6 ay sonra çözülemeyen adaletsizliktir.

@@ -1,0 +1,117 @@
+---
+title: Önerilen derin araştırma akışları
+description: Bu rehberden sonra yapılması gereken araştırmaların listesi, kapsamı ve beklenen çıktısı.
+kanit: cikarim
+guven: orta
+tur: harita
+faz: faz-1
+sidebar:
+  order: 2
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Akış 1 — Alan araştırması (en yüksek öncelik)
+
+<dl class="ip-kv">
+  <dt>Kapsam</dt><dd>40 yapılandırılmış görüşme: 20 alıcı, 20 satıcı</dd>
+  <dt>Süre</dt><dd>3 hafta</dd>
+  <dt>Maliyet</dt><dd>Neredeyse sıfır</dd>
+  <dt>Çıktı</dt><dd>Kök neden teşhisi, wedge kararı, satış döngüsü uzunluğu, gerçek acı tanımı</dd>
+  <dt>Öncelik</dt><dd><Tag tone="ok">1</Tag></dd>
+</dl>
+
+Bu akış, rehberdeki **kritik belirsizliklerin çoğunu tek başına çözer**. Diğer bütün
+araştırmalardan önce yapılmalıdır.
+
+## Akış 2 — Rekabet derinliği
+
+<dl class="ip-kv">
+  <dt>Kapsam</dt><dd>Seçilen kategoride mevcut dijital ve fiziksel alternatiflerin taranması</dd>
+  <dt>Sorular</dt><dd>Bu kategoride çalışan bir sektörel B2B sitesi var mı? Kaç tedarikçi listeliyor? Alıcılar kullanıyor mu?</dd>
+  <dt>Süre</dt><dd>1 hafta</dd>
+  <dt>Çıktı</dt><dd>"Rakipsiziz" iddiasının doğrulanması veya çürütülmesi</dd>
+  <dt>Öncelik</dt><dd><Tag tone="ok">2</Tag></dd>
+</dl>
+
+<Aside type="danger">
+Doğrulanmamış bir "rakipsiziz" iddiası, en tehlikeli stratejik varsayımdır. Bu akış
+kısa ve ucuzdur; atlanmamalıdır.
+</Aside>
+
+## Akış 3 — Pazar yeri postmortem taraması
+
+<dl class="ip-kv">
+  <dt>Kapsam</dt><dd>Kapanmış veya pivot yapmış B2B pazar yerlerinin kurucu anlatımları ve analizleri</dd>
+  <dt>Sorular</dt><dd>Neden kapandılar? Hangi eşikte takıldılar? Hangi metriğe aldandılar?</dd>
+  <dt>Süre</dt><dd>2 hafta</dd>
+  <dt>Çıktı</dt><dd>[Başarısızlık haritasının](/istocpazar2/kanit/basarisizlik-haritasi/) kanıt seviyesinin yükseltilmesi</dd>
+  <dt>Öncelik</dt><dd><Tag tone="warn">3</Tag></dd>
+</dl>
+
+## Akış 4 — Türkiye B2B ticaret davranışı
+
+<dl class="ip-kv">
+  <dt>Kapsam</dt><dd>Toptan ticarette ödeme, vade, güven ve ilişki kalıpları</dd>
+  <dt>Sorular</dt><dd>Vade ne kadar yaygın? Çek ve senet kullanımı? Tahsilat riski nasıl yönetiliyor?</dd>
+  <dt>Süre</dt><dd>2 hafta</dd>
+  <dt>Çıktı</dt><dd>Güven mimarisi ve ödeme modeli tasarımı</dd>
+  <dt>Öncelik</dt><dd><Tag tone="warn">4</Tag></dd>
+</dl>
+
+## Akış 5 — Hukuki uyum çalışması
+
+<dl class="ip-kv">
+  <dt>Kapsam</dt><dd>Ticari elektronik ileti, KVKK, aracı hizmet sağlayıcı yükümlülükleri, e-ticaret mevzuatı</dd>
+  <dt>Kim</dt><dd>Avukat</dd>
+  <dt>Süre</dt><dd>2 hafta</dd>
+  <dt>Çıktı</dt><dd>Yazılı görüş, uyum kontrol listesi, sözleşme ve politika şablonları</dd>
+  <dt>Öncelik</dt><dd><Tag tone="ok">Kapı 0 zorunluluğu</Tag></dd>
+</dl>
+
+## Akış 6 — Kategori ekonomisi
+
+<dl class="ip-kv">
+  <dt>Kapsam</dt><dd>Aday kategorilerde ortalama sepet, marj, tekrar sıklığı ve mevsimsellik</dd>
+  <dt>Süre</dt><dd>2 hafta</dd>
+  <dt>Çıktı</dt><dd>[Kendini ödeyen modelin](/istocpazar2/cozum/kendini-odeyen-model/) gerçek rakamlarla doldurulması</dd>
+  <dt>Öncelik</dt><dd><Tag tone="warn">5</Tag></dd>
+</dl>
+
+## Akış 7 — Ajan tabanlı ticaret takibi
+
+<dl class="ip-kv">
+  <dt>Kapsam</dt><dd>Yapay zekâ satın alma ajanları, cevap motorlarında görünürlük, yapılandırılmış veri standartları</dd>
+  <dt>Süre</dt><dd>Sürekli, aylık gözden geçirme</dd>
+  <dt>Çıktı</dt><dd>[Ajan tabanlı ticaret](/istocpazar2/rekabet/agentic-ticaret/) sayfasının güncellenmesi</dd>
+  <dt>Öncelik</dt><dd><Tag tone="warn">6</Tag></dd>
+</dl>
+
+## Akış 8 — Kontrgerilla çerçevesinin olgunlaştırılması
+
+<dl class="ip-kv">
+  <dt>Kapsam</dt><dd>Mevcut çerçevenin akademik konumlandırması, öncül literatür taraması, yayın hazırlığı</dd>
+  <dt>Ne zaman</dt><dd>İlk 200 işlem tamamlandıktan sonra</dd>
+  <dt>Çıktı</dt><dd>Savunulabilir bir yenilik iddiası ve yayın</dd>
+  <dt>Öncelik</dt><dd><Tag tone="warn">Ertelendi</Tag></dd>
+</dl>
+
+<Aside type="tip" title="Bu akışın değeri kaybolmadı">
+Kontrgerilla çalışması ticari olarak bugün erken; ancak **fikrî mülkiyet ve konumlandırma**
+açısından değerlidir. İstoc likidite kurduğunda, bu çerçeve hem savunma sistemi hem de
+sektörel otorite kaynağı olur.
+</Aside>
+
+## Araştırma sırası özeti
+
+| Sıra | Akış | Süre | Kim |
+| ---- | ---- | ---- | --- |
+| 1 | Alan araştırması | 3 hafta | Organizatör |
+| 2 | Hukuki uyum | 2 hafta | Avukat |
+| 3 | Rekabet derinliği | 1 hafta | Masa Başı |
+| 4 | Kategori ekonomisi | 2 hafta | Yönetim |
+| 5 | Postmortem taraması | 2 hafta | Yönetim |
+| 6 | B2B davranış | 2 hafta | Yönetim |
+| 7 | Ajan ticareti | Sürekli | Masa Başı |
+| 8 | Kontrgerilla | Ertelendi | Kurucu |

@@ -1,0 +1,29 @@
+{
+  "name": "istocpazar2",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Istoc.com pazar yeri soguk baslangic ve likidite arastirma rehberi",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "build:fast": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "node scripts/content-gates.mjs",
+    "verify": "npm run check && npm run build:fast && npm run test"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.41.11",
+    "astro": "^7.2.10",
+    "echarts": "^6.0.0",
+    "sass": "^1.93.2",
+    "sharp": "^0.34.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@phosphor-icons/core": "^2.1.1",
+    "typescript": "^5.9.3"
+  }
+}

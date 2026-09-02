@@ -1,0 +1,117 @@
+---
+title: Kırmızı takım
+description: Önerilen stratejinin neden çalışmayacağına dair en güçlü karşı argümanlar ve bunlara verilen cevaplar.
+kanit: cikarim
+guven: orta
+tur: harita
+faz: faz-1
+sidebar:
+  order: 5
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## Yöntem
+
+Kırmızı takım, planı savunmakla değil **bozmakla** görevlidir. Aşağıda her saldırı ve
+buna verilen cevap yer alıyor. Cevabın zayıf olduğu yerler açıkça işaretlenmiştir.
+
+## Saldırı 1 — "Elle kurulan pazar yeri, pazar yeri değildir"
+
+> Ekip her işlemi elle yapıyorsa bu bir aracılık şirketidir, platform değildir.
+> Ölçeklenmez ve yatırım almaz.
+
+**Cevap:** Doğru; ilk aşamada gerçekten bir aracılık operasyonudur. Ancak amaç bu modelde
+kalmak değil, **hangi kısmın otomatikleştirilmesi gerektiğini öğrenmektir**. Elle yapılan
+her işlem, yazılacak yazılımın şartnamesini üretir. Otomasyonu önce yazmak, yanlış şeyi
+otomatikleştirme riskidir.
+
+<Tag tone="warn">Zayıf nokta</Tag> Bu geçişin ne zaman ve nasıl yapılacağı henüz tanımlı
+değil. 90 gün sonunda "hangi 3 iş otomatikleşecek" sorusu cevaplanmalı.
+
+## Saldırı 2 — "Talep önce stratejisi ölçeklenmez"
+
+> Ekip elle talep topluyorsa, 3 kişi ayda en fazla 30 talep toplar. Bu bir pazar yeri değil,
+> küçük bir ticaret bürosudur.
+
+**Cevap:** İlk 90 günün amacı ölçek değil, **eşiğin geçilebilir olduğunu kanıtlamaktır.**
+Elle toplanan 30 talep, ağın kendi kendine dönmeye başlaması için yeterli olabilir.
+Yeterli değilse, bu da değerli bir bulgudur.
+
+<Tag tone="risk">Ciddi zayıf nokta</Tag> Eğer ağ 30 talepte kendi kendine dönmezse, elle
+büyütme sonsuza kadar sürer. Kritik eşiğin gerçek değeri bilinmiyor.
+
+## Saldırı 3 — "Organizatör önce işe alınırsa gelir gelmez"
+
+> Kurumsal iş birliği geliri bir varsayımdır. Odalar ve dernekler para ödemez;
+> "iş birliği protokolü" imzalar ve hiçbir şey olmaz.
+
+**Cevap:** Haklı bir itiraz. Bu yüzden Kapı 1'de yalnızca görüşme değil,
+**imzalanmış bir iş birliği** ölçüt olarak konmuştur. Gelirin gelmediği durumda ikinci
+kişi işe alınmaz.
+
+<Tag tone="warn">Zayıf nokta</Tag> "İmzalanmış iş birliği" ile "kasaya giren para" aynı şey
+değil. Kapı 1 ölçütü, gelir tahsilatını da içerecek şekilde sıkılaştırılabilir.
+
+## Saldırı 4 — "İSTOÇ avantajı aslında bir dezavantaj"
+
+> Satıcılar zaten yan yana. Alıcı gelip yürüyerek geziyor. Dijital platforma ihtiyaç
+> duymuyorlar. Fiziksel yakınlık, dijitalleşmeyi gereksiz kılıyor.
+
+**Cevap:** Kısmen doğru. Ancak İSTOÇ'a gelmeyen alıcılar için (şehir dışı, zaman kısıtlı,
+proje bazlı) yakınlık avantaj değildir. Platform bu alıcılar için vardır; İSTOÇ'a zaten
+gelenler için değil.
+
+<Tag tone="risk">Ciddi zayıf nokta</Tag> Bu, hedef alıcı personasını tamamen değiştirir.
+"İSTOÇ'a gelemeyen alıcı" segmenti ölçülmemiştir. Bu, ilk 20 görüşmenin en önemli sorusudur.
+
+## Saldırı 5 — "Yüksek sepetli kategori önerisi ters teper"
+
+> Yüksek tutarlı alımlar en çok güven gerektiren alımlardır. Sıfır itibarlı bir platform,
+> 200 bin TL'lik işlemi hiç alamaz. Küçükten başlamak gerekir.
+
+**Cevap:** Güçlü itiraz. Bu yüzden ilk işlemler **elle ve ekip güvencesiyle** yapılır;
+platform güveni değil, **ekip güveni** kullanılır. Saha kişisinin yüz yüze ilişkisi,
+platformun itibarının yerini geçici olarak tutar.
+
+<Tag tone="warn">Zayıf nokta</Tag> Bu, modeli kişiye bağımlı kılar. O kişi ayrılırsa
+güven de gider.
+
+## Saldırı 6 — "Kontrgerilla çalışması boşa gitti deniyor"
+
+> Aylarca çalışılan çerçeve "erken" diye rafa kaldırılıyor. Bu, emeğin çöpe atılmasıdır.
+
+**Cevap:** Rafa kaldırılmıyor; **sırası değiştiriliyor** ve üç parçası (aşılama, kapasite
+kapısı, sessizlik disiplini) bugünden uygulanıyor. Çerçevenin tamamı, İstoc konuşulmaya
+başladığında devreye girecek.
+
+## Saldırı 7 — "90 gün çok kısa"
+
+> B2B satış döngüsü 3-6 aydır. 90 günde 15 işlem beklemek gerçekçi değil.
+
+**Cevap:** Kısmen haklı. Bu yüzden yüksek sepetli kategori önerisi bir gerilim yaratıyor:
+yüksek tutar = uzun döngü. Kapı 3'te 15 işlem tutmazsa, bu **kategori hatası mı yoksa süre
+hatası mı** olduğu ayrıştırılmalı.
+
+<Tag tone="risk">Ciddi zayıf nokta</Tag> Satış döngüsü uzunluğu ölçülmeden hedef konmuş.
+İlk 20 görüşmede "karar süreniz ne kadar sürer" sorusu mutlaka sorulmalı.
+
+## Kırmızı takımın özeti
+
+| Saldırı | Cevabın gücü |
+| ------- | ------------ |
+| 1. Elle model ölçeklenmez | <Tag tone="warn">Orta</Tag> |
+| 2. Talep önce ölçeklenmez | <Tag tone="risk">Zayıf</Tag> |
+| 3. Kurumsal gelir varsayımı | <Tag tone="warn">Orta</Tag> |
+| 4. İSTOÇ avantajı ters | <Tag tone="risk">Zayıf</Tag> |
+| 5. Yüksek sepet ters teper | <Tag tone="warn">Orta</Tag> |
+| 6. Kontrgerilla rafa kalkıyor | <Tag tone="ok">Güçlü</Tag> |
+| 7. 90 gün kısa | <Tag tone="risk">Zayıf</Tag> |
+
+<Aside type="danger" title="Üç zayıf noktanın ortak cevabı">
+Saldırı 2, 4 ve 7'nin hepsi **ölçülmemiş bir sayıya** dayanıyor: kritik eşik, İSTOÇ'a
+gelmeyen alıcı segmentinin büyüklüğü ve satış döngüsü uzunluğu. Üçü de ilk 20 alıcı
+görüşmesinde sorulabilir. Bu, o görüşmelerin neden 1. haftada yapılması gerektiğinin
+en güçlü gerekçesidir.
+</Aside>

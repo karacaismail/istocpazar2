@@ -1,0 +1,107 @@
+---
+title: Tüketilmeyen pazar ve geçiş maliyeti
+description: Bugün hiçbir dijital pazar yeri kullanmayanların neden kullanmadığı ve mevcut davranıştan geçişin gerçek maliyeti.
+kanit: cikarim
+guven: orta
+tur: harita
+faz: faz-1
+sidebar:
+  order: 2
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Tag from '@components/Tag.astro';
+
+## İki farklı pazar
+
+| Pazar | Kim | Nasıl kazanılır |
+| ----- | --- | --------------- |
+| Rakipten pay alma | Zaten bir B2B platformu kullananlar | Daha iyi olmak |
+| **Tüketilmeyen pazar** | Hiçbir platform kullanmayanlar | Kullanmama sebebini ortadan kaldırmak |
+
+Türkiye B2B toptan ticaretinde ikinci grup **çok daha büyüktür**. Bu, hem fırsat hem
+zorluktur: rakipsizsiniz ama alışkanlık yaratmak zorundasınız.
+
+<Aside type="tip" title="Araştırma sorusu">
+"Rakiplerin müşterilerini neden alamıyoruz" sorusu yerine
+**"hiç kullanmayanlar neden kullanmıyor"** sorusunu sorun. İkincisi çok daha büyük bir
+alan açar ve cevabı genellikle üründedir, pazarlamada değil.
+</Aside>
+
+## Kullanmama sebepleri
+
+| Sebep | Tipi | Çözümü nerede |
+| ----- | ---- | ------------- |
+| "Haberim yoktu" | Bilinirlik | Pazarlama |
+| "Denedim, boştu" | Likidite | Ürün + operasyon |
+| "Bilgisayarla aram yok" | Yetkinlik | Ürün (mobil, basitlik) + hizmet |
+| "Ürün yüklemek zahmetli" | Efor | Operasyon (biz yükleyelim) |
+| "Fiyatımı göremezler" | Rekabet endişesi | Ürün (gizli fiyat) |
+| "Müşterimi çalarlar" | Güven | Ürün + sözleşme |
+| "Komisyon vermem" | Ekonomi | Fiyatlama |
+| "Zaten müşterim var" | İhtiyaç yok | Segment seçimi |
+| "Param gelmez" | Ödeme riski | Güven mimarisi |
+| "Vergisel karışıklık olur" | Mevzuat | Muhasebe akışı, bilgilendirme |
+
+<Aside type="danger" title="Bu tablonun okunuşu">
+On sebepten yalnızca **biri** pazarlamayla çözülür. Dokuzu ürün, operasyon, fiyat veya
+güvenle çözülür. Beyaz tahtadaki plan neredeyse tamamen birinci satıra yatırım yapıyor.
+</Aside>
+
+## Geçiş maliyeti analizi
+
+Mevcut davranıştan (telefon + WhatsApp) İstoc'a geçmenin gerçek maliyeti:
+
+| Maliyet kalemi | Satıcı için | Alıcı için |
+| -------------- | ----------- | ---------- |
+| Öğrenme | Panel kullanımı, katalog | Arama, talep gönderme |
+| Veri taşıma | Ürün listesi, fiyat, görsel | Tedarikçi listesi |
+| Zaman | İlk kurulum saatleri | İlk kullanım dakikaları |
+| İlişki riski | Mevcut müşteri ne der | Mevcut tedarikçi ne der |
+| Şeffaflık riski | Fiyatım görünür olur | Alım hacmim görünür olur |
+| Finansal | Komisyon | Yok |
+| Alışkanlık | Yerleşik rutin bozulur | Yerleşik rutin bozulur |
+| Personel | Ekibim kullanır mı | Satın almacım kullanır mı |
+
+<Aside type="caution" title="En büyük geçiş maliyeti para değil">
+Tablodaki en ağır kalemler **ilişki riski** ve **şeffaflık riskidir**. Bunlar indirimle
+çözülmez. Satıcı "mevcut müşterim benim ona verdiğim fiyatı platformda görürse ne olur"
+diye düşünüyorsa, hiçbir komisyon indirimi bunu telafi etmez. Çözüm ürün tasarımındadır:
+gizli fiyat, kapalı katalog, müşteriye özel liste.
+</Aside>
+
+## Geçiş maliyetini düşürme yolları
+
+| Maliyet | Düşürme yöntemi | Kim yapar |
+| ------- | --------------- | --------- |
+| Öğrenme | Yerinde eğitim, 10 dakikalık kurulum | Saha |
+| Veri taşıma | "Sizin yerinize yükleyelim" | Masa Başı |
+| Zaman | Kayıt öncesi değer gösterimi | Ürün |
+| İlişki riski | Gizli fiyat, kapalı katalog seçeneği | Ürün |
+| Şeffaflık riski | Kimin ne göreceğini net anlatmak | Saha |
+| Finansal | İlk dönem komisyon muafiyeti | Fiyatlama |
+| Alışkanlık | Mevcut kanalla birlikte kullanım (WhatsApp bildirimi) | Ürün |
+| Personel | Satıcının çalışanına da eğitim | Organizatör |
+
+<Aside type="tip" title="En yüksek getirili tek hamle">
+**Mevcut kanalın yerini almak yerine üstüne oturmak.** Satıcıya WhatsApp'ı bıraktırmayın;
+İstoc'tan gelen talebi WhatsApp'ına bildirim olarak gönderin. Alışkanlığı değiştirmeden
+değer verirsiniz. Geçiş maliyeti neredeyse sıfıra iner.
+</Aside>
+
+## Hangi segment daha kolay geçer
+
+| Segment | Geçiş kolaylığı | Neden |
+| ------- | --------------- | ----- |
+| Yeni kurulmuş, müşteri arayan satıcı | <Tag tone="ok">Çok kolay</Tag> | Kaybedecek ilişkisi yok |
+| Kapasitesi boş satıcı | <Tag tone="ok">Kolay</Tag> | Acil ihtiyacı var |
+| Genç yönetici / ikinci kuşak | <Tag tone="ok">Kolay</Tag> | Dijital direnç düşük |
+| Yerleşik, dolu, büyük satıcı | <Tag tone="risk">Zor</Tag> | Kaybedecek çok şeyi var |
+| Acil ihtiyacı olan alıcı | <Tag tone="ok">Çok kolay</Tag> | Mevcut kanal yetmiyor |
+| Rutin alım yapan alıcı | <Tag tone="risk">Zor</Tag> | Mevcut kanal yeterli |
+
+<Aside type="tip" title="İlk 50 satıcının profili">
+Bu tablo, ilk hedef listesinin nasıl kurulacağını söyler: **en büyükler değil, en açlar.**
+Difüzyon modelinin söylediği de budur. Ayrıntı:
+[Karar Kitabı modelleri](/istocpazar2/teori/karar-kitabi/).
+</Aside>
