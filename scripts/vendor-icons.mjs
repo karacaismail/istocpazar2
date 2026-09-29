@@ -13,14 +13,18 @@ const src = join(root, 'node_modules', '@phosphor-icons', 'core', 'assets', 'reg
 const dest = join(root, 'src', 'assets', 'icons');
 
 const ICONS = [
-  'arrows-clockwise', 'arrow-right', 'arrow-u-down-left', 'binoculars', 'brain',
-  'buildings', 'calendar-check', 'chart-line-up', 'chats-circle', 'check-circle',
+  'arrow-right', 'arrow-square-out', 'arrow-u-down-left', 'arrows-clockwise', 'arrows-in',
+  'arrows-out', 'binoculars', 'brain', 'buildings', 'calculator',
+  'calendar-check', 'chart-line-up', 'chats-circle', 'check', 'check-circle',
   'compass', 'crosshair', 'currency-circle-dollar', 'detective', 'eye-slash',
-  'flask', 'flow-arrow', 'gavel', 'graph', 'handshake', 'lightbulb', 'list-checks',
-  'magnifying-glass', 'map-trifold', 'megaphone', 'package', 'path', 'prohibit',
-  'question', 'scales', 'seal-check', 'shield-warning', 'shuffle', 'siren',
-  'stack', 'storefront', 'strategy', 'target', 'timer', 'tree-structure',
-  'trend-down', 'user-focus', 'users-three', 'warning-circle', 'warning-octagon',
+  'flask', 'flow-arrow', 'gavel', 'graph', 'handshake',
+  'hourglass-medium', 'lightbulb', 'list-checks', 'magnifying-glass', 'map-trifold',
+  'megaphone', 'moon', 'package', 'path', 'prohibit',
+  'question', 'scales', 'seal-check', 'shield-warning', 'shuffle',
+  'signpost', 'siren', 'stack', 'storefront', 'strategy',
+  'sun', 'sun-horizon', 'target', 'timer', 'tree-structure',
+  'trend-down', 'user-focus', 'users-three', 'wallet', 'warning-circle',
+  'warning-octagon', 'x',
 ];
 
 if (!existsSync(src)) {
