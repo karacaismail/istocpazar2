@@ -1,9 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import sitemap from '@astrojs/sitemap';
 
 const SITE = 'https://karacaismail.github.io';
 const BASE = '/istocpazar2';
+
+/** Rehberin parçası olmayan, bağlantısı yalnızca elden paylaşılan sayfalar. */
+const HARITA_DISI = [`${BASE}/iki-hap/`];
 
 export default defineConfig({
   site: SITE,
@@ -11,6 +15,8 @@ export default defineConfig({
   trailingSlash: 'always',
   build: { format: 'directory' },
   integrations: [
+    // Starlight, sitemap zaten ekliyse kendi kopyasını eklemez; ayar aynı, tek fark filtre.
+    sitemap({ filter: (adres) => !HARITA_DISI.some((yol) => adres.endsWith(yol)) }),
     starlight({
       title: 'İstoc Pazar Yeri Rehberi',
       description:

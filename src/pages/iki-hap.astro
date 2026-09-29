@@ -1,0 +1,1058 @@
+---
+/**
+ * İki Hap, Bir Masa — Murat Bey görüşmesi için karar panosu.
+ *
+ * Rehberin parçası değildir: kenar çubuğunda ve site haritasında yoktur (astro.config.mjs),
+ * arama motorlarına kapalıdır (noindex) ve Pagefind dizinine girmez (data-pagefind-body yok).
+ * Maliyet rakamları derleme anında src/lib/bordro.ts modelinden üretilir; elle yazılmış rakam yoktur.
+ */
+import '@fontsource-variable/roboto';
+import '@fontsource-variable/bricolage-grotesque/standard.css';
+import '@fontsource-variable/caveat';
+import '../styles/iki-hap.scss';
+import PhIcon from '../components/PhIcon.astro';
+import { bordroHesapla, yuzdeDagit, type BordroGirdisi } from '../lib/bordro';
+
+/* ---- Hesap: 2027 merkez tahmin ---- */
+const merkez: BordroGirdisi = {
+  netUsd: 5_000,
+  yemekTl: 7_500,
+  kurOcak: 51.5,
+  kurAralik: 59.5,
+  artisYuzde: 25,
+  indirim: true,
+};
+const sonuc = bordroHesapla(merkez);
+
+/** Ayda iş günü. Kırmızı yoldaki günlük ücret de bu varsayımla belirlendi (10.000 $ / 22). */
+const IS_GUNU = 22;
+const KIRMIZI_GUNLUK = 455;
+const aylikUsd = sonuc.usd.toplam / 12;
+const gunlukUsd = sonuc.usd.toplam / (12 * IS_GUNU);
+const kirmiziAylik = (KIRMIZI_GUNLUK * 52) / 12;
+
+const sayi = new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 0 });
+const ondalik = (x: number, basamak: number) =>
+  new Intl.NumberFormat('tr-TR', {
+    minimumFractionDigits: basamak,
+    maximumFractionDigits: basamak,
+  }).format(x);
+const yuvarla = (x: number, adim: number) => Math.round(x / adim) * adim;
+const usd = (x: number) => `${sayi.format(Math.round(x))} $`;
+const tl = (x: number) => `${sayi.format(Math.round(x))} ₺`;
+
+const aylikYuvarlak = usd(yuvarla(aylikUsd, 100));
+const yillikYuvarlak = usd(yuvarla(sonuc.usd.toplam, 100));
+const gunlukYuvarlak = usd(gunlukUsd);
+const kirmiziAylikYuvarlak = usd(yuvarla(kirmiziAylik, 10));
+const netBasina = ondalik(sonuc.usd.toplam / sonuc.usd.net, 2);
+const aylikKat = Math.round(aylikUsd / kirmiziAylik);
+const isverenYuzde = ondalik(sonuc.isverenPayi * 100, 2);
+const ilkBrutBin = sayi.format(Math.round((sonuc.aylar[0]?.brut ?? 0) / 1000));
+const sonBrutBin = sayi.format(Math.round((sonuc.aylar.at(-1)?.brut ?? 0) / 1000));
+
+/* Her 100 $'ın dağılımı: çalışana giden, maaştan kesilen, işverenin ayrıca ödediği */
+const eline = sonuc.usd.net + sonuc.usd.yemek;
+const kesinti = sonuc.usd.isciPayi + sonuc.usd.gelirVergisi + sonuc.usd.damgaVergisi;
+const isverenPrimi = sonuc.usd.isverenPayi;
+const [payEline = 0, payKesinti = 0, payIsveren = 0] = yuzdeDagit([eline, kesinti, isverenPrimi]);
+const dagilim = [
+  {
+    sinif: 'renk--eline',
+    ad: 'Çalışanın eline geçen',
+    ayrinti: 'net maaş ve yemek parası',
+    pay: payEline,
+  },
+  {
+    sinif: 'renk--kesinti',
+    ad: 'Maaştan kesilip devlete ödenen',
+    ayrinti: 'SGK ve işsizlik %15, gelir ve damga vergisi',
+    pay: payKesinti,
+  },
+  {
+    sinif: 'renk--isveren',
+    ad: 'İşverenin ayrıca ödediği prim',
+    ayrinti: `SGK ve işsizlik, işveren payı %${isverenYuzde}`,
+    pay: payIsveren,
+  },
+];
+
+type SatirTuru = 'ana' | 'alt' | 'toplam';
+const dokum: { ad: string; tl: number; usd: number; tur: SatirTuru }[] = [
+  { ad: 'Brüt ücret', tl: sonuc.tl.brut, usd: sonuc.usd.brut, tur: 'ana' },
+  { ad: 'Çalışana net', tl: sonuc.tl.net, usd: sonuc.usd.net, tur: 'alt' },
+  { ad: 'SGK ve işsizlik, işçi payı (%15)', tl: sonuc.tl.isciPayi, usd: sonuc.usd.isciPayi, tur: 'alt' },
+  { ad: 'Gelir vergisi (istisna sonrası)', tl: sonuc.tl.gelirVergisi, usd: sonuc.usd.gelirVergisi, tur: 'alt' },
+  { ad: 'Damga vergisi (binde 7,59)', tl: sonuc.tl.damgaVergisi, usd: sonuc.usd.damgaVergisi, tur: 'alt' },
+  { ad: `SGK ve işsizlik, işveren payı (%${isverenYuzde})`, tl: sonuc.tl.isverenPayi, usd: sonuc.usd.isverenPayi, tur: 'ana' },
+  { ad: `Yemek parası (12 × ${tl(merkez.yemekTl)})`, tl: sonuc.tl.yemek, usd: sonuc.usd.yemek, tur: 'ana' },
+  { ad: 'Toplam işveren maliyeti', tl: sonuc.tl.toplam, usd: sonuc.usd.toplam, tur: 'toplam' },
+];
+
+interface Senaryo {
+  ad: string;
+  girdi: BordroGirdisi;
+  vurgu?: boolean;
+}
+const senaryolar = (
+  [
+    { ad: 'Bugün işe alınsa: 2026 kuralları, kur 49 ₺/$', girdi: { ...merkez, kurOcak: 49, kurAralik: 49, artisYuzde: 0 } },
+    { ad: '2027 merkez tahmin', girdi: merkez, vurgu: true },
+    { ad: 'Kur yıl boyu 52 ₺/$ kalırsa', girdi: { ...merkez, kurOcak: 52, kurAralik: 52 } },
+    { ad: 'TL parametre artışı %20 olursa', girdi: { ...merkez, artisYuzde: 20 } },
+    { ad: 'TL parametre artışı %30 olursa', girdi: { ...merkez, artisYuzde: 30 } },
+    { ad: 'SGK işveren indirimi alınamazsa', girdi: { ...merkez, indirim: false } },
+  ] satisfies Senaryo[]
+).map((s): Senaryo & { yillik: number } => ({ ...s, yillik: bordroHesapla(s.girdi).usd.toplam }));
+const yilliklar = senaryolar.map((s) => s.yillik);
+const bantAlt = Math.floor(Math.min(...yilliklar) / 1000);
+const bantUst = Math.ceil(Math.max(...yilliklar) / 1000);
+
+/* İki yol yan yana: aynı ölçekli küçük çoklu grafik (iki ayrı grafik, tek eksen) */
+type Ton = 'mavi' | 'kirmizi';
+const karsilastirma: {
+  baslik: string;
+  olcek: number;
+  olcekMetni: string;
+  satirlar: { ton: Ton; ad: string; deger: number; metin: string; ayrinti: string }[];
+}[] = [
+  {
+    baslik: 'Aylık ödeme',
+    olcek: 10_000,
+    olcekMetni: '0 – 10.000 $',
+    satirlar: [
+      { ton: 'mavi', ad: 'Mavi yol', deger: aylikUsd, metin: `≈ ${aylikYuvarlak}`, ayrinti: 'haftada 5 gün, tam zamanlı' },
+      { ton: 'kirmizi', ad: 'Kırmızı yol', deger: kirmiziAylik, metin: `≈ ${kirmiziAylikYuvarlak}`, ayrinti: 'haftada 1 gün, öğleden önce' },
+    ],
+  },
+  {
+    baslik: 'İş günü başına',
+    olcek: 500,
+    olcekMetni: '0 – 500 $',
+    satirlar: [
+      { ton: 'mavi', ad: 'Mavi yol', deger: gunlukUsd, metin: `≈ ${gunlukYuvarlak}`, ayrinti: 'yıllık maliyet / 264 iş günü' },
+      { ton: 'kirmizi', ad: 'Kırmızı yol', deger: KIRMIZI_GUNLUK, metin: usd(KIRMIZI_GUNLUK), ayrinti: '10.000 $ / 22 iş günü' },
+    ],
+  },
+];
+
+/* ---- Pano içeriği (müzakere kartındaki cümleler) ---- */
+type Ek = 'hesap' | 'karsilastir';
+interface Not {
+  ikon: string;
+  etiket: string;
+  metin: string;
+  vurgu?: string;
+  ek?: Ek;
+}
+
+const maviNotlar: Not[] = [
+  { ikon: 'currency-circle-dollar', etiket: 'Ücret', vurgu: '5.000 $ net maaş.', metin: '', ek: 'hesap' },
+  {
+    ikon: 'target',
+    etiket: 'Çalışma modeli',
+    metin:
+      'Seninle yalnız hedefleri konuşuruz, teknik detayı değil. Bütçeyi ben çıkarırım; sen onaylarsın ya da revizyon istersin. Aradaki süreçte müdahale yok — bana güvenmen şart.',
+  },
+  {
+    ikon: 'wallet',
+    etiket: 'Bütçe yetkisi',
+    metin: 'Bana bir üst limit tanımlarız. Limitin altındaki kararlar bende; aşarsa sana onaya gelirim.',
+  },
+  {
+    ikon: 'buildings',
+    etiket: 'Önce şu karar',
+    metin: 'Patron şirketi mi kalacağız, kurumsal mı olacağız? Bunu sen netleştireceksin; model buna göre işler.',
+  },
+];
+
+const kirmiziNotlar: Not[] = [
+  {
+    ikon: 'currency-circle-dollar',
+    etiket: 'Ücret',
+    vurgu: `Günlük ${usd(KIRMIZI_GUNLUK)}`,
+    metin: `(10.000 $ / ${IS_GUNU} iş günü). Haftada 1 gün ≈ ayda ${kirmiziAylikYuvarlak}.`,
+    ek: 'karsilastir',
+  },
+  {
+    ikon: 'users-three',
+    etiket: 'Yöntem',
+    metin: 'Mevcut yazılım ekibini Scrum ile uzaktan yönetirim; rolüm dışarıdan agile coach.',
+  },
+  {
+    ikon: 'sun-horizon',
+    etiket: 'Kapsam',
+    metin:
+      'Haftada 1 gün, yalnız öğleden önce, yalnız seninle yazılım süreç toplantısı. Başka iş, başka toplantı yok.',
+  },
+  {
+    ikon: 'hourglass-medium',
+    etiket: 'Süre',
+    metin: "En geç 31 Aralık 2026'ya kadar. Sonrası için söz vermiyorum.",
+  },
+];
+
+const dongu = [
+  'Onlarca strateji üretiyorum',
+  'Onaylanmıyor',
+  'Bütçe belirlenip vazgeçiliyor',
+  'Dokümanlara birlikte bakmıyoruz',
+  'Sabır bitiyor',
+  '“İsmail, tekrar plan yap.”',
+];
+
+const kaynaklar = [
+  { ad: 'EY: 2026 asgari ücret ve işveren maliyeti', url: 'https://www.ey.com/tr_tr/insights/tax/2026-asgari-ucret' },
+  {
+    ad: 'SGK: 2026 prime esas kazanç miktarları',
+    url: 'https://www.sgk.gov.tr/Content/Post/2e0c9e1a-2cfe-4456-af10-49d3de0c58ba/Prime-Esas-Kazanc-Miktarlari-2026-01-14-10-35-39',
+  },
+  {
+    ad: 'İSMMMO: SGK tavanını 9 kata çıkaran düzenleme',
+    url: 'https://ismmmo.org.tr/dosya/5782/Mevzuat-Dosya/22122025-sgk-duyuru.pdf',
+  },
+  {
+    ad: 'Verginet / Deloitte: 2026 SGK tavanı ve işveren prim indirimleri',
+    url: 'https://www.verginet.net/dtt/11/sgk-2026-1.aspx',
+  },
+  {
+    ad: 'Alomaliye: 2026 gelir vergisi tarifesi',
+    url: 'https://www.alomaliye.com/2025/12/31/2026-yili-vergi-dilimleri/',
+  },
+  {
+    ad: 'Kolay İK: 2026 yemek ve yol istisna tutarları',
+    url: 'https://kolayik.com/blog/2026-gunluk-yemek-ve-yol-istisna-tutarlari',
+  },
+  {
+    ad: 'Dünya: TCMB Eylül 2026 Piyasa Katılımcıları Anketi',
+    url: 'https://www.dunya.com/ekonomik-veriler/tcmb-anketinde-enflasyon-beklentisi-yukseldi-dolar-ve-faiz-tahmini-de-belli-oldu-haberi-839608',
+  },
+];
+
+const aciklamaMetni =
+  'Murat abi için iki yol: mavi hap ve kırmızı hap, altındaki şartlar ve maliyet hesabı.';
+const favicon = `data:image/svg+xml,${encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><g transform="rotate(-35 32 32)"><rect x="6" y="19" width="52" height="26" rx="13" fill="#e34948"/><path d="M19 19h13v26H19a13 13 0 0 1 0-26z" fill="#2a78d6"/><rect x="12" y="24" width="14" height="4" rx="2" fill="#fff" opacity=".55"/></g></svg>'
+)}`;
+---
+
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>İki Hap, Bir Masa</title>
+    <meta name="description" content={aciklamaMetni} />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta property="og:title" content="İki Hap, Bir Masa" />
+    <meta property="og:description" content={aciklamaMetni} />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#eceef2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#13161c" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href={favicon} />
+    {/* Rehberle aynı tema anahtarı: rehberde seçilen tema burada da geçerli olur. */}
+    <script is:inline>
+      (() => {
+        let secilen = null;
+        try {
+          secilen = localStorage.getItem('starlight-theme');
+        } catch (e) {}
+        const tema =
+          secilen === 'light' || secilen === 'dark'
+            ? secilen
+            : matchMedia('(prefers-color-scheme: light)').matches
+              ? 'light'
+              : 'dark';
+        document.documentElement.dataset.theme = tema;
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="sayfa">
+      <header class="ust">
+        <div class="ust__kimlik">
+          <span class="logo" aria-hidden="true">
+            <span class="kapsul kapsul--mavi"></span>
+            <span class="kapsul kapsul--kirmizi"></span>
+          </span>
+          <div>
+            <p class="ust__ust-baslik">Karar panosu · Murat Bey görüşmesi</p>
+            <h1>İki Hap, Bir Masa</h1>
+          </div>
+        </div>
+        <div class="ust__sag">
+          <div class="avatarlar" role="img" aria-label="Masada iki kişi: İsmail ve Murat abi">
+            <span class="avatar" aria-hidden="true">İ</span>
+            <span class="avatar avatar--m" aria-hidden="true">M</span>
+          </div>
+          <button type="button" class="ikon-dugme tema-dugme" data-tema-dugme aria-label="Temayı değiştir">
+            <PhIcon name="moon" size={20} class="ikon ikon--ay" />
+            <PhIcon name="sun" size={20} class="ikon ikon--gunes" />
+          </button>
+        </div>
+      </header>
+
+      <main class="pano" id="pano" data-secim="hepsi">
+        <p class="gorsel-gizli">
+          Bu pano bir karar ağacıdır. Açılış cümlesinden üç yol çıkar: mavi hap, kırmızı hap ve
+          masada olmayan eski düzen. Mavi ve kırmızı yol kapanış cümlesinde birleşir. Alttaki
+          araç çubuğundan bir hap seçilebilir.
+        </p>
+
+        <svg class="teller" aria-hidden="true" focusable="false">
+          <defs>
+            {
+              (['mavi', 'kirmizi', 'gri'] as const).map((ton) => (
+                <marker
+                  id={`ok-${ton}`}
+                  viewBox="0 0 10 10"
+                  refX="8.5"
+                  refY="5"
+                  markerWidth="10"
+                  markerHeight="10"
+                  markerUnits="userSpaceOnUse"
+                  orient="auto-start-reverse"
+                >
+                  <path class={`ok--${ton}`} d="M0 0.8 L9.5 5 L0 9.2 Z" />
+                </marker>
+              ))
+            }
+          </defs>
+          <g class="teller__yollar"></g>
+        </svg>
+        <div class="tel-etiketleri" aria-hidden="true"></div>
+
+        <section class="masa kagit" id="masa" aria-labelledby="masa-etiket">
+          <span class="bant" aria-hidden="true"></span>
+          <p class="kagit__etiket" id="masa-etiket">
+            <PhIcon name="signpost" size={18} class="ikon" />
+            Açılış
+          </p>
+          <blockquote class="alinti">
+            <p>
+              Murat abi, önüne iki yol koyuyorum. İkisinde de varım, ikisi de dürüst. Üçüncü seçenek
+              eski düzenin devamı değil.
+            </p>
+          </blockquote>
+        </section>
+
+        <div class="catal">
+          <button type="button" class="bas bas--mavi" id="bas-mavi" data-secim-dugme="mavi" aria-pressed="false">
+            <span class="kapsul kapsul--mavi" aria-hidden="true"></span>
+            <span class="bas__metin">
+              <span class="bas__ad">Mavi hap</span>
+              <span class="bas__slogan">Kalıyorum, düzeni yeniden kuruyoruz</span>
+            </span>
+            <span class="bas__durum" aria-hidden="true">
+              <span class="durum-cipi">
+                <span class="durum-cipi__sec">Bunu seç</span>
+                <span class="durum-cipi__secildi"><PhIcon name="check" size={16} class="ikon" />Seçildi</span>
+              </span>
+            </span>
+            <span class="muhur" aria-hidden="true"><PhIcon name="seal-check" size={22} class="ikon" /></span>
+          </button>
+
+          <div class="bas bas--eski" id="bas-eski">
+            <span class="kapsul kapsul--eski" aria-hidden="true"><span class="kapsul__cizik"></span></span>
+            <span class="bas__metin">
+              <span class="bas__ad">Eski düzen</span>
+              <span class="bas__slogan">Bugünkü döngünün devamı</span>
+            </span>
+            <span class="damga"><PhIcon name="prohibit" size={16} class="ikon" />Masada yok</span>
+          </div>
+
+          <button type="button" class="bas bas--kirmizi" id="bas-kirmizi" data-secim-dugme="kirmizi" aria-pressed="false">
+            <span class="kapsul kapsul--kirmizi" aria-hidden="true"></span>
+            <span class="bas__metin">
+              <span class="bas__ad">Kırmızı hap</span>
+              <span class="bas__slogan">Dışarıdan koç, yıl sonuna kadar</span>
+            </span>
+            <span class="bas__durum" aria-hidden="true">
+              <span class="durum-cipi">
+                <span class="durum-cipi__sec">Bunu seç</span>
+                <span class="durum-cipi__secildi"><PhIcon name="check" size={16} class="ikon" />Seçildi</span>
+              </span>
+            </span>
+            <span class="muhur" aria-hidden="true"><PhIcon name="seal-check" size={22} class="ikon" /></span>
+          </button>
+        </div>
+
+        <div class="dallar">
+          <section class="dal dal--mavi" id="dal-mavi" aria-labelledby="dal-mavi-baslik">
+            <div class="dal__baslik">
+              <span class="kapsul kapsul--mavi" aria-hidden="true"></span>
+              <h2 id="dal-mavi-baslik">
+                Mavi hap
+                <small>Kalıyorum, düzeni yeniden kuruyoruz</small>
+              </h2>
+            </div>
+            <ul class="notlar">
+              {
+                maviNotlar.map((n) => (
+                  <li class="not not--mavi kagit">
+                    <p class="kagit__etiket">
+                      <PhIcon name={n.ikon} size={18} class="ikon" />
+                      {n.etiket}
+                    </p>
+                    <p class="not__metin">
+                      {n.vurgu && <b>{n.vurgu}</b>} {n.metin}
+                    </p>
+                    {n.ek === 'hesap' && (
+                      <div class="not__alt">
+                        <span class="not__cip">İşverene maliyeti ≈ {aylikYuvarlak}/ay</span>
+                        <button type="button" class="kagit-dugme" data-hesap-ac aria-haspopup="dialog">
+                          <PhIcon name="calculator" size={18} class="ikon" />
+                          Hesabı aç
+                        </button>
+                      </div>
+                    )}
+                  </li>
+                ))
+              }
+            </ul>
+          </section>
+
+          <section class="dal dal--kirmizi" id="dal-kirmizi" aria-labelledby="dal-kirmizi-baslik">
+            <div class="dal__baslik">
+              <span class="kapsul kapsul--kirmizi" aria-hidden="true"></span>
+              <h2 id="dal-kirmizi-baslik">
+                Kırmızı hap
+                <small>Dışarıdan koç, yıl sonuna kadar</small>
+              </h2>
+            </div>
+            <ul class="notlar">
+              {
+                kirmiziNotlar.map((n) => (
+                  <li class="not not--kirmizi kagit">
+                    <p class="kagit__etiket">
+                      <PhIcon name={n.ikon} size={18} class="ikon" />
+                      {n.etiket}
+                    </p>
+                    <p class="not__metin">
+                      {n.vurgu && <b>{n.vurgu}</b>} {n.metin}
+                    </p>
+                    {n.ek === 'karsilastir' && (
+                      <div class="not__alt">
+                        <button
+                          type="button"
+                          class="kagit-dugme"
+                          data-hesap-ac="karsilastirma"
+                          aria-haspopup="dialog"
+                        >
+                          <PhIcon name="scales" size={18} class="ikon" />
+                          Mavi ile yan yana
+                        </button>
+                      </div>
+                    )}
+                  </li>
+                ))
+              }
+            </ul>
+          </section>
+
+          <section class="dal dal--eski" id="dal-eski" aria-labelledby="dal-eski-baslik">
+            <div class="dal__baslik">
+              <PhIcon name="arrows-clockwise" size={22} class="ikon" />
+              <h2 id="dal-eski-baslik">
+                Bugünkü döngü
+                <small>Eski düzenin devamı: masada yok</small>
+              </h2>
+            </div>
+            <ol class="dongu">
+              {
+                dongu.map((adim, i) => (
+                  <li
+                    class:list={['dongu__adim', 'kagit', { 'dongu__adim--son': i === dongu.length - 1 }]}
+                    id={`dongu-${i + 1}`}
+                  >
+                    {adim}
+                  </li>
+                ))
+              }
+            </ol>
+            <div class="dongu__not">
+              <p>Bu döngü ikimize de para kaybettiriyor.</p>
+              <p class="el-yazisi">Mavi yoldaki düzenin gerekçesi bu döngü.</p>
+            </div>
+          </section>
+        </div>
+
+        <section class="kapanis kagit" id="kapanis" aria-labelledby="kapanis-etiket">
+          <span class="bant" aria-hidden="true"></span>
+          <p class="kagit__etiket" id="kapanis-etiket">
+            <PhIcon name="handshake" size={18} class="ikon" />
+            Kapanış
+          </p>
+          <blockquote class="alinti">
+            <p>
+              Karar senin Murat abi.{' '}
+              <span class="kapanis__parca kapanis__parca--mavi">Mavi'de tam gücümle içerideyim;</span>{' '}
+              <span class="kapanis__parca kapanis__parca--kirmizi">Kırmızı'da yıl sonuna kadar süreci ayakta tutarım.</span>{' '}
+              Hangisini seçersen, yarın sana o planı yazılı getiririm.
+            </p>
+          </blockquote>
+        </section>
+
+        <p class="gorsel-gizli" id="secim-duyurusu" aria-live="polite"></p>
+      </main>
+
+      <footer class="alt">
+        <p>
+          Hazırlık: 29 Eylül 2026. Maliyet rakamları 2026 mevzuatı ve 2027 varsayımlarıyla yapılmış
+          tahmindir; resmî bordro hesabının yerine geçmez.
+        </p>
+      </footer>
+    </div>
+
+    <div class="arac" role="group" aria-label="Pano araçları">
+      <div class="arac__grup" role="group" aria-label="Hap seçimi">
+        <button type="button" class="arac__dugme arac__dugme--mavi" data-secim-dugme="mavi" aria-pressed="false">
+          <span class="mini-kapsul" aria-hidden="true"></span>
+          Mavi
+        </button>
+        <button type="button" class="arac__dugme" data-secim-dugme="hepsi" aria-pressed="true">
+          <span class="mini-kapsul mini-kapsul--ikisi" aria-hidden="true"></span>
+          <span>İkisi<span class="arac__uzun"> de</span></span>
+        </button>
+        <button type="button" class="arac__dugme arac__dugme--kirmizi" data-secim-dugme="kirmizi" aria-pressed="false">
+          <span class="mini-kapsul mini-kapsul--kirmizi" aria-hidden="true"></span>
+          Kırmızı
+        </button>
+      </div>
+      <span class="arac__ayrac" aria-hidden="true"></span>
+      <button type="button" class="arac__dugme" data-hesap-ac aria-haspopup="dialog" aria-label="Hesap">
+        <PhIcon name="calculator" size={20} class="ikon" />
+        <span class="arac__uzun">Hesap</span>
+      </button>
+      <button type="button" class="arac__dugme arac__tam-ekran" data-tam-ekran aria-pressed="false">
+        <PhIcon name="arrows-out" size={20} class="ikon ikon--ac" />
+        <PhIcon name="arrows-in" size={20} class="ikon ikon--kapat" />
+        <span data-tam-ekran-etiket>Tam ekran</span>
+      </button>
+    </div>
+
+    <dialog class="cekmece" id="hesap" aria-labelledby="hesap-baslik">
+      <div class="cekmece__bas">
+        <div>
+          <p class="ust-etiket">Mavi yol · Ücret</p>
+          <h2 id="hesap-baslik">Net 5.000 $ maaşın işverene maliyeti</h2>
+        </div>
+        <button type="button" class="ikon-dugme" data-hesap-kapat aria-label="Hesabı kapat">
+          <PhIcon name="x" size={22} class="ikon" />
+        </button>
+      </div>
+
+      <div class="cekmece__govde">
+        <section class="cekmece__bolum" aria-label="Özet">
+          <p class="aciklama">
+            2027 için merkez tahmin: resmî ve teşviksiz istihdam, yazılım işi hizmet sektörü sayılır.
+            2027 asgari ücreti ve vergi dilimleri Aralık 2026'da kesinleşince rakamlar güncellenmeli.
+          </p>
+          <div class="kahraman">
+            <p class="kahraman__deger">
+              <strong>≈ {aylikYuvarlak}</strong>
+              <span>aylık ortalama işveren maliyeti</span>
+            </p>
+            <div class="kahraman__ikili">
+              <div>
+                <span>Yıllık</span>
+                <strong>≈ {yillikYuvarlak}</strong>
+              </div>
+              <div>
+                <span>Net maaşın her 1 $'ı için</span>
+                <strong>≈ {netBasina} $</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cekmece__bolum" aria-labelledby="dagilim-baslik">
+          <h3 id="dagilim-baslik">İşverenin ödediği her 100 $</h3>
+          <div class="yigin" role="group" aria-label="Her 100 doların dağılımı">
+            {
+              dagilim.map((d, i) => (
+                <div
+                  class={`yigin__parca ${d.sinif}`}
+                  style={`flex: ${d.pay} 1 0`}
+                  tabindex="0"
+                  role="img"
+                  aria-label={`${d.ad}: ${ondalik(d.pay, 1)} $`}
+                >
+                  <span class:list={['ipucu', i === 0 ? 'ipucu--sol' : 'ipucu--sag']} aria-hidden="true">
+                    <strong>{ondalik(d.pay, 1)} $</strong>
+                    {d.ad}
+                  </span>
+                </div>
+              ))
+            }
+          </div>
+          <ul class="lejant">
+            {
+              dagilim.map((d) => (
+                <li class="lejant__satir">
+                  <span class={`lejant__renk ${d.sinif}`} aria-hidden="true" />
+                  <span>
+                    {d.ad}
+                    <small>{d.ayrinti}</small>
+                  </span>
+                  <strong>{ondalik(d.pay, 1)} $</strong>
+                </li>
+              ))
+            }
+          </ul>
+          <p class="aciklama">
+            Kesintileri devlete işveren yatırır, ama kaynağı brüt ücrettir. Yıllık tutarlar aşağıdaki
+            dökümde.
+          </p>
+        </section>
+
+        <section class="cekmece__bolum" id="karsilastirma" aria-labelledby="karsilastirma-baslik">
+          <h3 id="karsilastirma-baslik">İki yol yan yana</h3>
+          <div class="karsilastir">
+            {
+              karsilastirma.map((k) => (
+                <figure class="karsilastir__kart">
+                  <figcaption>
+                    <h4>{k.baslik}</h4>
+                  </figcaption>
+                  {k.satirlar.map((s) => (
+                    <div class="cubuk">
+                      <div class="cubuk__bas">
+                        <span>
+                          <span
+                            class:list={['mini-kapsul', { 'mini-kapsul--kirmizi': s.ton === 'kirmizi' }]}
+                            aria-hidden="true"
+                          />
+                          {s.ad}
+                        </span>
+                        <strong>{s.metin}</strong>
+                      </div>
+                      <div class="cubuk__iz">
+                        <div
+                          class={`cubuk__dolgu cubuk__dolgu--${s.ton}`}
+                          style={`width: ${Math.min(100, (100 * s.deger) / k.olcek).toFixed(1)}%`}
+                          tabindex="0"
+                          role="img"
+                          aria-label={`${s.ad}, ${k.baslik.toLocaleLowerCase('tr')}: ${s.metin}, ${s.ayrinti}`}
+                        >
+                          <span class="ipucu ipucu--sol" aria-hidden="true">
+                            <strong>{s.metin}</strong>
+                            {s.ayrinti}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  <p class="cubuk__olcek">Ölçek {k.olcekMetni}</p>
+                </figure>
+              ))
+            }
+          </div>
+          <p class="aciklama">
+            Aylık tutarlar arasında yaklaşık {aylikKat} kat fark var; iş günü başına tutar neredeyse
+            aynı. Mavi yolda ödeme haftada 5 tam günü, kırmızı yolda haftada 1 günü (yalnız öğleden
+            önce) karşılar. Gün başına hesapta ayda {IS_GUNU} iş günü varsayıldı; kırmızı yoldaki günlük
+            ücret de aynı varsayıma dayanır.
+          </p>
+        </section>
+
+        <section class="cekmece__bolum" aria-labelledby="dokum-baslik">
+          <h3 id="dokum-baslik">Yıllık döküm</h3>
+          <div class="tablo-sar">
+            <table class="tablo">
+              <caption>
+                Dolar karşılıkları her ayın kuruyla çevrildi: Ocak {ondalik(merkez.kurOcak, 1)} ₺/$,
+                Aralık {ondalik(merkez.kurAralik, 1)} ₺/$, arası doğrusal.
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Kalem</th>
+                  <th scope="col">Yıllık ₺</th>
+                  <th scope="col">Yıllık $</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  dokum.map((s) => (
+                    <tr class:list={{ tablo__alt: s.tur === 'alt', tablo__toplam: s.tur === 'toplam' }}>
+                      <th scope="row">{s.ad}</th>
+                      <td>{sayi.format(Math.round(s.tl))}</td>
+                      <td>{sayi.format(Math.round(s.usd))}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="cekmece__bolum" aria-labelledby="duyarlilik-baslik">
+          <h3 id="duyarlilik-baslik">Varsayım değişirse</h3>
+          <div class="tablo-sar">
+            <table class="tablo">
+              <caption>
+                Kur ile TL parametreleri birlikte hareket ettiği için dolar bazında maliyet dar bir
+                bantta kalıyor: yılda {bantAlt}–{bantUst} bin $.
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Senaryo</th>
+                  <th scope="col">Yıllık $</th>
+                  <th scope="col">Aylık ort. $</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  senaryolar.map((s) => (
+                    <tr class:list={{ tablo__vurgu: s.vurgu === true }}>
+                      <th scope="row">{s.ad}</th>
+                      <td>{sayi.format(Math.round(s.yillik))}</td>
+                      <td>{sayi.format(Math.round(s.yillik / 12))}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="cekmece__bolum" aria-labelledby="varsayim-baslik">
+          <h3 id="varsayim-baslik">Varsayımlar</h3>
+          <ul class="madde-listesi">
+            <li>
+              2027 asgari ücreti ve vergi dilimleri 2026'ya göre %{merkez.artisYuzde} artar: brüt asgari
+              ücret ≈ {tl(sonuc.asgariUcret)}, SGK tavanı (9 kat) ≈ {tl(sonuc.sgkTavani)}.
+            </li>
+            <li>
+              Kur Ocak'ta {ondalik(merkez.kurOcak, 1)}, Aralık'ta {ondalik(merkez.kurAralik, 1)} ₺/$. TCMB
+              Eylül 2026 Piyasa Katılımcıları Anketi'nde 12 ay sonrası beklentisi 58,60 ₺/$.
+            </li>
+            <li>
+              İşveren primi %{isverenYuzde}: SGK %19,75 (hizmet sektörüne 2 puan indirimle) ve işsizlik
+              %2. İndirimin şartı, SGK borcu olmaması ve bildirgelerin zamanında verilmesidir.
+            </li>
+            <li>
+              Net maaş sabit olduğu için kümülatif vergi yüzünden brüt ücret yıl içinde yükselir: Ocak'ta
+              ≈ {ilkBrutBin} bin ₺, Aralık'ta ≈ {sonBrutBin} bin ₺.
+            </li>
+          </ul>
+        </section>
+
+        <section class="cekmece__bolum" aria-labelledby="not-baslik">
+          <h3 id="not-baslik">Bilinmesi gerekenler</h3>
+          <ul class="madde-listesi">
+            <li>
+              Ücret dövizle sözleşmeye yazılamaz: Türkiye'de yerleşik taraflar arasında iş sözleşmesi
+              döviz cinsinden veya dövize endeksli yapılamaz (32 sayılı Karar). Bordro her ay TL brüt
+              üzerinden güncellenir.
+            </li>
+            <li>
+              Hesaba girmeyenler: kıdem tazminatı karşılığı (2027'de yılda ≈ 80–85 bin ₺), ihbar,
+              ikramiye, donanım ve lisans giderleri.
+            </li>
+            <li>
+              Yemek parası nakit ödenirse günlük istisnayı (2026: 300 ₺) aşan küçük kısım vergilenir;
+              yemek kartıyla verilirse tamamı istisnadır.
+            </li>
+            <li>
+              Şirket teknokentte ya da Ar-Ge merkezi kapsamındaysa gelir vergisi ve SGK teşvikleriyle
+              maliyet belirgin düşer. Bu hesap teşviksizdir.
+            </li>
+          </ul>
+        </section>
+
+        <section class="cekmece__bolum" aria-labelledby="kaynak-baslik">
+          <h3 id="kaynak-baslik">Kaynaklar</h3>
+          <ul class="kaynaklar">
+            {
+              kaynaklar.map((k) => (
+                <li>
+                  <a href={k.url} target="_blank" rel="noopener noreferrer">
+                    {k.ad}
+                    <PhIcon name="arrow-square-out" size={16} class="ikon" />
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      </div>
+    </dialog>
+
+    <template id="rozet-sablonu">
+      <span class="tel-rozet"><PhIcon name="prohibit" size={16} class="ikon" /></span>
+    </template>
+
+    <script>
+      type Secim = 'hepsi' | 'mavi' | 'kirmizi';
+      type TelTonu = 'mavi' | 'kirmizi' | 'gri';
+      type Kenar = 'ust' | 'alt' | 'sag';
+
+      interface Nokta {
+        x: number;
+        y: number;
+      }
+
+      interface Tel {
+        kaynak: string;
+        hedef: string;
+        ton: TelTonu;
+        kaynakKenar?: Kenar;
+        hedefKenar?: Kenar;
+        /** Bağlantı noktasının öğe genişliğine oranla yatay kayması (-0,5 ile 0,5 arası). */
+        kaynakKayma?: number;
+        hedefKayma?: number;
+        etiket?: string;
+        /** Etiketin dönüş açısı, derece. */
+        etiketAcisi?: number;
+        /** Etiket gri bölümün üstündeyse zemini ona uyar. */
+        kutuIci?: boolean;
+        kesikli?: boolean;
+        /** Tel ortasına "yasak" rozeti koyar. */
+        yasak?: boolean;
+        /** Yan yaylarda dışa taşma, piksel. */
+        bombe?: number;
+        /** Yalnızca üç sütunlu geniş yerleşimde çizilir. */
+        genis?: boolean;
+      }
+
+      const TELLER: Tel[] = [
+        { kaynak: '#masa', hedef: '#bas-mavi', ton: 'mavi', kaynakKayma: -0.28, etiket: '1. yol' },
+        { kaynak: '#masa', hedef: '#bas-eski', ton: 'gri', kesikli: true, yasak: true },
+        { kaynak: '#masa', hedef: '#bas-kirmizi', ton: 'kirmizi', kaynakKayma: 0.28, etiket: '2. yol' },
+        { kaynak: '#bas-mavi', hedef: '#dal-mavi', ton: 'mavi', genis: true },
+        { kaynak: '#bas-eski', hedef: '#dal-eski', ton: 'gri', kesikli: true, genis: true },
+        { kaynak: '#bas-kirmizi', hedef: '#dal-kirmizi', ton: 'kirmizi', genis: true },
+        { kaynak: '#dal-mavi', hedef: '#kapanis', ton: 'mavi', hedefKayma: -0.24, etiket: 'seçilirse', genis: true },
+        { kaynak: '#dal-kirmizi', hedef: '#kapanis', ton: 'kirmizi', hedefKayma: 0.24, etiket: 'seçilirse', genis: true },
+        { kaynak: '#dongu-1', hedef: '#dongu-2', ton: 'gri' },
+        { kaynak: '#dongu-2', hedef: '#dongu-3', ton: 'gri' },
+        { kaynak: '#dongu-3', hedef: '#dongu-4', ton: 'gri' },
+        { kaynak: '#dongu-4', hedef: '#dongu-5', ton: 'gri' },
+        { kaynak: '#dongu-5', hedef: '#dongu-6', ton: 'gri' },
+        {
+          kaynak: '#dongu-6',
+          hedef: '#dongu-1',
+          ton: 'gri',
+          kaynakKenar: 'sag',
+          hedefKenar: 'sag',
+          bombe: 40,
+          etiket: 'başa dön',
+          etiketAcisi: -90,
+          kutuIci: true,
+        },
+      ];
+
+      const SVG_NS = 'http://www.w3.org/2000/svg';
+      const pano = document.getElementById('pano');
+      const svg = pano?.querySelector<SVGSVGElement>('.teller') ?? null;
+      const yollar = svg?.querySelector<SVGGElement>('.teller__yollar') ?? null;
+      const etiketler = pano?.querySelector<HTMLElement>('.tel-etiketleri') ?? null;
+      const rozetSablonu = document.getElementById('rozet-sablonu');
+      const genisEkran = window.matchMedia('(min-width: 64rem)');
+      const azHareket = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      function baglantiNoktasi(el: Element, kenar: Kenar, kayma: number, koken: DOMRect): Nokta {
+        const r = el.getBoundingClientRect();
+        const x = r.left - koken.left + r.width * (0.5 + kayma);
+        if (kenar === 'ust') return { x, y: r.top - koken.top };
+        if (kenar === 'alt') return { x, y: r.bottom - koken.top };
+        return { x: r.right - koken.left, y: r.top - koken.top + r.height / 2 };
+      }
+
+      /** Bağlantı tellerini güncel yerleşime göre yeniden çizer. */
+      function telleriCiz(): void {
+        if (!pano || !svg || !yollar || !etiketler) return;
+        const koken = pano.getBoundingClientRect();
+        const genislik = pano.offsetWidth;
+        const yukseklik = pano.offsetHeight;
+        svg.setAttribute('width', String(genislik));
+        svg.setAttribute('height', String(yukseklik));
+        svg.setAttribute('viewBox', `0 0 ${genislik} ${yukseklik}`);
+        yollar.replaceChildren();
+        etiketler.replaceChildren();
+        const genis = genisEkran.matches;
+
+        for (const tel of TELLER) {
+          if (tel.genis && !genis) continue;
+          const kaynak = pano.querySelector(tel.kaynak);
+          const hedef = pano.querySelector(tel.hedef);
+          if (!kaynak || !hedef) continue;
+
+          const kaynakKenar = tel.kaynakKenar ?? 'alt';
+          const a = baglantiNoktasi(kaynak, kaynakKenar, tel.kaynakKayma ?? 0, koken);
+          const b = baglantiNoktasi(hedef, tel.hedefKenar ?? 'ust', tel.hedefKayma ?? 0, koken);
+          let c1: Nokta;
+          let c2: Nokta;
+          if (kaynakKenar === 'sag') {
+            const bombe = tel.bombe ?? 32;
+            a.x += 4;
+            b.x += 5;
+            c1 = { x: a.x + bombe, y: a.y };
+            c2 = { x: b.x + bombe, y: b.y };
+          } else {
+            a.y += 3;
+            b.y -= 4;
+            const k = Math.max(10, (b.y - a.y) * 0.55);
+            c1 = { x: a.x, y: a.y + k };
+            c2 = { x: b.x, y: b.y - k };
+          }
+
+          const yol = document.createElementNS(SVG_NS, 'path');
+          yol.setAttribute('d', `M ${a.x} ${a.y} C ${c1.x} ${c1.y}, ${c2.x} ${c2.y}, ${b.x} ${b.y}`);
+          yol.setAttribute('class', `tel tel--${tel.ton}${tel.kesikli ? ' tel--kesikli' : ''}`);
+          yol.setAttribute('marker-end', `url(#ok-${tel.ton})`);
+          yollar.append(yol);
+
+          // Kübik Bézier eğrisinin t = 0,5 noktası
+          const orta: Nokta = {
+            x: 0.125 * a.x + 0.375 * c1.x + 0.375 * c2.x + 0.125 * b.x,
+            y: 0.125 * a.y + 0.375 * c1.y + 0.375 * c2.y + 0.125 * b.y,
+          };
+
+          if (tel.yasak && rozetSablonu instanceof HTMLTemplateElement) {
+            const rozet = rozetSablonu.content.firstElementChild?.cloneNode(true);
+            if (rozet instanceof HTMLElement) {
+              rozet.style.left = `${orta.x}px`;
+              rozet.style.top = `${orta.y}px`;
+              etiketler.append(rozet);
+            }
+          }
+
+          if (tel.etiket) {
+            const etiket = document.createElement('span');
+            etiket.className = `tel-etiket tel-etiket--${tel.ton}${tel.kutuIci ? ' tel-etiket--kutu' : ''}`;
+            etiket.textContent = tel.etiket;
+            etiket.style.left = `${orta.x}px`;
+            etiket.style.top = `${orta.y}px`;
+            if (tel.etiketAcisi) {
+              etiket.style.transform = `translate(-50%, -50%) rotate(${tel.etiketAcisi}deg)`;
+            }
+            etiketler.append(etiket);
+          }
+        }
+      }
+
+      let bekleyenCizim = 0;
+      function yenidenCiz(): void {
+        cancelAnimationFrame(bekleyenCizim);
+        bekleyenCizim = requestAnimationFrame(telleriCiz);
+      }
+
+      if (pano) {
+        const gozlemci = new ResizeObserver(yenidenCiz);
+        gozlemci.observe(pano);
+        pano.querySelectorAll('.masa, .bas, .dal, .dongu__adim, .kapanis').forEach((el) => gozlemci.observe(el));
+      }
+      genisEkran.addEventListener('change', yenidenCiz);
+      void document.fonts.ready.then(yenidenCiz);
+      window.addEventListener('load', yenidenCiz);
+      telleriCiz();
+
+      /* ---- Hap seçimi ---- */
+      const secimDugmeleri = document.querySelectorAll<HTMLButtonElement>('[data-secim-dugme]');
+      const duyuru = document.getElementById('secim-duyurusu');
+
+      function yoluCizdir(ton: 'mavi' | 'kirmizi'): void {
+        if (azHareket.matches || !yollar) return;
+        yollar.querySelectorAll<SVGPathElement>(`.tel--${ton}`).forEach((yol) => {
+          const uzunluk = yol.getTotalLength();
+          yol.animate(
+            [
+              { strokeDasharray: `${uzunluk}`, strokeDashoffset: `${uzunluk}` },
+              { strokeDasharray: `${uzunluk}`, strokeDashoffset: '0' },
+            ],
+            { duration: 650, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }
+          );
+        });
+      }
+
+      function secimYap(secim: Secim): void {
+        if (!pano) return;
+        pano.dataset.secim = secim;
+        secimDugmeleri.forEach((d) => {
+          d.setAttribute('aria-pressed', String(d.dataset.secimDugme === secim));
+        });
+        if (duyuru) {
+          duyuru.textContent =
+            secim === 'hepsi'
+              ? 'İki yol birlikte gösteriliyor.'
+              : secim === 'mavi'
+                ? 'Mavi hap seçildi.'
+                : 'Kırmızı hap seçildi.';
+        }
+        if (secim !== 'hepsi') yoluCizdir(secim);
+      }
+
+      secimDugmeleri.forEach((d) => {
+        d.addEventListener('click', () => {
+          const istenen = d.dataset.secimDugme;
+          if (istenen !== 'hepsi' && istenen !== 'mavi' && istenen !== 'kirmizi') return;
+          // Basılı bir hapa yeniden basmak seçimi kaldırır.
+          const simdiki = pano?.dataset.secim;
+          secimYap(istenen !== 'hepsi' && simdiki === istenen ? 'hepsi' : istenen);
+        });
+      });
+
+      /* ---- Hesap çekmecesi ---- */
+      const cekmece = document.getElementById('hesap');
+      if (cekmece instanceof HTMLDialogElement) {
+        const govde = cekmece.querySelector<HTMLElement>('.cekmece__govde');
+        document.querySelectorAll<HTMLButtonElement>('[data-hesap-ac]').forEach((d) => {
+          d.addEventListener('click', () => {
+            cekmece.showModal();
+            const hedefId = d.dataset.hesapAc;
+            const hedef = hedefId ? cekmece.querySelector<HTMLElement>(`#${hedefId}`) : null;
+            if (hedef) hedef.scrollIntoView({ block: 'start' });
+            else if (govde) govde.scrollTop = 0;
+          });
+        });
+        cekmece.querySelector('[data-hesap-kapat]')?.addEventListener('click', () => cekmece.close());
+        // Arka plana tıklamak çekmeceyi kapatır.
+        cekmece.addEventListener('click', (e) => {
+          if (e.target === cekmece) cekmece.close();
+        });
+      }
+
+      /* ---- Tema ---- */
+      const temaDugmesi = document.querySelector<HTMLButtonElement>('[data-tema-dugme]');
+      function temaEtiketiniYaz(): void {
+        if (!temaDugmesi) return;
+        const koyu = document.documentElement.dataset.theme === 'dark';
+        temaDugmesi.setAttribute('aria-label', koyu ? 'Açık temaya geç' : 'Koyu temaya geç');
+        temaDugmesi.title = koyu ? 'Açık tema' : 'Koyu tema';
+      }
+      temaDugmesi?.addEventListener('click', () => {
+        const yeni = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = yeni;
+        try {
+          localStorage.setItem('starlight-theme', yeni);
+        } catch {
+          // Depolama kapalıysa tema yalnızca bu oturumda geçerli olur.
+        }
+        temaEtiketiniYaz();
+      });
+      temaEtiketiniYaz();
+
+      /* ---- Tam ekran (sunum için) ---- */
+      const tamEkranDugmesi = document.querySelector<HTMLButtonElement>('[data-tam-ekran]');
+      if (tamEkranDugmesi) {
+        const etiket = tamEkranDugmesi.querySelector('[data-tam-ekran-etiket]');
+        if (!document.fullscreenEnabled) tamEkranDugmesi.hidden = true;
+        tamEkranDugmesi.addEventListener('click', () => {
+          const islem = document.fullscreenElement
+            ? document.exitFullscreen()
+            : document.documentElement.requestFullscreen();
+          islem.catch(() => {
+            // Tarayıcı tam ekranı reddedebilir; pano normal görünümde kalır.
+          });
+        });
+        document.addEventListener('fullscreenchange', () => {
+          const acik = document.fullscreenElement !== null;
+          tamEkranDugmesi.setAttribute('aria-pressed', String(acik));
+          if (etiket) etiket.textContent = acik ? 'Tam ekrandan çık' : 'Tam ekran';
+        });
+      }
+    </script>
+  </body>
+</html>
